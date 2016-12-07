@@ -115,7 +115,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/js/adminPanel/index.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/adminPanel/js/index.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!--<script src="dist/js/demo.js"></script>-->
     <!-- DataTables -->
@@ -126,11 +126,11 @@ folder instead of downloading all of them to reduce the load. -->
 
     <!-- ----CUSTOM JS ------ -->
 	
-	<script src="<?php echo(SITE_URL) ?>/js/AdminPanel/admin_panel.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/common.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
+    <!--<script src="<?php //echo(SITE_URL) ?>/js/common.js"></script>-->
 	<!-- per widget statistiche utenti -->
-	<script src="<?php echo(SITE_URL) ?>/js/AdminPanel/statistic_widged.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/AdminPanel/ads_status_manager.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/statistic_widged.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/ads_status_manager.js"></script>
 
 	<!-- DataTable Init -->
     <script>
@@ -162,7 +162,7 @@ folder instead of downloading all of them to reduce the load. -->
 				"columnDefs": [
 					{ targets: "_all",className: "ALING_CENTER"}
 				  ],
-                "sAjaxSource": "../ajax/AdminPanel/get_ads_datatable.ajax.php",
+                "sAjaxSource": "ajax/get_ads_datatable.ajax.php",
 
             });
         });

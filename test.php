@@ -7,7 +7,7 @@ include("app/classes/UserManager.php");
 
 include("app/classes/NewsManager.php");
 
-/*include("app/classes/PropertyManager.php");*/
+include("app/classes/PropertyManager.php");
 
 
 
@@ -16,11 +16,12 @@ include("app/classes/NewsManager.php");
 /*$usrM = new UserManager();
 $res = $usrM->checkLogin("info@tecnoimmobiligroup.it",sha1("b151195"));*/
 //echo($res);
-//$propM = new PropertyManager();
-//$res = $newsM->read(array("reference_code = ?","id_city = ?"),array("Group by ?"),array("123",4,"id"),array("id","id_contract","id_country","id_city"));
+$propM = new PropertyManager();
+//$res = $propM->read(array("reference_code = ?","id_city = ?"),array("Group by ?"),array("123",4,"id"),array("id","id_contract","id_country","id_city"));
+$res = $propM->readAllAds();
+var_dump($res);
 
-
-$newsM = new NewsManager();
+//$newsM = new NewsManager();
 
 //$res = $newsM->read(array("title = ?","description = ?"),array("Limit  12"),array("te'st","test"),array("id","title","description"));
 
@@ -29,10 +30,10 @@ $newsM = new NewsManager();
 
 //$res = $newsM->update(array("title = ?","description = ?"),array("id = ?"),array("update prova titolo2","update prova descr",18));
 
-$res = $newsM->delete(array("id=?"),array(18));
+//$res = $newsM->delete(array("id=?"),array(18));
 
 
-var_dump($res);
+//var_dump($res);
 
 
 
