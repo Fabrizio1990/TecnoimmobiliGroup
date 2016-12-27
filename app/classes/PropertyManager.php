@@ -13,11 +13,14 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 	// IMPLEMENTO I METODI DELL INTERFACCIA
 
-    public function create($values = null)
+    public function create($values = null,$fields = null)
     {
 
-        $fields     = "reference_code,id_contract,id_contract_status,id_appointment,id_country,
+        $def_fields = "reference_code,id_contract,id_contract_status,id_appointment,id_country,
 id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitude,latitude,id_category,id_tipology,mq,id_locals,id_rooms,id_bathrooms,id_floor,id_elevator,id_heating,id_box,id_garden,id_property_conditions,id_property_status,id_ads_status,is_prestige,is_price_lowered,video_url,id_description,views,telephone_click,id_energy_class,id_ipe_um,ipe,show_on_magazine,show_on_portal,date_insdate_up,date_del";
+
+        $fields = $fields == null ? $def_fields : $fields;
+
         $rif = $this->createRefenceCode();
         array_unshift($values, $rif);
 
@@ -43,6 +46,12 @@ id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitud
         $ret = parent::delete($this->currTable,$params,$values,$extra_params);
         return $ret;
     }
+
+    public function readOptions($what,$id_parent = null){
+        // TODO implement
+    }
+
+
 
     public function readAllAds($params = null,$extra_params = null,$values =null ,$fields = null){
         $this->currTable = "properties_view";

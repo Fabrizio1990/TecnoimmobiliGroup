@@ -17,9 +17,10 @@ class NewsManager extends DbManager implements IDbManager {
     public function NewsManager() {
         $this->currTable = self::defTable;
     }
-    public function create($values = null)
+    public function create($values = null, $fields = null)
     {
-        $fields     = "title,description";
+        $def_fields     = "title,description";
+        $fields = $fields == null ? $def_fields : $fields;
         $ret = parent::create($this->currTable,$fields,$values);
         return $ret;
     }
@@ -29,7 +30,6 @@ class NewsManager extends DbManager implements IDbManager {
         $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields);
         return $ret;
     }
-
 
     public function update($fields,$params,$values = null,$extra_params = null)
     {
@@ -42,6 +42,11 @@ class NewsManager extends DbManager implements IDbManager {
         $ret = parent::delete($this->currTable,$params,$values,$extra_params);
         return $ret;
     }
+
+    public function readOptions($what,$id_parent = null){
+        // TODO implement
+    }
+
 
     public function getAllNews(){
         $obj = new NewsEntity();
