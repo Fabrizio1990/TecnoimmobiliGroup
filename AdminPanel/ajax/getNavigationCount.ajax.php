@@ -1,15 +1,16 @@
 <?php 
 if(isset($_POST["DATE_FROM"])&& isset($_POST["DATE_TO"])){
-	require_once("../../include/connessione_mysqli.php");
-	require_once("../../class/Navigation_helper/NavigationStatistics.php");
-	$conn = openConn();
+    include("../../config.php");
+	//require_once("../../include/connessione_mysqli.php");
+	require_once(BASE_PATH."/app/classes/statistics/NavigationStatistics.php");
+	//$conn = openConn();
 
 	$dateFrom = $_POST["DATE_FROM"];
 	$dateTo = $_POST["DATE_TO"];
 	$helper = new NavigationStatistics($conn);
 	$stats = $helper->getVisitatorCount($dateFrom,$dateTo);
 	
-	closeConn($conn);
+	//closeConn($conn);
 	echo($stats);
 	
 }else{

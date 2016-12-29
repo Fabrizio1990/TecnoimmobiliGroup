@@ -20,6 +20,8 @@ class NavigationStatistics extends DbManager{
 	private $guest_AOL_version;
 	private $guest_is_mobile;
 	private $guest_is_robot;
+
+    public $conn = null;
 	
 
 	
@@ -42,32 +44,34 @@ class NavigationStatistics extends DbManager{
 			//SE LE TABELLE NON ESISTONO LE CREO
 			
 			// SE NUOVO UTENTE LO SALVO
-			//$this->saveNewUser();
+			$this->saveNewUser();
 		}else{
 			$this->guest_id 		= $_COOKIE["guest_id"];
 		}
 		
-		//$this->saveNavigation();
+		$this->saveNavigation();
+        parent::openConnection();
 	}
 	
 	public function saveNewUser(){
-		
+
 		$query = "INSERT IGNORE INTO session_visitators  	
 				(session_id,ip,browser,browser_version,platform,
 				aol_version,is_mobile,is_robot,date)
 				VALUES
 				('" . $this->guest_id . "','".$this->guest_ip . "','" . $this->guest_browser . "','" . $this->guest_browser_version . "','" . $this->guest_platform ."' ,'" . $this->guest_AOL_version ."','" . $this->guest_is_mobile ."','" . $this->guest_is_robot ."','".$this->request_time."');";
 		//Flog::logError($query,"test.php");
-		if(!$this->conn->query($query)) 
-			Flog::logError($query. " - error saving new guest -> ".mysqli_error($this->conn),"navigationStatistic.php");
+		parent::executeNonQuery($query);
+			//Flog::logError($query. " - error saving new guest -> ".mysqli_error($this->conn),"navigationStatistic.php");
 	 }
 	 
 	public function saveNavigation(){
 		 $query = "INSERT INTO session_pages_visited (session_id,prev_page,current_page) values('".$this->guest_id."','".$this->guest_prev_page."','".$this->guest_current_page."')";
 		 //echo $query;
-		 if(!$this->conn->query($query)) 
-			 Flog::logError("error saving statistic".mysqli_error($this->conn),"navigationStatistic.php");
+		 parent::executeNonQuery($query);
+			 //Flog::logError("error saving statistic".mysqli_error($this->conn),"navigationStatistic.php");
 	}
+
 	/* --------------------------------------------
 	---------------- GET VISITATOR COUNT ---------
 	---------------------------------------------*/
@@ -79,9 +83,9 @@ class NavigationStatistics extends DbManager{
 		$query.= " '" . $date_start . $start_day_time . "' " ;
 		$query.= " AND '" . ($date_end==null?$date_start:$date_end) . $end_day_time . "' " ;
 		
-		$result = $this->conn->query($query) or die(/*mysqli_error($conn)*/"ERRORE STATS");
-		$res	= mysqli_fetch_row($result);
-		return $res[0];
+		$result = parent::executeQuery($query) ;
+        $res = $result->fetch();
+		return $res["CNT"];
 	}
 	
 	function getPageVisitors($page,$date_start,$date_end =null){
@@ -89,14 +93,15 @@ class NavigationStatistics extends DbManager{
 		$end_day_time = " 23:59:59";
 		
 		$query = "select count(distinct session_id) as CNT from session_pages_visited where current_page='".$page."' ";
+
 		$query.= " AND date >='" . $date_start . $start_day_time . "' " ;
 		$query.= " AND date <='" . ($date_end==null?$date_start:$date_end) . $end_day_time . "' " ;
 		
 		//echo($query);
-		$result = $this->conn->query($query) or die(/*mysqli_error($conn)*/"ERRORE STATS");
-		$res	= mysqli_fetch_row($result);
-		
-		return $res[0];
+		$result = parent::executeQuery($query);
+        $res = $result->fetch();
+
+        return $res["CNT"];
 	}
 	/* retrive the user info */
 	private function getUserInfo(){
@@ -148,7 +153,7 @@ class NavigationStatistics extends DbManager{
 				  KEY session_id_INDEX (session_id)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
-		$this::executeNonQuery($query);
+		parent::executeNonQuery($query);
 
 
 	}
