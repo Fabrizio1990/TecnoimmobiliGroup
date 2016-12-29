@@ -1,13 +1,13 @@
 
 
-var img_portal_stats = ["../images/img_AR/non_in_portali.png","../images/img_AR/mostra_in_portali.png"];
-var img_ads_stats = ["../images/img_AR/ann_bloccato.png","../images/img_AR/ann_attivo.png"];
-var img_news_stats = ["../images/img_AR/annuncio_in_rivista.png","../images/img_AR/annuncio_nn_rivista.png"];
+var img_portal_stats = [BASE_PATH+"AdminPanel/icons/ico_portal_on.png",BASE_PATH+"AdminPanel/icons/ico_portal_off.png"];
+var img_ads_stats = [BASE_PATH+"AdminPanel/icons/ico_ads_on.png",BASE_PATH+"AdminPanel/icons/ico_ads_off.png"];
+var img_news_stats = [BASE_PATH+"AdminPanel/icons/ico_newspaper_on.png",BASE_PATH+"AdminPanel/icons/ico_newspaper_off.png"];
 
 
 function SwitchAdsStatus(id){
 	id_annuncio = id;
-	ajaxCall("../ajax/AdminPanel/switch_ads_status.ajax.php?id=" + id + "&rand=" + Math.random(),null,id,SwitchAdsStatusAction);
+	ajaxCall("../AdminPanel/ajax/switch_ads_status.ajax.php?id=" + id + "&rand=" + Math.random(),null,id,SwitchAdsStatusAction);
 }
 
 
@@ -20,7 +20,7 @@ function SwitchAdsStatusAction(strRes,id_ads){
 
 function SwitchNewsStatus(id){
 	id_annuncio = id;
-	ajaxCall("../ajax/AdminPanel/switch_news_status.ajax.php?id=" + id + "&rand=" + Math.random(),null,id,SwitchNewsStatusAction);
+	ajaxCall("../AdminPanel/ajax/switch_news_status.ajax.php?id=" + id + "&rand=" + Math.random(),null,id,SwitchNewsStatusAction);
 }
 
 
@@ -32,7 +32,7 @@ function SwitchNewsStatusAction(strRes,id_ads){
 
 function SwitchPortalStatus(id){
 	id_annuncio = id;
-	ajaxCall("../ajax/AdminPanel/switch_portal_status.ajax.php?id=" + id + "&rand=" + Math.random(),null,id,SwitchPortalStatusAction);
+	ajaxCall("../AdminPanel/ajax/switch_portal_status.ajax.php?id=" + id + "&rand=" + Math.random(),null,id,SwitchPortalStatusAction);
 	document.getElementById("portal_status_img_"+id).src="../images/loading_48x48.gif";
 }
 

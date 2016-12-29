@@ -11,11 +11,8 @@ class Flog{
 	
 	
 	public static function logError($text,$log_file_name ="log"){
-		//TEST
-		//self::$log_path = "D:/xampp/htdocs/Tecnoimmobili/SITE/log/";	
-		//PROD
-		//self::$log_path = dirname(__FILE__)."/../../log/";
-        //cancello i log vecchi
+
+        //check if other logs are olther than $log_expire_time if true they will deleted
         self::deleteOlderLog(self::$log_path);
 		$date  = Date("Y-m-d h:i:s");
 
@@ -54,14 +51,14 @@ class Flog{
 
             // Calculate file age in seconds
             $FileAge = time() - $FileCreationTime;
-            echo("<br>FILEAGE = ".$FileAge);
-            echo("<br>log_expire_time = ".self::$log_expire_time);
+            //echo("<br>FILEAGE = ".$FileAge);
+            //echo("<br>log_expire_time = ".self::$log_expire_time);
             // Is the file older than the given time span?
             if ($FileAge > self::$log_expire_time){
 
                 // Now do something with the olders files...
 
-                echo "<br>The file $Filename is older than ".self::$log_expire_time." minutes\n";
+                //echo "<br>The file $Filename is older than ".self::$log_expire_time." minutes\n";
 
                 //delete files:
                 unlink($Filename);

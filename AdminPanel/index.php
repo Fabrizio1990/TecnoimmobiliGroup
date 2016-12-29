@@ -93,15 +93,18 @@ folder instead of downloading all of them to reduce the load. -->
 		<!-- END FOOTER -->
 		
         <!-- CONTROL SIDEBAR -->
-                <?php 
-				include(BASE_PATH."/AdminPanel/include/templates/control_sidebar.inc.php");
-				?>
+        <?php
+        include(BASE_PATH."/AdminPanel/include/templates/control_sidebar.inc.php");
+        ?>
         <!-- END CONTROL SIDEBAR -->
         
         
     </div>
     <!-- ./wrapper -->
 
+
+    <!-- My UTILS -->
+    <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
     <!-- jQuery 2.2.3 -->
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

@@ -8,7 +8,7 @@ var month_range = getDatePeriod("month");
 var ever_range = getDatePeriod("ever");
 
 $(document).ready(function(){
-	console.log("ready");
+	//console.log("ready");
 	init();
 	setRefresh(statInterval);
 });
@@ -32,7 +32,7 @@ function setRefresh(stat){
 }
 
 function getVisitWidget(date_from,date_to,elem){
-	page = "../ajax/AdminPanel/getNavigationCount.ajax.php?rand=" + Math.random();
+	page = BASE_PATH+"/AdminPanel/ajax/getNavigationCount.ajax.php?rand=" + Math.random();
 	params = "DATE_FROM="+date_from+"&DATE_TO="+date_to;
 	
 	ajaxCall(page,params,elem,showVisitWidget,null,"POST")	
