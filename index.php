@@ -1,5 +1,6 @@
 <?php
     require("config.php");
+    include(BASE_PATH."/app/include/statistic_start.inc.php");
 
     $url="pages/";
 
