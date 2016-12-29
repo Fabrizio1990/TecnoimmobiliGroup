@@ -8,7 +8,7 @@ class PropertyManager extends DbManager implements IDbManager {
     const defTable  = "properties";
     private $currTable;
 
-    public function NewsManager() {
+    public function PropertyManager() {
         $this->currTable = self::defTable;
     }
 	// IMPLEMENTO I METODI DELL INTERFACCIA
@@ -47,8 +47,24 @@ id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitud
         return $ret;
     }
 
-    public function readOptions($what,$id_parent = null){
-        // TODO implement
+    function readOptions($what,$id_parent = null){
+        $params = null;
+        $fields = null;
+        switch($what){
+            case "ads_status":
+                $params = array("enabled = 1");
+                $this->currTable = "property_ads_status";
+                break;
+
+        }
+
+        if($id_parent!= null)
+            $ret = $this->read($params,null,array($id_parent),$fields);
+        else
+            $ret = $this->read(null,null,null,$fields);
+
+        $this->setDefTable();
+        return $ret;
     }
 
 
