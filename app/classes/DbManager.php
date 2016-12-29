@@ -2,6 +2,7 @@
 require_once(BASE_PATH."/app/classes/LogHelper/Flog.php");
 class DbManager 
 {
+    // PARAMETRI DI CONNESSIONE
     private $hostName  = "";
     private $dbName = "";
     private $user = "";
@@ -13,7 +14,7 @@ class DbManager
 
 	public $tableName ="" ; // verrà valorizzato per poi utilizzare una qualsiasi funzionalità di questa classe. come il count
 
-	public function openConnection()
+	public function openConnection()// APERTURA DELLA CONNESSIONE
     {
         try {
             $this->conn =  new PDO("mysql:dbname=" . $this->dbName . ";host=" . $this->hostName,
@@ -27,28 +28,66 @@ class DbManager
     }
 
 
-	function closeConnection(){
+	function closeConnection(){//CHIUSURA DELLA CONNESSIONE
         $this->conn = null;
 	}
 
-
+    //METODO PER INTERROGAZIONE DB STANDARD, PASSI UNA QUERY E LUI RESTITUISCE IL RESULTSET
 	public function executeQuery($query){
         $this->openConnection();
         $res =$this->conn->query($query);
+        if(!$res){
+            // CONTROLLO SE CI SONO ERRORI
+            $errorInfo = $this->conn->errorInfo();
+            if($errorInfo[0] != 0){
+                Flog::logError($errorInfo[2],"DBManager.php");
+            }
+        }
         $this->closeConnection();
+        return $res;
     }
 
+    // METODO PER ESECUZIONE QUERY DI INSERIMENTO / UPDATE /DELETE (per ora è uguale all' altro)
     public function executeNonQuery($query){
         $this->openConnection();
-        $res =$this->conn->query($query);
+        //echo($query);
+        $res = $this->conn->query($query);
+        if(!$res){
+            // CONTROLLO SE CI SONO ERRORI
+            $errorInfo = $this->conn->errorInfo();
+            if($errorInfo[0] != 0){
+                Flog::logError($errorInfo[2],"DBManager.php");
+            }
+        }
         $this->closeConnection();
+        return $res;
     }
+
+
+    // ##################################################################################
+    // ########   CREATE FUNCTION , USED TO INSERT DATA FROM DB "INSERT INTO"  ##########
+    // ##################################################################################
+
+    // $table = nome tabella
+    // $fields = array di valori contenente i campi da popolare
+    // $values = array di valori contenente i valori dei campi mandati in $fields
+    // NB: la lunghezza di $fields e $values deve essere coerente (uguale)
 
     protected function create($table,$fields,$values){
         $this->openConnection();
-        $query = "INSERT INTO $table ($fields) VALUES(?,?) ";
+        $values_plh="";
+        //foreach field must be created the relative placeholder "?"
+        for($i=0,$len =Count($fields); $i<$len; $i++){
+            $values_plh .="?,";
+        }
+        $values_plh = rtrim($values_plh,",");
 
+        $fields         = $this->getFields($fields);
+
+        $query = "INSERT INTO $table ($fields) VALUES($values_plh) ";
+        echo($query);
         $sth = $this->conn->prepare($query);
+
         $ret = $sth->execute($values);
         //$sth->debugDumpParams();
 
@@ -64,16 +103,25 @@ class DbManager
         return $ret;
     }
 
+    // ##################################################################################
+    // ##############   READ FUNCTION , USED TO READ DATA FROM DB "SELECT"  #############
+    // ##################################################################################
+    // $table  = tableName
+    // $params = array that must contain pieces of where condition , ex:array("id = ?","id_agency =?"), note that the values must be set as placeholder "?" and sent to $values variable
+    // $extra_params = array that must contain pieces of special condition , ex: array("LIMIT 1",GROUP BY ID")
+    // $values = array that must contain values of $params sended, ex: array(1,3)
+    // $fields =  fields to read (if not specified , the default is all '*')
+    // NOTE THAT THE ARRAY VALUES LENGHT MUST BE EQUAL OF THE SUM OF $params+$extra_params lenght
     protected function read($table,$params = null,$extra_params = null,$values =null ,$fields = null){
         $ret = false;
         $this->openConnection();
-        $fields         = $this->getFields($fields);
-        $params         = $this->getParams($params);
-        $extra_params   = $this->getExtraParams($extra_params);
+        $fields         = $this->getFields($fields);// convert $fields array to useful string
+        $params         = $this->getParams($params);// convert $params array to useful string
+        $extra_params   = $this->getExtraParams($extra_params);// convert $extra_params array to useful string
 
         $query = "SELECT $fields from $table $params $extra_params";
-        /*if(DEBUG_MODE)
-            echo("<br>"$query."<br>");*/
+        /*if(DEBUG_MODE)*/
+            //echo("<br>".$query."<br>");
 
         $sth = $this->conn->prepare($query);
 
@@ -98,7 +146,7 @@ class DbManager
         $this->openConnection();
 
 
-    $fields             = $this->getFields($fields);
+        $fields             = $this->getFields($fields);
         $params         = $this->getParams($params);
         $extra_params   = $this->getExtraParams($extra_params);
 
