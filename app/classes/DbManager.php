@@ -146,7 +146,7 @@ class DbManager
         $this->openConnection();
 
 
-        $fields             = $this->getFields($fields);
+        $fields         = $this->getFields($fields);
         $params         = $this->getParams($params);
         $extra_params   = $this->getExtraParams($extra_params);
 
@@ -195,6 +195,31 @@ class DbManager
         return $ret;
     }
 
+    protected function executeSp($spName,$params,$values){
+        $ret = false;
+        $this->openConnection();
+        $params         = $this->getParams($params);// convert $params array to useful string
+
+        $query = "CALL $spName($params)";
+        /*if(DEBUG_MODE)*/
+        //echo("<br>".$query."<br>");
+
+        $sth = $this->conn->prepare($query);
+
+        $ret = $sth->execute($values);
+        //$sth->debugDumpParams();
+
+        // CONTROLLO SE CI SONO ERRORI
+        $errorInfo = $sth->errorInfo();
+        if($errorInfo[0] != 0){
+            Flog::logError($errorInfo[2],"DBManager.php");
+            return $ret;
+        }
+
+        $this->closeConnection();
+        return $ret;
+    }
+
 
     function isRecordFound($resultSet){
         $ret = Count($resultSet)>0?true:false;
@@ -212,27 +237,32 @@ class DbManager
 
     /* FUNZIONE DI APPOGGIO PER LA CREAZIONE DELLE QUERY*/
 	protected function getFields($fields = null){
-
+        $ret = "*";
         if($fields != null){
-            return implode(",", $fields);
+            if(is_array($fields))   $ret =  implode(",", $fields);
+            else                    $ret = $fields;
         }
-        return "*";
+        return $ret;
     }
 
     /* FUNZIONE DI APPOGGIO PER LA CREAZIONE DELLE QUERY*/
     protected function getParams($params= null){
         $ret = "";
-        if($params!= null)
-            $ret =  " WHERE ". implode(" and ", $params);
+        if($params!= null){
+            if(is_array($params))   $ret =  " WHERE ". implode(" and ", $params);
+            else                    $ret =  " WHERE ". $params;
+        }
         return $ret;
     }
 
     /* FUNZIONE DI APPOGGIO PER LA CREAZIONE DELLE QUERY*/
     protected function getExtraParams($extra_params = null){
+        $ret = "";
         if($extra_params!= null){
-            return $extra_params = implode(" ", $extra_params);
+            if(is_array($extra_params)) $ret = implode(" ", $extra_params);
+            else $ret = $extra_params;
         }
-        return "";
+        return $ret;
     }
 
 	
