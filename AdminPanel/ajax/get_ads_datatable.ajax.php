@@ -10,6 +10,8 @@
     $params = Array();
     $values = Array();
 	$rand_num = Rand(0,100);
+    $baseImgPath = SITE_URL."/public/images/images_properties";
+    $imgEof  = "Immagine_eof.jpg";
 
     $propertyM = new PropertyManager();
     $userLogged = SessionManager::getVal("user",true);
@@ -104,25 +106,39 @@
             array_push($values, str_replace(",","','",urldecode($_GET["stato"])));
         }
     }else{
-        array_push($params, " id_ads_status   in(1,2)");//ENABLED,DISABLED
+        array_push($params, " id_ads_status   in(1,2,4)");//ENABLED,DISABLED
     }
 
     $res = $propertyM->readAllAds($params,null,$values);
 
 	$resultFound = Count($res);
 	if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
-	    for($i=0;$i<$resultFound;$i++){
-				/* --- CONVERTO LE DATE TOGLIENDO L'ora (ma metto la data completa hidden perchè serve per un ordinamento corretto --*/
-				$data_up = Date("d-m-Y",strtotime($res[$i]["date_up"]));
-				$data_ins = Date("d-m-Y",strtotime($res[$i]["date_ins"]));
-				$data_ins_field = "<span style='display:none'>".$res[$i]["date_ins"]."</span>".$data_ins;
-				$data_up_field = "<span style='display:none'>".$res[$i]["date_up"]."</span>".$data_up;
+	    for($i=0;$i<$resultFound;$i++) {
+            $resImg = "";
+            /* --- CONVERTO LE DATE TOGLIENDO L'ora (ma metto la data completa hidden perchè serve per un ordinamento corretto --*/
+            $data_up = Date("d-m-Y", strtotime($res[$i]["date_up"]));
+            $data_ins = Date("d-m-Y", strtotime($res[$i]["date_ins"]));
+            $data_ins_field = "<span style='display:none'>" . $res[$i]["date_ins"] . "</span>" . $data_ins;
+            $data_up_field = "<span style='display:none'>" . $res[$i]["date_up"] . "</span>" . $data_up;
 
-                //TODO IMPOSTARE PATH IMMAGINE PICCOLA
-				$first_col = "<a href='AR_immobili_inserimento.php?idimmobile=".$res[$i]["id"]."' > <img class='real_tumb' src='?id=".$rand_num."' /> </a>";
+            if($res[$i]["img_name"] =="")
+                $imgPath = $baseImgPath."/min/".$imgEof;
+            else
+                $imgPath = $baseImgPath."/min/".$res[$i]["img_name"];
 
-				/* ------------ RECUPERO DATI PER COLONNA STATO ------------ */
-				$strstato = $res[$i]["id_ads_status"]==3?SITE_URL."/AdminPanel/images/icons/ico_ads_on.png":SITE_URL."/AdminPanel/images/icons/ico_ads_off.png";
+            $first_col = "<a href='AR_immobili_inserimento.php?idimmobile=" . $res[$i]["id"] . "' > <img class='real_tumb' src=$imgPath?id=". $rand_num . "' /> </a>";
+
+            /* ------------ RECUPERO DATI PER COLONNA STATO ------------ */
+            $strstato = "";
+            if ($res[$i]["id_ads_status"] == "1") {
+                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_on.png";
+            } else if ($res[$i]["id_ads_status"] == "2") {
+                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_off.png";
+            } else if ($res[$i]["id_ads_status"] == "3") {
+                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_del.png";
+            } else if ($res[$i]["id_ads_status"] == "4"){
+                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_draft.png";
+            }
 
 
 				$ico_trattativa="";
@@ -134,7 +150,7 @@
 					$ico_trattativa="<img style='width:14px;height:14px; border:0;' title='Affittato' src='".SITE_URL."/AdminPanel/images/icons/ico_affittato.png'>";
 				}
 
-				$stato_annuncio = '<div id="stato_annuncio'.$res[$i]["id"].'"><a href="javascript:SwitchAdsStatus('.$res[$i]["id"].')"><img id="ads_status_img_'.$res[$i]["id"].'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstato.'" ></a><p>'.$ico_trattativa.'</p></div>';
+				$stato_annuncio = '<div id="stato_annuncio'.$res[$i]["id"].'"><img onclick="openAdsStatusSwitch('.$res[$i]["id"].',' . $res[$i]['id_ads_status'] . ',this)" id="ads_status_img_'.$res[$i]["id"].'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstato.'" ><p>'.$ico_trattativa.'</p></div>';
 				/* ------------   ------------ */
 
 				/* ------------ RECUPERO DATI PER COLONNA RIVISTA ------------ */
@@ -145,7 +161,7 @@
 				{
 					$strRivista = SITE_URL."/AdminPanel/images/icons/ico_newspaper_off.png";
 				}
-				$rivista = '<a href="javascript:SwitchNewsStatus('.$res[$i]["id"].')"><img id="news_status_img_'.$res[$i]["id"].'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" ></a>';
+				$rivista = '<input type="hidden" id="magazine_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_magazine"] .'"/><img onclick="SwitchNewsStatus('.$res[$i]["id"].',this)" id="news_status_img_'.$res[$i]["id"].'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" >';
 				/* -----------   ------------ */
 
 				if($userLogged->id_user_type=="1"){
@@ -159,7 +175,7 @@
 						$strPortali = SITE_URL."/AdminPanel/images/icons/ico_portal_off.png";
 					}
 
-					$portali = '<a href="javascript:SwitchPortalStatus('.$res[$i]["id"].')"><img id="portal_status_img_'.$res[$i]["id"].'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
+					$portali = '<input type="hidden" id="ads_portal_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_portal"] .'"/><img onclick="SwitchPortalStatus('.$res[$i]["id"].',this)" id="portal_status_img_'.$res[$i]["id"].'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
 
 					// se sono amministratore restituisco anche i dati dei portali alla datatable
 					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$stato_annuncio,$rivista,$portali));
