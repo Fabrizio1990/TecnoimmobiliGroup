@@ -76,6 +76,13 @@ id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitud
         return $ret;
     }
 
+    public function getImages($params = null,$extra_params = null,$values =null ,$fields = null){
+        $this->currTable = "property_images";
+        $ret = $this->read($params,$extra_params,$values ,$fields);
+        $this->setDefTable();
+        return $ret;
+    }
+
     private function createRefenceCode(){
         // TODO GENERARE UN CODICE RANDOM
         RETURN 1;
