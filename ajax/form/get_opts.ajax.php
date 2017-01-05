@@ -7,33 +7,25 @@
  * Time: 22:34
  */
 
-if(isset($_REQUEST["id_category"]) && isset($_REQUEST["id_action"])){
+if(isset($_POST["id_action"])){
 
-    $id_cat     = $_REQUEST["id_category"];
-    $id_action  = $_REQUEST["id_action"];
-    $id_parent  = isset($_REQUEST["id_parent"])?$_REQUEST["id_parent"]:null;
+
+    $id_action  = $_POST["id_action"];
+    $id_parent  = isset($_POST["id_parent"])?$_POST["id_parent"]:null;
+
     $res        = null;
 
     require("../../config.php");
     require(BASE_PATH."/app/classes/Utils.php");
+    require(BASE_PATH."/app/classes/OptionsManager.php");
     $mng = null;
 
 
-    switch($id_cat){
-        // ################ GEOGRAPHIC ###############
-        case "geo":
-            require(BASE_PATH."/app/classes/GeographicManager.php");
-            //possible id_action -- country | region | city | town | district
-            $mng = new GeographicManager();
-            $res = $mng->readOptions($id_action,$id_parent);
-            break;
+    $mng = new OptionsManager();
+    $res = $mng->readOptions($id_action,$id_parent);
 
-        // ################ PROPERTIES ###############
-        case "properties":
-            break;
-    }
 
-    $res = Utils::rstToOptionsJson($res,"id","title");
+    $res = Utils::rstToOptionsJson($res);
 
     echo($res);
 }
