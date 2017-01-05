@@ -11,5 +11,5 @@ interface IDbManager
 	
 	public function read($params,$extra_params,$values ,$fields);
 
-    public function readOptions($what,$id_parent = null);
+    //public function readOptions($what,$id_parent = null);
 }
