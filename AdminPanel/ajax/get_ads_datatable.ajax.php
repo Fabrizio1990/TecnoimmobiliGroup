@@ -26,9 +26,11 @@
 
     // se agenzia admin può richiedere immobili di tutte le agenzie altrimenti no
 	if($userLogged->id_user_type==1){
-	    if(isset($_GET["filiale"])){
-            array_push($params," id_agency = ?");
-            array_push($values,$_GET["filiale"]);
+	    if(isset($_GET["agency"]) ){
+	        if($_GET["agency"]!=""){
+                array_push($params," id_agency = ?");
+                array_push($values,$_GET["agency"]);
+            }
 	       }
 	}else{
         array_push($params," id_agency = ?");
@@ -49,65 +51,69 @@
         }
     }
 
-    if(isset($_GET["categoria"])){
-        if($_GET["categoria"]!="") {
-            array_push($params, " id_category in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["categoria"])));
+    if(isset($_GET["category"])){
+        if($_GET["category"]!="") {
+                array_push($params, " id_category in(?)");
+                array_push($values, str_replace(",","','",urldecode($_GET["category"])));
         }
     }
 
-    if(isset($_GET["tipologia"])){
-        if($_GET["tipologia"]!="") {
+    if(isset($_GET["tipology"])){
+        if($_GET["tipology"]!="") {
             array_push($params, " id_tipology in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["tipologia"])));
-        }
-    }
-
-    if(isset($_GET["tipologia"])){
-        if($_GET["tipologia"]!="") {
-            array_push($params, " id_tipology in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["tipologia"])));
+            array_push($values, str_replace(",","','",urldecode($_GET["tipology"])));
         }
     }
 
 
-    if(isset($_GET["provincia"])){
-        if($_GET["provincia"]!="") {
+
+    if(isset($_GET["country"])){
+        if($_GET["country"]!="") {
+            array_push($params, " id_country  in(?)");
+            array_push($values, str_replace(",","','",urldecode($_GET["country"])));
+        }
+    }
+
+    if(isset($_GET["region"])){
+        if($_GET["region"]!="") {
+            array_push($params, " id_region  in(?)");
+            array_push($values, str_replace(",","','",urldecode($_GET["region"])));
+        }
+    }
+
+    if(isset($_GET["city"])){
+        if($_GET["city"]!="") {
             array_push($params, " id_city in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["tipologia"])));
+            array_push($values, str_replace(",","','",urldecode($_GET["city"])));
         }
     }
 
-    if(isset($_GET["provincia"])){
-        if($_GET["provincia"]!="") {
-            array_push($params, " id_city  in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["provincia"])));
-        }
-    }
 
-    if(isset($_GET["comune"])){
-        if($_GET["comune"]!="") {
+
+    if(isset($_GET["town"])){
+        if($_GET["town"]!="") {
             array_push($params, " id_town   in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["comune"])));
+            array_push($values, str_replace(",","','",urldecode($_GET["town"])));
         }
     }
 
-    if(isset($_GET["zona"])){
-        if($_GET["zona"]!="") {
+    if(isset($_GET["district"])){
+        if($_GET["district"]!="") {
             array_push($params, " id_district   in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["zona"])));
+            array_push($values, str_replace(",","','",urldecode($_GET["district"])));
         }
     }
 
     // stato dell annuncio (non geografico)
-    if(isset($_GET["stato"])){
-        if($_GET["stato"]!="") {
+    if(isset($_GET["ads_status"])){
+        if($_GET["ads_status"]!="") {
             array_push($params, " id_ads_status   in(?)");
-            array_push($values, str_replace(",","','",urldecode($_GET["stato"])));
+            array_push($values, str_replace(",","','",urldecode($_GET["ads_status"])));
         }
     }else{
         array_push($params, " id_ads_status   in(1,2,4)");//ENABLED,DISABLED
     }
+    //var_dump($values);
 
     $res = $propertyM->readAllAds($params,null,$values);
 

@@ -1,16 +1,16 @@
 // elem         = select to populate
-// category     = request category identifier (see ajax/form/get_opts.ajax.php for all categories)
 // action       = request action id , defined on inherent category class
 // id_parent    = if i need to filter option by parent id
-// header_opt   = if i need first paramenter to be a coustom string es: "select a option"
-function getOpts(elem,category,action,id_parent = null,header_opt = null){
+// header_opt   = if i need first parameter to be a coustom string es: "select a option"
+function getOpts(elem,action,id_parent = null,header_opt_val = null,header_opt_txt = null,selected = null){
 
-    elem = GEBI(elem);
-    if(id_parent!="%"){
         page = BASE_PATH + "/ajax/form/get_opts.ajax.php";
-        params = "id_action="+action+"&id_category="+category;
-        if(id_parent!=null) params+="&id_parent="+id_parent
-        callback_params = new Array(elem,"%",header_opt);
+        params = "id_action="+action;
+        if(id_parent!=null){
+            if(id_parent.constructor === Array)  id_parent = id_parent.join();
+            params+="&id_parent="+id_parent;
+        }
+        callback_params = new Array(elem,header_opt_val,header_opt_txt,selected);
 
 
         ajaxCall(page,
@@ -20,7 +20,7 @@ function getOpts(elem,category,action,id_parent = null,header_opt = null){
             null,
             "POST"
         );
-    }
+
 
 }
 

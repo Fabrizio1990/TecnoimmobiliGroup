@@ -41,4 +41,4 @@ echo("<th>Portali</th>");
 	</tfoot>
 </table>
 
-
+<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/ads_properties_manager.js"></script>
