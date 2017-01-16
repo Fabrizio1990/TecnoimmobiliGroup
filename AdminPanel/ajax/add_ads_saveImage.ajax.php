@@ -20,7 +20,7 @@
             $date = Date("Y-m-d_h-i-s");
             $new_img_name = "img_".$date."_".rand(0,50);
         }
-        
+
         //if aste i will apply different watermark
         $watermark = isset($_GET["aste"])?"watermark_aste":"watermark";
 
