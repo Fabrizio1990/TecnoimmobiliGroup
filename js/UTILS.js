@@ -1,5 +1,19 @@
 var BASE_PATH = "http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo";
 
+var debug = true;
+// OVERRIDE CONSOLE.LOG;
+(function(){
+    if(window.console && console.log){
+        var old = console.log;
+        console.log = function(){
+            if(debug){
+                Array.prototype.unshift.call(arguments, 'Report: ');
+                old.apply(this, arguments)
+            }
+        }
+    }
+})();
+// FINE OVERRIDE CONSOLE.LoG
 
 function GEBI(HTML_OBJ) {
     if(typeof HTML_OBJ == "string") HTML_OBJ = document.getElementById(HTML_OBJ);
@@ -39,6 +53,7 @@ function ajaxCall(page,params = null,callback_params = null,success = null,fail 
     if (http) {
         http.onreadystatechange = function(){
             if (http.readyState == 4 && http.status == 200) {
+                //console.log(http.responseText.trim());
                 if(success)success(http.responseText.trim(),callback_params);
             }
             else if (http.status !== 200 && http.status !==0) {
@@ -55,6 +70,10 @@ function ajaxCall(page,params = null,callback_params = null,success = null,fail 
     }else{
         console.log("ajax non disponibile");
     }
+}
+
+function ajax_fail(par1){
+    console.log(par1);
 }
 
 
@@ -74,25 +93,27 @@ var dateToMysqlFormat = function(date){
 
 
 function populateSelectByJson(arrVal,arr_params){
-    // arr_params 0 = selectID | 1 = def_opt value| 2 = def_opt text |
+    // arr_params 0 = selectID | 1 = def_opt value| 2 = def_opt text | 3 = selected
     sel = GEBI(arr_params[0]);
+
     json_val = JSON.parse(arrVal);
     sel.options.length = 0;
 
-    if((arr_params[1]!="" && arr_params[1]!=null) || (arr_params[2]!="" && arr_params[2]!=null)){
+    // IF SPECIFIED , THIS CODE WILL APPEND A DEFAULT OPTION WITH DEFAULT VALUE
+    if((arr_params[1]!=null && arr_params[2]!=null)){
         var def_opt = document.createElement("option");
         def_opt.value= arr_params[1];
         def_opt.innerHTML = arr_params[2];
-
         sel.appendChild(def_opt);
     }
-
+    // APPEND ALL OPTIONS TO SELECT
     for(var i = 0, cnt = json_val.length; i < cnt ; i++){
-        //console.log(json_val[i]);
         var opt = document.createElement("option");
         opt.value= json_val[i].value;
         opt.innerHTML = json_val[i].text; // whatever property it has
-
+        if(arr_params[3]!=null){
+            if(arr_params[3] == json_val[i].value)opt.selected =true;
+        }
         // then append it to the select element
         sel.appendChild(opt);
     }
