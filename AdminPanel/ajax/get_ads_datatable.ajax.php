@@ -126,48 +126,42 @@
             $data_ins = Date("d-m-Y", strtotime($res[$i]["date_ins"]));
             $data_ins_field = "<span style='display:none'>" . $res[$i]["date_ins"] . "</span>" . $data_ins;
             $data_up_field = "<span style='display:none'>" . $res[$i]["date_up"] . "</span>" . $data_up;
+            // Descrizione dell' immobile, verrà mostrata nel title dell immagine di copertina
+            $description = htmlentities($res[$i]["desc_it"], ENT_QUOTES);
+            $description = $description ==""?"Nessuna descrizione":$description;
 
             if($res[$i]["img_name"] =="")
                 $imgPath = $baseImgPath."/min/".$imgEof;
             else
                 $imgPath = $baseImgPath."/min/".$res[$i]["img_name"];
 
-            $first_col = "<a href='AR_immobili_inserimento.php?idimmobile=" . $res[$i]["id"] . "' > <img class='real_tumb' src=$imgPath?id=". $rand_num . "' /> </a>";
+            $first_col = "<a href='AR_immobili_inserimento.php?idimmobile=" . $res[$i]["id"] . "' > <img class='real_tumb' title='".$description."' src=$imgPath?id=". $rand_num . "' /> </a>";
 
             /* ------------ RECUPERO DATI PER COLONNA STATO ------------ */
-            $strstato = "";
-            if ($res[$i]["id_ads_status"] == "1") {
-                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_on.png";
-            } else if ($res[$i]["id_ads_status"] == "2") {
-                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_off.png";
-            } else if ($res[$i]["id_ads_status"] == "3") {
-                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_del.png";
-            } else if ($res[$i]["id_ads_status"] == "4"){
-                $strstato = SITE_URL . "/AdminPanel/images/icons/ico_ads_draft.png";
+            // immagine stato
+            $strstatus = SITE_URL."/".$res[$i]["ads_status_icon"];
+
+
+            /* ----- SEMPRE NELLA COLONNA STATO VISUALIZZO LE VARIE ICONE IN BASE al contract_status---------- */
+            $contract_status = $res[$i]["id_contract_status"];
+            $contract_status_image_path = $res[$i]["contract_status_icon"];
+            $ico_contract_status="";
+            if($contract_status_image_path!="")
+                $ico_contract_status = "<img style=' border:0;' title='".$res[$i]["contract_status"]."' src='".SITE_URL."/".$contract_status_image_path."'>";
+
+        //compongo la cella stato
+        $ads_status = '<div id="stato_annuncio'.$res[$i]["id"].'"><img onclick="openAdsStatusSwitch('.$res[$i]["id"].',' . $res[$i]['id_ads_status'] . ',this)" id="ads_status_img_'.$res[$i]["id"].'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstatus.'" ><p>'.$ico_contract_status.'</p></div>';
+            /* ------------   ------------ */
+
+            /* ------------ RECUPERO DATI PER COLONNA RIVISTA ------------ */
+            if($res[$i]["show_on_magazine"]==1){
+                $strRivista = SITE_URL."/AdminPanel/images/icons/ico_newspaper_on.png";
             }
-
-
-				$ico_trattativa="";
-				if($res[$i]["price"]=="0"){
-					$ico_trattativa="<img style='width:28px;height:14px; border:0;' title='In trattativa' src='".SITE_URL."/AdminPanel/images/icons/ico_in_trattativa.png'>";
-				}elseif($res[$i]['id_contract_status']=="2"){//se venduto
-					$ico_trattativa="<img style='width:14px;height:14px; border:0;' title='Venduto' src='".SITE_URL."/AdminPanel/images/icons/ico_venduto.png'>";
-				}elseif($res[$i]['id_contract_status']=="4"){// se affittato
-					$ico_trattativa="<img style='width:14px;height:14px; border:0;' title='Affittato' src='".SITE_URL."/AdminPanel/images/icons/ico_affittato.png'>";
-				}
-
-				$stato_annuncio = '<div id="stato_annuncio'.$res[$i]["id"].'"><img onclick="openAdsStatusSwitch('.$res[$i]["id"].',' . $res[$i]['id_ads_status'] . ',this)" id="ads_status_img_'.$res[$i]["id"].'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstato.'" ><p>'.$ico_trattativa.'</p></div>';
-				/* ------------   ------------ */
-
-				/* ------------ RECUPERO DATI PER COLONNA RIVISTA ------------ */
-				if($res[$i]["show_on_magazine"]==1){
-					$strRivista = SITE_URL."/AdminPanel/images/icons/ico_newspaper_on.png";
-				}
-				else
-				{
-					$strRivista = SITE_URL."/AdminPanel/images/icons/ico_newspaper_off.png";
-				}
-				$rivista = '<input type="hidden" id="magazine_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_magazine"] .'"/><img onclick="SwitchNewsStatus('.$res[$i]["id"].',this)" id="news_status_img_'.$res[$i]["id"].'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" >';
+            else
+            {
+                $strRivista = SITE_URL."/AdminPanel/images/icons/ico_newspaper_off.png";
+            }
+            $rivista = '<input type="hidden" id="magazine_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_magazine"] .'"/><img onclick="SwitchNewsStatus('.$res[$i]["id"].',this)" id="news_status_img_'.$res[$i]["id"].'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" >';
 				/* -----------   ------------ */
 
 				if($userLogged->id_user_type=="1"){
@@ -184,11 +178,11 @@
 					$portali = '<input type="hidden" id="ads_portal_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_portal"] .'"/><img onclick="SwitchPortalStatus('.$res[$i]["id"].',this)" id="portal_status_img_'.$res[$i]["id"].'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
 
 					// se sono amministratore restituisco anche i dati dei portali alla datatable
-					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$stato_annuncio,$rivista,$portali));
+					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$ads_status,$rivista,$portali));
 
 				 }else{
 					// se non sono amministratore non restituisco i dati dei portali
-					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$stato_annuncio,$rivista));
+					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$ads_status,$rivista));
 				}
 
 		}
