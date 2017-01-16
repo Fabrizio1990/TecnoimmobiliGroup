@@ -46,9 +46,7 @@ class UserManager extends DbManager implements IDbManager
         return $ret;
     }
 
-    public function readOptions($what,$id_parent = null){
-        // TODO implement
-    }
+
 
 
     public function checkLogin($username,$password){

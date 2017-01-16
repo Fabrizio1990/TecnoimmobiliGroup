@@ -8,12 +8,13 @@
 
 */
 // ##################  MODAL FUNCTIONS ####################
-function openModal(type,title,body,btnSaveFunc = null,btnCloseTxt = "Chiudi",btnSaveTxt = "Salva"){
+function openModal(type,title,body,btnSaveFunc = null,btnCloseTxt = "Chiudi",btnSaveTxt = "Salva",hidden = false,callback = null){
     var modalId = "myModal";
     //  if modal already exist populate it with data
     if ( $( "#" + modalId ).length ) {
         setModalData(modalId,type,title,body,btnSaveFunc,btnCloseTxt ,btnSaveTxt);
-        showModal(modalId);
+        if(callback!=null)callback();
+        if(!hidden)showModal(modalId);
     //  else get modal from page and populate data
     }else{
         var modalUrl = BASE_PATH + "/app/include/templates/modal.php";
@@ -21,14 +22,17 @@ function openModal(type,title,body,btnSaveFunc = null,btnCloseTxt = "Chiudi",btn
         $.get( modalUrl + "?" + params, function( data ) {
             $("body").append( data );
             setModalData(modalId,type,title,body,btnSaveFunc,btnCloseTxt ,btnSaveTxt);
-            showModal(modalId);
+            if(callback!=null)callback();
+            if(!hidden)showModal(modalId);
         });
     }
 }
 
 function setModalData(id,type,title,body,btnSaveFunc = null,btnCloseTxt = "Chiudi",btnSaveTxt = "Salva"){
     $( "#" + id + " .modal-title" ).text(title);
-    $( "#" + id + " .modal-body" ).text(body);
+    //USO text("").append(body) perchè svuoto il contenuto prima di fare l' append
+    // serve l' append invece che il text perchè altrimenti non mi fa inserire elementi html come select create da jquery
+    $( "#" + id + " .modal-body" ).text("").append(body);
     $( "#" + id + " .modal_close" ).text(btnCloseTxt);
     $( "#" + id + " .modal_save" ).text(btnSaveTxt);
     if(btnSaveFunc!=null){
@@ -43,12 +47,13 @@ function setModalData(id,type,title,body,btnSaveFunc = null,btnCloseTxt = "Chiud
 
 // ################## INFO MODAL FUNCTIONS ####################
 
-function openInfoModal(type,title,body,btnCloseTxt = "Chiudi"){
+function openInfoModal(type,title,body,btnCloseTxt = "Chiudi",callback = null){
     var modalId = "myModalInfo";
     // if modal already exist populate it with data
     if ( $( "#" + modalId ).length ) {
         setInfoModalData(modalId,type,title,body,btnCloseTxt );
-        showModal(modalId);
+        if(callback!=null)callback();
+        if(!hidden)showModal(modalId);
     // else get modal from page and populate data
     }else{
         var modalUrl = BASE_PATH + "/app/include/templates/modal_info.php";
@@ -56,7 +61,8 @@ function openInfoModal(type,title,body,btnCloseTxt = "Chiudi"){
         $.get( modalUrl + "?" + params, function( data ) {
             $("body").append( data );
             setModalData(modalId,type,title,body,btnCloseTxt );
-            showModal(modalId);
+            if(callback!=null)callback();
+            if(!hidden)showModal(modalId);
         });
     }
 }
@@ -64,7 +70,10 @@ function openInfoModal(type,title,body,btnCloseTxt = "Chiudi"){
 
 function setInfoModalData(id,type,title,body,btnCloseTxt = "Chiudi") {
     $("#" + id + " .modal-title").text(title);
-    $("#" + id + " .modal-body").text(body);
+    //USO text("").append(body) perchè svuoto il contenuto prima di fare l' append
+    // serve l' append invece che il text perchè altrimenti non mi fa inserire elementi html come select create da jquery
+    $("#" + id + " .modal-body").text("").append(body);
+
     $("#" + id + " .modal_close").text(btnCloseTxt);
     setModalType(id,type);
 }
@@ -115,6 +124,10 @@ function setModalType(id,type){
 function showModal(id){
     $("#"+id).modal('hide');
     $("#"+id).modal('show');
+}
+
+function hideModal(id){
+    $("#"+id).modal('hide');
 }
 
 function deleteModal(id){

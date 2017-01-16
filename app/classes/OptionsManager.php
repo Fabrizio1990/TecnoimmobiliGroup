@@ -50,16 +50,89 @@ class OptionsManager extends DbManager{
                 $this->currTable = "property_categories";
                 break;
             case "ads_tipologies":
-                $params = array("enabled = 1");
+                $params = array("id_category in($conditionPlaceholders)","enabled = 1");
                 $fields = array("id","title");
                 $this->currTable = "property_tipologies";
                 break;
+            case "ads_locals":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_locals";
+                break;
+            case "ads_rooms":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_rooms";
+                break;
+            case "ads_floors":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_floors";
+                break;
+            case "ads_elevators":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_elevators";
+                break;
+            case "ads_conditions":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_coditions";
+                break;
+            case "ads_property_status":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_status";
+                break;
+            case "ads_heatings":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_heatings";
+                break;
+            case "ads_bathrooms":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_bathrooms";
+                break;
+            case "ads_box":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_box";
+                break;
+            case "ads_gardens":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_garden";
+                break;
+            case "ads_contracts":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_contracts";
+                break;
+            case "ads_contract_status":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_contract_status";
+                break;
+            case "ads_energy_class":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_energy_class";
+                break;
+            case "ads_ipe_um":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "property_ipe_um";
+                break;
+
+
             // ---------------- AGENZIE -------------------
             case "agencies_list":
                 $params = array("status = 1");
                 $fields = array("id","name");
                 $this->currTable = "agencies";
                 break;
+
             // ---------------- GEOGRAFICA -------------------
             case "geo_country":
                 $this->currTable = "geo_country";
@@ -108,6 +181,16 @@ class OptionsManager extends DbManager{
         return $ret;
     }
 
+    // CHIAMA readOptions e invece di restituire un array con il resultset restituisce direttamente le options <option value="valore">testo</option>
+    public function makeOptions($what,$selectedVal = null,$id_parent = null){
+        $res = $this->readOptions($what,$id_parent);
+        $optRes = "";
+        for($i=0,$cnt = count($res);$i<$cnt;$i++){
+            $selected = $selectedVal == $res[$i][0]?"selected":"";
+            $optRes.="<option $selected value='".$res[$i][0]."'>".$res[$i][1]."</option>";
+        }
+        return $optRes;
+    }
 
     public function setDefTable(){
         $this->currTable = self::defTable;

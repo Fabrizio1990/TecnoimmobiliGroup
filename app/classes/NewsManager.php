@@ -19,7 +19,7 @@ class NewsManager extends DbManager implements IDbManager {
     }
     public function create($values = null, $fields = null)
     {
-        $def_fields     = "title,description";
+        $def_fields     = array("title","description");
         $fields = $fields == null ? $def_fields : $fields;
         $ret = parent::create($this->currTable,$fields,$values);
         return $ret;
@@ -43,9 +43,7 @@ class NewsManager extends DbManager implements IDbManager {
         return $ret;
     }
 
-    public function readOptions($what,$id_parent = null){
-        // TODO implement
-    }
+
 
 
     public function getAllNews(){

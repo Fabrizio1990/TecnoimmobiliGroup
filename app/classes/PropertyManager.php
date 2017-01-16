@@ -47,13 +47,17 @@ id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitud
         return $ret;
     }
 
-    function readOptions($what,$id_parent = null){
+    /*function readOptions($what,$id_parent = null){
         $params = null;
         $fields = null;
         switch($what){
             case "ads_status":
                 $params = array("enabled = 1");
                 $this->currTable = "property_ads_status";
+                break;
+            case "ads_category":
+                $params = array("enabled = 1");
+                $this->currTable = "property_categories";
                 break;
 
         }
@@ -65,7 +69,7 @@ id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitud
 
         $this->setDefTable();
         return $ret;
-    }
+    }*/
 
 
 

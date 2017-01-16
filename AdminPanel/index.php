@@ -49,9 +49,15 @@ folder instead of downloading all of them to reduce the load. -->
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+    <script>
+        var selectedCell;
+    </script>
 
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
+
+    <!-- My UTILS LO METTO PRIMA DI TUTTI I JS CHE SONO CARICATI A FONDO PAGINA PERCHé CONTIENE FUNZIONALITà UTILI A QUALSIASI JS , QUINDI SE CARICO UN JS DA UN INCLUDE DEVO AVERE UTILS -->
+    <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -102,9 +108,6 @@ folder instead of downloading all of them to reduce the load. -->
     </div>
     <!-- ./wrapper -->
 
-
-    <!-- My UTILS -->
-    <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
     <!-- jQuery 2.2.3 -->
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -133,7 +136,12 @@ folder instead of downloading all of them to reduce the load. -->
     <!--<script src="<?php //echo(SITE_URL) ?>/js/common.js"></script>-->
 	<!-- per widget statistiche utenti -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/statistic_widged.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/ads_status_manager.js"></script>
+    <!-- Plugin per apertura modali -->
+    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
+    <!-- Plugin per recupero e salvataggio options -->
+    <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
+
+
 
 	<!-- DataTable Init -->
     <script>
@@ -143,9 +151,7 @@ folder instead of downloading all of them to reduce the load. -->
 			setTimeout(function(){ table.columns.adjust().responsive.recalc(); }, 700);
 		});
         $(function() {
-            table = $('#DT_ADS')./*on('xhr.dt', function ( e, settings, json, xhr ) {
-				$('body').addClass("sidebar-collapse");
-			}).*/
+            table = $('#DT_ADS').
 			DataTable({
                 "language": {
                     "url": "plugins/datatables/localizations/italian.json"
@@ -169,7 +175,7 @@ folder instead of downloading all of them to reduce the load. -->
 
             });
         });
-		
+
     </script>
 </body>
 
