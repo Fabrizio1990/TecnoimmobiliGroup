@@ -136,7 +136,7 @@ class GeographicManager extends DbManager implements IDbManager
         $this->setDefTable();
     }
 
-    function readOptions($what,$id_parent = null){
+    /*function readOptions($what,$id_parent = null){
         $parent_id_field_name = null;
         $fields = null;
         switch($what){
@@ -178,7 +178,7 @@ class GeographicManager extends DbManager implements IDbManager
 
         $this->setDefTable();
         return $ret;
-    }
+    }*/
 
 
 

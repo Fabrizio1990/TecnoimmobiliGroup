@@ -40,8 +40,6 @@ function getVal(elem,category,action,id_parent){
             params,
             callback_params,
             function (response, params) {
-                console.log("response =" + response + "   - elemento =" + params[0]);
-                console.log(GEBI(params[0]));
                 GEBI(params[0]).value = response
             },// defined in UTILS.js
             null,
