@@ -1,22 +1,20 @@
-<?php 
+<?php
+include("../config.php");
+include(BASE_PATH."/app/classes/SessionManager.php");
+include(BASE_PATH."/app/classes/UserEntity.php");
 
-$autenticato =isset($_COOKIE["authenticated"])?$_COOKIE["authenticated"]:0;
-if($autenticato=="1"){
-	$agency_id 		= $_COOKIE['agency_id'];
-	$tipo_utente 	= $_COOKIE['user_type'] == "1"? "%" : $_COOKIE['user_type'];
-	$referente 		= $_COOKIE['refer_name'];
+if(SessionManager::getVal("authenticated") != null){
+    $SS_usr = SessionManager::getVal("user",true);
+    $agency_id 		= $SS_usr->id;
+    $tipo_utente 	= $SS_usr->id_user_type == "1"? "%" : $SS_usr->user_type;
+    //$referente 		= $_COOKIE['refer_name'];
 }else{
-	header("location:login.php");
+    header("location:login.php");
 }
 
-require("../include/config.php");
-require(BASE_URL."/include/connessione_mysqli.php");
-
-$conn = openConn();
-
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
-$act_menu_propery		= true;
-$act_list_properties 	= true;
+$act_menu_propery		= true; // setta attivo il link modifica immobili
+$act_list_properties 	= true; // setta attivo il menu immobili
 
 ?>
 
@@ -24,7 +22,7 @@ $act_list_properties 	= true;
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -59,17 +57,21 @@ $act_list_properties 	= true;
 	<![endif]-->
 
 	<!-- ----CUSTOM CSS ------ -->
-	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/AdminPanel/common.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
+
+   <!-- CUSTOM JS UTILS (is there becouse i need to have its function on included widgets  -->
+  <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 		<!-- HEADER BAR -->
-        <?php include(BASE_URL."/AdminPanel/include/templates/header_nav.inc.php"); ?>
+        <?php include(BASE_PATH."/AdminPanel/include/templates/header_nav.inc.php"); ?>
 		<!-- END HEADER BAR -->
 		
         <!-- MENU LEFT -->
-        <?php include(BASE_URL."/AdminPanel/include/templates/menu_left.inc.php"); ?>
+        <?php include(BASE_PATH."/AdminPanel/include/templates/menu_left.inc.php"); ?>
 		<!-- END MENU LEFT -->
        
 
@@ -83,14 +85,14 @@ $act_list_properties 	= true;
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Immobili</a></li>
-					<li><a href="visualizza_immobili.php"><i class="fa fa-edit"></i> Modifica immobili</a></li>
+					<li><a href="show_ads.php"><i class="fa fa-edit"></i> Modifica immobili</a></li>
                 </ol>
             </section>
 
             <!-- MAIN CONTENT -->
             <section class="content">
 				<?php 
-				include(BASE_URL."/AdminPanel/include/contents/visualizza_immobili.inc.php");
+				include(BASE_PATH."/AdminPanel/include/contents/show_ads.inc.php");
 				?>
             </section>
             <!-- END MAIN CONTENT -->
@@ -98,12 +100,12 @@ $act_list_properties 	= true;
         <!-- /.content-wrapper -->
 		
 		<!--  FOOTER -->
-        <?php include(BASE_URL."/AdminPanel/include/templates/footer.inc.php"); ?>
+        <?php include(BASE_PATH."/AdminPanel/include/templates/footer.inc.php"); ?>
 		<!-- END FOOTER -->
 		
         <!-- CONTROL SIDEBAR -->
                 <?php 
-				include(BASE_URL."/AdminPanel/include/templates/control_sidebar.inc.php"); 
+				include(BASE_PATH."/AdminPanel/include/templates/control_sidebar.inc.php");
 				?>
         <!-- END CONTROL SIDEBAR -->
         
@@ -123,8 +125,6 @@ $act_list_properties 	= true;
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/js/adminPanel/index.js"></script>
     <!-- Select2 -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
 	<!-- InputMask -->
@@ -143,12 +143,10 @@ $act_list_properties 	= true;
     
 
     <!-- ----CUSTOM JS ------ -->
-	
-	<script src="<?php echo(SITE_URL) ?>/js/AdminPanel/admin_panel.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/common.js"></script>
-	<!-- per widget statistiche utenti -->
-    <script src="<?php echo(SITE_URL) ?>/js/AdminPanel/ads_status_manager.js"></script>
-	<script src="<?php echo(SITE_URL) ?>/js/AdminPanel/visualizza_immobili.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/show_ads.js"></script>
 	
 	
 	<!-- INIT COMPONENTS -->
@@ -160,10 +158,7 @@ $act_list_properties 	= true;
 		});
         $(function() {
 			/*-------- INIT DATATABLE ---------*/
-            table = $('#DT_ADS')/*.on('xhr.dt', function ( e, settings, json, xhr ) {
-				$('body').addClass("sidebar-collapse");
-				
-			})*/.
+            table = $('#DT_ADS').
 			DataTable({
                 "language": {
                     "url": "plugins/datatables/localizations/italian.json"
@@ -183,14 +178,21 @@ $act_list_properties 	= true;
 				"columnDefs": [
 					{ targets: "_all",className: "ALING_CENTER"}
 				  ],
-                "sAjaxSource": "../ajax/AdminPanel/get_ads_datatable.ajax.php",
+                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_ads_datatable.ajax.php",
 
             });
 			
 			
 			
 			//DATE RANGE PICKER INIT
-			$('#sel_dateRange').daterangepicker();
+			$('#sel_dateRange').daterangepicker(
+                {
+                    locale: {
+                        format: 'DD-MM-YYYY'
+                    },
+                    startDate: '01-01-2010'
+                }
+            );
 			
 			//SELECT 2 INIT
 			$(".select2").select2();
@@ -200,9 +202,6 @@ $act_list_properties 	= true;
 		
 		
     </script>
-<?php 
-closeConn($conn);
-?>
 </body>
 
 </html>
