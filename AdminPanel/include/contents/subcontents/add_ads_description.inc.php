@@ -10,7 +10,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-home"></i>
                 </div>
-                <select id="sel_category" class="form-control select2" style="width: 100%;" onchange="getTipologies(this,'','Seleziona una tipologia')" data-placeholder="Seleziona una categoria" >
+                <select id="sel_category" name="sel_category" class="form-control select2" style="width: 100%;" onchange="getTipologies(this,'','Seleziona una tipologia')" data-placeholder="Seleziona una categoria" >
                     <option value="" >Seleziona una categoria</option>
                     <?php echo($optCategory); ?>
                 </select>
@@ -27,7 +27,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_tipology" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona una tipologia">
+                <select id="sel_tipology" name="sel_tipology" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona una tipologia">
                     <option value="">Seleziona una tipologia</option>
                 </select>
             </div>
@@ -43,7 +43,7 @@
             <label>Superficie</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-home"></i></div>
-                <input id="inp_surface" type="number" class="form-control" placeholder="Inserisci la superficie">
+                <input id="inp_surface" name="inp_surface" type="number" class="form-control" placeholder="Inserisci la superficie">
                 <span class="input-group-addon">m<sup>2</sup></span>
             </div>
         </div><!-- /.form-group -->
@@ -57,7 +57,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_locals" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il numero dei locali">
+                <select id="sel_locals" name="sel_locals" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il numero dei locali">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optLocals); ?>
                 </select>
@@ -78,7 +78,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_rooms" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il numero delle camere">
+                <select id="sel_rooms" name="sel_rooms" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il numero delle camere">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optRooms); ?>
                     ?>
@@ -95,7 +95,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_floors" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il piano">
+                <select id="sel_floors" name="sel_floors" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il piano">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optFloors); ?>
                 </select>
@@ -116,7 +116,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_elevators" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
+                <select id="sel_elevators" name="sel_elevators" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optElevators); ?>
                 </select>
@@ -132,7 +132,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_conditions" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona le condizioni">
+                <select id="sel_conditions" name="sel_conditions" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona le condizioni">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optConditions); ?>
                     ?>
@@ -155,7 +155,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_property_status" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona lo stato attuale">
+                <select id="sel_property_status" name="sel_property_status" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona lo stato attuale">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optPropertyStatus); ?>
                 </select>
@@ -171,7 +171,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_heatings" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di riscaldamento">
+                <select id="sel_heatings" name="sel_heatings" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di riscaldamento">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optHeatings); ?>
                 </select>
@@ -193,7 +193,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_bathrooms" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il numero dei bagni">
+                <select id="sel_bathrooms" name="sel_bathrooms" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il numero dei bagni">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optBathrooms); ?>
                 </select>
@@ -209,7 +209,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_box" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di box">
+                <select id="sel_box" name="sel_box" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di box">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optBox); ?>
                     ?>
@@ -232,7 +232,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_gardens" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di giardino">
+                <select id="sel_gardens" name="sel_gardens" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di giardino">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optGardens); ?>
                 </select>
@@ -248,7 +248,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_contracts" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di contratto">
+                <select id="sel_contracts" name="sel_contracts" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona il tipo di contratto">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optContracts); ?>
                 </select>
@@ -267,7 +267,7 @@
             <label>Prezzo</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa  fa-eur"></i></div>
-                <input id="inp_price" type="number" class="form-control" placeholder="Inserisci il prezzo" v>
+                <input id="inp_price" name="inp_price" type="number" class="form-control" placeholder="Inserisci il prezzo" >
 
             </div>
         </div><!-- /.form-group -->
@@ -282,7 +282,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_energy_class" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona la classe energetica">
+                <select id="sel_energy_class" name="sel_energy_class" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona la classe energetica">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optEnergyClass); ?>
                 </select>
@@ -305,7 +305,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_ipe_um" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
+                <select id="sel_ipe_um" name="sel_ipe_um" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
                     <?php echo($optIpeUm); ?>
                 </select>
@@ -320,7 +320,7 @@
             <label>Valore IPE</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-home"></i></div>
-                <input id="inp_ipe" type="number" class="form-control" placeholder="Inserisci l' IPE" value ="175">
+                <input id="inp_ipe" name="inp_ipe" type="number" class="form-control" placeholder="Inserisci l' IPE" value ="175">
 
             </div>
         </div><!-- /.form-group -->
@@ -336,7 +336,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label>Descrizione Immobile</label>
-            <textarea class="form-control" rows="3" placeholder="Inserisci una descrizione"></textarea>
+            <textarea id="txt_description" name="txt_description" class="form-control" rows="3" placeholder="Inserisci una descrizione"></textarea>
         </div>
     </div>
 

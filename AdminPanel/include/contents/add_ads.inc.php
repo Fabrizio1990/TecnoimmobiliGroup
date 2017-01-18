@@ -6,11 +6,11 @@
 
 
 	// CREO OPTIONS COUNTRY
-	$optCountries		= $optMng->makeOptions("geo_country",1);
+	$optCountries		= $optMng->makeOptions("geo_country",1,null);
 	// CREO OPTIONS COUNTRY
 	$optRegions			= $optMng->makeOptions("geo_region",null,1);
 	// CREO OPTIONS CATEGORIA
-	$optCategory 		= $optMng->makeOptions("ads_category");
+	$optCategory 		= $optMng->makeOptions("ads_category",null,null);
 	// CREO OPTIONS LOCALI
 	$optLocals  		= $optMng->makeOptions("ads_locals");
 	// CREO OPTIONS ROOMS
@@ -46,100 +46,104 @@
 	// CREO OPTIONS City
 	$optCity			= "";
 ?>
-<div class="row">
-<!-- FILTRO PARAMETRI -->
-        <!-- /.col (left) -->
-	<div class="col-md-12">
-	
-		<!-- NAV TABS START -->
-		<div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-				<li class="active"><a href="#tab_details" data-toggle="tab" aria-expanded="false">
-						Descrizione
-					</a>
-				</li>
-				<li>
-					<a href="#tab_location" data-toggle="tab" aria-expanded="true">
-						Ubicazione
-					</a>
-				</li>
-				<li >
-					<a href="#tab_status" data-toggle="tab" aria-expanded="true">
-						Stato Annuncio
-					</a>
-				</li>
-				<li >
-					<a href="#tab_images" data-toggle="tab" aria-expanded="true">
-						Immagini
-					</a>
-				</li>
-				<?php if($userLogged->id_user_type==1){?>
-				<li >
-					<a href="#tab_appointment" data-toggle="tab" aria-expanded="true">
-						Scheda confidenziale
-					</a>
-				</li>
-				<?php } ?>
-            </ul>
-			<div class="tab-content">
-			
-				<!-- #################### INIZIO TAB DESCRIZIONE ######################## -->
-				<div class="tab-pane active" id="tab_details">
-					<?php
-					require("subcontents/add_ads_description.inc.php")
-					?>
-				</div><!-- ####################### FINE TAB DESCRIZIONE  #######################-->
-		
-		
-				<!-- #######################INIZIO TAB UBICAZIONE ############################## -->
-				<div class="tab-pane" id="tab_location">
+<form name="FORM_ADS" id="FORM_ADS" novalidate accept-charset="UTF-8">
+	<div class="row">
+	<!-- FILTRO PARAMETRI -->
+			<!-- /.col (left) -->
+		<div class="col-md-12">
 
-					<?php
-					require("subcontents/add_ads_location.inc.php")
-					?>
-							
-				</div><!-- ############# FINE TAB UBICAZIONE ################# -->
-				
-				
-				
-				<!-- #######################INIZIO TAB STATO/I ############################## -->
-				<div class="tab-pane" id="tab_status">
+			<!-- NAV TABS START -->
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab_details" data-toggle="tab" aria-expanded="false">
+							Descrizione
+						</a>
+					</li>
+					<li>
+						<a href="#tab_location" data-toggle="tab" aria-expanded="true">
+							Ubicazione
+						</a>
+					</li>
+					<li >
+						<a href="#tab_status" data-toggle="tab" aria-expanded="true">
+							Stato Annuncio
+						</a>
+					</li>
+					<li >
+						<a href="#tab_images" data-toggle="tab" aria-expanded="true">
+							Immagini
+						</a>
+					</li>
+					<?php if($userLogged->id_user_type==1 && isset($_POST["ID"])){?>
+					<li>
+						<a href="#tab_appointment" data-toggle="tab" aria-expanded="true">
+							Scheda confidenziale
+						</a>
+					</li>
+					<?php } ?>
+					<li  style="float:right;">
+						<button type="submit" class="btn btn-primary" id="btn_submit">Salva</button>
+					</li>
+				</ul>
+				<div class="tab-content">
+
+					<!-- #################### INIZIO TAB DESCRIZIONE ######################## -->
+					<div class="tab-pane active" id="tab_details">
+						<?php
+						require("subcontents/add_ads_description.inc.php")
+						?>
+					</div><!-- ####################### FINE TAB DESCRIZIONE  #######################-->
 
 
-					<?php
-					require("subcontents/add_ads_status.inc.php")
-					?>
-							
-				</div><!-- #######################FINE TAB STATO/I ############################## -->
+					<!-- #######################INIZIO TAB UBICAZIONE ############################## -->
+					<div class="tab-pane" id="tab_location">
+
+						<?php
+						require("subcontents/add_ads_location.inc.php")
+						?>
+
+					</div><!-- ############# FINE TAB UBICAZIONE ################# -->
 
 
-				<!-- #######################INIZIO TAB IMMAGINI ############################## -->
-				<div class="tab-pane" id="tab_images">
-					<?php
-						require("subcontents/add_ads_images.inc.php");
-					?>
-				</div><!-- ####################### FINE TAB IMMAGINI ############################## -->
 
-				<?php if($userLogged->id_user_type==1){?>
-				<!-- #######################INIZIO TAB INCARICO ############################## -->
-				<div class="tab-pane" id="tab_appointment">
-					<?php
-					require("subcontents/add_ads_appointment.inc.php");
-					?>
-				</div><!-- ####################### FINE TAB INCARICO ############################## -->
-				<?php } ?>
-				
-				
-		
-			</div><!-- FINE TAB CONTENT -->
-			
-		</div> <!-- FINE NAV TABS -->
-		
-		
-	</div><!-- /.col-md-12 -->
-		 
-		   
-</div><!-- /.row-->
+					<!-- #######################INIZIO TAB STATO/I ############################## -->
+					<div class="tab-pane" id="tab_status">
+
+
+						<?php
+						require("subcontents/add_ads_status.inc.php")
+						?>
+
+					</div><!-- #######################FINE TAB STATO/I ############################## -->
+
+
+					<!-- #######################INIZIO TAB IMMAGINI ############################## -->
+					<div class="tab-pane" id="tab_images">
+						<?php
+							require("subcontents/add_ads_images.inc.php");
+						?>
+					</div><!-- ####################### FINE TAB IMMAGINI ############################## -->
+
+					<?php if($userLogged->id_user_type==1 && isset($_POST["ID"])){?>
+					<!-- #######################INIZIO TAB INCARICO ############################## -->
+					<div class="tab-pane" id="tab_appointment">
+						<?php
+						require("subcontents/add_ads_appointment.inc.php");
+						?>
+					</div><!-- ####################### FINE TAB INCARICO ############################## -->
+					<?php } ?>
+
+
+
+				</div><!-- FINE TAB CONTENT -->
+
+			</div> <!-- FINE NAV TABS -->
+
+		</div><!-- /.col-md-12 -->
+
+
+	</div><!-- /.row-->
+</form>
 <!-- FINE PAGINA -->
 
 

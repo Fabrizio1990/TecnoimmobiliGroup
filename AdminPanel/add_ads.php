@@ -52,6 +52,8 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/add_ads.css" />
+    <!-- Jquery validate  override css-->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css"></script>
 
     <!-- UTILS JS AND FILE_UPLOAD JS are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
@@ -123,10 +125,12 @@ $act_menu_propery       = true; // setta attivo il menu immobili
     <script src="<?php echo(SITE_URL) ?>/adminPanel/js/index.js"></script>
     <!-- Select2 -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
-	
-	
-	<!-- InputMask -->
-	
+	<!-- Jquery validate -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+    <!-- Jquery validate select2 override -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_select2_override.js"></script>
+    <!-- Jquery validate IT localization -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
 
 
     
@@ -138,13 +142,13 @@ $act_menu_propery       = true; // setta attivo il menu immobili
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_ads.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
-	
+
 	
 	<!-- INIT COMPONENTS -->
     <script>
 		 $(function() {
-			//SELECT 2 INIT
-			$(".select2").select2();
+
+
             INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_ads_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
         });
 		

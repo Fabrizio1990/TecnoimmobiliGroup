@@ -9,7 +9,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_stato_annuncio" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona lo stato dell' annuncio">
+                <select id="sel_ads_status" name="sel_ads_status" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona lo stato dell' annuncio">
                     <option value="">Seleziona un valore</option>
                     <?php echo $optAdsyStatus?>
                 </select>
@@ -26,7 +26,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_property_status" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
+                <select id="sel_negotiation_status" name="sel_negotiation_status" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
                     <?php echo $optContractStatus ?>
                 </select>
@@ -39,8 +39,9 @@
 </div><!-- /.row -->
 
 
-<!-- #################### IN TRATTATIVA - PREZZO RIBASSATO   ######################## -->
+<!-- #################### IN TRATTATIVA - TRATTATIVA RISERVATA   ######################## -->
 <div class="row">
+
 
     <div class="col-md-6">
         <!-- SELECT MULTIPLE -->
@@ -51,7 +52,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_property_status" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
+                <select id="sel_property_status2" name="sel_property_status2" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
                     <?php echo $optPropertyStatus?>
                 </select>
@@ -69,7 +70,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_trattativa" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
+                <select id="sel_negotiation" name="sel_negotiation" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
                     <option value="0">No</option>
                     <option value="1">SI</option>
@@ -82,7 +83,7 @@
 </div><!-- /.row -->
 
 
-<!-- #################### AFFITTATO - VENDUTO ######################## -->
+<!-- #################### PREZZO RIBASSATO - PRESTIGE ######################## -->
 <div class="row">
 
 
@@ -95,7 +96,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_prezzo_ribassato" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
+                <select id="sel_price_lowered" name="sel_price_lowered" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
                     <option value="0">No</option>
                     <option value="1">SI</option>
@@ -104,30 +105,6 @@
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->
 
-
-    <div class="col-md-6">
-        <!-- SELECT MULTIPLE -->
-        <div class="form-group">
-            <label>Venduto</label>
-            <div class="input-group">
-                <div class="input-group-addon">
-                    <i class="fa fa-home"></i>
-                </div>
-
-                <select id="sel_venduto" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
-                    <option value="">Seleziona un valore</option>
-                    <option value="0">No</option>
-                    <option value="1">SI</option>
-                </select>
-            </div>
-        </div><!-- /.form-group -->
-    </div><!-- /.col-md-6 -->
-
-</div><!-- /.row -->
-
-
-<!-- #################### PRESTIGE ######################## -->
-<div class="row">
 
     <div class="col-md-6">
         <!-- SELECT MULTIPLE -->
@@ -138,7 +115,7 @@
                     <i class="fa fa-home"></i>
                 </div>
 
-                <select id="sel_prestige" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
+                <select id="sel_prestige" name="sel_prestige" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
                     <option value="0">No</option>
                     <option value="1">SI</option>
@@ -148,3 +125,4 @@
     </div><!-- /.col-md-6 -->
 
 </div><!-- /.row -->
+
