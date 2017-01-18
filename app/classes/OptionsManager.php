@@ -185,6 +185,7 @@ class OptionsManager extends DbManager{
     public function makeOptions($what,$selectedVal = null,$id_parent = null){
         $res = $this->readOptions($what,$id_parent);
         $optRes = "";
+
         for($i=0,$cnt = count($res);$i<$cnt;$i++){
             $selected = $selectedVal == $res[$i][0]?"selected":"";
             $optRes.="<option $selected value='".$res[$i][0]."'>".$res[$i][1]."</option>";
