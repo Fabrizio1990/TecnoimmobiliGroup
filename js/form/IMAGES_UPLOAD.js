@@ -29,8 +29,8 @@ function UPDATE_IMAGE_FIELD(image_path,elem){
 }
   
 function SEND_INP_FILES(file_elem,upload_page,callback =null){
-	for(var i = 0 , max = file_elem[0].files.length ;i<max ; i++)
-		UPLOAD_FILES(new Array(file_elem[0].files[i]),upload_page,callback);
+	for(var i = 0 , max = file_elem.files.length ;i<max ; i++)
+		UPLOAD_FILES(new Array(file_elem.files[i]),upload_page,callback);
 }
   
 function UPLOAD_FILES(files,upload_page,callback = null) {
@@ -53,6 +53,7 @@ function UPLOAD_FILES(files,upload_page,callback = null) {
         AJAX.open("POST", upload_page, true);
 		AJAX.setRequestHeader("X-File-Type", FILE.type);
 		AJAX.setRequestHeader("X-FILENAME", FILE.name);
+		AJAX.setRequestHeader("X-File-Size", FILE.size)
 
         params = FILE;
 		AJAX.send(params);
