@@ -5,6 +5,8 @@
  $act_add_property 		= isset($act_add_property)?$act_add_property:false;
  $act_list_properties 	= isset($act_list_properties)?$act_list_properties:false;
  $act_del_properties 	= isset($act_del_properties)?$act_del_properties:false;
+
+$act_news_management 	= isset($act_news)?$act_news:false;
  
  
 ?>
@@ -63,7 +65,14 @@
                         </ul>
                     </li>
 					<!-- MENU IMMOBILI END -->
-					
+
+                    <!-- MENU NEWS -->
+                    <?php  if($SS_usr->id_user_type==1){ ?>
+                    <li <?php if($act_news_management) echo('class="active"')?>>
+                        <a href="news_management.php"><i class="fa fa-dashboard"></i><span> Gestione news</span></a>
+                    </li>
+                    <?php }?>
+                    <!-- MENU NEWS END -->
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-files-o"></i>
