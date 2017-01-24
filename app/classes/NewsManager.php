@@ -8,7 +8,7 @@
  */
 require_once(BASE_PATH."/app/interfaces/IDbManager.php");
 require_once(BASE_PATH."/app/classes/DbManager.php");
-require_once(BASE_PATH."/app/classes/NewsEntity.php");
+//require_once(BASE_PATH."/app/classes/NewsEntity.php");
 class NewsManager extends DbManager implements IDbManager {
 
     const defTable  = "news";
@@ -17,7 +17,7 @@ class NewsManager extends DbManager implements IDbManager {
     public function NewsManager() {
         $this->currTable = self::defTable;
     }
-    public function create($values = null, $fields = null)
+    public function create($values, $fields = null)
     {
         $def_fields     = array("title","description");
         $fields = $fields == null ? $def_fields : $fields;
@@ -46,12 +46,12 @@ class NewsManager extends DbManager implements IDbManager {
 
 
 
-    public function getAllNews(){
+    /*public function getAllNews(){
         $obj = new NewsEntity();
         $res = $this->read();
         $objRes = parent::resultToEntity($res,$obj);
         return $objRes;
-    }
+    }*/
 
 
 }
