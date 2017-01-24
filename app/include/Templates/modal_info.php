@@ -19,7 +19,7 @@ $closeTxt = isset($_GET["closeTxt"])?$_GET["closeTxt"]:"Chiudi";
                 <?php //echo $body ?>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline modal_close" data-dismiss="modal"><?php echo $closeTxt ?></button>
+                <button type="button" id="modal_close" class="btn btn-outline modal_close" data-dismiss="modal"><?php echo $closeTxt ?></button>
             </div>
         </div>
     </div>

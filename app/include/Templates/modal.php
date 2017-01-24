@@ -20,7 +20,7 @@
                 <?php echo $body ?>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline modal_close" data-dismiss="modal"><?php //echo $closeTxt ?></button>
+                <button type="button"  class="btn btn-outline modal_close" data-dismiss="modal"><?php //echo $closeTxt ?></button>
                 <button type="button" class="btn btn-outline modal_save"><?php echo $saveTxt ?></button>
             </div>
         </div>
