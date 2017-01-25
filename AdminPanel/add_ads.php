@@ -55,6 +55,8 @@ $act_menu_propery       = true; // setta attivo il menu immobili
     <!-- Jquery validate  override css-->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override_select2.css" />
+    <!-- modals -->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
     <!-- UTILS JS AND FILE_UPLOAD JS are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
@@ -140,11 +142,16 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 	
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
+    <script src="<?php echo SITE_URL ?>/js/Widgets/maps_utils.js" ></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_ads.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
 
-	
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvZ4NUmjF7SgprOVDTqd7ToL8jq7Z1ynE&callback=initMap">
+    </script>
 	<!-- INIT COMPONENTS -->
     <script>
 		 $(function() {

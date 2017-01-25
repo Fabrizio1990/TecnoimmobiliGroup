@@ -2,14 +2,38 @@
  * Created by Developer on 11/01/2017.
  */
 var form;
-
+var GMap = null;
 
 function selectFile(elem){
     $(elem).next(".file_explorer").click();
 }
 $(document).ready(function () {
+
+
+    /* GOOGLE MAP REFRESH ON LOCATION TAB CLICK */
+    $("#tab_location_li").click(function(){
+        setTimeout(function(){initMap(18);},1);
+        /*google.maps.event.trigger(GMap.map, 'resize')*/
+    });
+    // refresh the map when address blur
+    $("#inp_address").blur(function(){
+            initMap(18);
+    });
+    // refresh the map when street num blur, but only if address is set
+    $("#inp_street_num").blur(function(){
+        if($("#inp_address").val()!="")
+            initMap(18);
+    });
+    // refresh the map when the region or city or town change, but only if address is set
+    $("#sel_country,#sel_region,#sel_city,#sel_town").change(function(){
+        if($("#inp_address").val() !="")
+            initMap(18);
+    });
+
+
     // SELECT 2 INIT
     $(".select2").select2();
+
 
     //FORM VALIDATION
     form = $("#FORM_ADS").validate({
@@ -62,10 +86,10 @@ $(document).ready(function () {
 
         submitHandler: function(form) {
             saveAds(form);
-            alert("validation ok");
+            openInfoModal(2,"Salvato","Immobile Salvato con successo","Chiudi");
         },
         invalidHandler: function(event, validator) {
-            alert( "Alcuni campi non sono validi");
+            openInfoModal(5,"Attenzione!","Alcuni campi non sonos tati compilati correttamente , ricontrolla i dati e riprova");
         }
     });
 
@@ -75,3 +99,25 @@ function saveAds(form){
     var serializedData = $(form).serialize();
     console.log(serializedData);
 }
+
+
+function initMap(defZoom = 2){
+        zoom = defZoom;
+        var fullAddress ="";
+        address     = $("#inp_address").val();
+        address_num = $("#inp_street_num").val();
+        town        = $("#sel_town option:selected").text();
+        country     = $("#sel_country option:selected").text();
+        fullAddress = address +" "+ address_num +  " " +town +" " +country;
+        // if full address is empty or is Italia  i set italia and put the zoom to 4
+        if(fullAddress.trim() == "" || fullAddress.trim() == "Italia") {
+            fullAddress = "Italia";
+            zoom = 4;
+        }
+        GMap = new MyMap(true);
+        GMap.init("map",fullAddress,zoom,2,BASE_PATH+"/images/icons/map_marker.png",false);
+
+
+}
+
+

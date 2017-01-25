@@ -59,7 +59,7 @@
 							Descrizione
 						</a>
 					</li>
-					<li>
+					<li id="tab_location_li">
 						<a href="#tab_location" data-toggle="tab" aria-expanded="true">
 							Ubicazione
 						</a>
