@@ -102,7 +102,7 @@ class OptionsManager extends DbManager{
             case "ads_gardens":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
-                $this->currTable = "property_garden";
+                $this->currTable = "property_gardens";
                 break;
             case "ads_contracts":
                 $params = array("enabled = 1");
