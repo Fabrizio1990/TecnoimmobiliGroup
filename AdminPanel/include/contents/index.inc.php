@@ -5,8 +5,8 @@
 <!--  ---------------Data table annunci -------------- -->
 <div class="row">
 	<div class="col-xs-12">
-		<div class="box">
-			<div class="box-header">
+		<div class="box box-info ">
+			<div class="box-header ui-sortable-handle">
 				<h3 class="box-title">Lista immobili</h3>
 				<!-- pulsanti riduci e chiudi -->
 				<div class="pull-right box-tools">
@@ -29,7 +29,7 @@
 <!-- ###### TIMELINE ###### -->
 <div class="row">
 	<div class="col-xs-12">
-		<div class="box">
+		<div class="box box-info">
 			<div class="box-header">
 				<h3 class="box-title">Tecnoimmobili News</h3>
 				<!-- pulsanti riduci e chiudi -->

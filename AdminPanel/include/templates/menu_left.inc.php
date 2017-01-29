@@ -69,7 +69,7 @@ $act_news_management 	= isset($act_news)?$act_news:false;
                     <!-- MENU NEWS -->
                     <?php  if($SS_usr->id_user_type==1){ ?>
                     <li <?php if($act_news_management) echo('class="active"')?>>
-                        <a href="news_management.php"><i class="fa fa-dashboard"></i><span> Gestione news</span></a>
+                        <a href="news_management.php"><i class="fa fa-newspaper-o"></i><span> Gestione news</span></a>
                     </li>
                     <?php }?>
                     <!-- MENU NEWS END -->

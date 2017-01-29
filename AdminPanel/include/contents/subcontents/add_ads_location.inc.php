@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label>Provincia</label>
+            <label>Stato</label>
             <div class="input-group">
                 <div class="input-group-addon">
                     <i class="fa fa-home"></i>
@@ -112,3 +112,27 @@
     </div><!-- /.col-md-2 -->
 
 </div><!-- /.row -->
+
+<!-- MAP -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-info ">
+            <div class="box-header ui-sortable-handle">
+                <h3 class="box-title">Mappa</h3>
+                <!-- pulsanti riduci e chiudi -->
+                <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-secondary btn-sm pull-right" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm " data-widget="collapse" data-toggle="tooltip" title="Riduci / Ingrandisci" style="margin-right: 5px;">
+                        <i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="map"></div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+<!-- /.row -->
