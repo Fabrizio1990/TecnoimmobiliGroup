@@ -85,7 +85,7 @@ $act_news_management		= true; // setta attivo il link news management
 
             <!-- MAIN CONTENT -->
             <section class="content">
-
+                <input type="hidden" id="id_edit_news" />
                 <?php
                 include(BASE_PATH."/AdminPanel/include/widgets/ckEditor.inc.php");
                 ?>

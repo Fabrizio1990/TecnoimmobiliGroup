@@ -20,8 +20,18 @@ if(isset($_POST["text"]) && SessionManager::getVal("authenticated") != null){
     $title  = $_POST["title"];
     $text   = $_POST["text"];
     $mng    = new NewsManager();
-    $values = Array($title,$text);
-    $ret = $mng->create($values);
+    $values = "";
+
+    $ret    = "";
+
+    if(isset($_POST["id_news"])){
+        $values = Array($title,$text,$_POST["id_news"]);
+        $ret = $mng->update(array("title = ?","description = ?"),"id=?",$values);
+    }else{
+        $values = Array($title,$text);
+        $ret = $mng->create($values);
+    }
+
     echo($ret);
 }
 else{
