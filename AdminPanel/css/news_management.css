@@ -1,11 +1,18 @@
-.timeline-widget{
-    max-height:inherit !important;
-    background : inherit !important;
-}
 #btn_editor_submit{
     float:right;
 }
 #btn_editor_undo_edit{
     float:right;
     margin-right:10px;
+}
+
+
+.timeline-widget{
+    max-height:inherit !important;
+    background : inherit !important;
+}
+
+.timeline-item:hover{
+    cursor:pointer;
+    background:#f4f4c6 !important;
 }
