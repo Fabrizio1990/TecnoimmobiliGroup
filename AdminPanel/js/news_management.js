@@ -15,15 +15,45 @@ function saveNews(){
 
 function newsSaved(resp){
     if(resp=="1"||resp=="0")
-        openInfoModal(2,"Salvato","La news è stata salvata con successo","Chiudi",function(){window.location.reload();});
+        openInfoModal(2,"Successo","La news è stata salvata con successo","Chiudi",function(){window.location.reload();});
     else
         openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni.");
+}
 
+function deleteNews(id){
+    var page = BASE_PATH+"/AdminPanel/ajax/news_management_delete.ajax.php";
+    var params = "id_news="+id;
+    ajaxCall(page,params,null,newsDeleted,null,"POST");
+}
+function newsDeleted(resp){
+    if(resp=="1"||resp=="0")
+        openInfoModal(2,"Successo","La news è stata eliminata con successo","Chiudi",function(){window.location.reload();});
+    else
+        openInfoModal(5,"Errore!","è avvenuto un errore durante la rimozione delle informazioni.");
 }
 
 $(document).ready(function () {
-    $( ".timeline-item" ).bind( "click", function() {
-        moveToEdit($(this));
+
+    $( ".timeline-item" ).each(function(index,elem){
+        //console.log(elem);
+
+        var footerEl = $(elem).append("<div class='timeline-footer'></div>")
+            .children(".timeline-footer")
+            .append
+        (
+            "<div class='btn-group'>"+
+                "<button type='button' class='btn btn-info edit_news'>" +
+                    "<i class='fa fa-edit'></i>"+
+                "</button>"+
+                "<button type='button' onclick='deleteNews($(this).closest(\".timeline-item\").children(\".id_news\").val())' class='btn btn-danger delete_news'>" +
+                    "<i class='fa fa-remove'></i>"+
+                "</button>"+
+            "</div>"
+        );
+    });
+
+    $( ".edit_news" ).bind( "click", function() {
+        moveToEdit($(this).closest(".timeline-item"));
     });
 });
 

@@ -12,7 +12,15 @@
     background : inherit !important;
 }
 
+.timeline-item .timeline-footer{
+    padding:5px;
+    border-top: 1px solid #f4f4f4;
+    text-align:right;
+}
+
+
 .timeline-item:hover{
     cursor:pointer;
     background:#f4f4c6 !important;
 }
+
