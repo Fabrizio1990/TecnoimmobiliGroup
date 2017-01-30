@@ -9,6 +9,12 @@ function selectFile(elem){
 }
 $(document).ready(function () {
 
+    /*$("#img_pats").bind( "click", function() {
+        alert( "User clicked on 'foo.'" );
+    });*/
+    $("#img_pats").bind("click",function(){
+        getImagesPath();
+    });
 
     /* GOOGLE MAP REFRESH ON LOCATION TAB CLICK */
     $("#tab_location_li").click(function(){
@@ -63,6 +69,7 @@ $(document).ready(function () {
             sel_city                : { required: true },
             sel_town                : { required: true },
             sel_district            : { required: true },
+            sel_show_street_num     : { required: true },
             // ADS STATUS
             sel_ads_status          : { required: true },
             sel_negotiation_status  : { required: true },
@@ -70,8 +77,7 @@ $(document).ready(function () {
             sel_property_status2    : { required: true },
             sel_price_lowered       : { required: true },
             sel_prestige            : { required: true },
-//
-//
+
             /*--- INPUT ---*/
             /* DESCRIPTION */
             inp_surface             : { required: true , number: true },
@@ -79,13 +85,18 @@ $(document).ready(function () {
             inp_ipe                 : { required: true , number: true },
             txt_description         : { required: true , minlength: 50, maxlength: 500 },
             /* LOCATION */
-            inp_address             : { required: true , minlength: 3, maxlength: 240 },
+            inp_address             : { required: true, minlength: 3, maxlength: 240 },
             inp_street_num          : { required: true , maxlength: 50 }
-            // ADS STATUS
+
         },
 
         submitHandler: function(form) {
-            saveAds(form);
+            var images = getImagesPath();
+            if(images.length < 3){
+                openInfoModal(5,"Attenzione!","Devi inserire almeno tre immagini per poter salvare l' immobile");
+                return;
+            }
+            saveAds(form,images);
             openInfoModal(2,"Salvato","Immobile Salvato con successo","Chiudi");
         },
         invalidHandler: function(event, validator) {
@@ -95,9 +106,38 @@ $(document).ready(function () {
 
 });
 
-function saveAds(form){
-    var serializedData = $(form).serialize();
-    console.log(serializedData);
+function saveAds(form,images){
+    var page = BASE_PATH+"/AdminPanel/ajax/ads_management_save.ajax.php";
+    var params = $(form).serialize();
+
+    for(i = 0,len = images.length; i < len; i++){
+        params += "&img_" + (i+1) + "=" + encodeURIComponent(images[i]);
+    }
+
+    console.log(params);
+    //ajaxCall(page,params,null,newsDeleted,null,"POST");
+}
+
+// get all images valorized and get them back into array
+function getImagesPath(){
+    var images = new Array();
+    $("#tab_images .image_ads").each(function(index,elem){
+        var path = elem.src;
+        var image_name = removeUrlParameters(fileNameFromUrl(path));
+        if(image_name!=null && image_name!="" && image_name!="Immagine_eof.jpg"){
+            images.push(image_name);
+        }
+    });
+    return images;
+}
+
+function adsSaved(){
+    function newsDeleted(resp){
+        if(resp=="1"||resp=="0")
+            openInfoModal(2,"Successo","L' immobile è stato Salvato con successo","Chiudi",function(){/*window.location.reload();*/});
+        else
+            openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni.");
+    }
 }
 
 
@@ -116,6 +156,11 @@ function initMap(defZoom = 2){
         }
         GMap = new MyMap(true);
         GMap.init("map",fullAddress,zoom,2,BASE_PATH+"/images/icons/map_marker.png",false);
+
+        setTimeout(function(){
+            $("#inp_latitude").val(GMap.getLatitude());
+            $("#inp_longitude").val(GMap.getLongitude());
+        },1000);
 
 
 }
