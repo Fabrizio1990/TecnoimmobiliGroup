@@ -1,4 +1,4 @@
-﻿<!-- #################### STATO ANNUNCIO - TRATTATIVA RISERVATA ######################## -->
+﻿<!-- #################### STATO ANNUNCIO - STATO TRATTATIVA ######################## -->
 <div class="row">
 
     <div class="col-md-6">
@@ -39,13 +39,13 @@
 </div><!-- /.row -->
 
 
-<!-- #################### IN TRATTATIVA - TRATTATIVA RISERVATA   ######################## -->
+<!-- ####################  - TRATTATIVA RISERVATA   ######################## -->
 <div class="row">
 
 
     <div class="col-md-6">
         <!-- SELECT MULTIPLE -->
-        <div class="form-group">
+        <!--<div class="form-group">
             <label>Stato proprietà</label>
             <div class="input-group">
                 <div class="input-group-addon">
@@ -54,11 +54,11 @@
 
                 <select id="sel_property_status2" name="sel_property_status2" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <?php echo $optPropertyStatus?>
+                    <?php //echo $optPropertyStatus?>
                 </select>
             </div>
-        </div><!-- /.form-group -->
-    </div><!-- /.col-md-6 -->
+        </div>--><!-- /.form-group -->
+        </div> <!-- /.col-md-6 -->
 
 
     <div class="col-md-6">
@@ -72,8 +72,8 @@
 
                 <select id="sel_negotiation" name="sel_negotiation" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <option value="0">No</option>
                     <option value="1">SI</option>
+                    <option value="0">No</option>
                 </select>
             </div>
         </div><!-- /.form-group -->
@@ -98,8 +98,8 @@
 
                 <select id="sel_price_lowered" name="sel_price_lowered" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <option value="0">No</option>
                     <option value="1">SI</option>
+                    <option value="0">No</option>
                 </select>
             </div>
         </div><!-- /.form-group -->
