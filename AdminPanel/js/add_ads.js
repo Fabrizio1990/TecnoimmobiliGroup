@@ -100,7 +100,7 @@ $(document).ready(function () {
             openInfoModal(2,"Salvato","Immobile Salvato con successo","Chiudi");
         },
         invalidHandler: function(event, validator) {
-            openInfoModal(5,"Attenzione!","Alcuni campi non sonos tati compilati correttamente , ricontrolla i dati e riprova");
+            openInfoModal(5,"Attenzione!","Alcuni campi non sono tati compilati correttamente , ricontrolla i dati e riprova");
         }
     });
 
@@ -114,8 +114,16 @@ function saveAds(form,images){
         params += "&img_" + (i+1) + "=" + encodeURIComponent(images[i]);
     }
 
-    console.log(params);
-    //ajaxCall(page,params,null,newsDeleted,null,"POST");
+    //console.log(params);
+    ajaxCall(page,params,null,adsSaved,null,"POST");
+}
+
+
+function adsSaved(resp){
+        if(resp=="1"||resp=="0" || resp.toLowerCase() =="success")
+            openInfoModal(2,"Successo","L' immobile è stato Salvato con successo","Chiudi",function(){/*window.location.reload();*/});
+        else
+            openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni.","Chiudi");
 }
 
 // get all images valorized and get them back into array
@@ -131,14 +139,7 @@ function getImagesPath(){
     return images;
 }
 
-function adsSaved(){
-    function newsDeleted(resp){
-        if(resp=="1"||resp=="0")
-            openInfoModal(2,"Successo","L' immobile è stato Salvato con successo","Chiudi",function(){/*window.location.reload();*/});
-        else
-            openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni.");
-    }
-}
+
 
 
 function initMap(defZoom = 2){

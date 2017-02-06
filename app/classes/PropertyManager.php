@@ -13,65 +13,90 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 	// IMPLEMENTO I METODI DELL INTERFACCIA
 
-    public function create($values = null,$fields = null)
+    public function create($values = null,$fields = null,$printQuery = false)
     {
 
-        $def_fields = "reference_code,id_contract,id_contract_status,id_appointment,id_country,
-id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitude,latitude,id_category,id_tipology,mq,id_locals,id_rooms,id_bathrooms,id_floor,id_elevator,id_heating,id_box,id_garden,id_property_conditions,id_property_status,id_ads_status,is_prestige,is_price_lowered,video_url,id_description,views,telephone_click,id_energy_class,id_ipe_um,ipe,show_on_magazine,show_on_portal,date_insdate_up,date_del";
-
+        $def_fields = array("id_contract","id_contract_status","id_country","id_region","id_city","id_town","id_district","street","street_num","show_street_num","longitude","latitude","id_category","id_tipology","mq","price","negotiation_reserved","id_locals","id_rooms","id_bathrooms","id_floor","id_elevator","id_heating","id_box","id_garden","id_property_conditions","id_property_status","id_ads_status","is_prestige","is_price_lowered","video_url","id_description","id_energy_class","id_ipe_um","ipe");
+        ;
         $fields = $fields == null ? $def_fields : $fields;
-
-        $rif = $this->createRefenceCode();
-        array_unshift($values, $rif);
-
-        $ret = parent::create($this->currTable,$fields,$values);
+        $ret = parent::create($this->currTable,$fields,$values,$printQuery);
         return $ret;
     }
 
-    public function read($params = null,$extra_params = null,$values =null ,$fields = null){
+    public function read($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = false){
 
-        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields);
+        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields,$printQuery);
         return $ret;
     }
 
 
-    public function update($fields,$params,$values = null,$extra_params = null)
+    public function update($fields,$params,$values = null,$extra_params = null,$printQuery = false)
     {
-        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params);
+        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
 
-    public function delete($params = null,$values = null,$extra_params = null)
+    public function delete($params = null,$values = null,$extra_params = null,$printQuery = false)
     {
-        $ret = parent::delete($this->currTable,$params,$values,$extra_params);
+        $ret = parent::delete($this->currTable,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
 
-    /*function readOptions($what,$id_parent = null){
-        $params = null;
-        $fields = null;
-        switch($what){
-            case "ads_status":
-                $params = array("enabled = 1");
-                $this->currTable = "property_ads_status";
-                break;
-            case "ads_category":
-                $params = array("enabled = 1");
-                $this->currTable = "property_categories";
-                break;
 
+    public function saveAds($values,$images=null,$fields=null){
+
+        $ret = $this->create($values,$fields);
+        if($ret=="" || $ret == null)// se va in errore ritorno ret che sarà vuoto e scatenerà l ' errore
+            return "errore - Salvataggio immobile fallito";
+
+        $ret = $this->lastInsertId;
+
+        return $ret;
+    }
+
+    // Img save process , require id of ads and array with images
+    public function saveImages($id_ads,$images){
+        $ret ="";
+        $this->currTable = "property_images";
+        for($i = 0 ,$len = Count($images);$i<$len;$i++){
+            if($images[$i]!=""){
+                $id_image_type ="1";
+                if($i>0){
+                    $id_image_type ="2";
+                }
+                $values = array($id_ads,$id_image_type,$images[$i]);
+                $ret = $this->saveImage($values);
+
+                if ($ret !="1") return $ret;
+            }
         }
+        $this->setDefTable();
 
-        if($id_parent!= null)
-            $ret = $this->read($params,null,array($id_parent),$fields);
-        else
-            $ret = $this->read(null,null,null,$fields);
+        return $ret;
+    }
+    // save single image
+    private function saveImage($values){
+        $fields = array("id_property","id_img_type","img_name");
+        $ret = $this->create($values,$fields);
+        return $ret;
+    }
+
+    public function createRefenceCode($id_ads){
+        $res = $this->readAllAds(array("id = ?"),null,array($id_ads),array("city_short","date_ins"));
+        $date =Date("dmY",strtotime($res[0]["date_ins"]));
+        $rif = $res[0]["city_short"].$date."RIF".$id_ads;
+        $res = $this->update("reference_code = ?",array("id=?"),array($rif,$id_ads));
+        return $res;
+    }
+
+    public function SaveDescription($id_ads,$descriptionIT,$descriptionEN = Null){
+        $this->currTable = "property_descriptions";
+
+        $res = $this->create(array($id_ads,$descriptionIT,$descriptionEN),array("id_property","desc_it","desc_en"));
 
         $this->setDefTable();
-        return $ret;
-    }*/
-
-
+        return $res;
+    }
 
     public function readAllAds($params = null,$extra_params = null,$values =null ,$fields = null){
         $this->currTable = "properties_view";
@@ -87,10 +112,7 @@ id_region,id_city,id_town,id_district,street,street_num,show_street_num,longitud
         return $ret;
     }
 
-    private function createRefenceCode(){
-        // TODO GENERARE UN CODICE RANDOM
-        RETURN 1;
-    }
+
 
     public function setDefTable(){
         $this->currTable = self::defTable;
