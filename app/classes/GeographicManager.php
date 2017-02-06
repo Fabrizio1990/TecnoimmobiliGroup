@@ -18,7 +18,7 @@ class GeographicManager extends DbManager implements IDbManager
         $this->currTable = self::defTable;
     }
 
-    public function create($values,$fields = null)
+    public function create($values,$fields = null,$printQuery = false)
     {
         $def_fields     = array("id","title");
         $fields = $fields == null ? $def_fields : $fields;

@@ -25,21 +25,21 @@ class NewsManager extends DbManager implements IDbManager {
         return $ret;
     }
 
-    public function read($params = null,$extra_params = null,$values =null ,$fields = null){
+    public function read($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery =false){
 
-        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields);
+        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields,$printQuery);
         return $ret;
     }
 
-    public function update($fields,$params,$values = null,$extra_params = null)
+    public function update($fields,$params,$values = null,$extra_params = null,$printQuery = false)
     {
-        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params);
+        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
 
-    public function delete($params = null,$values = null,$extra_params = null)
+    public function delete($params = null,$values = null,$extra_params = null,$printQuery =false)
     {
-        $ret = parent::delete($this->currTable,$params,$values,$extra_params);
+        $ret = parent::delete($this->currTable,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
 

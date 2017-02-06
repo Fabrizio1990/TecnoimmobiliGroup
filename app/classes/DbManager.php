@@ -3,15 +3,17 @@ require_once(BASE_PATH."/app/classes/LogHelper/Flog.php");
 class DbManager 
 {
     // PARAMETRI DI CONNESSIONE
-    private $hostName  = "";
-    private $dbName = "";
-    private $user = "";
+    private $hostName  = "localhost";
+    private $dbName = "new_tecnoimmobili";
+    private $user = "root";
     private $password	= "";
 
     public $conn = null;
+    public $lastInsertId;
 
-
-
+    /*function __construct() {
+        openConnection();
+    }*/
 	public $tableName ="" ; // verrà valorizzato per poi utilizzare una qualsiasi funzionalità di questa classe. come il count
 
 	public function openConnection()// APERTURA DELLA CONNESSIONE
@@ -20,7 +22,7 @@ class DbManager
             $this->conn =  new PDO("mysql:dbname=" . $this->dbName . ";host=" . $this->hostName,
                                         $this->user,
                                         $this->password);
-
+            $this->conn->exec("set names utf8");
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
@@ -73,7 +75,7 @@ class DbManager
     // $values = array di valori contenente i valori dei campi mandati in $fields
     // NB: la lunghezza di $fields e $values deve essere coerente (uguale)
 
-    protected function create($table,$fields,$values){
+    protected function create($table,$fields,$values,$printQuery = false){
         $this->openConnection();
         $values_plh="";
         //foreach field must be created the relative placeholder "?"
@@ -85,11 +87,12 @@ class DbManager
         $fields         = $this->getFields($fields);
 
         $query = "INSERT INTO $table ($fields) VALUES($values_plh) ";
-        echo($query);
+        //echo($query);
         $sth = $this->conn->prepare($query);
 
         $ret = $sth->execute($values);
-        //$sth->debugDumpParams();
+        if($printQuery)
+            $sth->debugDumpParams();
 
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
@@ -97,7 +100,7 @@ class DbManager
             Flog::logError($errorInfo[2],"DBManager.php");
             $ret = false;
         }
-
+        $this->lastInsertId = $this->conn->lastInsertId();
         $this->closeConnection();
 
         return $ret;
@@ -112,7 +115,7 @@ class DbManager
     // $values = array that must contain values of $params sended, ex: array(1,3)
     // $fields =  fields to read (if not specified , the default is all '*')
     // NOTE THAT THE ARRAY VALUES LENGHT MUST BE EQUAL OF THE SUM OF $params+$extra_params lenght
-    protected function read($table,$params = null,$extra_params = null,$values =null ,$fields = null){
+    protected function read($table,$params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = false){
         $ret = false;
         $this->openConnection();
         $fields         = $this->getFields($fields);// convert $fields array to useful string
@@ -121,12 +124,13 @@ class DbManager
 
         $query = "SELECT $fields from $table $params $extra_params";
         /*if(DEBUG_MODE)*/
-            //echo("<br>".$query."<br>");
+            //("<br>".$query."<br>");
 
         $sth = $this->conn->prepare($query);
 
         $sth->execute($values);
-        //$sth->debugDumpParams();
+        if($printQuery)
+            $sth->debugDumpParams();
 
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
@@ -141,7 +145,7 @@ class DbManager
         return $ret;
     }
 
-    protected function update($table,$fields = null,$params = null,$values = null,$extra_params = null){
+    protected function update($table,$fields = null,$params = null,$values = null,$extra_params = null,$printQuery = false){
         $ret = false;
         $this->openConnection();
 
@@ -154,7 +158,8 @@ class DbManager
 
         $sth = $this->conn->prepare($query);
         $sth->execute($values);
-        //$sth->debugDumpParams();
+        if($printQuery)
+            $sth->debugDumpParams();
 
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();

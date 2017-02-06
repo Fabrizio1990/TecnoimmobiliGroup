@@ -13,9 +13,9 @@ class OptionsManager extends DbManager{
         $this->currTable = self::defTable;
     }
 
-    public function read($params = null,$extra_params = null,$values =null ,$fields = null){
+    public function read($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery =false){
 
-        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields);
+        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields,$printQuery);
         return $ret;
     }
 

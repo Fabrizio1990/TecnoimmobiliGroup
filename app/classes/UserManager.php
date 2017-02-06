@@ -20,29 +20,29 @@ class UserManager extends DbManager implements IDbManager
         $this->currTable = self::defTable;
     }
 
-    public function create($values = null,$fields = null)
+    public function create($values = null,$fields = null,$printQuery = false)
     {
         $def_fields = array("id_user_type","logo_path","banner","name","description","id_country","id_region","id_city","id_town","id_district","street","street_num","p_iva","phone","mobile_phone","skype","email","password","fax","isonline","date_ins");
         $fields     = $fields == null ? $def_fields : $fields;
-        $ret = parent::create($this->currTable,$fields,$values);
+        $ret = parent::create($this->currTable,$fields,$values,$printQuery);
         return $ret;
     }
 
-    public function read($params = null,$extra_params = null,$values =null ,$fields = null){
+    public function read($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = false){
 
-        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields);
+        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields,$printQuery);
         return $ret;
     }
 
-    public function update($fields,$params,$values = null,$extra_params = null)
+    public function update($fields,$params,$values = null,$extra_params = null,$printQuery = false)
     {
-        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params);
+        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
 
-    public function delete($params = null,$values = null,$extra_params = null)
+    public function delete($params = null,$values = null,$extra_params = null,$printQuery = false)
     {
-        $ret = parent::delete($this->currTable,$params,$values,$extra_params);
+        $ret = parent::delete($this->currTable,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
 
@@ -56,14 +56,14 @@ class UserManager extends DbManager implements IDbManager
 
         $this->currTable = "login_view";
 
-        $res = $this->read(array("email = ?","password = ?"),array("limit 1"),array($username,sha1($password)),array("id","id_user_type","logo_path","banner","name","id_country","id_region","id_city","id_town","email","operator_name","operator_lastname"));
+        $res = $this->read(array("email = ?","password = ?"),array("limit 1"),array($username,sha1($password)),array("id","id_user_type","id_agent","logo_path","banner","name","id_country","id_region","id_city","id_town","email","agent_name","agent_lastname"));
         //var_dump($res);
 
         if($this::isRecordFound($res)){
             //echo("trovato");
             $entity = new UserEntity();
             $ret = $this->resultToEntity($res[0],$entity);
-            $retOn = $this->setOnline($res[0]["id"]);
+            $retOn = $this->setOnline($res[0]["id_agent"]);
         }
 
         $this->setDefTable();
@@ -71,9 +71,10 @@ class UserManager extends DbManager implements IDbManager
     }
 
     //SET ONLINE STATUS ON DB
-    public function setOnline($id){
+    public function setOnline($id_agent){
+        $this->currTable = "agency_operators";
+        return $this->update("isonline = ?","id = ?",array(1,$id_agent));
         $this->setDefTable();
-        return $this->update("isonline = ?","id = ?",array(1,$id));
     }
 
     //SET OFFLINE STATUS ON DB
