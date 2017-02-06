@@ -22,7 +22,7 @@ $act_news_management 	= isset($act_news)?$act_news:false;
                     </div>
                     <div class="pull-left info">
                         <p>
-                            <?php echo $SS_usr->operator_name. " " .$SS_usr->operator_lastname ?>
+                            <?php echo $SS_usr->agent_name. " " .$SS_usr->agent_lastname ?>
                         </p>
                         <a href="#">
                             <i class="fa fa-circle text-success"></i> Online
