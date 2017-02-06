@@ -47,7 +47,7 @@
                 </div>
 
                 <select id="sel_city" name="sel_city" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona una provincia" onchange="getTowns(this,'','Seleziona un comune')">
-                    <option value="">Seleziona un valore</option>
+                    <?php echo $optCities?>
                 </select>
             </div>
         </div><!-- /.form-group -->
@@ -62,7 +62,7 @@
                     <i class="fa fa-map-marker"></i>
                 </div>
                 <select id="sel_town" name="sel_town" class="form-control select2" data-placeholder="Seleziona un comune" style="width: 100%;" onchange="getDistricts(this,'','Seleziona una zona')">
-
+                    <?php echo $optTowns?>
                 </select>
             </div>
         </div>
@@ -85,7 +85,7 @@
                     <i class="fa fa-map-marker"></i>
                 </div>
                 <select id="sel_district" name="sel_district" class="form-control select2" data-placeholder="Seleziona una zona" style="width: 100%;" >
-
+                    <?php echo $optDistricts?>
                 </select>
             </div>
         </div>
@@ -96,7 +96,7 @@
             <label>Indirizzo</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
-                <input id="inp_address" name="inp_address" type="text" class="form-control" placeholder="Inserisci lindirizzo">
+                <input id="inp_address" name="inp_address" type="text" class="form-control" placeholder="Inserisci lindirizzo" value="<?php echo $inpAddressVal ?>">
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-4 -->
@@ -105,7 +105,7 @@
         <div class="form-group">
             <label>Civico</label>
             <div class="input-group">
-                <input  id="inp_street_num" name="inp_street_num" type="text" class="form-control" placeholder="N° civico">
+                <input  id="inp_street_num" name="inp_street_num" type="text" class="form-control" placeholder="N° civico" value="<?php echo $inpStreetNumVal ?>">
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-2 -->
@@ -125,8 +125,8 @@
                 </div>
                 <select id="sel_show_street_num" name="sel_show_street_num" class="form-control select2" data-placeholder="Seleziona un valore" style="width: 100%;" >
                     <option value="">Seleziona un valore</option>
-                    <option value="1" >SI</option>
-                    <option value="0"> No</option>
+                    <option value="1" <?php if($optShowAddressVal=="1")echo'selected'?>>SI</option>
+                    <option value="0" <?php if($optShowAddressVal=="0")echo'selected'?>> No</option>
                 </select>
             </div>
         </div>
@@ -139,7 +139,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-map-o"></i>
                 </div>
-                <input  id="inp_latitude" name="inp_latitude" type="text" class="form-control" placeholder="Latitudine" readonly>
+                <input  id="inp_latitude" name="inp_latitude" type="text" class="form-control" placeholder="Latitudine" value="<?php echo $inpLatitudeVal?>" readonly>
             </div>
         </div><!-- /.form-group -->
 
@@ -152,7 +152,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-map-o"></i>
                 </div>
-                <input  id="inp_longitude" name="inp_longitude" type="text" class="form-control" placeholder="Longitudine" readonly>
+                <input  id="inp_longitude" name="inp_longitude" type="text" class="form-control" placeholder="Longitudine" value="<?php echo $inpLongitudeVal?>" readonly>
             </div>
         </div><!-- /.form-group -->
 

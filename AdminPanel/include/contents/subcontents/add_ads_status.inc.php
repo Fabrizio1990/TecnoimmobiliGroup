@@ -11,7 +11,7 @@
 
                 <select id="sel_ads_status" name="sel_ads_status" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona lo stato dell' annuncio">
                     <option value="">Seleziona un valore</option>
-                    <?php echo $optAdsyStatus?>
+                    <?php echo $optAdsStatus?>
                 </select>
             </div>
         </div><!-- /.form-group -->
@@ -72,8 +72,8 @@
 
                 <select id="sel_negotiation" name="sel_negotiation" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <option value="1">SI</option>
-                    <option value="0">No</option>
+                    <option value="1" <?php if($optNegotiationVal=="1")echo'selected'?>>SI</option>
+                    <option value="0" <?php if($optNegotiationVal=="0")echo'selected'?>>No</option>
                 </select>
             </div>
         </div><!-- /.form-group -->
@@ -98,8 +98,8 @@
 
                 <select id="sel_price_lowered" name="sel_price_lowered" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <option value="1">SI</option>
-                    <option value="0">No</option>
+                    <option value="1" <?php if($optPriceLoweredVal=="1")echo'selected'?> SI</option>
+                    <option value="0" <?php if($optPriceLoweredVal=="0")echo'selected'?>>No</option>
                 </select>
             </div>
         </div><!-- /.form-group -->
@@ -109,7 +109,7 @@
     <div class="col-md-6">
         <!-- SELECT MULTIPLE -->
         <div class="form-group">
-            <label>PRESTIGE</label>
+            <label>Prestige</label>
             <div class="input-group">
                 <div class="input-group-addon">
                     <i class="fa fa-home"></i>
@@ -117,8 +117,8 @@
 
                 <select id="sel_prestige" name="sel_prestige" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <option value="0">No</option>
-                    <option value="1">SI</option>
+                    <option value="0" <?php if($optPrestigeVal=="1")echo'selected'?>>No</option>
+                    <option value="1" <?php if($optPrestigeVal=="0")echo'selected'?>>SI</option>
                 </select>
             </div>
         </div><!-- /.form-group -->

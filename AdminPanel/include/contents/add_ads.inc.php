@@ -1,52 +1,141 @@
 <?php 
 	require_once(BASE_PATH."/app/classes/OptionsManager.php");
+	require_once(BASE_PATH."/app/classes/PropertyManager.php");
+	//SETTING UP DEFAULT VALUES
+	$action = "save";
+	$id_ads ="";
+
+	$optCountriesVal 		= "1";
+	$inpIpeVal		 		= "175";
+	$inpSurfaceVal	 		= "";
+	$InpPriceVal			= "";
+	$inpAddressVal			= "";
+	$inpStreetNumVal		= "";
+	$inpLatitudeVal			= "";
+	$inpLongitudeVal		= "";
+	$txtDescriptionVal	 	= "";
+
+	$imagesVal = array("img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg");
+
+	 $optRegionsVal = $optCityVal = $optTownVal = $optDistrictVal = $optCategoryVal = $optTipologyVal = $optLocalsVal = $optRoomsVal = $optFloorsVal = $optElevatorsVal = $optConditionsVal = $optPropertyStatusVal = $optContractStatusVal = $optAdsyStatusVal = $optHeatingsVal = $optBathroomsVal = $optBoxVal = $optGardensVal = $optContractsVal = $optStatusVal = $optEnergyClassVal = $optIpeUmVal = $optCityVal = $optPriceLoweredVal = $optPrestigeVal = $optNegotiationVal = $optShowAddressVal = null;
+
+
+	$adsMng = new PropertyManager();
+
+	if(isset($_REQUEST["id_ads"])){
+		$action = "update";
+		$id_ads = $_REQUEST["id_ads"];
+
+		// GET THE ADS DATA
+		$adsData 		= $adsMng->read("id=?","limit 1" ,array($id_ads));
+		$resDesc 		= $adsMng->getDescription($id_ads);
+		$resImages		= $adsMng->getImages("id_property =?",null,array($id_ads) ,"img_name");
+//		$resImagePath	= $adsMng->getImagesPath("id=?","",array("3") ,"path");
+
+
+
+		$inpIpeVal		 			= $adsData[0]["ipe"];
+		$inpSurfaceVal	 			= $adsData[0]["mq"];
+		$InpPriceVal				= $adsData[0]["price"];
+		$inpAddressVal				= $adsData[0]["street"];
+		$inpStreetNumVal			= $adsData[0]["street_num"];
+		$inpLatitudeVal				= $adsData[0]["latitude"];
+		$inpLongitudeVal			= $adsData[0]["longitude"];
+		$txtDescriptionVal	 		= $resDesc[0]["desc_it"];
+
+		$optCountriesVal 			= $adsData[0]["id_country"];
+		$optRegionsVal 				= $adsData[0]["id_region"];
+		$optCityVal 				= $adsData[0]["id_city"];
+		$optTownVal					= $adsData[0]["id_town"];
+		$optDistrictVal				= $adsData[0]["id_district"];
+		$optCategoryVal 			= $adsData[0]["id_category"];
+		$optTipologyVal 			= $adsData[0]["id_tipology"];
+		$optLocalsVal 				= $adsData[0]["id_locals"];
+		$optRoomsVal 				= $adsData[0]["id_rooms"];
+		$optFloorsVal 				= $adsData[0]["id_floor"];
+		$optElevatorsVal 			= $adsData[0]["id_elevator"];
+		$optConditionsVal 			= $adsData[0]["id_property_conditions"];
+		$optPropertyStatusVal		= $adsData[0]["id_property_status"];
+		$optContractStatusVal 		= $adsData[0]["id_contract_status"];
+		$optAdsStatusVal 			= $adsData[0]["id_ads_status"];
+		$optHeatingsVal 			= $adsData[0]["id_heating"];
+		$optBathroomsVal 			= $adsData[0]["id_bathrooms"];
+		$optBoxVal 					= $adsData[0]["id_box"];
+		$optGardensVal 				= $adsData[0]["id_garden"];
+		$optContractsVal 			= $adsData[0]["id_contract"];
+		//$optStatusVal 				= $adsData[0]["id_"];
+		$optEnergyClassVal 			= $adsData[0]["id_energy_class"];
+		$optIpeUmVal 				= $adsData[0]["id_ipe_um"];
+		$optPriceLoweredVal 		= $adsData[0]["is_price_lowered"];
+		$optPrestigeVal 			= $adsData[0]["is_prestige"];
+		$optNegotiationVal 			= $adsData[0]["negotiation_reserved"];
+		$optShowAddressVal 			= $adsData[0]["show_address"];
+
+		for($i = 0,$len = Count($resImages);$i<$len;$i++){
+			$imagesVal[$i] = $resImages[$i]["img_name"];
+		}
+
+	}
+
 	$optMng = new OptionsManager();
 
 	$userLogged = SessionManager::getVal("user",true);
 
 
 	// CREO OPTIONS COUNTRY
-	$optCountries		= $optMng->makeOptions("geo_country",1,null);
+	$optCountries		= $optMng->makeOptions("geo_country",$optCountriesVal,null);
 	// CREO OPTIONS COUNTRY
-	$optRegions			= $optMng->makeOptions("geo_region",null,1);
+	$optRegions			= $optMng->makeOptions("geo_region",$optRegionsVal,$optCountriesVal);
+	// CREO OPTIONS CITY
+	$optCities			= $optMng->makeOptions("geo_city",$optCityVal,$optRegionsVal);
+	// CREO OPTIONS TOWN
+	$optTowns			= $optMng->makeOptions("geo_town",$optTownVal,$optCityVal);
+	// CREO OPTIONS DISTRICT
+	$optDistricts		= $optMng->makeOptions("geo_district",$optDistrictVal,$optTownVal);
 	// CREO OPTIONS CATEGORIA
-	$optCategory 		= $optMng->makeOptions("ads_category",null,null);
+	$optCategory 		= $optMng->makeOptions("ads_category",$optCategoryVal,null);
+	// CREO OPTIONS TIPOLOGIA
+	$optTipology		= $optMng->makeOptions("ads_tipologies",$optTipologyVal,$optCategoryVal);
 	// CREO OPTIONS LOCALI
-	$optLocals  		= $optMng->makeOptions("ads_locals");
+	$optLocals  		= $optMng->makeOptions("ads_locals",$optLocalsVal);
 	// CREO OPTIONS ROOMS
-	$optRooms 			= $optMng->makeOptions("ads_rooms");
+	$optRooms 			= $optMng->makeOptions("ads_rooms",$optRoomsVal);
 	// CREO OPTIONS FLOOR
-	$optFloors 			= $optMng->makeOptions("ads_floors");
+	$optFloors 			= $optMng->makeOptions("ads_floors",$optFloorsVal);
 	// CREO OPTIONS ELEVATOR
-	$optElevators 		= $optMng->makeOptions("ads_elevators");
+	$optElevators 		= $optMng->makeOptions("ads_elevators",$optElevatorsVal);
 	// CREO OPTIONS Conditions
-	$optConditions		= $optMng->makeOptions("ads_elevators");
+	$optConditions		= $optMng->makeOptions("ads_elevators",$optConditionsVal);
 	// CREO OPTIONS property status
-	$optPropertyStatus	= $optMng->makeOptions("ads_property_status");
+	$optPropertyStatus	= $optMng->makeOptions("ads_property_status",$optPropertyStatusVal);
 	// CREO OPTIONS property status
-	$optContractStatus	= $optMng->makeOptions("ads_contract_status");
+	$optContractStatus	= $optMng->makeOptions("ads_contract_status",$optContractStatusVal);
 	// CREO OPTIONS ads status
-	$optAdsyStatus		= $optMng->makeOptions("ads_status");
+	$optAdsStatus		= $optMng->makeOptions("ads_status",$optAdsStatusVal);
 	// CREO OPTIONS heatings
-	$optHeatings		= $optMng->makeOptions("ads_heatings");
+	$optHeatings		= $optMng->makeOptions("ads_heatings",$optHeatingsVal);
 	// CREO OPTIONS Bathrooms
-	$optBathrooms 		= $optMng->makeOptions("ads_bathrooms");
+	$optBathrooms 		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal);
 	// CREO OPTIONS Box
-	$optBox 			= $optMng->makeOptions("ads_box");
+	$optBox 			= $optMng->makeOptions("ads_box",$optBoxVal);
 	// CREO OPTIONS Gardens
-	$optGardens			= $optMng->makeOptions("ads_gardens");
+	$optGardens			= $optMng->makeOptions("ads_gardens",$optGardensVal);
 	// CREO OPTIONS Contracts
-	$optContracts 		= $optMng->makeOptions("ads_contracts");
+	$optContracts 		= $optMng->makeOptions("ads_contracts",$optContractsVal);
 	// CREO OPTIONS ads Status
-	$optStatus			= $optMng->makeOptions("ads_status");
+	//$optStatus			= $optMng->makeOptions("ads_status",$optStatusVal);
 	// CREO OPTIONS Energy class
-	$optEnergyClass		= $optMng->makeOptions("ads_energy_class");
+	$optEnergyClass		= $optMng->makeOptions("ads_energy_class",$optEnergyClassVal);
 	// CREO OPTIONS Ipe um
-	$optIpeUm			= $optMng->makeOptions("ads_ipe_um");
+	$optIpeUm			= $optMng->makeOptions("ads_ipe_um",$optIpeUmVal);
 	// CREO OPTIONS City
-	$optCity			= "";
+	$optCity			= $optMng->makeOptions("geo_region",$optCityVal,1);
+
+
+
 ?>
 <form name="FORM_ADS" id="FORM_ADS" novalidate accept-charset="UTF-8">
+	<input type ="hidden" name="action" id="action" value="<?php echo $action ?>" />
 	<div class="row">
 	<!-- FILTRO PARAMETRI -->
 			<!-- /.col (left) -->

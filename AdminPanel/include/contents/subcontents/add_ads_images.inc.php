@@ -7,7 +7,7 @@
                 <h3 class="box-title">Immagine di copertina</h3>
             </div>
             <div class="box-body ">
-                <img  style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img  style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[0] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -34,7 +34,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[1] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -55,7 +55,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[2] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -76,7 +76,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[3] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -101,7 +101,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[4] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -122,7 +122,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[5] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -143,7 +143,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[6] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -167,7 +167,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[7] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -188,7 +188,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[8] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -209,7 +209,7 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-body">
-                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/img_eof/Immagine_eof.jpg"/>
+                <img style="width:100%" class="img img-responsive image_ads IMAGE_DRAG"  src="<?php echo SITE_URL ?>/public/images/images_properties/big/<?php echo $imagesVal[9] ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
