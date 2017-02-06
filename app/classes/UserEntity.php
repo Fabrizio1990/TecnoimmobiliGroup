@@ -5,6 +5,7 @@ class UserEntity {
 
     public $id;
     public $id_user_type;
+    public $id_agent;
     public $logo_path;
     public $banner;
     public $name;
@@ -31,7 +32,7 @@ class UserEntity {
     public $date_ins;
     public $date_up;
     public $date_del;
-    public $operator_name;
-    public $operator_lastname;
+    public $agent_name;
+    public $agent_lastname;
 
 }
