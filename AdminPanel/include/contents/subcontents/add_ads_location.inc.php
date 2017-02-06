@@ -139,7 +139,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-map-o"></i>
                 </div>
-                <input  id="inp_latitude" name="inp_latitude" type="text" class="form-control" placeholder="Latitudine" disabled>
+                <input  id="inp_latitude" name="inp_latitude" type="text" class="form-control" placeholder="Latitudine" readonly>
             </div>
         </div><!-- /.form-group -->
 
@@ -152,7 +152,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-map-o"></i>
                 </div>
-                <input  id="inp_longitude" name="inp_longitude" type="text" class="form-control" placeholder="Longitudine" disabled>
+                <input  id="inp_longitude" name="inp_longitude" type="text" class="form-control" placeholder="Longitudine" readonly>
             </div>
         </div><!-- /.form-group -->
 
