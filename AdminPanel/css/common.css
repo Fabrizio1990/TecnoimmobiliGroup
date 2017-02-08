@@ -34,3 +34,7 @@ body {
 }
 
 .HIDDEN{display:none;}
+
+.POINTER:hover{
+    cursor: pointer;
+}
