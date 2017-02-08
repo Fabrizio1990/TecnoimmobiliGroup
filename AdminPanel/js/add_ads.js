@@ -97,7 +97,7 @@ $(document).ready(function () {
                 return;
             }
             saveAds(form,images);
-            openInfoModal(2,"Salvato","Immobile Salvato con successo","Chiudi");
+            //openInfoModal(2,"Salvato","Immobile Salvato con successo","Chiudi");
         },
         invalidHandler: function(event, validator) {
             openInfoModal(5,"Attenzione!","Alcuni campi non sono tati compilati correttamente , ricontrolla i dati e riprova");
@@ -121,7 +121,7 @@ function saveAds(form,images){
 
 function adsSaved(resp){
         if(resp=="1"||resp=="0" || resp.toLowerCase() =="success")
-            openInfoModal(2,"Successo","L' immobile è stato Salvato con successo","Chiudi",function(){/*window.location.reload();*/});
+            openInfoModal(2,"Successo","L' immobile è stato Salvato con successo","Chiudi",function(){window.location.reload();});
         else
             openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni.","Chiudi");
 }

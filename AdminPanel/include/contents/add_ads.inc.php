@@ -17,14 +17,14 @@
 
 	$imagesVal = array("img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg");
 
-	 $optRegionsVal = $optCityVal = $optTownVal = $optDistrictVal = $optCategoryVal = $optTipologyVal = $optLocalsVal = $optRoomsVal = $optFloorsVal = $optElevatorsVal = $optConditionsVal = $optPropertyStatusVal = $optContractStatusVal = $optAdsyStatusVal = $optHeatingsVal = $optBathroomsVal = $optBoxVal = $optGardensVal = $optContractsVal = $optStatusVal = $optEnergyClassVal = $optIpeUmVal = $optCityVal = $optPriceLoweredVal = $optPrestigeVal = $optNegotiationVal = $optShowAddressVal = null;
+	 $optRegionsVal = $optCityVal = $optTownVal = $optDistrictVal = $optCategoryVal = $optTipologyVal = $optLocalsVal = $optRoomsVal = $optFloorsVal = $optElevatorsVal = $optConditionsVal = $optPropertyStatusVal = $optContractStatusVal = $optAdsyStatusVal = $optHeatingsVal = $optBathroomsVal = $optBoxVal = $optGardensVal = $optContractsVal = $optStatusVal = $optEnergyClassVal = $optIpeUmVal = $optCityVal = $optPriceLoweredVal = $optPrestigeVal = $optNegotiationVal = $optAdsStatusVal =  $optShowAddressVal = null;
 
 
 	$adsMng = new PropertyManager();
 
-	if(isset($_REQUEST["id_ads"])){
+	if(isset($_POST["id_ads"])){
 		$action = "update";
-		$id_ads = $_REQUEST["id_ads"];
+		$id_ads = $_POST["id_ads"];
 
 		// GET THE ADS DATA
 		$adsData 		= $adsMng->read("id=?","limit 1" ,array($id_ads));
@@ -136,6 +136,8 @@
 ?>
 <form name="FORM_ADS" id="FORM_ADS" novalidate accept-charset="UTF-8">
 	<input type ="hidden" name="action" id="action" value="<?php echo $action ?>" />
+	<input type ="hidden" name="id_ads" id="id_ads" value="<?php echo $id_ads ?>" />
+
 	<div class="row">
 	<!-- FILTRO PARAMETRI -->
 			<!-- /.col (left) -->

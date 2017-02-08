@@ -98,7 +98,7 @@
 
                 <select id="sel_price_lowered" name="sel_price_lowered" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <option value="1" <?php if($optPriceLoweredVal=="1")echo'selected'?> SI</option>
+                    <option value="1" <?php if($optPriceLoweredVal=="1")echo'selected'?>> SI</option>
                     <option value="0" <?php if($optPriceLoweredVal=="0")echo'selected'?>>No</option>
                 </select>
             </div>
