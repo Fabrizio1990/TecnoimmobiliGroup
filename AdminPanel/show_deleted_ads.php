@@ -114,8 +114,6 @@ folder instead of downloading all of them to reduce the load. -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/js/adminPanel/index.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!--<script src="dist/js/demo.js"></script>-->
     <!-- DataTables -->

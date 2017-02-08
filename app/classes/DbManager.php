@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Rome');
 require_once(BASE_PATH."/app/classes/LogHelper/Flog.php");
 class DbManager 
 {

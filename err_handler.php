@@ -5,6 +5,8 @@
  * Date: 16/01/2017
  * Time: 14:23
  */
+error_reporting(E_ALL ^ E_STRICT);
+
 function myErrorHandler($errno, $errstr, $errfile, $errline)
 {
 

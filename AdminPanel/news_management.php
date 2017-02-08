@@ -14,7 +14,7 @@ if(SessionManager::getVal("authenticated") != null){
 }
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
-$act_news_management		= true; // setta attivo il link news management
+$act_menu_news_management		= true; // setta attivo il link news management
 
 ?>
 
@@ -128,8 +128,6 @@ $act_news_management		= true; // setta attivo il link news management
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/adminPanel/js/index.js"></script>
     <!-- CK Editor -->
     <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
     <!--<script src="<?php echo(SITE_URL) ?>/libs/frontend/ckEditor/js/ckeditor_4.5.7.js"></script>-->
