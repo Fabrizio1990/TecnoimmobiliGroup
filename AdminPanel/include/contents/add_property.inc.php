@@ -134,7 +134,7 @@
 
 
 ?>
-<form name="FORM_ADS" id="FORM_ADS" novalidate accept-charset="UTF-8">
+<form name="FORM_PROPERTY" id="FORM_PROPERTY" novalidate accept-charset="UTF-8">
 	<input type ="hidden" name="action" id="action" value="<?php echo $action ?>" />
 	<input type ="hidden" name="id_ads" id="id_ads" value="<?php echo $id_ads ?>" />
 
@@ -181,7 +181,7 @@
 					<!-- #################### INIZIO TAB DESCRIZIONE ######################## -->
 					<div class="tab-pane active" id="tab_details">
 						<?php
-						require("subcontents/add_ads_description.inc.php")
+						require("subcontents/add_property_description.inc.php")
 						?>
 					</div><!-- ####################### FINE TAB DESCRIZIONE  #######################-->
 
@@ -190,7 +190,7 @@
 					<div class="tab-pane" id="tab_location">
 
 						<?php
-						require("subcontents/add_ads_location.inc.php")
+						require("subcontents/add_property_location.inc.php")
 						?>
 
 					</div><!-- ############# FINE TAB UBICAZIONE ################# -->
@@ -202,7 +202,7 @@
 
 
 						<?php
-						require("subcontents/add_ads_status.inc.php")
+						require("subcontents/add_property_status.inc.php")
 						?>
 
 					</div><!-- #######################FINE TAB STATO/I ############################## -->
@@ -211,7 +211,7 @@
 					<!-- #######################INIZIO TAB IMMAGINI ############################## -->
 					<div class="tab-pane" id="tab_images">
 						<?php
-							require("subcontents/add_ads_images.inc.php");
+							require("subcontents/add_property_images.inc.php");
 						?>
 					</div><!-- ####################### FINE TAB IMMAGINI ############################## -->
 
@@ -219,7 +219,7 @@
 					<!-- #######################INIZIO TAB INCARICO ############################## -->
 					<div class="tab-pane" id="tab_appointment">
 						<?php
-						require("subcontents/add_ads_appointment.inc.php");
+						require("subcontents/add_property_appointment.inc.php");
 						?>
 					</div><!-- ####################### FINE TAB INCARICO ############################## -->
 					<?php } ?>

@@ -6,15 +6,15 @@ include(BASE_PATH."/app/classes/UserEntity.php");
 if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
     $agency_id 		= $SS_usr->id;
-    $tipo_utente 	= $SS_usr->id_user_type;
-    if($tipo_utente!="1")
-        header("location:login.php");
+    $tipo_utente 	= $SS_usr->id_user_type == "1"? "%" : $SS_usr->user_type;
+    //$referente 	= $_COOKIE['refer_name'];
 }else{
     header("location:login.php");
 }
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
-$act_menu_news_management		= true; // setta attivo il link news management
+$act_add_property		= true; // setta attivo il link aggiungi immobile
+$act_menu_propery       = true; // setta attivo il menu immobili
 
 ?>
 
@@ -51,13 +51,16 @@ $act_menu_news_management		= true; // setta attivo il link news management
 
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/news_management.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/add_property.css" />
+    <!-- Jquery validate  override css-->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override_select2.css" />
     <!-- modals -->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
-    <!-- UTILS JS and  modals.js are included here becouse i need it on included files and need to be loaded at start of page-->
+    <!-- UTILS JS AND FILE_UPLOAD JS are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/form/IMAGES_UPLOAD.js"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -77,25 +80,19 @@ $act_menu_news_management		= true; // setta attivo il link news management
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small>Gestione News</small>
+                    <small>Inserimento immobile</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i> Gestione News</a></li>
+                    <li><a href="#"><i class="fa fa-home"></i> Immobili</a></li>
+					<li><a href="show_property.php"><i class="fa fa-plus-square"></i> Aggiungi immobile</a></li>
                 </ol>
             </section>
 
             <!-- MAIN CONTENT -->
             <section class="content">
-                <input type="hidden" id="id_edit_news" />
-                <?php
-                include(BASE_PATH."/AdminPanel/include/widgets/ckEditor.inc.php");
-                ?>
-
-
 				<?php 
-				include(BASE_PATH."/AdminPanel/include/widgets/timeline_widget.inc.php");
+				include(BASE_PATH."/AdminPanel/include/contents/add_property.inc.php");
 				?>
-
             </section>
             <!-- END MAIN CONTENT -->
         </div>
@@ -106,9 +103,9 @@ $act_menu_news_management		= true; // setta attivo il link news management
 		<!-- END FOOTER -->
 		
         <!-- CONTROL SIDEBAR -->
-        <?php
-        include(BASE_PATH."/AdminPanel/include/templates/control_sidebar.inc.php");
-        ?>
+                <?php 
+				include(BASE_PATH."/AdminPanel/include/templates/control_sidebar.inc.php");
+				?>
         <!-- END CONTROL SIDEBAR -->
         
         
@@ -127,23 +124,46 @@ $act_menu_news_management		= true; // setta attivo il link news management
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-    <!-- CK Editor -->
-    <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-    <!--<script src="<?php echo(SITE_URL) ?>/libs/frontend/ckEditor/js/ckeditor_4.5.7.js"></script>-->
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="<?php echo(SITE_URL) ?>/adminPanel/js/index.js"></script>
+    <!-- Select2 -->
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
+	<!-- Jquery validate -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+    <!-- Jquery validate select2 override -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_select2_override.js"></script>
+    <!-- Jquery validate IT localization -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
+
+
+    
 
     <!-- ----CUSTOM JS ------ -->
 	
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/news_management.js"></script>
-    <script>
-        $(function () {
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
-            CKEDITOR.replace('editor1');
-        });
-    </script>
+    <script src="<?php echo SITE_URL ?>/js/Widgets/maps_utils.js" ></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_property.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
 
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvZ4NUmjF7SgprOVDTqd7ToL8jq7Z1ynE&callback=initMap">
+    </script>
+	<!-- INIT COMPONENTS -->
+    <script>
+		 $(function() {
+
+
+            INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_property_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
+        });
+		
+		
+		
+		
+    </script>
 </body>
 
 </html>

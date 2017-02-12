@@ -17,7 +17,7 @@ function loadImage(image_path,elem){
 
 function saveImage(elem){
     var jqElem = $(elem);
-    url = BASE_PATH+"/AdminPanel/ajax/add_ads_saveImage.ajax.php";
+    url = BASE_PATH+"/AdminPanel/ajax/add_property_saveImage.ajax.php";
     var imgName = jqElem.parent().children(".hidden_img_name")[0].value;
     if(imgName != undefined && imgName!= null && imgName!="")
         url+="?img_name="+imgName;

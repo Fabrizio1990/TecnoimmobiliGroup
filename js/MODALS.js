@@ -17,7 +17,7 @@ function openModal(type,title,body,btnSaveFunc = null,btnCloseTxt = "Chiudi",btn
         if(!hidden)showModal(modalId);
     //  else get modal from page and populate data
     }else{
-        var modalUrl = BASE_PATH + "/app/include/templates/modal.php";
+        var modalUrl = BASE_PATH + "/app/include/Templates/modal.php";
         var params = "title="+title+"&body="+body+"&closeTxt="+btnCloseTxt+"&saveTxt="+btnSaveTxt;
         $.get( modalUrl + "?" + params, function( data ) {
             $("body").append( data );
@@ -56,7 +56,7 @@ function openInfoModal(type,title,body,btnCloseTxt = "Chiudi",btnCloseFunc = nul
         if(!hidden)showModal(modalId);
     // else get modal from page and populate data
     }else{
-        var modalUrl = BASE_PATH + "/app/include/templates/modal_info.php";
+        var modalUrl = BASE_PATH + "/app/include/Templates/modal_info.php";
         var params = "title="+title+"&body="+body+"&closeTxt="+btnCloseTxt;
         $.get( modalUrl + "?" + params, function( data ) {
             $("body").append( data );

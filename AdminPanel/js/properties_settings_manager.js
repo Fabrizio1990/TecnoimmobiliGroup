@@ -36,7 +36,7 @@ function saveAdsStatus(idAds,elem){
 	console.log(idAds);
 	var newStatus = GEBI("sel_status").value;
 	if(newStatus != "%")
-		ajaxCall("../AdminPanel/ajax/switch_ads_properties.ajax.php?field=ads_status&id=" + idAds + "&status="+ newStatus + "&rand=" + Math.random(),null,new Array(idAds,newStatus,elem),UpdateAdsStatusIcon,ajax_fail);
+		ajaxCall("../AdminPanel/ajax/switch_properties_settings.ajax.php?field=ads_status&id=" + idAds + "&status="+ newStatus + "&rand=" + Math.random(),null,new Array(idAds,newStatus,elem),UpdateAdsStatusIcon,ajax_fail);
 	else
 		alert("Seleziona uno status");
 }
@@ -72,7 +72,7 @@ function SwitchNewsStatusAction(strRes,params){
 function SwitchPortalStatus(id,elem){
 	var newStatus = GEBI("ads_portal_status_" + id).value == 0?1:0;
 	console.log("newStatus = "  + newStatus);
-	ajaxCall("../AdminPanel/ajax/switch_ads_properties.ajax.php?field=ads_portal_status&id=" + id + "&status=" + newStatus + "&rand=" + Math.random(), null, new Array( id, newStatus, elem), SwitchPortalStatusAction, ajax_fail);
+	ajaxCall("../AdminPanel/ajax/switch_properties_settings.ajax.php?field=ads_portal_status&id=" + id + "&status=" + newStatus + "&rand=" + Math.random(), null, new Array( id, newStatus, elem), SwitchPortalStatusAction, ajax_fail);
 
 }
 

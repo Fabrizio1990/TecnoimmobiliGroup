@@ -1,13 +1,15 @@
 <?php 
- $act_control_panel 	= isset($act_control_panel)?$act_control_panel:false;
- 
- $act_menu_propery		= isset($act_menu_propery)?$act_menu_propery:false;
- $act_add_property 		= isset($act_add_property)?$act_add_property:false;
- $act_list_properties 	= isset($act_list_properties)?$act_list_properties:false;
- $act_del_properties 	= isset($act_del_properties)?$act_del_properties:false;
+$act_control_panel 	= isset($act_control_panel)?$act_control_panel:false;
 
-$act_news_management 	= isset($act_news)?$act_news:false;
- 
+$act_menu_propery		= isset($act_menu_propery)?$act_menu_propery:false;
+$act_add_property 		= isset($act_add_property)?$act_add_property:false;
+$act_list_properties 	= isset($act_list_properties)?$act_list_properties:false;
+$act_del_properties 	= isset($act_del_properties)?$act_del_properties:false;
+
+
+$act_menu_news_management 	= isset($act_menu_news_management)?$act_menu_news_management:false;
+
+$act_menu_utility       = isset($act_menu_utility)?$act_menu_utility:false;
  
 ?>
 
@@ -59,20 +61,32 @@ $act_news_management 	= isset($act_news)?$act_news:false;
 							</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li <?php if($act_add_property) echo('class="active"')?>><a href="add_ads.php"><i class="fa fa-plus-square"></i> Aggiungi Immobile</a></li>
-                            <li <?php if($act_list_properties) echo('class="active"')?>><a href="show_ads.php"><i class="fa fa-edit"></i> Modifica Immobili</a></li>
-							<li <?php if($act_del_properties) echo('class="active"')?>><a href="show_deleted_ads.php"><i class="fa fa-remove"></i> Immobili Eliminati</a></li>
+                            <li <?php if($act_add_property) echo('class="active"')?>><a href="add_property.php"><i class="fa fa-plus-square"></i> Aggiungi Immobile</a></li>
+                            <li <?php if($act_list_properties) echo('class="active"')?>><a href="show_properties.php"><i class="fa fa-edit"></i> Modifica Immobili</a></li>
+							<li <?php if($act_del_properties) echo('class="active"')?>><a href="show_deleted_properties.php"><i class="fa fa-remove"></i> Immobili Eliminati</a></li>
                         </ul>
                     </li>
 					<!-- MENU IMMOBILI END -->
 
                     <!-- MENU NEWS -->
                     <?php  if($SS_usr->id_user_type==1){ ?>
-                    <li <?php if($act_news_management) echo('class="active"')?>>
+                    <li <?php if($act_menu_news_management) echo('class="active"')?>>
                         <a href="news_management.php"><i class="fa fa-newspaper-o"></i><span> Gestione news</span></a>
                     </li>
                     <?php }?>
                     <!-- MENU NEWS END -->
+
+                    <!-- MENU UTILITY -->
+                    <?php  if($SS_usr->id_user_type==1){ ?>
+                        <li <?php if($act_menu_utility) echo('class="active"')?>>
+                            <a href="utility.php"><i class="fa fa-cogs"></i><span> Utility</span></a>
+                        </li>
+                    <?php }?>
+                    <!-- MENU UTILITY END -->
+
+
+
+
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-files-o"></i>

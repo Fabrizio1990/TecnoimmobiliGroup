@@ -121,9 +121,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/adminPanel/js/index.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <!--<script src="dist/js/demo.js"></script>-->
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/index.js"></script>
     <!-- DataTables -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
@@ -171,7 +169,7 @@ folder instead of downloading all of them to reduce the load. -->
 				"columnDefs": [
 					{ targets: "_all",className: "ALING_CENTER"}
 				  ],
-                "sAjaxSource": "ajax/get_ads_datatable.ajax.php",
+                "sAjaxSource": "ajax/get_properties_datatable.ajax.php",
 
             });
         });

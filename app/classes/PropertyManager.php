@@ -133,9 +133,9 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 
 
-    public function readAllAds($params = null,$extra_params = null,$values =null ,$fields = null){
+    public function readAllAds($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = null){
         $this->currTable = "properties_view";
-        $ret = $this->read($params,$extra_params,$values ,$fields);
+        $ret = $this->read($params,$extra_params,$values ,$fields, $printQuery);
         $this->setDefTable();
         return $ret;
     }

@@ -42,7 +42,7 @@ $(document).ready(function () {
 
 
     //FORM VALIDATION
-    form = $("#FORM_ADS").validate({
+    form = $("#FORM_PROPERTY").validate({
         ignore: 'input[type=hidden]',
         rules:
         {
@@ -91,13 +91,14 @@ $(document).ready(function () {
         },
 
         submitHandler: function(form) {
+
             var images = getImagesPath();
             if(images.length < 3){
                 openInfoModal(5,"Attenzione!","Devi inserire almeno tre immagini per poter salvare l' immobile");
                 return;
             }
-            saveAds(form,images);
-            //openInfoModal(2,"Salvato","Immobile Salvato con successo","Chiudi");
+
+            saveProperty(form,images);
         },
         invalidHandler: function(event, validator) {
             openInfoModal(5,"Attenzione!","Alcuni campi non sono tati compilati correttamente , ricontrolla i dati e riprova");
@@ -106,8 +107,8 @@ $(document).ready(function () {
 
 });
 
-function saveAds(form,images){
-    var page = BASE_PATH+"/AdminPanel/ajax/ads_management_save.ajax.php";
+function saveProperty(form,images){
+    var page = BASE_PATH+"/AdminPanel/ajax/property_management_save.ajax.php";
     var params = $(form).serialize();
 
     for(i = 0,len = images.length; i < len; i++){
@@ -115,11 +116,11 @@ function saveAds(form,images){
     }
 
     //console.log(params);
-    ajaxCall(page,params,null,adsSaved,null,"POST");
+    ajaxCall(page,params,null,propertySaved,null,"POST");
 }
 
 
-function adsSaved(resp){
+function propertySaved(resp){
         if(resp=="1"||resp=="0" || resp.toLowerCase() =="success")
             openInfoModal(2,"Successo","L' immobile è stato Salvato con successo","Chiudi",function(){window.location.reload();});
         else

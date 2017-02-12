@@ -115,7 +115,7 @@
     }
     //var_dump($values);
 
-    $res = $propertyM->readAllAds($params,null,$values);
+    $res = $propertyM->readAllAds($params,null,$values,null);
 
 	$resultFound = Count($res);
 	if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
@@ -136,7 +136,7 @@
                 $imgPath = $baseImgPath."/min/".$res[$i]["img_name"];
 
             $first_col = "
-            <form name='GoToAds' method='POST' ACTION='".SITE_URL."/AdminPanel/add_ads.php'>
+            <form name='GoToAds' method='POST' ACTION='".SITE_URL."/AdminPanel/add_property.php'>
             <input type='hidden' name='id_ads' value='".$res[$i]["id"]."'>
             <img onclick='document.GoToAds.submit()' class='real_tumb POINTER' title='".$description."' src=$imgPath?id=". $rand_num . "' /> </form>";
 

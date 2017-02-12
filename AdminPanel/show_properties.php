@@ -7,14 +7,14 @@ if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
     $agency_id 		= $SS_usr->id;
     $tipo_utente 	= $SS_usr->id_user_type == "1"? "%" : $SS_usr->user_type;
-    //$referente 	= $_COOKIE['refer_name'];
+    //$referente 		= $_COOKIE['refer_name'];
 }else{
     header("location:login.php");
 }
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
-$act_add_property		= true; // setta attivo il link aggiungi immobile
-$act_menu_propery       = true; // setta attivo il menu immobili
+$act_menu_propery		= true; // setta attivo il link modifica immobili
+$act_list_properties 	= true; // setta attivo il menu immobili
 
 ?>
 
@@ -22,7 +22,7 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -36,7 +36,14 @@ $act_menu_propery       = true; // setta attivo il menu immobili
    
 	<!-- Select2 -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.min.css">
-
+	<!-- daterange picker -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datepicker/datepicker3.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css" />
+	
 	<!-- Theme style -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/dist/css/AdminLTE.min.css">
 	<!-- AdminLTE Skin -->
@@ -51,16 +58,10 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/add_ads.css" />
-    <!-- Jquery validate  override css-->
-    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override_select2.css" />
-    <!-- modals -->
-    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
-    <!-- UTILS JS AND FILE_UPLOAD JS are included here becouse i need it on included files and need to be loaded at start of page-->
-    <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/form/IMAGES_UPLOAD.js"></script>
+   <!-- CUSTOM JS UTILS (is there becouse i need to have its function on included widgets  -->
+  <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -80,18 +81,18 @@ $act_menu_propery       = true; // setta attivo il menu immobili
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small>Inserimento immobile</small>
+                    <small>Modifica immobili</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Immobili</a></li>
-					<li><a href="show_ads.php"><i class="fa fa-plus-square"></i> Aggiungi immobile</a></li>
+					<li><a href="show_properties.php"><i class="fa fa-edit"></i> Modifica immobili</a></li>
                 </ol>
             </section>
 
             <!-- MAIN CONTENT -->
             <section class="content">
 				<?php 
-				include(BASE_PATH."/AdminPanel/include/contents/add_ads.inc.php");
+				include(BASE_PATH."/AdminPanel/include/contents/show_properties.inc.php");
 				?>
             </section>
             <!-- END MAIN CONTENT -->
@@ -124,40 +125,77 @@ $act_menu_propery       = true; // setta attivo il menu immobili
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/adminPanel/js/index.js"></script>
     <!-- Select2 -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
-	<!-- Jquery validate -->
-    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
-    <!-- Jquery validate select2 override -->
-    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_select2_override.js"></script>
-    <!-- Jquery validate IT localization -->
-    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
-
-
+	<!-- InputMask -->
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/input-mask/jquery.inputmask.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+	<!-- date-range-picker -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap datepicker -->
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- DataTables -->
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     
 
     <!-- ----CUSTOM JS ------ -->
-	
-	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
-    <script src="<?php echo SITE_URL ?>/js/Widgets/maps_utils.js" ></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_ads.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
-
-
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvZ4NUmjF7SgprOVDTqd7ToL8jq7Z1ynE&callback=initMap">
-    </script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/show_properties.js"></script>
+	
+	
 	<!-- INIT COMPONENTS -->
     <script>
-		 $(function() {
+		
+		var table;
+		$(".sidebar-toggle").click(function(e){
+			setTimeout(function(){ table.columns.adjust().responsive.recalc(); }, 700);
+		});
+        $(function() {
+			/*-------- INIT DATATABLE ---------*/
+            table = $('#DT_ADS').
+			DataTable({
+                "language": {
+                    "url": "plugins/datatables/localizations/italian.json"
+                },
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "bDeferRender": true,
+                "lengthMenu": [5, 10, 15],
+                "pageLength": 5,
+                "order": [
+                    [8, "desc"]
+                ],
+				"columnDefs": [
+					{ targets: "_all",className: "ALING_CENTER"}
+				  ],
+                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_properties_datatable.ajax.php",
 
-
-            INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_ads_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
+            });
+			
+			
+			
+			//DATE RANGE PICKER INIT
+			$('#sel_dateRange').daterangepicker(
+                {
+                    locale: {
+                        format: 'DD-MM-YYYY'
+                    },
+                    startDate: '01-01-2010'
+                }
+            );
+			
+			//SELECT 2 INIT
+			$(".select2").select2();
         });
 		
 		

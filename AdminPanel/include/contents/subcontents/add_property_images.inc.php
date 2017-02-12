@@ -11,7 +11,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-9 col-sm-9 col-xs-9 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea class="form-control" rows="1" disabled placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-3 col-sm-3 col-xs-3">
@@ -38,7 +38,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea  disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-4 col-xs-4">
@@ -59,7 +59,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-4 col-xs-4">
@@ -80,7 +80,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-4 col-xs-4">
@@ -105,7 +105,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-8 col-xs-4">
@@ -126,7 +126,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-8 col-xs-4">
@@ -147,7 +147,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-8 col-xs-4">
@@ -171,7 +171,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea  disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-8 col-xs-4">
@@ -192,7 +192,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea  disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-8 col-xs-4">
@@ -213,7 +213,7 @@
             <div class="box-footer">
                 <div class="row">
                     <div class="img_description_container col-md-8 col-sm-8 col-xs-8 ">
-                        <textarea class="form-control" rows="1" placeholder="Descrizione"></textarea>
+                        <textarea disabled class="form-control" rows="1" placeholder="Descrizione"></textarea>
 
                     </div>
                     <div class="upload_image_container col-md-4 col-sm-8 col-xs-4">
