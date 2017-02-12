@@ -1,4 +1,5 @@
 <?php
+require_once("../config.php");
 require_once("../app/classes/SessionManager.php");
 if(SessionManager::getVal("authenticated")!= null) header("Location:index.php");
 
@@ -23,7 +24,7 @@ if(SessionManager::getVal("authenticated")!= null) header("Location:index.php");
 	  <!-- iCheck -->
 	  <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
 	  <!-- Jquery validate override custom class -->
-	  <link rel="stylesheet" href="css/jquery_validate_override.css">
+	  <link rel="stylesheet" href="<?php echo SITE_URL ?>/css/jquery_validate_override.css">
 	  <link rel="stylesheet" href="css/common.css">
 	  <link rel="stylesheet" href="css/login.css">
 	  <link rel="stylesheet" href="css/responsive_slideshow_background.css">
