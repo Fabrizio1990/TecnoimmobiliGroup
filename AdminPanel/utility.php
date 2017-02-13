@@ -6,7 +6,7 @@ include(BASE_PATH."/app/classes/UserEntity.php");
 if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
     $agency_id 		= $SS_usr->id;
-    $tipo_utente 	= $SS_usr->id_user_type == "1"? "%" : $SS_usr->user_type;
+    $tipo_utente 	= $SS_usr->id_user_type ;
     //$referente 	= $_COOKIE['refer_name'];
 }else{
     header("location:login.php");
@@ -23,7 +23,7 @@ $act_menu_utility       = true; // setta attivo il menu immobili
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>TecnoimmobiliGroup | Utility</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -137,22 +137,30 @@ $act_menu_utility       = true; // setta attivo il menu immobili
             setTimeout(function(){ table.columns.adjust().responsive.recalc(); }, 700);
         });
         $(function() {
-            table = $('#DT_AGENCIES').
+
+            table =     /*$('#DT_AGENCIES').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });*/$('#DT_AGENCIES').
             DataTable({
                 "language": {
                     "url": "plugins/datatables/localizations/italian.json"
                 },
                 "paging": true,
-                "lengthChange": true,
+                "lengthChange": false,
                 "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
                 "bDeferRender": true,
-                "lengthMenu": [10, 15],
+                "lengthMenu": [5,10, 15],
                 "pageLength": 10,
                 "order": [
-                    [8, "desc"]
+                    [0, "asc"]
                 ],
                 "columnDefs": [
                     { targets: "_all",className: "ALING_CENTER"}
