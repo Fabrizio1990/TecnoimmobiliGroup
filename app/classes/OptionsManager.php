@@ -19,7 +19,7 @@ class OptionsManager extends DbManager{
         return $ret;
     }
 
-    function readOptions($what,$id_parent = null){
+    function readOptions($what,$id_parent = null,$printQuery = false){
         $params = null;
         $fields = null;
         $conditionPlaceholders = "?";
@@ -43,6 +43,7 @@ class OptionsManager extends DbManager{
             // ---------------- IMMOBILI -------------------
             case "ads_status":
                 $params = array("enabled = 1");
+                $fields = array("id","title");
                 $this->currTable = "property_ads_status";
                 break;
             case "ads_category":
@@ -172,9 +173,9 @@ class OptionsManager extends DbManager{
         }
 
         if($id_parent!= null)
-            $ret = $this->read($params,null,$id_parent,$fields);
+            $ret = $this->read($params,null,$id_parent,$fields,$printQuery);
         else
-            $ret = $this->read(null,null,null,$fields);
+            $ret = $this->read(null,null,null,$fields,$printQuery);
 
         $this->setDefTable();
         //var_dump($ret);
@@ -182,8 +183,8 @@ class OptionsManager extends DbManager{
     }
 
     // CHIAMA readOptions e invece di restituire un array con il resultset restituisce direttamente le options <option value="valore">testo</option>
-    public function makeOptions($what,$selectedVal = null,$id_parent = null){
-        $res = $this->readOptions($what,$id_parent);
+    public function makeOptions($what,$selectedVal = null,$id_parent = null,$printQuery = false){
+        $res = $this->readOptions($what,$id_parent,$printQuery);
         $optRes = "";
 
         for($i=0,$cnt = count($res);$i<$cnt;$i++){
