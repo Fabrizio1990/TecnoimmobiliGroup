@@ -47,10 +47,22 @@ class UserManager extends DbManager implements IDbManager
     }
 
 
+    public function getAllAgencies(){
+
+        $query = "SELECT 
+                  t1.logo_path,
+                  t1.name,(SELECT group_concat(t2.name,' ',t2.lastName) FROM agency_operators AS t2 WHERE id_agency = t1.id ORDER BY t2.name,t2.lastname DESC) AS operators, 
+                  (select group_concat(t2.id) from agency_operators as t2 where id_agency = t1.id order by t2.name,t2.lastname desc) as operators_ids 
+                  FROM agencies AS t1
+ WHERE t1.status = 1 ";
+        $ret = parent::executeQuery($query);
+        //var_dump($ret);
+        return $ret;
+    }
+
 
 
     public function checkLogin($username,$password){
-        $ret = false;
         $conn = $this::openConnection();
         $ret = null;
 
@@ -62,12 +74,29 @@ class UserManager extends DbManager implements IDbManager
         if($this::isRecordFound($res)){
             //echo("trovato");
             $entity = new UserEntity();
-            $ret = $this->resultToEntity($res[0],$entity);
+            $ret = parent::resultToEntity($res[0],$entity);
             $retOn = $this->setOnline($res[0]["id_agent"]);
         }
 
         $this->setDefTable();
         return $ret;
+    }
+
+    public function loginAs($id){
+            $conn = $this::openConnection();
+            $ret = null;
+
+            $this->currTable = "login_view";
+
+            $res = $this->read(array("id_agent = ?"),array("limit 1"),array($id),array("id","id_user_type","id_agent","logo_path","banner","name","id_country","id_region","id_city","id_town","email","agent_name","agent_lastname"));
+            if($this::isRecordFound($res)){
+                $entity = new UserEntity();
+                $ret = parent::resultToEntity($res[0],$entity);
+                $this->setOnline($res[0]["id_agent"]);
+            }
+
+            $this->setDefTable();
+            return $ret;
     }
 
     //SET ONLINE STATUS ON DB
@@ -88,6 +117,10 @@ class UserManager extends DbManager implements IDbManager
         $ret = parent::executeSp("toggleStatus","?,?,?",array("agencies","isonline",$id));
         return $ret;
     }
+
+
+
+
 
     public function setDefTable(){
         $this->currTable = self::defTable;
