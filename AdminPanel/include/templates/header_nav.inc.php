@@ -13,8 +13,29 @@
                     <span class="sr-only">Toggle navigation</span>
                 </a>
 
+
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <?php
+                        $loggedAs = SessionManager::getVal("logged_as");
+
+                        if($loggedAs!= null && $loggedAs!= "" && $loggedAs!= $SS_usr->id_agent){
+                        ?>
+                        <li class="back-menu" title="torna al tuo utente">
+                            <a href="javascript:" onclick="this.children[0].submit()">
+                                <form method="POST" action ="<?php echo SITE_URL?>/AdminPanel/login_as.php">
+                                        <i class="fa fa-undo"></i>
+                                        <input type="hidden" name="id_operator" value="<?php echo $loggedAs ?>" />
+                                        <input type="hidden" name="back_to" value="true"/>
+
+                                </form>
+                            </a>
+                        </li>
+
+                        <?php
+                        }
+                        ?>
+
                         <!-- Messages: style can be found in dropdown.less-->
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

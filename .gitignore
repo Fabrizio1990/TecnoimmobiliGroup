@@ -1,3 +1,6 @@
 .idea/
 app/classes/DbManager.php
 app/logs/
+public/images/images_properties/
+app/include/Widgets/maps.php
+pages/test/
