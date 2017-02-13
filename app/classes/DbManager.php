@@ -46,8 +46,10 @@ class DbManager
                 Flog::logError($errorInfo[2],"DBManager.php");
             }
         }
+
+        $ret = $res->fetchAll();
         $this->closeConnection();
-        return $res;
+        return $ret;
     }
 
     // METODO PER ESECUZIONE QUERY DI INSERIMENTO / UPDATE /DELETE (per ora è uguale all' altro)
@@ -62,8 +64,9 @@ class DbManager
                 Flog::logError($errorInfo[2],"DBManager.php");
             }
         }
+        $ret = $res->fetchAll();
         $this->closeConnection();
-        return $res;
+        return $ret;
     }
 
 
