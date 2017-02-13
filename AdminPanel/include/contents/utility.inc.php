@@ -4,9 +4,7 @@
 
 
 ?>
-<form name="FORM_ADS" id="FORM_ADS" novalidate accept-charset="UTF-8">
-	<input type ="hidden" name="action" id="action" value="<?php echo $action ?>" />
-	<input type ="hidden" name="id_ads" id="id_ads" value="<?php echo $id_ads ?>" />
+
 
 	<div class="row">
 	<!-- FILTRO PARAMETRI -->
@@ -88,7 +86,7 @@
 
 
 	</div><!-- /.row-->
-</form>
+
 <!-- FINE PAGINA -->
 
 

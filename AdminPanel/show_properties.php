@@ -6,7 +6,7 @@ include(BASE_PATH."/app/classes/UserEntity.php");
 if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
     $agency_id 		= $SS_usr->id;
-    $tipo_utente 	= $SS_usr->id_user_type == "1"? "%" : $SS_usr->user_type;
+    $tipo_utente 	= $SS_usr->id_user_type;
     //$referente 		= $_COOKIE['refer_name'];
 }else{
     header("location:login.php");
