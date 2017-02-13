@@ -24,7 +24,7 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>TecnoimmobiliGroup | Aggiungi/Modifica Immobile</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -125,7 +125,7 @@ $act_menu_propery       = true; // setta attivo il menu immobili
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/adminPanel/js/index.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/index.js"></script>
     <!-- Select2 -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
 	<!-- Jquery validate -->
