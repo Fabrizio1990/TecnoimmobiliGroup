@@ -8,7 +8,7 @@ $optCategories 		=  $mng->makeOptions("ads_category");
 $optCountries		=  $mng->makeOptions("geo_country",1);
 $optRegions			=  $mng->makeOptions("geo_region",null,"1");
 
-$optAdsStatus =  $mng->readOptions("ads_status");
+$optAdsStatus 		=  $mng->makeOptions("ads_status",null,true);
 
 ?>
 <div class="row">
