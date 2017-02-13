@@ -63,7 +63,6 @@ $act_menu_utility       = isset($act_menu_utility)?$act_menu_utility:false;
                         <ul class="treeview-menu">
                             <li <?php if($act_add_property) echo('class="active"')?>><a href="add_property.php"><i class="fa fa-plus-square"></i> Aggiungi Immobile</a></li>
                             <li <?php if($act_list_properties) echo('class="active"')?>><a href="show_properties.php"><i class="fa fa-edit"></i> Modifica Immobili</a></li>
-							<li <?php if($act_del_properties) echo('class="active"')?>><a href="show_deleted_properties.php"><i class="fa fa-remove"></i> Immobili Eliminati</a></li>
                         </ul>
                     </li>
 					<!-- MENU IMMOBILI END -->
