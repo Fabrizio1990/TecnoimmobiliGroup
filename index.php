@@ -1,5 +1,5 @@
 <?php
-    date_default_timezone_set('Europe/Rome');
+
     require("config.php");
     include(BASE_PATH."/app/include/statistic_start.inc.php");
 
