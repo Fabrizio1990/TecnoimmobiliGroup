@@ -82,10 +82,10 @@ class NavigationStatistics extends DbManager{
 		$query = "select count(id) as CNT from session_visitators where browser not in('Yahoo! Slurp','MSN Bot','GoogleBot') AND `date` between ";
 		$query.= " '" . $date_start . $start_day_time . "' " ;
 		$query.= " AND '" . ($date_end==null?$date_start:$date_end) . $end_day_time . "' " ;
-		
-		$result = parent::executeQuery($query) ;
-        $res = $result->fetch();
-		return $res["CNT"];
+
+		$res = parent::executeQuery($query);
+
+		return $res[0]["CNT"];
 	}
 	
 	function getPageVisitors($page,$date_start,$date_end =null){
@@ -98,10 +98,9 @@ class NavigationStatistics extends DbManager{
 		$query.= " AND date <='" . ($date_end==null?$date_start:$date_end) . $end_day_time . "' " ;
 		
 		//echo($query);
-		$result = parent::executeQuery($query);
-        $res = $result->fetch();
+		$res = parent::executeQuery($query);
 
-        return $res["CNT"];
+        return $res[0]["CNT"];
 	}
 	/* retrive the user info */
 	private function getUserInfo(){
