@@ -119,7 +119,12 @@ class UserManager extends DbManager implements IDbManager
     }
 
 
-
+    public function countProperties($id_operator = -1,$property_status = -1){
+        $query = "Call CountProperties($id_operator,$property_status)";
+        $res = parent::executeQuery($query);
+        $this->setDefTable();
+        return $res;
+    }
 
 
     public function setDefTable(){
