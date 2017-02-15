@@ -1,15 +1,30 @@
-<?php 
-$act_control_panel 	= isset($act_control_panel)?$act_control_panel:false;
+<?php
 
-$act_menu_propery		= isset($act_menu_propery)?$act_menu_propery:false;
-$act_add_property 		= isset($act_add_property)?$act_add_property:false;
-$act_list_properties 	= isset($act_list_properties)?$act_list_properties:false;
-$act_del_properties 	= isset($act_del_properties)?$act_del_properties:false;
+// THESE VARIABLES ARE USED TO SET THE CORRECT MENU HIGLIGHTED
 
+//MAIN PAGE (CONTROL PANEL)
+$act_control_panel 	        = isset($act_control_panel)?$act_control_panel:false;
 
+// PROPERTY THREEVIEW
+$act_menu_propery		    = isset($act_menu_propery)?$act_menu_propery:false;
+$act_add_property 		    = isset($act_add_property)?$act_add_property:false;
+$act_list_properties 	    = isset($act_list_properties)?$act_list_properties:false;
+$act_del_properties 	    = isset($act_del_properties)?$act_del_properties:false;
+
+// MANAGEMENT THREEVIEW
+$act_menu_management        = isset($act_menu_management)?$act_menu_management:false;
+$act_agencies_management    = isset($act_agencies_management)?$act_agencies_management:false;
+$act_tables_management      = isset($act_tables_management)?$act_tables_management:false;
+
+//NEWS MANAGEMENT
 $act_menu_news_management 	= isset($act_menu_news_management)?$act_menu_news_management:false;
 
-$act_menu_utility       = isset($act_menu_utility)?$act_menu_utility:false;
+// UTILITY THREEVIEW
+$act_menu_utility           = isset($act_menu_utility)?$act_menu_utility:false;
+$act_agencies_access        = isset($act_agencies_access)?$act_agencies_access:false;
+$act_documents              = isset($act_documents)?$act_documents:false;
+$act_e_commerce             = isset($act_e_commerce)?$act_e_commerce:false;
+$act_statistics             = isset($act_statistics)?$act_statistics:false;
  
 ?>
 
@@ -67,23 +82,72 @@ $act_menu_utility       = isset($act_menu_utility)?$act_menu_utility:false;
                     </li>
 					<!-- MENU IMMOBILI END -->
 
-                    <!-- MENU NEWS -->
-                    <?php  if($SS_usr->id_user_type==1){ ?>
-                    <li <?php if($act_menu_news_management) echo('class="active"')?>>
-                        <a href="news_management.php"><i class="fa fa-newspaper-o"></i><span> Gestione news</span></a>
+
+<!-- QUA METTO TUTTI I MENU VISIBILI SOLO DALL' ADMIN -->
+<?php  if($SS_usr->id_user_type==1){ ?>
+                    <!-- MENU GESTIONE -->
+                    <li class="treeview <?php if($act_menu_management) echo('active')?>">
+                        <a href="#">
+                            <i class="fa fa-cog"></i>
+                            <span>Gestione Admin</span>
+                            <span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+							</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li <?php if($act_agencies_management) echo('class="active"')?>><a href="agencies_management.php"><i class="fa fa-group"></i> Gestione Agenzie</a></li>
+                            <li <?php if($act_tables_management) echo('class="active"')?>><a href="tables_management.php"><i class="fa fa-table"></i> Gestione Tabelle</a></li>
+                        </ul>
                     </li>
-                    <?php }?>
-                    <!-- MENU NEWS END -->
+                    <!-- MENU GESTIONE END -->
 
                     <!-- MENU UTILITY -->
-                    <?php  if($SS_usr->id_user_type==1){ ?>
-                        <li <?php if($act_menu_utility) echo('class="active"')?>>
-                            <a href="utility.php"><i class="fa fa-cogs"></i><span> Utility</span></a>
-                        </li>
-                    <?php }?>
+
+                    <li class="treeview <?php if($act_menu_utility) echo('active')?>">
+                        <a href="#">
+                            <i class="fa fa-wrench"></i>
+                            <span>Utility</span>
+                            <span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+							</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li <?php if($act_agencies_access) echo('class="active"')?>>
+                                <a href="agencies_access.php"><i class="fa fa-unlock"></i>
+                                     Accesso Agenzie
+                                </a>
+                            </li>
+                            <li <?php if($act_documents) echo('class="active"')?>>
+                                <a href="#"><i class="fa fa-book"></i>
+                                    Documenti
+                                </a>
+                            </li>
+                            <li <?php if($act_e_commerce) echo('class="active"')?>>
+                                <a href="#"><i class="fa fa-balance-scale"></i>
+                                    E-Commerce
+                                </a>
+                            </li>
+                            <li <?php if($act_statistics) echo('class="active"')?>>
+                                <a href="#"><i class="fa fa-bar-chart"></i>
+                                    Statistiche
+                                </a>
+                            </li>
+
+                            <!-- da aggiungere DOCUMENT | E-COMMERCE | STATISTICHE -->
+                        </ul>
+                    </li>
                     <!-- MENU UTILITY END -->
 
 
+                    <!-- MENU NEWS -->
+                    <li <?php if($act_menu_news_management) echo('class="active"')?>>
+                        <a href="news_management.php"><i class="fa fa-newspaper-o"></i><span> News</span></a>
+                    </li>
+                    <!-- MENU NEWS END -->
+
+
+<?php }?>
+<!-- FINE MENU VISIBILI SOLO ALL'ADMIN -->
 
 
                     <li class="treeview">

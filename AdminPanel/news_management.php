@@ -80,7 +80,7 @@ $act_menu_news_management		= true; // setta attivo il link news management
                     <small>Gestione News</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i> Gestione News</a></li>
+                    <li><a href="#"><i class="fa fa-group"></i> Gestione News</a></li>
                 </ol>
             </section>
 

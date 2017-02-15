@@ -84,7 +84,7 @@ $act_menu_propery       = true; // setta attivo il menu immobili
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Immobili</a></li>
-					<li><a href="show_property.php"><i class="fa fa-plus-square"></i> Aggiungi immobile</a></li>
+					<li><a href="#"><i class="fa fa-plus-square"></i> Aggiungi immobile</a></li>
                 </ol>
             </section>
 
