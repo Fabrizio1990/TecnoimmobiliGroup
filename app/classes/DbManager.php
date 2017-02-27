@@ -1,20 +1,26 @@
 <?php
 date_default_timezone_set('Europe/Rome');
 require_once(BASE_PATH."/app/classes/LogHelper/Flog.php");
+require_once(BASE_PATH."/app/classes/MyCrypter/MyCrypter.php");
+
 class DbManager 
 {
     // PARAMETRI DI CONNESSIONE
-    private $hostName  = "localhost";
-    private $dbName = "new_tecnoimmobili";
-    private $user = "root";
-    private $password	= "";
+    private $hostName;
+    private $dbName;
+    private $user;
+    private $password;
 
     public $conn = null;
     public $lastInsertId;
 
-    /*function __construct() {
-        openConnection();
-    }*/
+    function __construct() {
+        $config = parse_ini_file(BASE_PATH."/app/classes/dbConfig.ini");
+        $this->hostName = MyCrypter::myDecrypt($config['hostname']);
+        $this->dbName = MyCrypter::myDecrypt($config['dbName']);
+        $this->user = MyCrypter::myDecrypt($config['username']);
+        $this->password = MyCrypter::myDecrypt($config['password']);
+    }
 	public $tableName ="" ; // verrà valorizzato per poi utilizzare una qualsiasi funzionalità di questa classe. come il count
 
 	public function openConnection()// APERTURA DELLA CONNESSIONE
@@ -24,6 +30,7 @@ class DbManager
                                         $this->user,
                                         $this->password);
             $this->conn->exec("set names utf8");
+            echo("connesso");
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
