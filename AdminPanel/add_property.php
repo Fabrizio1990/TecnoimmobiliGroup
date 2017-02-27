@@ -70,7 +70,12 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 		<!-- END HEADER BAR -->
 		
         <!-- MENU LEFT -->
-        <?php include(BASE_PATH."/AdminPanel/include/templates/menu_left.inc.php"); ?>
+        <?php
+        if($SS_usr->id_user_type==1)
+            include(BASE_PATH."/AdminPanel/include/templates/menu_left_admin.inc.php");
+        else
+            include(BASE_PATH."/AdminPanel/include/templates/menu_left_user.inc.php");
+        ?>
 		<!-- END MENU LEFT -->
        
 

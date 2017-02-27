@@ -57,6 +57,7 @@ $act_menu_news_management		= true; // setta attivo il link news management
 
     <!-- UTILS JS and  modals.js are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/UTILS_JQ.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
 </head>
 
@@ -67,7 +68,12 @@ $act_menu_news_management		= true; // setta attivo il link news management
 		<!-- END HEADER BAR -->
 		
         <!-- MENU LEFT -->
-        <?php include(BASE_PATH."/AdminPanel/include/templates/menu_left.inc.php"); ?>
+        <?php
+        if($SS_usr->id_user_type==1)
+            include(BASE_PATH."/AdminPanel/include/templates/menu_left_admin.inc.php");
+        else
+            include(BASE_PATH."/AdminPanel/include/templates/menu_left_user.inc.php");
+        ?>
 		<!-- END MENU LEFT -->
        
 
