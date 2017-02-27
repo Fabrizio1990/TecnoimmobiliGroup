@@ -68,6 +68,7 @@ function moveToEdit(elem){
     CKEDITOR.instances.editor1.setData(description);
 
     createUndoEditBtn();
+    scrollTO($("#inp_editor_title"),1000);
 }
 
 function undoEdit(){
