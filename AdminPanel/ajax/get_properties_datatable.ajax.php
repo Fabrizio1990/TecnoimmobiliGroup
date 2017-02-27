@@ -11,7 +11,7 @@
     $values = Array();
 	$rand_num = Rand(0,100);
     $baseImgPath = SITE_URL."/public/images/images_properties";
-    $imgEof  = "Immagine_eof.jpg";
+    $imgEof  = "img_eof/Immagine_eof.jpg";
 
     $propertyM = new PropertyManager();
     $userLogged = SessionManager::getVal("user",true);
