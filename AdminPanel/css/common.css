@@ -19,7 +19,13 @@ body {
 }
 
 .ALING_CENTER{
-	text-align:center;
+	text-align:center !important;
+}
+.ALING_LEFT{
+    text-align:left !important;
+}
+.ALING_RIGHT{
+    text-align:right !important;
 }
 .main-header .logo .logo-lg {
     font-size: 19px;
