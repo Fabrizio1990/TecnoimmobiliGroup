@@ -16,7 +16,8 @@ class UserManager extends DbManager implements IDbManager
     private $currTable;
 
 
-    public function NewsManager() {
+    public function __construct() {
+        parent::__construct();
         $this->currTable = self::defTable;
     }
 

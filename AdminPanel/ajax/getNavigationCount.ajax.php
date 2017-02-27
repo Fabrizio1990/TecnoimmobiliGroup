@@ -7,7 +7,7 @@ if(isset($_POST["DATE_FROM"])&& isset($_POST["DATE_TO"])){
 
 	$dateFrom = $_POST["DATE_FROM"];
 	$dateTo = $_POST["DATE_TO"];
-	$helper = new NavigationStatistics($conn);
+	$helper = new NavigationStatistics();
 	$stats = $helper->getVisitatorCount($dateFrom,$dateTo);
 	
 	//closeConn($conn);

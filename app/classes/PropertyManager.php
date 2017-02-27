@@ -8,7 +8,8 @@ class PropertyManager extends DbManager implements IDbManager {
     const defTable  = "properties";
     private $currTable;
 
-    public function PropertyManager() {
+    public function __construct() {
+        parent::__construct();
         $this->currTable = self::defTable;
     }
 	// IMPLEMENTO I METODI DELL INTERFACCIA

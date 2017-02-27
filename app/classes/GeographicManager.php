@@ -14,7 +14,8 @@ class GeographicManager extends DbManager implements IDbManager
     const defTable  = "geographic_view";
     private $currTable;
 
-    public function GeographicManager() {
+    public function __construct() {
+        parent::__construct();
         $this->currTable = self::defTable;
     }
 
