@@ -1,56 +1,140 @@
 <html>
-    <head>
-        <script src="js/UTILS.js"></script>
-        <script src="js/form/form_utils.js"></script>
-        <script>
-            var json ="[{\"value\":\"1\",\"text\":\"Abruzzo\"},{\"value\":\"2\",\"text\":\"Basilicata\"},{\"value\":\"3\",\"text\":\"Calabria\"},{\"value\":\"4\",\"text\":\"Campania\"},{\"value\":\"5\",\"text\":\"Emilia-Romagna\"},{\"value\":\"6\",\"text\":\"Friuli-Venezia Giulia\"},{\"value\":\"7\",\"text\":\"Lazio\"},{\"value\":\"8\",\"text\":\"liguria\"},{\"value\":\"9\",\"text\":\"Lombardia\"},{\"value\":\"10\",\"text\":\"Marche\"},{\"value\":\"11\",\"text\":\"Molise\"},{\"value\":\"12\",\"text\":\"Piemonte\"},{\"value\":\"13\",\"text\":\"Puglia\"},{\"value\":\"14\",\"text\":\"Regione\"},{\"value\":\"15\",\"text\":\"Sardegna\"},{\"value\":\"16\",\"text\":\"Sicilia\"},{\"value\":\"17\",\"text\":\"Toscana\"},{\"value\":\"18\",\"text\":\"Trentino-Alto Adige\"},{\"value\":\"19\",\"text\":\"Umbria\"},{\"value\":\"20\",\"text\":\"Valle d'Aosta\"},{\"value\":\"21\",\"text\":\"Veneto\"}]";
-        //console.log(JSON.stringify(json));
+<head>
+    <script src="js/UTILS.js"></script>
+    <script src="js/MODALS.js"></script>
+</head>
 
-        </script>
-    </head>
-    <body onload='getVal("TXT_ISTAT","geo","cap",14175)'>
-        <input type="txt" id="TXT_ISTAT" />
-        <?php
-            include("config.php");
-            include("app/classes/DbManager.php");
-            //include("app/classes/UserEntity.php");
-            include("app/classes/UserManager.php");
-            /*include("app/classes/NewsEntity.php");*/
 
-            include("app/classes/NewsManager.php");
+    <?php
 
-            include("app/classes/PropertyManager.php");
+include("config.php");
 
 
 
-            //$db = new DbManager();
+include("app/classes/MyCrypter/MyCrypter.php");
 
-            /*$usrM = new UserManager();
-            $res = $usrM->checkLogin("info@tecnoimmobiligroup.it",sha1("b151195"));*/
-            //echo($res);
-            //$propM = new PropertyManager();
-            //$res = $propM->read(array("reference_code = ?","id_city = ?"),array("Group by ?"),array("123",4,"id"),array("id","id_contract","id_country","id_city"));
-            //$res = $propM->readAllAds();
-            //var_dump($res);
+include("app/classes/DbManager.php");
 
-            //$newsM = new NewsManager();
-
-            //$res = $newsM->read(array("title = ?","description = ?"),array("Limit  12"),array("te'st","test"),array("id","title","description"));
-
-
-            //$res = $newsM->create(array("test create ","test create desc nuova struttura"));
-
-            //$res = $newsM->update(array("title = ?","description = ?"),array("id = ?"),array("update prova titolo2","update prova descr",18));
-
-            //$res = $newsM->delete(array("id=?"),array(18));
-
-
-            //var_dump($res);
+//include(BASE_PATH."/app/classes/FileHelper/FileHelper.php");
 
 
 
+//require_once(BASE_PATH."/app/classes/OptionsManager.php");
 
 
-        ?>
-    </body>
+
+//include("app/classes/UserEntity.php");
+
+//include(BASE_PATH."/app/classes/SessionManager.php");
+
+
+//include("app/classes/UserManager.php");
+
+
+
+/*include("app/classes/NewsEntity.php");*/
+
+
+//include("app/classes/NewsManager.php");
+
+
+include("app/classes/PropertyManager.php");
+
+if(true){
+	
+	if(false){
+		
+		echo test;
+		
+	}
+	
+}
+
+
+
+/* ################# CRYPT TEST #################
+    /*$cryptedString = MyCrypter::myEncrypt("test");
+    echo("stringa criptata<br>");
+    echo($cryptedString);
+    echo("<br>stringa DEcriptata<br>");
+    echo(MyCrypter::myDecrypt($cryptedString));*/
+
+
+//$dbMng = new DbManager();
+
+//$dbMng->openConnection();
+
+
+
+
+
+/*$fMng = new FileHelper();
+    $fileContent = $fMng->readFile(BASE_PATH."/app/classes/conn_par.txt");
+    $fileContentJson = json_decode($fileContent);
+    //var_dump($fileContentJson);
+    echo($fileContentJson->username);*/
+
+//$db = new DbManager();
+
+//$mng = new OptionsManager();
+
+//$agencies = $mng ->readOptions("agencies_list");
+
+//var_dump($agencies);
+
+//$usrM = new PropertyManager();
+
+//$resImg = $usrM->getImages(array("id_property=?","id_image_type = ?"),array("LIMIT 1"),array(4,1),"img_name");
+
+//echo($resImg[0]["img_name"]);
+
+//$res = $usrM->checkLogin("info@tecnoimmobiligroup.it","b151195");
+
+//$SS_usr = SessionManager::getVal("user",true);
+
+//$agency_id 		= $SS_usr->id;
+
+//echo($agency_id);
+
+//$usrM->setOffline($agency_id);
+
+//echo(sha1("b151195"));
+
+//echo($res);
+
+$propM = new PropertyManager();
+
+//$res = $propM->read(array("reference_code = ?","id_cit = ?"),array("Group by ?"),array("123",4,"id"),array("id","id_contract","id_country","id_city"));
+
+$res = $propM->readAllAds(null,null,null ,null,false);
+
+//var_dump($res);
+
+
+//$newsM = new NewsManager();
+
+
+//$res = $newsM->read(array("title = ?","description = ?"),array("Limit  12"),array("te'st","test"),array("id","title","description"));
+
+
+
+//$res = $newsM->create(array("test create ","test create desc nuova struttura"));
+
+
+//$res = $newsM->update(array("title = ?","description = ?"),array("id = ?"),array("update prova titolo2","update prova descr",18));
+
+
+//$res = $newsM->delete(array("id=?"),array(18));
+
+
+
+//var_dump($res);
+
+
+
+
+
+
+?>
+</body>
 </html>
