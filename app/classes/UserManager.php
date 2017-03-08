@@ -23,7 +23,7 @@ class UserManager extends DbManager implements IDbManager
 
     public function create($values = null,$fields = null,$printQuery = false)
     {
-        $def_fields = array("id_user_type","logo_path","banner","name","description","id_country","id_region","id_city","id_town","id_district","street","street_num","p_iva","phone","mobile_phone","skype","email","password","fax","isonline","date_ins");
+        $def_fields = array("id_user_type","logo_path","banner","name","description","id_country","id_region","id_city","id_town","id_district","street","street_num","p_iva","isonline","date_ins");
         $fields     = $fields == null ? $def_fields : $fields;
         $ret = parent::create($this->currTable,$fields,$values,$printQuery);
         return $ret;
@@ -48,16 +48,10 @@ class UserManager extends DbManager implements IDbManager
     }
 
 
-    public function getAllAgencies(){
+    public function getAgenciesData($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = false){
+        $this->currTable = "agencies_list";
+        $ret = $this->read($params,$extra_params,$values ,$fields,$printQuery);
 
-        $query = "SELECT 
-                  t1.logo_path,
-                  t1.name,(SELECT group_concat(t2.name,' ',t2.lastName) FROM agency_operators AS t2 WHERE id_agency = t1.id ORDER BY t2.name,t2.lastname DESC) AS operators, 
-                  (select group_concat(t2.id) from agency_operators as t2 where id_agency = t1.id order by t2.name,t2.lastname desc) as operators_ids 
-                  FROM agencies AS t1
- WHERE t1.status = 1 ";
-        $ret = parent::executeQuery($query);
-        //var_dump($ret);
         return $ret;
     }
 

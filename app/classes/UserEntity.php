@@ -24,10 +24,10 @@ class UserEntity {
     public $email;
     public $password;
     public $fax;
-    public $hide_news;
-    public $alert_status;
+    public $agency_status;
+    public $agency_sub_status;
     public $status;
-    public $show_on_portal;
+    public $status_portal;
     public $isonline;
     public $date_ins;
     public $date_up;
