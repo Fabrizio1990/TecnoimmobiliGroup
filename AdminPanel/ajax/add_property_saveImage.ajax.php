@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Developer
- * Date: 16/01/2017
- * Time: 12:57
- */
 
 	$fn = (isset($_SERVER['HTTP_X_FILENAME']) ? $_SERVER['HTTP_X_FILENAME'] : false);
 	if ($fn) {
