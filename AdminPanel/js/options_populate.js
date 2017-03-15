@@ -2,7 +2,9 @@
 
 
 function getTipologies(elem,defVal=null,defTxt =null){
-    var val 			= $(elem).select2("val");
+    elem = $(elem);
+    var val 			= elem.select2?elem.select2("val"):elem.val();
+
     var sel_tipology 	= GEBI("sel_tipology");
     // truncate the select
     sel_tipology.options.length = 0;
@@ -12,7 +14,8 @@ function getTipologies(elem,defVal=null,defTxt =null){
 }
 
 function getRegions(elem,defVal=null,defTxt =null){
-    var val 			= $(elem).select2("val");
+    elem = $(elem);
+    var val 			= elem.select2?elem.select2("val"):elem.val();
 
     var sel_region 		= GEBI("sel_region");
     var sel_city 		= GEBI("sel_city");
@@ -30,7 +33,8 @@ function getRegions(elem,defVal=null,defTxt =null){
 }
 
 function getCities(elem,defVal=null,defTxt =null){
-    var val 			= $(elem).select2("val");
+    elem = $(elem);
+    var val 			= elem.select2?elem.select2("val"):elem.val();
 
     var sel_city 		= GEBI("sel_city");
     var sel_town 		= GEBI("sel_town");
@@ -46,7 +50,8 @@ function getCities(elem,defVal=null,defTxt =null){
 }
 
 function getTowns(elem,defVal=null,defTxt =null){
-    var val 			= $(elem).select2("val");
+    elem = $(elem);
+    var val 			= elem.select2?elem.select2("val"):elem.val();
 
     var sel_town 		= GEBI("sel_town");
     var sel_district 	= GEBI("sel_district");
@@ -60,7 +65,8 @@ function getTowns(elem,defVal=null,defTxt =null){
 }
 
 function getDistricts(elem,defVal=null,defTxt =null){
-    var val 			= $(elem).select2("val");
+    elem = $(elem);
+    var val 			= elem.select2?elem.select2("val"):elem.val();
 
     var sel_district 	= GEBI("sel_district");
     // truncate the select
