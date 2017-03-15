@@ -85,6 +85,7 @@ $act_statistics             = isset($act_statistics)?$act_statistics:false;
 
 
                     <!-- MENU GESTIONE -->
+                        <!-- AGENZIE -->
                     <li class="treeview <?php if($act_menu_management) echo('active')?>">
                         <a href="#">
                             <i class="fa fa-cog"></i>
@@ -94,7 +95,22 @@ $act_statistics             = isset($act_statistics)?$act_statistics:false;
 							</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li <?php if($act_agencies_management) echo('class="active"')?>><a href="agencies_management.php"><i class="fa fa-group"></i> Gestione Agenzie</a></li>
+                            <li <?php if($act_agencies_management) echo('class="active"')?>>
+                                <a href="#">
+                                    <i class="fa fa-group"></i> Gestione Agenzie
+                                    <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                                </a>
+
+                                <ul class="treeview-menu">
+                                    <li><a href="agencies_add.php"><i class="fa fa-circle-o"></i> Aggiungi Agenzia</a></li>
+                                    <li><a href="agencies_list.php"><i class="fa fa-circle-o"></i> Modifica Agenzia</a></li>
+
+                                </ul>
+                            </li>
+
+                                <!-- TABELLE -->
                             <li <?php if($act_tables_management) echo('class="active"')?>><a href="tables_management.php"><i class="fa fa-table"></i> Gestione Tabelle</a></li>
                         </ul>
                     </li>
