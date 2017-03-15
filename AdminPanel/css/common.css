@@ -18,13 +18,13 @@ body {
     /*line-height: 30px;*/
 }
 
-.ALING_CENTER{
-	text-align:center !important;
+.ALIGN_CENTER{
+    text-align:center !important;
 }
-.ALING_LEFT{
+.ALIGN_LEFT{
     text-align:left !important;
 }
-.ALING_RIGHT{
+.ALIGN_RIGHT{
     text-align:right !important;
 }
 .main-header .logo .logo-lg {
@@ -43,4 +43,12 @@ body {
 
 .POINTER:hover{
     cursor: pointer;
+}
+
+.HR{
+    display: block;
+    border: 0;
+    border-top: 2px solid #d5d5d5;
+    margin: 10px 11px 10px 11px;
+    padding: 0;
 }

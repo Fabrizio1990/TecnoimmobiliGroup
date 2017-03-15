@@ -33,6 +33,8 @@ class ImageManager {
 			return imagecreatefromstring($image);
 		else if($this->ext == "jpg" || $this->ext == "jpeg")
 			return imagecreatefromjpeg($image);
+        else if($this->ext == "png" || $this->ext == "PNG")
+            return imagecreatefrompng($image);
 	    else if($this->ext == "gif")
 			return imagecreatefromgif($image);
 		else 
@@ -91,8 +93,11 @@ class ImageManager {
         $savePath = $path."/".$name.".".$this->ext;
 		if($this->ext == "jpg" || $this->ext == "jpeg")
 			$ret = imagejpeg($this->tmpImg,$savePath,$quality);
+        else if($this->ext == "png")//png ha un range di quality minore di 10 volte
+            $ret = imagepng($this->tmpImg,$savePath,$quality/10);
 		else if($this->ext == "gif")
 			$ret = imagegif($this->tmpImg,$savePath,$quality);
+
 
         $this->savedImageName = $name.".".$this->ext;
 		return $ret;

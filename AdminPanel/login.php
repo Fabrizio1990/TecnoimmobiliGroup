@@ -63,7 +63,7 @@ if(SessionManager::getVal("authenticated")!= null) header("Location:index.php");
 									<p>Inserisci email e password per accedere:</p>
 								</div>
 								<div class="form-top-right">
-									<img src="images/Logo60x60.png" />
+									<img src="<?php echo SITE_URL.'/public/images/images_agencies_icons/min/default/logo.png'?>" />
 									<!--<i class="fa fa-lock"></i>-->
 								</div>
 							</div>

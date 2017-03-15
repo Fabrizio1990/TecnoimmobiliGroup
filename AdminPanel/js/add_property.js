@@ -9,9 +9,18 @@ function selectFile(elem){
 }
 $(document).ready(function () {
 
-    /*$("#img_pats").bind( "click", function() {
-        alert( "User clicked on 'foo.'" );
-    });*/
+
+    // Save image when input file change
+    $(".file_explorer").change(function(e) {
+        var elem = e.target;
+        var imgField = $(elem).parent().parent().parent().prev().children("img")[0];
+        var imgName = $(elem).parent().children(".hidden_img_name")[0].value;
+
+        saveImage(elem,"/AdminPanel/ajax/add_property_saveImage.ajax.php",imgField,imgName);
+    });
+
+
+
     $("#img_pats").bind("click",function(){
         getImagesPath();
     });
@@ -38,7 +47,7 @@ $(document).ready(function () {
 
 
     // SELECT 2 INIT
-    $(".select2").select2();
+
 
 
     //FORM VALIDATION

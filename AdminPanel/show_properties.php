@@ -202,10 +202,6 @@ $act_list_properties 	= true; // setta attivo il menu immobili
 			//SELECT 2 INIT
 			$(".select2").select2();
         });
-		
-		
-		
-		
     </script>
 </body>
 

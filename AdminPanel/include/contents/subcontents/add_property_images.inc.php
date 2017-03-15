@@ -1,4 +1,5 @@
-﻿<div class="row">
+﻿
+<div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <div class="box box-primary">
@@ -22,7 +23,7 @@
                 </div>
             </div>
         </div>
-    </div><!-- /.col-md-6 -->
+    </div><!-- /.box-primary -->
 
     <div class="col-md-2"></div>
 

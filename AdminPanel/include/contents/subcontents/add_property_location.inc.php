@@ -47,6 +47,7 @@
                 </div>
 
                 <select id="sel_city" name="sel_city" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona una provincia" onchange="getTowns(this,'','Seleziona un comune')">
+                    <option value="">Seleziona un valore</option>
                     <?php echo $optCities?>
                 </select>
             </div>
@@ -62,6 +63,7 @@
                     <i class="fa fa-map-marker"></i>
                 </div>
                 <select id="sel_town" name="sel_town" class="form-control select2" data-placeholder="Seleziona un comune" style="width: 100%;" onchange="getDistricts(this,'','Seleziona una zona')">
+                    <option value="">Seleziona un valore</option>
                     <?php echo $optTowns?>
                 </select>
             </div>
@@ -85,6 +87,7 @@
                     <i class="fa fa-map-marker"></i>
                 </div>
                 <select id="sel_district" name="sel_district" class="form-control select2" data-placeholder="Seleziona una zona" style="width: 100%;" >
+                    <option value="">Seleziona un valore</option>
                     <?php echo $optDistricts?>
                 </select>
             </div>

@@ -39,6 +39,7 @@ function UPLOAD_FILES(files,upload_page,callback = null) {
 	AJAX.onreadystatechange = function(e) {
 		if(AJAX.readyState==4) {
 		    if(AJAX.status==200){
+		    	console.log("STATUS = 200");
 		        if(callback)
 		            callback(AJAX.responseText.trim());
                 console.log("OK");

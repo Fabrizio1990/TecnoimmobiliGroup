@@ -172,7 +172,6 @@ class DbManager
         $extra_params   = $this->getExtraParams($extra_params);
 
         $query = "UPDATE $table SET $fields $params $extra_params";
-
         $sth = $this->conn->prepare($query);
         $sth->execute($values);
         if($printQuery)

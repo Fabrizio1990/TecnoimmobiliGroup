@@ -17,7 +17,7 @@
 
 	$imagesVal = array("img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg","img_eof/Immagine_eof.jpg");
 
-	 $optRegionsVal = $optCityVal = $optTownVal = $optDistrictVal = $optCategoryVal = $optTipologyVal = $optLocalsVal = $optRoomsVal = $optFloorsVal = $optElevatorsVal = $optConditionsVal = $optPropertyStatusVal = $optContractStatusVal = $optAdsyStatusVal = $optHeatingsVal = $optBathroomsVal = $optBoxVal = $optGardensVal = $optContractsVal = $optStatusVal = $optEnergyClassVal = $optIpeUmVal = $optCityVal = $optPriceLoweredVal = $optPrestigeVal = $optNegotiationVal = $optAdsStatusVal =  $optShowAddressVal = null;
+	 $optRegionsVal = $optCityVal = $optTownVal = $optDistrictVal = $optCategoryVal = $optTipologyVal = $optLocalsVal = $optRoomsVal = $optFloorsVal = $optElevatorsVal = $optConditionsVal = $optPropertyStatusVal = $optContractStatusVal = $optAdsyStatusVal = $optHeatingsVal = $optBathroomsVal = $optBoxVal = $optGardensVal = $optContractsVal = $optStatusVal = $optEnergyClassVal = $optIpeUmVal = $optCityVal = $optPriceLoweredVal = $optPrestigeVal = $optNegotiationVal = $optAdsStatusVal =  $optShowAddressVal = "";
 
 
 	$adsMng = new PropertyManager();

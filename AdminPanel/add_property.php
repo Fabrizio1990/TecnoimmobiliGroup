@@ -129,8 +129,6 @@ $act_menu_propery       = true; // setta attivo il menu immobili
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/index.js"></script>
     <!-- Select2 -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
 	<!-- Jquery validate -->

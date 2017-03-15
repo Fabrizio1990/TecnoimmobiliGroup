@@ -44,9 +44,9 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 
 
-    public function saveAds($values,$fields=null){
+    public function saveAds($values,$fields=null,$printQuery = false){
 
-        $ret = $this->create($values,$fields);
+        $ret = $this->create($values,$fields,$printQuery);
         if($ret=="" || $ret == null)// se va in errore ritorno ret che sarà vuoto e scatenerà l ' errore
             return "errore - Salvataggio immobile fallito";
 
@@ -56,12 +56,12 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 
 
-    public function updateAds($values,$params = null,$extraParams = null,$fields=null){
+    public function updateAds($values,$params = null,$extraParams = null,$fields=null,$printQuery = false){
         $def_fields = array("id_contract = ?","id_contract_status = ?","id_country = ?","id_region = ?","id_city = ?","id_town = ?","id_district = ?","street = ?","street_num = ?","show_address = ?","longitude = ?","latitude = ?","id_category = ?","id_tipology = ?","mq = ?","price = ?","negotiation_reserved = ?","id_locals = ?","id_rooms = ?","id_bathrooms = ?","id_floor = ?","id_elevator = ?","id_heating = ?","id_box = ?","id_garden = ?","id_property_conditions = ?","id_property_status = ?","id_ads_status = ?","is_prestige = ?","is_price_lowered = ?","video_url = ?","id_description = ?","id_energy_class = ?","id_ipe_um = ?","ipe = ?");
 
         $fields = $fields == null ? $def_fields : $fields;
         //var_dump($fields);
-        $ret = $this->update($fields,$params,$values,$extraParams);
+        $ret = $this->update($fields,$params,$values,$extraParams,$printQuery);
 
         return $ret;
     }
