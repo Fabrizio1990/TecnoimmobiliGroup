@@ -134,6 +134,22 @@ class OptionsManager extends DbManager{
                 $fields = array("id","name");
                 $this->currTable = "agencies";
                 break;
+            case "ag_status":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "agencies_status";
+                break;
+            case "ag_sub_status":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "agencies_sub_status";
+                break;
+            case "ag_portal_status":
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "agency_portal_status";
+                break;
+
 
             // ---------------- GEOGRAFICA -------------------
             case "geo_country":
@@ -185,6 +201,8 @@ class OptionsManager extends DbManager{
 
     // CHIAMA readOptions e invece di restituire un array con il resultset restituisce direttamente le options <option value="valore">testo</option>
     public function makeOptions($what,$selectedVal = null,$id_parent = null,$printQuery = false){
+        if(!is_null ($id_parent) && $id_parent == "")
+            return "";
         $res = $this->readOptions($what,$id_parent,$printQuery);
         $optRes = "";
 
