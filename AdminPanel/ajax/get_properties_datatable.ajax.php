@@ -138,7 +138,7 @@
             $first_col = "
             <form name='GoToAds' method='POST' ACTION='".SITE_URL."/AdminPanel/add_property.php'>
             <input type='hidden' name='id_ads' value='".$res[$i]["id"]."'>
-            <img onclick='document.GoToAds.submit()' class='real_tumb POINTER' title='".$description."' src=$imgPath?id=". $rand_num . "' /> </form>";
+            <img onclick='this.parentNode.submit()' class='real_tumb POINTER' title='".$description."' src=$imgPath?id=". $rand_num . "' /> </form>";
 
             /* ------------ RECUPERO DATI PER COLONNA STATO ------------ */
             // immagine stato

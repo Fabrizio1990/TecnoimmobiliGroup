@@ -12,7 +12,7 @@ require_once(BASE_PATH."/app/classes/UserEntity.php");
 require_once(BASE_PATH."/app/classes/SessionManager.php");
 class UserManager extends DbManager implements IDbManager
 {
-    const defTable  = "agencies";
+    const defTable  = "agency_operators";
     private $currTable;
 
 
@@ -23,7 +23,7 @@ class UserManager extends DbManager implements IDbManager
 
     public function create($values = null,$fields = null,$printQuery = false)
     {
-        $def_fields = array("id_user_type","logo_path","banner","name","description","id_country","id_region","id_city","id_town","id_district","street","street_num","p_iva","isonline","date_ins");
+        $def_fields = array("id_agency","id_user_type","name","lastname","email","email_personal","password","phone","mobile_phone","fax","skype","address","p_iva","fiscal_code","rea","status");
         $fields     = $fields == null ? $def_fields : $fields;
         $ret = parent::create($this->currTable,$fields,$values,$printQuery);
         return $ret;
@@ -37,6 +37,7 @@ class UserManager extends DbManager implements IDbManager
 
     public function update($fields,$params,$values = null,$extra_params = null,$printQuery = false)
     {
+
         $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
@@ -45,6 +46,23 @@ class UserManager extends DbManager implements IDbManager
     {
         $ret = parent::delete($this->currTable,$params,$values,$extra_params,$printQuery);
         return $ret;
+    }
+
+
+    public function createUser($values = null,$fields = null,$printQuery = false){
+        $ret = $this->create($values,$fields,$printQuery);
+        if($ret=="" || $ret == null)
+            return "errore - Salvataggio utente fallito";
+        $ret = $this->lastInsertId;
+        return $ret;
+    }
+
+    public function updateUser($values,$params = null,$extraParams = null,$fields=null,$printQuery = false){
+            $def_fields = array("id_agency = ?","name = ?","lastname = ?","email = ?","email_personal = ?","phone = ?","mobile_phone = ?","fax = ?","skype = ?","address = ?","p_iva = ?","fiscal_code = ?","rea = ?","status = ?");
+            $fields = $fields == null ? $def_fields : $fields;
+            $ret = $this->update($fields,$params,$values,$extraParams,$printQuery);
+
+            return $ret;
     }
 
 

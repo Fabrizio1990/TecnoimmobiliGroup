@@ -7,3 +7,4 @@ pages/test/
 pages/finanziaria/test.php
 app/classes/dbConfig.ini
 libs/frontend/ckEditor/js/ckeditor_4.5.7.js
+libs/backend/PHPMailer/examples/

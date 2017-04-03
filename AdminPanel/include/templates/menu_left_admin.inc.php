@@ -104,7 +104,7 @@ $act_statistics             = isset($act_statistics)?$act_statistics:false;
                                 </a>
 
                                 <ul class="treeview-menu">
-                                    <li><a href="agencies_add.php"><i class="fa fa-circle-o"></i> Aggiungi Agenzia</a></li>
+                                    <li><a href="agency_add.php"><i class="fa fa-circle-o"></i> Aggiungi Agenzia</a></li>
                                     <li><a href="agencies_list.php"><i class="fa fa-circle-o"></i> Modifica Agenzia</a></li>
 
                                 </ul>

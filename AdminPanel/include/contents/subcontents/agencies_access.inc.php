@@ -1,15 +1,16 @@
 <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/css/agencies_access.css">
 <?php
-
+require_once (BASE_PATH."/app/classes/AgencyManager.php");
 require_once (BASE_PATH."/app/classes/UserManager.php");
-$AgMng = new UserManager();
+$agMng  = new AgencyManager();
+$usrMng = new UserManager();
 $colorClasses = array("bg-red","bg-yellow","bg-aqua","bg-blue","bg-light-blue","bg-green","bg-navy","bg-teal","bg-olive","bg-orange","bg-purple","bg-maroon");
 $colorClassesLen = Count($colorClasses)-1;
 
 
 
 
-$resAg = $AgMng->getAllAgencies();
+$resAg = $agMng->getAgenciesData("id_status = 1");
 $count = 1;
 foreach($resAg as $agency){
     if($count % 2 == 1)echo("<div class='row'>");
@@ -37,7 +38,7 @@ foreach($resAg as $agency){
 
     for($i = 0,$len = count($operators_arr);$i<$len;$i++){
 
-        $properties_count = $AgMng->countProperties($operators_ids[$i]);
+        $properties_count = $usrMng->countProperties($operators_ids[$i]);
 
         $operators ="<form class='form_agent_access' method='POST'  action='".SITE_URL."/AdminPanel/login_as.php'>";
         $operators.="<input type='hidden'  name='id_operator' value='".$operators_ids[$i]."'/>";

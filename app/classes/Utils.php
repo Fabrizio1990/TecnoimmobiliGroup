@@ -31,12 +31,20 @@ class Utils {
         return $result;
     }
 
+    static function stringToSha1($string){
+        return sha1($string);
+    }
 
-
-
-
-
-
+    static function randomString($len = 8) {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-?^';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < $len; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
 
 }
 

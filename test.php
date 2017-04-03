@@ -5,15 +5,48 @@
 </head>
 
 
-    <?php
+<?php
 
 include("config.php");
 
 
 
-include("app/classes/MyCrypter/MyCrypter.php");
+// ############################ MAIL #########################
+include("app/classes/MailManager.php");
 
-include("app/classes/DbManager.php");
+//$mailer = new Mailer();
+$mailMng = new MailManager();
+$mailMng->sendMails();
+//$mailMng->getEmailTemplete(1);
+/*$ret = $mailMng->sendMails();
+foreach ($mails as $mail){
+    $mailer->sendMail($mail["to"],$mail["cc"],$mail["ccn"],$mail["object"],$mail["body"],$mail["altbody"],$mail["attachment_path"],$mail["ishtml"], $mail["from_email"],$mail["from_name"]);
+}*/
+
+
+/*$dbMng  = new DbManager();
+$mailer = new Mailer();
+$mails  = $dbMng->executeQuery("select * from mailer where status in(1,4) ");
+foreach ($mails as $mail){
+    $mailer->sendMail($mail["to"],$mail["cc"],$mail["ccn"],$mail["object"],$mail["body"],$mail["altbody"],$mail["attachment_path"],$mail["ishtml"], $mail["from_email"],$mail["from_name"]);
+
+
+
+
+    //$mailer->sendMail($mail["to"],$mail["cc"],$mail["ccn"],$mail["object"],$mail["body"],$mail["altbody"],$mail["attachment_path"]);
+}*/
+//$mailer->sendMail("webmaster@tecnoimmobiligroup.it","","","Mail di prova","Questa è una mail di prova","questo è un contenuto alternativo");
+
+
+
+
+// #################### END MAIL ####################
+
+
+/*include("app/classes/MyCrypter/MyCrypter.php");
+
+include("app/classes/DbManager.php");*/
+
 
 //include(BASE_PATH."/app/classes/FileHelper/FileHelper.php");
 
@@ -38,17 +71,11 @@ include("app/classes/DbManager.php");
 //include("app/classes/NewsManager.php");
 
 
-include("app/classes/PropertyManager.php");
+//include("app/classes/PropertyManager.php");
 
-if(true){
-	
-	if(false){
-		
-		echo test;
-		
-	}
-	
-}
+
+
+
 
 
 
@@ -102,11 +129,11 @@ if(true){
 
 //echo($res);
 
-$propM = new PropertyManager();
+//$propM = new PropertyManager();
 
 //$res = $propM->read(array("reference_code = ?","id_cit = ?"),array("Group by ?"),array("123",4,"id"),array("id","id_contract","id_country","id_city"));
 
-$res = $propM->readAllAds(null,null,null ,null,false);
+//$res = $propM->readAllAds(null,null,null ,null,false);
 
 //var_dump($res);
 

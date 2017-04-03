@@ -25,9 +25,13 @@ function MyMap(loaded){
         that = this;
         that.loaded = true;
         that.address = address;
+
         that.createMap(mapContainer,mapTypeId,mapZoom,marker);
     }
     this.geocode = function(address){
+        if(address== null || address == "")
+            retrun;
+
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( {'address': address}, function(results,status) {
 
@@ -39,7 +43,7 @@ function MyMap(loaded){
 
             }else {
 
-                alert("Problema nella ricerca dell'indirizzo: " + status);
+                console.log("Problema nella ricerca dell'indirizzo: " + status);
 
             }
         });

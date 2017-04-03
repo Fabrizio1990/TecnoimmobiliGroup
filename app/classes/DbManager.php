@@ -17,16 +17,12 @@ class DbManager
     public $tableName ="" ; // verrà valorizzato per poi utilizzare una qualsiasi funzionalità di questa classe. come il count
 
     function __construct() {
-        $config = parse_ini_file(BASE_PATH."/app/classes/dbConfig.ini");
+        $config = parse_ini_file(BASE_PATH."/app/classes/Configs/dbConfig.ini");
         $this->hostName = MyCrypter::myDecrypt($config['hostname']);
         $this->dbName = MyCrypter::myDecrypt($config['dbName']);
         $this->user = MyCrypter::myDecrypt($config['username']);
         $this->password = MyCrypter::myDecrypt($config['password']);
 
-        /*echo("hostname = " .$this->hostName."<br>");
-        echo("dbName = " .$this->dbName."<br>");
-        echo("user = " .$this->user."<br>");
-        echo("password = " .$this->password."<br>");*/
     }
 
 
@@ -104,7 +100,8 @@ class DbManager
         $fields         = $this->getFields($fields);
 
         $query = "INSERT INTO $table ($fields) VALUES($values_plh) ";
-        //echo($query);
+
+            //echo($query);
         $sth = $this->conn->prepare($query);
 
         $ret = $sth->execute($values);

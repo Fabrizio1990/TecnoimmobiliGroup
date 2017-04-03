@@ -149,7 +149,12 @@ class OptionsManager extends DbManager{
                 $fields = array("id","title");
                 $this->currTable = "agency_portal_status";
                 break;
-
+            // ---------------- USERS (AGENTI) -------------------
+            case "operator_status" :
+                $params = array("enabled = 1");
+                $fields = array("id","title");
+                $this->currTable = "agency_operators_status";
+                break;
 
             // ---------------- GEOGRAFICA -------------------
             case "geo_country":

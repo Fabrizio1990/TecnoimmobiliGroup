@@ -173,7 +173,7 @@
 					</li>
 					<?php } ?>
 					<li  style="float:right;">
-						<button type="submit" class="btn btn-primary" id="btn_submit">Salva</button>
+						<button type="submit" class="btn btn-primary btn_submit" >Salva</button>
 					</li>
 				</ul>
 				<div class="tab-content">

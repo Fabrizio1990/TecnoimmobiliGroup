@@ -10,7 +10,7 @@ class Flog{
     private static $log_expire_time = 604800; //expire time in minutes, 7 days = 7*24*60*60
 	
 	
-	public static function logError($text,$log_file_name ="log"){
+	public static function logError($text,$log_file_name ="log",$output = false){
 
         //check if other logs are olther than $log_expire_time if true they will deleted
         self::deleteOlderLog(self::$log_path);
@@ -20,6 +20,7 @@ class Flog{
 		$fullText =$date." <--> ". $text . " <--> " . self::getBacktrace() ;
 		self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
 		self::WriteFile($fullText);
+        if($output)echo($text);
 	}
 	
 	private static function  WriteFile($text){
