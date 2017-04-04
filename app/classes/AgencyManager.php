@@ -83,6 +83,15 @@ class AgencyManager extends DbManager implements IDbManager
 
 
 
+    public function updateStatus($idAgency,$status){
+        require_once(BASE_PATH."/app/classes/UserManager.php");
+        $usrMng = new UserManager();
+        $ret = $this->update(array("id_status = ?","id_portal_status =?"),"id = ?" ,array($status,$status,$idAgency));
+
+
+        return $ret;
+
+    }
 
 
 

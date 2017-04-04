@@ -133,7 +133,6 @@ function initMap(defZoom = 2){
     GMap.geocode(fullAddress);
 
     setTimeout(function(){
-        console.log(GMap.getLatitude());
         $("#latitude").val(GMap.getLatitude());
         $("#longitude").val(GMap.getLongitude());
     },1000);

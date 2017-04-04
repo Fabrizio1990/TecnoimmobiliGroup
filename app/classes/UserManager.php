@@ -61,7 +61,6 @@ class UserManager extends DbManager implements IDbManager
             $def_fields = array("id_agency = ?","name = ?","lastname = ?","email = ?","email_personal = ?","phone = ?","mobile_phone = ?","fax = ?","skype = ?","address = ?","p_iva = ?","fiscal_code = ?","rea = ?","status = ?");
             $fields = $fields == null ? $def_fields : $fields;
             $ret = $this->update($fields,$params,$values,$extraParams,$printQuery);
-
             return $ret;
     }
 

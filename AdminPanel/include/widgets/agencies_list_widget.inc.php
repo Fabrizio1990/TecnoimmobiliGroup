@@ -30,6 +30,4 @@
 	</tfoot>
 </table>
 
-<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/agencies_settings_manager.js"></script>
-
 <?php }?>

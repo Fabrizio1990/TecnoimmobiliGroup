@@ -33,7 +33,6 @@ function openAdsStatusSwitch(idAds,currentStatus,elem){
 }
 
 function saveAdsStatus(idAds,elem){
-	console.log(idAds);
 	var newStatus = GEBI("sel_status").value;
 	if(newStatus != "%")
 		ajaxCall("../AdminPanel/ajax/switch_properties_settings.ajax.php?field=ads_status&id=" + idAds + "&status="+ newStatus + "&rand=" + Math.random(),null,new Array(idAds,newStatus,elem),UpdateAdsStatusIcon,ajax_fail);

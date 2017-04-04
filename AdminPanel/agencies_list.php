@@ -30,6 +30,7 @@ $act_menu_agencies_management		= true; // setta attivo il link agencies manageme
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/css/bootstrap3/bootstrap-switch.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -130,6 +131,8 @@ $act_menu_agencies_management		= true; // setta attivo il link agencies manageme
     </script>
     <!-- Bootstrap 3.3.6 -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/js/bootstrap-switch.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
     <!-- DataTables -->
@@ -175,7 +178,10 @@ $act_menu_agencies_management		= true; // setta attivo il link agencies manageme
                     { targets: "_all",className: "ALING_CENTER"}
                 ],
                 "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_agencies_datatable.ajax.php",
-
+                "fnDrawCallback": function (oSettings) {
+                    // ON TABLE LOAD I WILL CREATE THE SWITCHES AND BIND THE FUNCTIONS
+                    bindSwitches();
+                }
             });
 
 

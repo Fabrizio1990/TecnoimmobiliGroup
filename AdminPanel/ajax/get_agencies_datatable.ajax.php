@@ -45,7 +45,7 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
         // COLUMN STREET
         $street = $res[$i]["street"].", ".$res[$i]["street_num"];
         // COLUMN STATUS
-        $status = "<img src='".SITE_URL."/".$res[$i]["status_icon"]."'/>";
+        $status = "<input type='checkbox' class='switch' " .($res[$i]["id_status"]=="1"?"checked":"") .">";
         // COLUMN DATE INS
         $date_ins = Date("d-m-Y", strtotime($res[$i]["date_ins"]));
         // COLUMN DATE UP
