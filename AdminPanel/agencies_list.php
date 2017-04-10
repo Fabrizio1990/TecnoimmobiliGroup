@@ -175,7 +175,7 @@ $act_menu_agencies_management		= true; // setta attivo il link agencies manageme
                     [6, "desc"]
                 ],
                 "columnDefs": [
-                    { targets: "_all",className: "ALING_CENTER"}
+                    { targets: "_all",className: "ALIGN_CENTER"}
                 ],
                 "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_agencies_datatable.ajax.php",
                 "fnDrawCallback": function (oSettings) {

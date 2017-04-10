@@ -24,6 +24,7 @@ $act_menu_utility           = isset($act_menu_utility)?$act_menu_utility:false;
 $act_agencies_access        = isset($act_agencies_access)?$act_agencies_access:false;
 $act_documents              = isset($act_documents)?$act_documents:false;
 $act_e_commerce             = isset($act_e_commerce)?$act_e_commerce:false;
+$act_newsletter             = isset($act_newsletter)?$act_newsletter:false;
 $act_statistics             = isset($act_statistics)?$act_statistics:false;
  
 ?>
@@ -137,9 +138,14 @@ $act_statistics             = isset($act_statistics)?$act_statistics:false;
                                     Documenti
                                 </a>
                             </li>
-                            <li <?php if($act_e_commerce) echo('class="active"')?>>
+                            <!-- <li <?php /*if($act_e_commerce) echo('class="active"')*/?>>
                                 <a href="#"><i class="fa fa-balance-scale"></i>
                                     E-Commerce
+                                </a>
+                            </li>-->
+                            <li <?php if($act_newsletter) echo('class="active"')?>>
+                                <a href="newsletter.php"><i class="fa fa-newspaper-o"></i>
+                                    Newsletter
                                 </a>
                             </li>
                             <li <?php if($act_statistics) echo('class="active"')?>>

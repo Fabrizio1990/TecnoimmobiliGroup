@@ -28,10 +28,11 @@ class DbManager
 
 	public function openConnection()// APERTURA DELLA CONNESSIONE
     {
+        if($this->conn !=null)
+            return;
+
         try {
-            $this->conn =  new PDO("mysql:dbname=" . $this->dbName . ";host=" . $this->hostName,
-                                        $this->user,
-                                        $this->password);
+            $this->conn =  new PDO("mysql:dbname=" . $this->dbName . ";host=" . $this->hostName,$this->user,$this->password);
             $this->conn->exec("set names utf8");
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
@@ -249,6 +250,10 @@ class DbManager
             $entity->$key = $value;
         }
         return $entity;
+    }
+
+    public function escapeString($string){
+        return $this->conn->quote($string);
     }
 
 

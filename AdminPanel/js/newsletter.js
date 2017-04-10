@@ -1,12 +1,11 @@
-function switchAgencyStatus(idAgency,status,switchElem){
-
-    console.log("a "+idAgency);
-    console.log("s "+status);
-    var page = "../AdminPanel/ajax/switch_agencies_settings.ajax.php";
-    var params = "idAgency="+idAgency+"&status="+status;
+function switchRequestStatus(idRequest,status,switchElem){
+    console.log("R "+idRequest);
+    console.log("S "+status);
+    var page = "../AdminPanel/ajax/switch_requests_settings.ajax.php";
+    var params = "idRequest="+idRequest+"&status="+status;
     ajaxCall(page,params,switchElem,statusSwitched,ajax_fail,"POST");
-
 }
+
 
 function statusSwitched(resp,switchElem){
     if(resp!="0" && resp!="1")
@@ -14,7 +13,6 @@ function statusSwitched(resp,switchElem){
     else
         switchElem.bootstrapSwitch('toggleState', true, true);
 }
-
 
 
 function bindSwitches() {
@@ -35,20 +33,19 @@ function bindSwitches() {
         openModal(
             3,
             "Attenzione!",
-            "Stai per modificare lo stato dell Agenzia, Procedere?",
+            "Stai per modificare lo stato della richiesta, Procedere?",
             function(){
 
-                var idAgency = _that.closest("tr").find(">:first-child").find("form").find("input:hidden").val();
+                var idRequest = _that.closest("tr").find(">:first-child").find("input:hidden").val();
+                console.log("-idReq"+idRequest);
                 var status = _that.bootstrapSwitch('state');
                 // qua non sono ancora stati switchati quindi prendo il valore che dovrà essere
-                status = status?2:1;
-                switchAgencyStatus(idAgency,status,_that);
+                status = status?0:1;
+                switchRequestStatus(idRequest,status,_that);
                 hideModal("myModal");
             },
             "No",
             "Si"
         );
-
     });
-
 }

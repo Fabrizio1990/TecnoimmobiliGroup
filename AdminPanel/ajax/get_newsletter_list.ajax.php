@@ -3,56 +3,31 @@
 
 header('Content-type: text/json; charset=utf-8');
 include("../../config.php");
-/*include(BASE_PATH."/app/classes/UserManager.php");
-include(BASE_PATH."/app/classes/AgencyManager.php");*/
+include(BASE_PATH."/app/classes/RequestsManager.php");
 
-
-$agencyMng = new AgencyManager();
+$rqMng = new RequestManager();
 $array = array("aaData"=>array());//sintassi di base che si aspetta datatable , cioè un json con elemento padre aaData e i sottoelementi contengono i dati
 
 
 
-/*$fields = Array("id","logo_path","name","region","town","street","street_num","description","id_status","status_icon","date_ins","date_up");
-$res = $agencyMng->getAgenciesData("id_status<>3",null,null,$fields,false);
 
+$res = $rqMng->readRequests();
 $resultFound = Count($res);
 if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
     for($i=0;$i<$resultFound;$i++) {
-        $resImg = "";
-
-
-        // COLUM LOGO
-
-        // Description of agency (showed if hover on logo "img title")
-        $description = htmlentities($res[$i]["description"], ENT_QUOTES);
-        $description = $description ==""?"Nessuna descrizione":$description;
-
-        $imgPath = SITE_URL."/public/images/images_agencies_icons/min/".$res[$i]["logo_path"];
-        $first_col = "
-            <form name='goToAgency' id='goToAgency' method='POST' ACTION='".SITE_URL."/AdminPanel/agency_add.php'>
-            <input type='hidden' name='id_agency' value='".$res[$i]["id"]."'>
-            <img onclick='this.parentNode.submit()' class='real_tumb POINTER agency_logo' title='".$description."' src=".$imgPath."?id=". $rand_num ."?id=". $rand_num . "' /> </form>";
-
-
-        // COLUMN NAME
+        $id = $res[$i]["id"];
+        $id_inp = "<input type='hidden' name='id_request' id ='id_request' value='$id' />";
+        $email = $res[$i]["email"];
         $name = $res[$i]["name"];
-        // COLUMN REGION
-        $region = $res[$i]["region"];
-        // COLUMN CITY
-        $city = $res[$i]["town"];
-        // COLUMN STREET
-        $street = $res[$i]["street"].", ".$res[$i]["street_num"];
-        // COLUMN STATUS
-        $status = "<input type='checkbox' class='switch' " .($res[$i]["id_status"]=="1"?"checked":"") .">";
-        // COLUMN DATE INS
-        $date_ins = Date("d-m-Y", strtotime($res[$i]["date_ins"]));
-        // COLUMN DATE UP
-        $date_up = $res[$i]["date_up"]!=""?Date("d-m-Y", strtotime($res[$i]["date_up"])):$date_ins;
+        $lastname = $res[$i]["lastname"];
+        $telephone = $res[$i]["telephone"];
+        $details = "<a href ='#'>Clicca</a>";
+        $date_ins = $res[$i]["date_ins"];
+        $status   = "<input type='checkbox' class='switch' " .($res[$i]["enabled"]=="1"?"checked":"") .">";
 
-        array_push($array["aaData"],array($first_col,$name,$region,$city,$street,$status,$date_ins,$date_up));
-
+        array_push($array["aaData"],array($id_inp.$email,$name,$lastname,$telephone,$details,$status,$date_ins));
     }
-}*/
+}
 
 echo(json_encode($array));
 

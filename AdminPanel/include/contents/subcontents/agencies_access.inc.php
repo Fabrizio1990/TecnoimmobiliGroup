@@ -18,7 +18,7 @@ foreach($resAg as $agency){
     $description    = "";
     $operators_arr  = explode(",",$agency["operators"]);
     $operators_ids  = explode(",",$agency["operators_ids"]);
-    $logoPath       = SITE_URL."/".$agency["logo_path"];
+    $logoPath       = SITE_URL."/public/images/images_agencies_icons/normal/deflogo_round.png";
 
     ?>
 
