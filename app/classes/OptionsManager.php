@@ -30,16 +30,14 @@ class OptionsManager extends DbManager{
         if(!is_array($id_parent)) {
             if ($id_parent != null) {
                 $id_parent = explode(",", $id_parent);
-                $id_parent_len = Count($id_parent);
-                if ($id_parent_len > 1) {
-                    for ($i = 1; $i < $id_parent_len; $i++) {
-                        $conditionPlaceholders .= ",?";
-                    }
-                }
             }
-        }/*else{
-            $id_parent = array($id_parent);
-        }*/
+        }
+        $id_parent_len = Count($id_parent);
+        if ($id_parent_len > 1) {
+            for ($i = 1; $i < $id_parent_len; $i++) {
+                $conditionPlaceholders .= ",?";
+            }
+        }
         switch($what){
             // ---------------- IMMOBILI -------------------
             case "ads_status":
@@ -212,7 +210,11 @@ class OptionsManager extends DbManager{
         $optRes = "";
 
         for($i=0,$cnt = count($res);$i<$cnt;$i++){
-            $selected = $selectedVal == $res[$i][0]?"selected":"";
+            if(is_array($selectedVal))
+                $selected = in_array($res[$i][0],$selectedVal)? "selected " : "";
+            else
+                $selected = $selectedVal == $res[$i][0]?"selected":"";
+
             $optRes.="<option $selected value='".$res[$i][0]."'>".$res[$i][1]."</option>";
         }
         return $optRes;

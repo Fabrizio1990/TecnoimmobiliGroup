@@ -6,14 +6,12 @@ function switchRequestStatus(idRequest,status,switchElem){
     ajaxCall(page,params,switchElem,statusSwitched,ajax_fail,"POST");
 }
 
-
 function statusSwitched(resp,switchElem){
     if(resp!="0" && resp!="1")
         openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni. errcode = "+resp,"Chiudi");
     else
         switchElem.bootstrapSwitch('toggleState', true, true);
 }
-
 
 function bindSwitches() {
     var options = {
@@ -49,3 +47,15 @@ function bindSwitches() {
         );
     });
 }
+
+// IN options_populate.js fixare il popolamento ricorsivo (non funziona con le select singole ma solo con le multiple
+
+function getDetails(id_newsletter) {
+    load_page(BASE_PATH + "/AdminPanel/ajax/get_newsletter_details.ajax.php?id="+id_newsletter,"request_details",function(){
+        $(".select2").select2();
+        if($("#BTN_BOX_COLLAPSE").hasClass("fa-plus"))
+            $("#box_request_details [data-widget='collapse']").click();
+    });
+}
+
+

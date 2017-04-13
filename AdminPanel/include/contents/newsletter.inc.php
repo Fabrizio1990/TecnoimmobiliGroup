@@ -1,4 +1,27 @@
-<!-- LISTA AGENZIE -->
+<!-- DETTAGLIO RICHIESTE -->
+<div   class="row">
+    <div  class="col-xs-12">
+        <div id="box_request_details" class="box box-info collapsed-box">
+            <div class="box-header">
+                <h3 class="box-title">Dettaglio Richiesta</h3>
+                <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-secondary btn-sm " data-widget="collapse" data-toggle="tooltip" title="Riduci / Ingrandisci" style="margin-right: 5px;">
+                        <i id="BTN_BOX_COLLAPSE" class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" id="request_details">
+                <!-- QUI VERRà POPOLATO IL DETTAGLIO DELLA RICHIESTA -->
+                <h2>Seleziona una richiesta per vederne il dettaglio</h2>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+
+
+
+<!-- LISTA RICHIESTE -->
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
@@ -21,3 +44,5 @@
     </div>
 </div>
 <!-- /.row -->
+
+

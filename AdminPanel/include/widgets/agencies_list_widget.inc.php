@@ -1,5 +1,5 @@
 <?php if($SS_usr->id_user_type==1) {?>
-<table id="DT_AGENCIES" class="table table-bordered table-striped display responsive no-wrap" width="100%">
+<table id="DT_AGENCIES" class="table table-bordered table-hover display responsive no-wrap" width="100%">
 	<thead>
 		<tr>
 			<th>Logo</th>

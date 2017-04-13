@@ -77,6 +77,20 @@ function ajax_fail(par1){
 }
 
 
+function load_page(page,container,callback = null,callback_params = null,method = 'get'){
+    container = GEBI(container);
+    http=new XMLHttpRequest();
+    http.open(method,page);
+    http.send();
+    http.onreadystatechange=function(){
+        if (http.readyState == 4 && http.status == 200) {
+            container.innerHTML = this.responseText;
+            if (callback)callback(http.responseText.trim(), callback_params);
+        }
+    }
+};
+
+
 var dateToMysqlFormat = function(date){
     var year, month, day;
     year = String(date.getFullYear());
@@ -93,6 +107,7 @@ var dateToMysqlFormat = function(date){
 
 
 function populateSelectByJson(arrVal,arr_params){
+    console.log(arr_params[3]);
     // arr_params 0 = selectID | 1 = def_opt value| 2 = def_opt text | 3 = selected
     sel = GEBI(arr_params[0]);
 
@@ -112,6 +127,10 @@ function populateSelectByJson(arrVal,arr_params){
         opt.value= json_val[i].value;
         opt.innerHTML = json_val[i].text; // whatever property it has
         if(arr_params[3]!=null){
+            if(arr_params[3].constructor === Array){
+                if(arr_params[3].indexOf(json_val[i].value) > -1)
+                    opt.selected =true;
+            }else
             if(arr_params[3] == json_val[i].value)opt.selected =true;
         }
         // then append it to the select element

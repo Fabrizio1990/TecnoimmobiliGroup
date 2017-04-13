@@ -131,6 +131,8 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
     </script>
     <!-- Bootstrap 3.3.6 -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Select2 -->
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
     <!-- Bootstrap Switch -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/js/bootstrap-switch.min.js"></script>
     <!-- AdminLTE App -->
@@ -143,6 +145,7 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
 
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/newsletter.js"></script>
 
 
@@ -184,6 +187,8 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
                 }
             });
 
+
+            $(".select2").select2();
         });
     </script>
 </body>

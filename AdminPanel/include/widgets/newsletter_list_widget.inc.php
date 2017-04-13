@@ -1,5 +1,5 @@
 
-<table id="DT_NEWSLETTER" class="table table-bordered table-striped display responsive no-wrap" width="100%">
+<table id="DT_NEWSLETTER" class="table table-bordered  table-hover display responsive no-wrap" width="100%">
 	<thead>
 		<tr>
 			<th>Email</th>

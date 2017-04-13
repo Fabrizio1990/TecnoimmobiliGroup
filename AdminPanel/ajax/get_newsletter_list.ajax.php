@@ -21,7 +21,9 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
         $name = $res[$i]["name"];
         $lastname = $res[$i]["lastname"];
         $telephone = $res[$i]["telephone"];
-        $details = "<a href ='#'>Clicca</a>";
+        $details = "<button type=\"button\" onclick='getDetails($id)' class=\"btn btn-info\"><i class=\"fa  fa-edit\"></i></button>";
+
+
         $date_ins = $res[$i]["date_ins"];
         $status   = "<input type='checkbox' class='switch' " .($res[$i]["enabled"]=="1"?"checked":"") .">";
 
