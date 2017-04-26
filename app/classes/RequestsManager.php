@@ -44,7 +44,7 @@ class RequestManager extends DbManager implements IDbManager {
     }
 
     // SAVE AND UPDATE REQUEST BY MYSQL FUNCTION
-    public function saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$enabled,$id_request = "NULL"){
+    public function saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$enabled,$id_request = "NULL"){
         parent::openConnection();// devo aprire la connessione per fare l' escape
         $query = "SELECT `new_tecnoimmobili`.`save_request`($id_request,
         $id_easywork,".
@@ -55,6 +55,7 @@ class RequestManager extends DbManager implements IDbManager {
         parent::escapeString($contracts).",".
         parent::escapeString($categories).",".
         parent::escapeString($tipologies).",".
+        parent::escapeString($regions).",".
         parent::escapeString($cities).",".
         parent::escapeString($towns).",".
         parent::escapeString($districts).",".

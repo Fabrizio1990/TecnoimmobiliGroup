@@ -55,6 +55,9 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/newsletter.css" />
+    <!-- Jquery validate  override css-->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override_select2.css" />
     <!-- modals -->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
@@ -141,10 +144,21 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/JQueryFormatCurrency/jquery.priceformat.js"></script>
+    <!-- Jquery validate -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+    <!-- Jquery validate additional methods -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_additional_methods.js"></script>
+    <!-- Jquery validate select2 override -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_select2_override.js"></script>
+    <!-- Jquery validate IT localization -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
+
     <!-- ----CUSTOM JS ------ -->
 
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/ionSlider_utils.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/newsletter.js"></script>
 
@@ -190,6 +204,7 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
 
             $(".select2").select2();
         });
+
     </script>
 </body>
 

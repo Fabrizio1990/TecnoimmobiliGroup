@@ -8,3 +8,10 @@ function scrollTO(elem,time){
         scrollTop: elem.offset().top
     }, time);
 }
+
+function JQGEBI(obj){
+    if(obj instanceof jQuery){
+        return obj;
+    }
+    return ($("#"+obj));
+}

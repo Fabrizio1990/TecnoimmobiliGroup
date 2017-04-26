@@ -141,7 +141,7 @@ $act_menu_agencies_management		= true; // setta attivo il link agencies manageme
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
     <!-- Jquery validate -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
-    <!-- Jquery validate -->
+    <!-- Jquery validate additional methods -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_additional_methods.js"></script>
     <!-- Jquery validate select2 override -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_select2_override.js"></script>

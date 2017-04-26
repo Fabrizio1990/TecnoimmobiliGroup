@@ -147,8 +147,20 @@ function removeUrlParameters(url){
     return url.replace(/\?.*$/,"").replace(/.*\//,"");
 }
 
+var currencyFormatter = new Intl.NumberFormat('it-IT', {
+    style: 'currency',
+    currency: 'Eur',
+    minimumFractionDigits: 0,
+});
+
+//alert(currencyFormatter.format(3490000)); /* $349.00 */
 
 
+function formatCurrencyInput(inputID){
+    var elem = GEBI(inputID);
+    var format_val = currencyFormatter.format(elem.value);
+    elem.value = format_val;
+}
 
 
 

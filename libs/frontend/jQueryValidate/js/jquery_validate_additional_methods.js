@@ -6,4 +6,9 @@
     a.validator.addMethod("phones",function(a,b){return a=a.replace(/\(|\)|\s+|-/g,""),this.optional(b)||a.length>9&&a.match(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/)},"Inserisci un numero di telefono valido"),
     a.validator.addMethod("codfiscale", function(value) {var regex = /^[A-Za-z]{6}[0-9]{2}[A-Za-z]{1}[0-9]{2}[A-Za-z]{1}[0-9]{3}[A-Za-z]{1}$/;if(value=="") return true; return value. match(regex);}, "Inserisci un codice fiscale valido"),
     a.validator.addMethod("piva", function(value) {var regex = /^[0-9]{11}$/;if(value=="") return true;return value. match(regex);}, "Inserisci un numero di partita iva valido")
-});
+});$.validator.addMethod('lessThanEqual', function(value, element, param) {
+    return parseInt(param[0]) <=  parseInt(param[1]);
+}, "il valore minimo è maggiore del valore massimo");
+$.validator.addMethod('greatherThanEqual', function(value, element, param) {
+    return parseInt(param[0]) >=  parseInt(param[1]);
+}, "Il valore massimo è minore del valore minimo");
