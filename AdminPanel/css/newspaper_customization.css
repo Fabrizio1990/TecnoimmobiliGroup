@@ -1,0 +1,38 @@
+#sortable { list-style-type: none; margin: 0; padding: 0;  }
+#sortable li { float: left; width: 25%;  text-align: center; }
+
+.box-widget{border: 1px solid #3c8dbc;}
+/*#shortable .col-md-4 .box-widget*/ .widget-user-header{
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: 100% !important;
+}
+.box-footer{
+    padding-top: 5px !important;
+}
+.box-footer .description .description-block,.box-footer .description .description-text{
+    margin:0 auto !important;
+    margin-top:2px;
+    padding: 1px !important;
+}
+
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+
+
+@media screen and (max-width: 768px) {
+    #sortable li h2 {
+        font-size:10px;
+    }
+    #sortable li p {
+        font-size:10px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    #sortable li h2 {
+        font-size:10px;
+    }
+    #sortable li p {
+        font-size:10px;
+    }
+}

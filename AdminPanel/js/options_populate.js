@@ -34,17 +34,39 @@ function getRegions(elem,defVal=null,defTxt =null,callback_fn = null){
     var sel_town 		= GEBI("sel_town");
     var sel_district 	= GEBI("sel_district");
 
+    // if no parent val i will reset all connected select
+    if(val==null || val == ""){
+        if(sel_region){
+            sel_region.options.length = 0;
+            sel_region.value = null;
+        }
+        if(sel_city){
+            sel_city.options.length = 0;
+            sel_city.value = null;
+        }
+        if(sel_town){
+            sel_town.options.length = 0;
+            sel_town.value = null;
+        }
+        if(sel_district){
+            sel_district.options.length = 0;
+            sel_district.value = null;
+        }
+        return;
+    }
+
+
     //i will mantain selected items
     var sel_jq = $("#sel_region");
     var isMultiple = sel_jq.prop("multiple");
     var selectedOpts = sel_jq.select2?sel_jq.select2("val"):sel_jq.val();
 
     //----
-
     var selectedOptsCity = $("#sel_city").select2?$("#sel_city").select2("val"):$("#sel_city").val();
 
 
     callback_fn = function(){
+
         if(selectedOptsCity != null && selectedOptsCity != "" && isMultiple){
             getCities(elem,null,null);
         }
@@ -54,8 +76,11 @@ function getRegions(elem,defVal=null,defTxt =null,callback_fn = null){
     // truncate the select
     sel_region.options.length = 0;
     // and populate it only if i have select a country
-    if(val!=null)
+    //if(val!=null)
         getOpts(sel_region,'geo_region',val,defVal,defTxt,selectedOpts,callback_fn);
+
+    console.log("val = " + val);
+
     //truncate all other selects that depends from country
     if(!isMultiple || selectedOptsCity == null || selectedOptsCity == ""){
         if(sel_city)sel_city.options.length = 0;
@@ -80,6 +105,23 @@ function getCities(elem = null,defVal=null,defTxt =null,callback_fn = null){
     var sel_town 		= GEBI("sel_town");
     var sel_district 	= GEBI("sel_district");
 
+    // if no parent val i will reset all connected select
+    if(val==null || val == ""){
+        if(sel_city){
+            sel_city.options.length = 0;
+            sel_city.value = null;
+        }
+        if(sel_town){
+            sel_town.options.length = 0;
+            sel_town.value = null;
+        }
+        if(sel_district){
+            sel_district.options.length = 0;
+            sel_district.value = null;
+        }
+        return;
+    }
+
     //i will mantain selected items
     var sel_jq = $("#sel_city");
     var isMultiple = sel_jq.prop("multiple");
@@ -96,8 +138,9 @@ function getCities(elem = null,defVal=null,defTxt =null,callback_fn = null){
     // truncate the select
     sel_city.options.length = 0;
     // and populate it only if i have select a Region
-    if(val!=null)
+    //if(val!=null)
         getOpts(sel_city,'geo_city',val,defVal,defTxt,selectedOpts,callback_fn);
+
     //truncate all other selects that depends from Region
     if( !isMultiple || selectedOptsTown == null || selectedOptsTown == "") {
         if (sel_town)sel_town.options.length = 0;
@@ -117,6 +160,19 @@ function getTowns(elem = null,defVal=null,defTxt =null,callback_fn = null){
     var sel_town 		= GEBI("sel_town");
     var sel_district 	= GEBI("sel_district");
 
+    // if no parent val i will reset all connected select
+    if(val==null || val == ""){
+        if(sel_town){
+            sel_town.options.length = 0;
+            sel_town.value = null;
+        }
+        if(sel_district){
+            sel_district.options.length = 0;
+            sel_district.value = null;
+        }
+        return;
+    }
+
     //i will mantain selected items
     var sel_jq = $("#sel_town");
     var isMultiple = sel_jq.prop("multiple");
@@ -132,7 +188,7 @@ function getTowns(elem = null,defVal=null,defTxt =null,callback_fn = null){
     // truncate the select
     sel_town.options.length = 0;
     // and populate it only if i have select a city
-    if(val!=null)
+    //if(val!=null)
         getOpts(sel_town,'geo_town',val,defVal,defTxt,selectedOpts,callback_fn);
     //truncate all other selects that depends from city
     if(!isMultiple ||selectedOptsDistrict == null || selectedOptsDistrict == "")
@@ -160,7 +216,7 @@ function getDistricts(elem,defVal=null,defTxt =null,callback_fn = null){
     // truncate the select
     sel_district.options.length = 0;
     // and populate it only if i have select a town
-    if(val!=null)
+    //if(val!=null)
         getOpts(sel_district,'geo_district',val,defVal,defTxt,selectedOpts);
 }
 

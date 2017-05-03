@@ -19,6 +19,8 @@ $act_tables_management      = isset($act_tables_management)?$act_tables_manageme
 //NEWS MANAGEMENT
 $act_menu_news_management 	= isset($act_menu_news_management)?$act_menu_news_management:false;
 
+
+
 // UTILITY THREEVIEW
 $act_menu_utility           = isset($act_menu_utility)?$act_menu_utility:false;
 $act_agencies_access        = isset($act_agencies_access)?$act_agencies_access:false;
@@ -26,6 +28,10 @@ $act_documents              = isset($act_documents)?$act_documents:false;
 $act_e_commerce             = isset($act_e_commerce)?$act_e_commerce:false;
 $act_newsletter             = isset($act_newsletter)?$act_newsletter:false;
 $act_statistics             = isset($act_statistics)?$act_statistics:false;
+// NEWSPAPER MANAGEMENT
+$act_newspaper_management   = isset($act_newspaper_management)?$act_newspaper_management:false;
+$act_newspaper_print        = isset($act_newspaper_print)?$act_newspaper_print:false;
+$act_newspaper_customize    = isset($act_newspaper_customize)?$act_newspaper_customize:false;
  
 ?>
 
@@ -122,7 +128,7 @@ $act_statistics             = isset($act_statistics)?$act_statistics:false;
                     <li class="treeview <?php if($act_menu_utility) echo('active')?>">
                         <a href="#">
                             <i class="fa fa-wrench"></i>
-                            <span>Utility</span>
+                            <span>Utilità</span>
                             <span class="pull-right-container">
 							<i class="fa fa-angle-left pull-right"></i>
 							</span>
@@ -138,16 +144,32 @@ $act_statistics             = isset($act_statistics)?$act_statistics:false;
                                     Documenti
                                 </a>
                             </li>
-                            <!-- <li <?php /*if($act_e_commerce) echo('class="active"')*/?>>
-                                <a href="#"><i class="fa fa-balance-scale"></i>
-                                    E-Commerce
-                                </a>
-                            </li>-->
+
                             <li <?php if($act_newsletter) echo('class="active"')?>>
                                 <a href="newsletter.php"><i class="fa fa-newspaper-o"></i>
                                     Newsletter
                                 </a>
                             </li>
+
+                            <!-- ########## SEZIONE RIVISTA #########-->
+
+                            <li <?php if($act_newspaper_management) echo('class="active"')?>>
+                                <a href="#">
+                                    <i class="fa fa-newspaper-o"></i> Rivista
+                                    <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                                </a>
+
+                                <ul class="treeview-menu">
+                                    <li <?php if($act_newspaper_print) echo('class="active"')?>><a href="newspaper_print_selection.php"><i class="fa fa-print"></i> Stampa rivista</a></li>
+                                    <li <?php if($act_newspaper_customize) echo('class="active"')?>><a href="newspaper_customization.php"><i class="fa fa-reorder"></i>Personalizza rivista</a></li>
+
+                                </ul>
+                            </li>
+
+                            <!-- ########## FINE SEZIONE RIVISTA #########-->
+
                             <li <?php if($act_statistics) echo('class="active"')?>>
                                 <a href="#"><i class="fa fa-bar-chart"></i>
                                     Statistiche

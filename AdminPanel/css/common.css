@@ -27,6 +27,12 @@ body {
 .ALIGN_RIGHT{
     text-align:right !important;
 }
+.BORDER_TOP{
+    border-top: 1px solid #f4f4f4;
+}
+.BORDER_BOTTOM{
+    border-bottom: 1px solid #f4f4f4;
+}
 .main-header .logo .logo-lg {
     font-size: 19px;
 }

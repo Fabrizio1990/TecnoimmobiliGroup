@@ -5,14 +5,17 @@
 function getOpts(elem,action,id_parent = null,header_opt_val = null,header_opt_txt = null,selected = null,callback= null,callback_par = null){
     if(callback != null) {
         console.log("c è un callback ed è :");
-        console.log(callback_par);
+        console.log(callback);
 
     }
         page = BASE_PATH + "/ajax/form/get_opts.ajax.php";
         params = "id_action="+action;
+        console.log("----"+id_parent);
         if(id_parent!=null){
             if(id_parent.constructor === Array)  id_parent = id_parent.join();
             params+="&id_parent="+id_parent;
+        }else{
+            params+="&1=2";
         }
         callback_params = new Array(elem,header_opt_val,header_opt_txt,selected);
 
