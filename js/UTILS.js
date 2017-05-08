@@ -77,15 +77,17 @@ function ajax_fail(par1){
 }
 
 
-function load_page(page,container,callback = null,callback_params = null,method = 'get'){
+function load_page(page,container = null,callback = null,callback_params = null,method = 'get'){
     container = GEBI(container);
     http=new XMLHttpRequest();
     http.open(method,page);
     http.send();
     http.onreadystatechange=function(){
         if (http.readyState == 4 && http.status == 200) {
-            container.innerHTML = this.responseText;
-            if (callback)callback(http.responseText.trim(), callback_params);
+            if(container!= null)
+                container.innerHTML = this.responseText;
+            if (callback)
+                callback(http.responseText.trim(), callback_params);
         }
     }
 };

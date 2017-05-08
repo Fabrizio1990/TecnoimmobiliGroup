@@ -2,7 +2,7 @@
     <!-- Widget: user widget style 1 -->
     <div class="box box-widget widget-user">
         <!-- Add the bg color to the header using any of the bg-* classes -->
-        <div class="widget-user-header" style="background: url('{backgroundImage}');">
+        <div class="widget-user-header" style="background: url('{img_path}');">
         </div>
         <div class="box-footer">
             <div class="row description">
@@ -22,7 +22,7 @@
                 <!-- /.col -->
                 <div class="col-sm-12 BORDER_BOTTOM">
                     <div class="description-block">
-                        <h5 class="description-text">{city}</h5>
+                        <h5 class="description-text">{town}</h5>
                     </div>
                     <!-- /.description-block -->
                 </div>

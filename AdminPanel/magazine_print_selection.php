@@ -15,8 +15,8 @@ if(SessionManager::getVal("authenticated") != null){
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
 $act_menu_utility                       = true; // setta attivo il menu Utility
-$act_newspaper_management              = true; // setta attivo il menu Rivista
-$act_newspaper_print		           = true; // setta attivo il link Stampa Rivista
+$act_magazine_management              = true; // setta attivo il menu Rivista
+$act_magazine_print		           = true; // setta attivo il link Stampa Rivista
 
 ?>
 
@@ -86,7 +86,7 @@ $act_newspaper_print		           = true; // setta attivo il link Stampa Rivista
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-cog"></i> Utility</a></li>
                 <li><a href="#"><i class="fa fa-newspaper-o"></i> Rivista</a></li>
-                <li><a href="newspaper_print_selection.php"><i class="fa fa-print"></i> Stampa rivista</a></li>
+                <li><a href="magazine_print_selection.php"><i class="fa fa-print"></i> Stampa rivista</a></li>
             </ol>
         </section>
 

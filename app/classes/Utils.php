@@ -15,14 +15,12 @@ class Utils {
     public static function rstToOptionsJson($rst){
         $arrOpts = Array();
         for($i=0,$len = count($rst);$i<$len;$i++){
-            //echo($rst[$i][$valField]."<br>");
-            //echo(utf8_encode($rst[$i][$textField])."<br>");
             array_push($arrOpts,array("value"=>$rst[$i][0],"text" => $rst[$i][1]));
-        //"<option value='".$rst[$i][$valField]."'>".$rst[$i][$textField]."</option>");
         }
-        //var_dump($arrOpts);
         return json_encode($arrOpts);
     }
+
+
 
     function escapeJsonString($value) { # list from www.json.org: (\b backspace, \f formfeed)
         $escapers = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");

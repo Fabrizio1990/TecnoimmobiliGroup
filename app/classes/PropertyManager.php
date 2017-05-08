@@ -157,7 +157,7 @@ class PropertyManager extends DbManager implements IDbManager {
 
     public function getDescription($id_ads){
         $this->currTable = "property_descriptions";
-        $ret = $this->read("id_property","limit 1",array($id_ads));
+        $ret = $this->read("id_property = ?","limit 1",array($id_ads));
         $this->setDefTable();
         return $ret;
     }

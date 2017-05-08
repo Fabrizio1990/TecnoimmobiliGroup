@@ -14,8 +14,8 @@ if(SessionManager::getVal("authenticated") != null){
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
 $act_menu_utility                      = true; // setta attivo il menu Utility
-$act_newspaper_management              = true; // setta attivo il menu Rivista
-$act_newspaper_customize		       = true; // setta attivo il link Stampa Rivista
+$act_magazine_management              = true; // setta attivo il menu Rivista
+$act_magazine_customize		       = true; // setta attivo il link Stampa Rivista
 
 ?>
 
@@ -44,7 +44,7 @@ $act_newspaper_customize		       = true; // setta attivo il link Stampa Rivista
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skin -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/dist/css/skins/skin-blue.min.css">
-    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/css/newspaper_customization.css">
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/css/magazine_customization.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -88,14 +88,14 @@ $act_newspaper_customize		       = true; // setta attivo il link Stampa Rivista
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-cog"></i> Utility</a></li>
                 <li><a href="#"><i class="fa fa-newspaper-o"></i> Rivista</a></li>
-                <li><a href="newspaper_customization.php"><i class="fa fa-reorder"></i> Personalizza rivista</a></li>
+                <li><a href="magazine_customization.php"><i class="fa fa-reorder"></i> Personalizza rivista</a></li>
             </ol>
         </section>
 
         <!-- MAIN CONTENT -->
         <section class="content">
             <?php
-            include(BASE_PATH."/AdminPanel/include/contents/newspaper_customization.inc.php");
+            include(BASE_PATH . "/AdminPanel/include/contents/magazine_customization.inc.php");
             ?>
         </section>
         <!-- END MAIN CONTENT -->
@@ -140,7 +140,7 @@ $act_newspaper_customize		       = true; // setta attivo il link Stampa Rivista
 <!-- ----CUSTOM JS ------ -->
 <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
-<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/newspaper_customization.js"></script>
+<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/magazine_customization.js"></script>
 
 
 <!-- INIT COMPONENTS -->
@@ -155,7 +155,7 @@ $act_newspaper_customize		       = true; // setta attivo il link Stampa Rivista
             $( "#sortable" ).disableSelection();
 
         /*-------- INIT DATATABLE ---------*/
-        table = $('#DT_ADS').
+        /*table = $('#DT_ADS').
         DataTable({
             "language": {
                 "url": "plugins/datatables/localizations/italian.json"
@@ -177,7 +177,7 @@ $act_newspaper_customize		       = true; // setta attivo il link Stampa Rivista
             ],
             "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_properties_datatable.ajax.php",
 
-        });
+        });*/
 
     });
 </script>
