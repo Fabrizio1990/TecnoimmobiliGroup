@@ -56,45 +56,48 @@ $agent_id_status            = "";
 
 
 if($id_agency!=""){
-    $agencyData = $agMng->getAgenciesData("id =?",null,array($id_agency),null, false)[0];
-    $agentData  = $agMng->getOperators("id_agency = ?"," order by date_ins asc limit 1",array($id_agency),null,false)[0];
-    // DATI AGENZIA
-    $logo_path          = $agencyData["logo_path"];
-    $banner             = $agencyData["banner"];
-    $name               = $agencyData["name"];
-    $description        = $agencyData["description"];
-    $id_country         = $agencyData["id_country"];
-    $id_region          = $agencyData["id_region"];
-    $id_city            = $agencyData["id_city"];
-    $id_town            = $agencyData["id_town"];
-    $id_district        = $agencyData["id_district"];
-    $street             = $agencyData["street"];
-    $street_num         = $agencyData["street_num"];
-    $p_iva              = $agencyData["p_iva"];
-    $CF                 = $agencyData["fiscal_code"];
-    $REA                = $agencyData["rea"];
-    $business_register  = $agencyData["business_register"];
-    $id_status          = $agencyData["id_status"];
-    $id_sub_status      = $agencyData["id_sub_status"];
-    $id_portal_status   = $agencyData["id_portal_status"];
+    $agencyData = $agMng->getAgenciesData("id =?",null,array($id_agency),null, false);
+    //var_dump($agencyData);
+    $agentData  = $agMng->getOperators("id_agency = ?"," order by date_ins asc limit 1",array($id_agency),null,false);
+    if(Count($agencyData)>0) {
+        // DATI AGENZIA
+        $logo_path = $agencyData[0]["logo_path"];
+        $banner = $agencyData[0]["banner"];
+        $name = $agencyData[0]["name"];
+        $description = $agencyData[0]["description"];
+        $id_country = $agencyData[0]["id_country"];
+        $id_region = $agencyData[0]["id_region"];
+        $id_city = $agencyData[0]["id_city"];
+        $id_town = $agencyData[0]["id_town"];
+        $id_district = $agencyData[0]["id_district"];
+        $street = $agencyData[0]["street"];
+        $street_num = $agencyData[0]["street_num"];
+        $p_iva = $agencyData[0]["p_iva"];
+        $CF = $agencyData[0]["fiscal_code"];
+        $REA = $agencyData[0]["rea"];
+        $business_register = $agencyData[0]["business_register"];
+        $id_status = $agencyData[0]["id_status"];
+        $id_sub_status = $agencyData[0]["id_sub_status"];
+        $id_portal_status = $agencyData[0]["id_portal_status"];
+    }
 
     // DATI AGENTE
-
-    $id_agent                   = $agentData["id"];
-    $agent_name                 = $agentData["name"];
-    $agent_lastname             = $agentData["lastname"];
-    $agent_email                = $agentData["email"];
-    $agent_private_email        = $agentData["email_personal"];
-    $agent_phone                = $agentData["phone"];
-    $agent_mobile_phone         = $agentData["mobile_phone"];
-    $agent_fax                  = $agentData["fax"];
-    $agent_skype                = $agentData["skype"];
-    $agent_address              = $agentData["address"];
-    $agent_pIva                 = $agentData["p_iva"];
-    $agent_CF                   = $agentData["fiscal_code"];
-    $agent_REA                  = $agentData["rea"];
-    $agent_id_status            = $agentData["status"];
-
+    if(Count($agentData)>0){
+        $id_agent                   = $agentData[0]["id"];
+        $agent_name                 = $agentData[0]["name"];
+        $agent_lastname             = $agentData[0]["lastname"];
+        $agent_email                = $agentData[0]["email"];
+        $agent_private_email        = $agentData[0]["email_personal"];
+        $agent_phone                = $agentData[0]["phone"];
+        $agent_mobile_phone         = $agentData[0]["mobile_phone"];
+        $agent_fax                  = $agentData[0]["fax"];
+        $agent_skype                = $agentData[0]["skype"];
+        $agent_address              = $agentData[0]["address"];
+        $agent_pIva                 = $agentData[0]["p_iva"];
+        $agent_CF                   = $agentData[0]["fiscal_code"];
+        $agent_REA                  = $agentData[0]["rea"];
+        $agent_id_status            = $agentData[0]["id_status"];
+    }
 
 
 }

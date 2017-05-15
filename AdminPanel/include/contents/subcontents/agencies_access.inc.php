@@ -42,13 +42,13 @@ foreach($resAg as $agency){
 
         $operators ="<form class='form_agent_access' method='POST'  action='".SITE_URL."/AdminPanel/login_as.php'>";
         $operators.="<input type='hidden'  name='id_operator' value='".$operators_ids[$i]."'/>";
-        $operators.="<span class='operator_name' onclick='this.parentNode.submit()'>".$operators_arr[$i]."</span>";
+        $operators.="<span class='operator_name' onclick='this.getElementsByTagName('form')[0].submit()'>".$operators_arr[$i]."</span>";
         $operators.="</form>";
         $ads_count ="";
         ?>
-        <div class="box-footer no-padding">
+        <div class="box-footer no-padding" onclick="console.log(this.children[0].children[0].children[0].children[0].submit())">
             <ul class="nav nav-stacked">
-                <li><a href="javascript:"> <?php echo $operators ?> <span class="pull-right badge bg-blue" title="Immobili attivi"><?php echo $properties_count[0]["cnt_property"] ?></span></a></li>
+                <li><a href="#"> <?php echo $operators ?> <span class="pull-right badge bg-blue" title="Immobili attivi"><?php echo $properties_count[0]["cnt_property"] ?></span></a></li>
 
             </ul>
         </div>

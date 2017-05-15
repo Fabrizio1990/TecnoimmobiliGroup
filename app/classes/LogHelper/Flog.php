@@ -19,11 +19,19 @@ class Flog{
 
 		$fullText =$date." <--> ". $text . " <--> " . self::getBacktrace() ;
 		self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
-		self::WriteFile($fullText);
+		self::writeFile($fullText);
         if($output)echo($text);
 	}
+
+	public static function logInfo($text,$log_file_name ="log",$output = false){
+        $date  = Date("Y-m-d h:i:s");
+        $fullText =$date." <--> ". $text ;
+        self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
+        self::writeFile($fullText);
+        if($output)echo($text);
+    }
 	
-	private static function  WriteFile($text){
+	private static function  writeFile($text){
 		if (!file_exists(self::$log_path)) {
 			mkdir(self::$log_path, 0777, true);
 		}

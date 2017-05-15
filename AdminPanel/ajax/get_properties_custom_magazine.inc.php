@@ -12,9 +12,9 @@ if(SessionManager::getVal("authenticated") != null){
     require(BASE_PATH."/app/classes/MagazineManager.php");
 
     $mng = new MagazineManager();
-    $status = isset($_POST["STATUS"]) ? $_POST["STATUS"]:1;
+    $status = isset($_POST["enabled"]) ? $_POST["enabled"]:1;
 
-    $res = $mng->getMagazineProperties($agency_id);
+    $res = $mng->getMagazineProperties($agency_id,$status);
 
 
     echo json_encode($res);

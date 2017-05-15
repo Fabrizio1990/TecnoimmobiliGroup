@@ -33,7 +33,7 @@ class MagazineManager extends DbManager implements IDbManager {
 
     public function update($fields,$params,$values = null,$extra_params = null,$printQuery = false)
     {
-        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params,$printQuery);d
+        $ret = parent::update($this->currTable,$fields,$params,$values,$extra_params,$printQuery);
         return $ret;
     }
 
@@ -43,9 +43,21 @@ class MagazineManager extends DbManager implements IDbManager {
         return $ret;
     }
 
+    public function addOnMangazine($id_property,$id_agency,$status){
+        $fields = array("id_property","id_agency","enabled" );
+        $values = array($id_property,$id_agency,$status);
+        $ret = $this->create($values,$fields,false);
+        return $ret;
+    }
+
 
     public function getMagazineProperties($agency = null,$enabled = 1){
         $this->currTable = "magazine_view";
+        if($enabled == 0 )
+            $extra_params = "order by date_up desc";
+        else
+            $extra_params ="order by `order` desc";
+
         $params = array("enabled = ?");
         $values = array($enabled);
         if($agency!=null){

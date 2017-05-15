@@ -17,7 +17,7 @@ class PropertyManager extends DbManager implements IDbManager {
     public function create($values = null,$fields = null,$printQuery = false)
     {
 
-        $def_fields = array("id_contract","id_contract_status","id_country","id_region","id_city","id_town","id_district","street","street_num","show_address","longitude","latitude","id_category","id_tipology","mq","price","negotiation_reserved","id_locals","id_rooms","id_bathrooms","id_floor","id_elevator","id_heating","id_box","id_garden","id_property_conditions","id_property_status","id_ads_status","is_prestige","is_price_lowered","video_url","id_description","id_energy_class","id_ipe_um","ipe");
+        $def_fields = array("id_contract","id_contract_status","id_country","id_region","id_city","id_town","id_district","street","street_num","show_address","longitude","latitude","id_category","id_tipology","mq","price","negotiation_reserved","id_locals","id_rooms","id_bathrooms","id_floor","id_elevator","id_heating","id_box","id_garden","id_property_conditions","id_property_status","id_ads_status","is_prestige","is_price_lowered","video_url","id_description","id_energy_class","id_ipe_um","ipe","date_up");
 
         $fields = $fields == null ? $def_fields : $fields;
         $ret = parent::create($this->currTable,$fields,$values,$printQuery);
@@ -44,20 +44,30 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 
 
-    public function saveAds($values,$fields=null,$printQuery = false){
+    public function saveProperty($values,$fields=null,$printQuery = false){
 
         $ret = $this->create($values,$fields,$printQuery);
         if($ret=="" || $ret == null)// se va in errore ritorno ret che sarà vuoto e scatenerà l ' errore
             return "errore - Salvataggio immobile fallito";
-
         $ret = $this->lastInsertId;
+
+        return $ret;
+    }
+
+    //save data on property_agencies table
+    public function savePropertyAgentRelations($id_agency,$id_agent,$id_property,$printQuery = false){
+        $this->currTable = "property_agencies";
+        $values = array($id_agency,$id_agent,$id_property);
+        $fields = array("id_agency","id_agent","id_property");
+        $ret = $this->create($values,$fields,$printQuery);
+        $this->setDefTable();
 
         return $ret;
     }
 
 
     public function updateAds($values,$params = null,$extraParams = null,$fields=null,$printQuery = false){
-        $def_fields = array("id_contract = ?","id_contract_status = ?","id_country = ?","id_region = ?","id_city = ?","id_town = ?","id_district = ?","street = ?","street_num = ?","show_address = ?","longitude = ?","latitude = ?","id_category = ?","id_tipology = ?","mq = ?","price = ?","negotiation_reserved = ?","id_locals = ?","id_rooms = ?","id_bathrooms = ?","id_floor = ?","id_elevator = ?","id_heating = ?","id_box = ?","id_garden = ?","id_property_conditions = ?","id_property_status = ?","id_ads_status = ?","is_prestige = ?","is_price_lowered = ?","video_url = ?","id_description = ?","id_energy_class = ?","id_ipe_um = ?","ipe = ?");
+        $def_fields = array("id_contract = ?","id_contract_status = ?","id_country = ?","id_region = ?","id_city = ?","id_town = ?","id_district = ?","street = ?","street_num = ?","show_address = ?","longitude = ?","latitude = ?","id_category = ?","id_tipology = ?","mq = ?","price = ?","negotiation_reserved = ?","id_locals = ?","id_rooms = ?","id_bathrooms = ?","id_floor = ?","id_elevator = ?","id_heating = ?","id_box = ?","id_garden = ?","id_property_conditions = ?","id_property_status = ?","id_ads_status = ?","is_prestige = ?","is_price_lowered = ?","video_url = ?","id_description = ?","id_energy_class = ?","id_ipe_um = ?","ipe = ?","date_up = ?");
 
         $fields = $fields == null ? $def_fields : $fields;
         //var_dump($fields);
@@ -77,7 +87,7 @@ class PropertyManager extends DbManager implements IDbManager {
 
 
     // Img save process , require id of ads and array with images
-    public function saveImages($id_ads,$images){
+    public function saveImages($id_property,$images){
         $ret ="";
         $this->currTable = "property_images";
         for($i = 0 ,$len = Count($images);$i<$len;$i++){
@@ -86,7 +96,7 @@ class PropertyManager extends DbManager implements IDbManager {
                 if($i>0){
                     $id_image_type ="2";
                 }
-                $values = array($id_ads,$id_image_type,$images[$i]);
+                $values = array($id_property,$id_image_type,$images[$i]);
                 $ret = $this->saveImage($values);
 
                 if ($ret !="1") return $ret;
@@ -98,11 +108,11 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 
 
-    public function updateImages($id_ads,$images)
+    public function updateImages($id_property,$images)
     {
         $this->currTable = "property_images";
-        $resI = $this->delete("id_property = ?",array($id_ads));
-        $res = $this->saveImages($id_ads,$images);
+        $resI = $this->delete("id_property = ?",array($id_property));
+        $res = $this->saveImages($id_property,$images);
         return $res;
     }
 
@@ -115,20 +125,20 @@ class PropertyManager extends DbManager implements IDbManager {
 
 
 
-    public function saveDescription($id_ads,$descriptionIT,$descriptionEN = Null){
+    public function saveDescription($id_property,$descriptionIT,$descriptionEN = Null){
         $this->currTable = "property_descriptions";
 
-        $res = $this->create(array($id_ads,$descriptionIT,$descriptionEN),array("id_property","desc_it","desc_en"));
+        $res = $this->create(array($id_property,$descriptionIT,$descriptionEN),array("id_property","desc_it","desc_en"));
 
         $this->setDefTable();
         return $res;
     }
 
-    public function updateDescription($id_ads,$descriptionIT,$descriptionEN = Null){
+    public function updateDescription($id_property,$descriptionIT,$descriptionEN = Null){
         $this->currTable = "property_descriptions";
-        $resD = $this->delete("id_property = ?",array($id_ads));
+        $resD = $this->delete("id_property = ?",array($id_property));
 
-        $res = $this->saveDescription($id_ads,$descriptionIT,$descriptionEN);
+        $res = $this->saveDescription($id_property,$descriptionIT,$descriptionEN);
 
         return $res;
     }
@@ -155,9 +165,9 @@ class PropertyManager extends DbManager implements IDbManager {
         return $ret;
     }
 
-    public function getDescription($id_ads){
+    public function getDescription($id_property){
         $this->currTable = "property_descriptions";
-        $ret = $this->read("id_property = ?","limit 1",array($id_ads));
+        $ret = $this->read("id_property = ?","limit 1",array($id_property));
         $this->setDefTable();
         return $ret;
     }

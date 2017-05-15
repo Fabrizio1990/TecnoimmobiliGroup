@@ -105,7 +105,7 @@
 	// CREO OPTIONS ELEVATOR
 	$optElevators 		= $optMng->makeOptions("ads_elevators",$optElevatorsVal);
 	// CREO OPTIONS Conditions
-	$optConditions		= $optMng->makeOptions("ads_elevators",$optConditionsVal);
+	$optConditions		= $optMng->makeOptions("ads_conditions",$optConditionsVal);
 	// CREO OPTIONS property status
 	$optPropertyStatus	= $optMng->makeOptions("ads_property_status",$optPropertyStatusVal);
 	// CREO OPTIONS property status

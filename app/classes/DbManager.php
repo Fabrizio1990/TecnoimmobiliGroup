@@ -106,8 +106,10 @@ class DbManager
         $sth = $this->conn->prepare($query);
 
         $ret = $sth->execute($values);
-        if($printQuery)
+        if($printQuery){
             $sth->debugDumpParams();
+            //Flog::logInfo($query,"QueryInfo.php");
+        }
 
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
@@ -144,9 +146,11 @@ class DbManager
         $sth = $this->conn->prepare($query);
 
         $sth->execute($values);
-        if($printQuery)
-            $sth->debugDumpParams();
-
+        if($printQuery){
+            //$sth->debugDumpParams();
+            var_dump($values);
+            //Flog::logInfo($query,"QueryInfo.php");
+        }
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
         if($errorInfo[0] != 0){
@@ -172,9 +176,12 @@ class DbManager
         $query = "UPDATE $table SET $fields $params $extra_params";
         $sth = $this->conn->prepare($query);
         $sth->execute($values);
-        if($printQuery)
+        /*echo $query;
+        var_dump($values);*/
+        if($printQuery){
             $sth->debugDumpParams();
-
+            //Flog::logInfo($query,"QueryInfo.php");
+        }
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
         if($errorInfo[0] != 0){
@@ -188,7 +195,7 @@ class DbManager
         return $count;
     }
 
-    protected function delete($table,$params = null,$values = null,$extra_params = null){
+    protected function delete($table,$params = null,$values = null,$extra_params = null,$printQuery = false){
         $ret = false;
         $this->openConnection();
 
@@ -200,7 +207,10 @@ class DbManager
         $sth = $this->conn->prepare($query);
         $ret = $sth->execute($values);
         //$sth->debugDumpParams();
-
+        if($printQuery){
+            $sth->debugDumpParams();
+            //Flog::logInfo($query,"QueryInfo.php");
+        }
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
         if($errorInfo[0] != 0){

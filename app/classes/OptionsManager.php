@@ -23,6 +23,7 @@ class OptionsManager extends DbManager{
     function readOptions($what,$id_parent = null,$printQuery = false){
         $params = null;
         $fields = null;
+        $extra_params = null;
         $conditionPlaceholders = "?";
         // NEED TO CHECK IF ALREADY SENT AN ARRAY, IF NOT THE VARIABLE MUST BE CONVERTED TO ARRAY
         // BECOUSE SOMETIMES I SEND MORE VALUES BY JAVASCRIPT (ES SELECT MULTIPLE)
@@ -43,80 +44,97 @@ class OptionsManager extends DbManager{
             case "ads_status":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_ads_status";
                 break;
             case "ads_category":
                 $params = array("enabled = 1");
+                $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_categories";
                 break;
             case "ads_tipologies":
                 $params = array("id_category in($conditionPlaceholders)","enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_tipologies";
                 break;
             case "ads_locals":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by id asc";
                 $this->currTable = "property_locals";
                 break;
             case "ads_rooms":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by id asc";
                 $this->currTable = "property_rooms";
                 break;
             case "ads_floors":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by id asc";
                 $this->currTable = "property_floors";
                 break;
             case "ads_elevators":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_elevators";
                 break;
             case "ads_conditions":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
-                $this->currTable = "property_coditions";
+                $extra_params = "order by id asc";
+                $this->currTable = "property_conditions";
                 break;
             case "ads_property_status":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_status";
                 break;
             case "ads_heatings":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_heatings";
                 break;
             case "ads_bathrooms":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_bathrooms";
                 break;
             case "ads_box":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_box";
                 break;
             case "ads_gardens":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_gardens";
                 break;
             case "ads_contracts":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by id asc";
                 $this->currTable = "property_contracts";
                 break;
             case "ads_contract_status":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "property_contract_status";
                 break;
             case "ads_energy_class":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by id asc";
                 $this->currTable = "property_energy_class";
                 break;
             case "ads_ipe_um":
@@ -130,27 +148,32 @@ class OptionsManager extends DbManager{
             case "agencies_list":
                 $params = array("status = 1");
                 $fields = array("id","name");
+                $extra_params = "order by name asc";
                 $this->currTable = "agencies";
                 break;
             case "ag_status":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "agencies_status";
                 break;
             case "ag_sub_status":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "agencies_sub_status";
                 break;
             case "ag_portal_status":
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "agency_portal_status";
                 break;
             // ---------------- USERS (AGENTI) -------------------
             case "operator_status" :
                 $params = array("enabled = 1");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 $this->currTable = "agency_operators_status";
                 break;
 
@@ -158,32 +181,38 @@ class OptionsManager extends DbManager{
             case "geo_country":
                 $this->currTable = "geo_country";
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 break;
             case "geo_region" :
                 $this->currTable = "geo_region";
                 if($id_parent!=null)
                     $params = array("id_country in($conditionPlaceholders)");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 break;
             case "geo_city":
                 $this->currTable = "geo_city";
                 $params = array("id_region in($conditionPlaceholders)");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 break;
             case "geo_town" :
                 $this->currTable = "geo_town";
                 $params = array("id_city in($conditionPlaceholders)");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 break;
             case "geo_district":
                 $this->currTable = "geo_district";
                 $params = array("id_town in($conditionPlaceholders)");
                 $fields = array("id","title");
+                $extra_params = "order by title asc";
                 break;
             case "geo_istat":
                 $this->currTable = "geo_town";
                 $params = array("id = ?");
                 $fields = array("id", "istat as title");
+
                 break;
             case "geo_cap":
                 $this->currTable = "geo_district";
@@ -193,9 +222,9 @@ class OptionsManager extends DbManager{
         }
 
         if($id_parent!= null)
-            $ret = $this->read($params,null,$id_parent,$fields,$printQuery);
+            $ret = $this->read($params,$extra_params,$id_parent,$fields,$printQuery);
         else
-            $ret = $this->read(null,null,null,$fields,$printQuery);
+            $ret = $this->read(null,$extra_params,null,$fields,$printQuery);
 
         $this->setDefTable();
         //var_dump($ret);
