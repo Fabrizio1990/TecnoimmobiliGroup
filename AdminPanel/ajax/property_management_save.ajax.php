@@ -156,9 +156,10 @@ if(isset($_POST["sel_category"],$_POST["sel_tipology"],$_POST["inp_surface"],$_P
                     // SET PROPERTY ON MAGAZINE TABLE (WITH STATUS DISABLED)
                     $resMagazine = $mgzMng->addOnMangazine($id_property,$id_agency,0);
                     if($resMagazine =="" || $resMagazine == null) {
-                        echo("errore - Salvataggio di alcune immagini");
+                        echo("errore - Salvataggio nella rista");
                         exit;
                     }
+
 
 
                 }else{

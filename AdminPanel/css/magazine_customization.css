@@ -1,6 +1,10 @@
 #sortable { list-style-type: none; margin: 0; padding: 0;  }
 #sortable li { float: left; width: 25%;  text-align: center; }
 
+
+.widget-user-header{padding:0px !important;}
+.widget-user-header .btn-group{float: right;}
+
 .box-widget{border: 1px solid #3c8dbc;}
 /*#shortable .col-md-4 .box-widget*/ .widget-user-header{
     background-repeat: no-repeat !important;

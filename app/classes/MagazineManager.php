@@ -47,6 +47,8 @@ class MagazineManager extends DbManager implements IDbManager {
         $fields = array("id_property","id_agency","enabled" );
         $values = array($id_property,$id_agency,$status);
         $ret = $this->create($values,$fields,false);
+        $id = $this->lastInsertId;
+        $this->setPropertyMagazineStatusAndOrder($id,1,1);
         return $ret;
     }
 
@@ -64,18 +66,35 @@ class MagazineManager extends DbManager implements IDbManager {
             array_push($params,"id_agency = ?");
             array_push($values,$agency);
         }
-       $res =  $this->read($params,"order by `order` desc",$values,null,false);
+       $res =  $this->read($params,"order by `order` asc",$values,null,false);
 
         $this->setDefTable();
         return $res;
     }
 
+    public function setPropertyMagazineStatusAndOrder($id,$status,$newOrder = 0){
+        // pos è status si equivalgono in questo caso perchè
+        // se abilito metto in primo piano (pos 1) e se disabilito metto a 0
 
+        $query = "CALL UpdateMagazinePropertyPosition(".$id.",".$status.",".$newOrder.")";
+        echo($query);
+        $res = parent::executeQuery($query);
+
+        return $res[0]["ret"];
+    }
+
+    public function setPropertyMagazineOrder($id,$order){
+        $res = $this->update("`order` = ?","id = ?",array($order,$id),null,false);
+        return $res;
+    }
 
 
     public function setDefTable(){
         $this->currTable = self::defTable;
     }
+
+
+
 
 
 }

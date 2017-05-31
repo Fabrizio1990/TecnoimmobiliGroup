@@ -36,9 +36,7 @@ $act_magazine_customize		       = true; // setta attivo il link Stampa Rivista
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css" />
+
 
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/dist/css/AdminLTE.min.css">
@@ -131,10 +129,7 @@ $act_magazine_customize		       = true; // setta attivo il link Stampa Rivista
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-<!-- DataTables -->
-<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
-<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+
 
 
 <!-- ----CUSTOM JS ------ -->
@@ -142,45 +137,6 @@ $act_magazine_customize		       = true; // setta attivo il link Stampa Rivista
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/magazine_customization.js"></script>
 
-
-<!-- INIT COMPONENTS -->
-<script>
-
-    var table;
-    $(".sidebar-toggle").click(function(e){
-        setTimeout(function(){ table.columns.adjust().responsive.recalc(); }, 700);
-    });
-    $(function() {
-            $( "#sortable" ).sortable();
-            $( "#sortable" ).disableSelection();
-
-        /*-------- INIT DATATABLE ---------*/
-        /*table = $('#DT_ADS').
-        DataTable({
-            "language": {
-                "url": "plugins/datatables/localizations/italian.json"
-            },
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "bDeferRender": true,
-            "lengthMenu": [5, 10, 15],
-            "pageLength": 5,
-            "order": [
-                [8, "desc"]
-            ],
-            "columnDefs": [
-                { targets: "_all",className: "ALIGN_CENTER"}
-            ],
-            "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_properties_datatable.ajax.php",
-
-        });*/
-
-    });
-</script>
 </body>
 
 </html>

@@ -48,7 +48,7 @@ $docs = $docMng->getDocuments("enabled = 1","order by date_ins");
                                             </td>";
                                 }else{
                                     $row.="<td>";
-                                        $row.= "<a target='_blank' href='".$doc['path']."'>";
+                                        $row.= "<a target='_blank' href='".SITE_URL."/".$doc['save_path']."/".$doc['filename']."'>";
                                             $row.= "<span class='glyphicon glyphicon-download-alt'></span>";
                                         $row.= "</a>";
                                     $row.="</td>";
