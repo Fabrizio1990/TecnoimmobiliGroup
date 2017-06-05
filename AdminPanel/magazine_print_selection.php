@@ -48,7 +48,7 @@ $act_magazine_print		           = true; // setta attivo il link Stampa Rivista
 
     <!-- ----CUSTOM CSS ------ -->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/newspaper_print_selection.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/magazine_print_selection.css" />
 
     <!-- modals -->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
@@ -94,8 +94,7 @@ $act_magazine_print		           = true; // setta attivo il link Stampa Rivista
         <section class="content">
 
             <?php
-            // TODO REPLACE INCLUDE WITH RIGHT PATAH
-            //include(BASE_PATH."/AdminPanel/include/contents/newsletter.inc.php");
+            include(BASE_PATH."/AdminPanel/include/contents/magazine_print_selection.inc.php");
             ?>
 
 
@@ -139,7 +138,7 @@ $act_magazine_print		           = true; // setta attivo il link Stampa Rivista
 
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
 <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
-<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/newspaper_print_selection.js"></script>
+<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/magazine_print_selection.js"></script>
 
 
 

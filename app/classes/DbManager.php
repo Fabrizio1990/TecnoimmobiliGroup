@@ -147,7 +147,7 @@ class DbManager
 
         $sth->execute($values);
         if($printQuery){
-            //$sth->debugDumpParams();
+            $sth->debugDumpParams();
             var_dump($values);
             //Flog::logInfo($query,"QueryInfo.php");
         }
