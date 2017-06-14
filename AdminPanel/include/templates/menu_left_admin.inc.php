@@ -28,6 +28,8 @@ $act_documents              = isset($act_documents)?$act_documents:false;
 $act_e_commerce             = isset($act_e_commerce)?$act_e_commerce:false;
 $act_newsletter             = isset($act_newsletter)?$act_newsletter:false;
 $act_statistics             = isset($act_statistics)?$act_statistics:false;
+$act_statistics             = isset($act_statistics)?$act_statistics:false;
+$act_show_logs              = isset($act_show_logs)?$act_show_logs:false;
 // MAGAZINE MANAGEMENT
 $act_magazine_management   = isset($act_magazine_management)?$act_magazine_management:false;
 $act_magazine_print        = isset($act_magaziner_print)?$act_magazine_print:false;
@@ -151,6 +153,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 </a>
                             </li>
 
+
                             <!-- ########## SEZIONE RIVISTA #########-->
 
                             <li <?php if($act_magazine_management) echo('class="active"')?>>
@@ -176,7 +179,13 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 </a>
                             </li>
 
-                            <!-- da aggiungere DOCUMENT | E-COMMERCE | STATISTICHE -->
+                            <li <?php if($act_newsletter) echo('class="active"')?>>
+                                <a href="log_list.php"><i class="fa fa-file-text-o"></i>
+                                    Log errori
+                                </a>
+                            </li>
+
+                            <!-- TODO da aggiungere  | E-COMMERCE | STATISTICHE -->
                         </ul>
                     </li>
                     <!-- MENU UTILITY END -->

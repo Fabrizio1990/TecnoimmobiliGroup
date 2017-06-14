@@ -81,7 +81,7 @@ if(SessionManager::getVal("authenticated")!= null) header("Location:index.php");
 												<input <?php if(isset($_COOKIE['email_login'])) echo('checked') ?> name="remember" type="checkbox"> Ricorda email
 											</label>
 										</div>
-									<button type="submit" class="btn">Sign in!</button>
+									<button type="submit" class="btn">Accedi</button>
 								</form>
 							</div><!-- /.form-bottom -->
 						</div><!-- /.form-box -->
