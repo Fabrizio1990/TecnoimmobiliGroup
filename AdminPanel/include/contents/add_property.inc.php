@@ -3,7 +3,7 @@
 	require_once(BASE_PATH."/app/classes/PropertyManager.php");
 	//SETTING UP DEFAULT VALUES
 	$action = "save";
-	$id_ads ="";
+	$id_property ="";
 
 	$optCountriesVal 		= "1";
 	$inpIpeVal		 		= "175";
@@ -20,20 +20,19 @@
 	 $optRegionsVal = $optCityVal = $optTownVal = $optDistrictVal = $optCategoryVal = $optTipologyVal = $optLocalsVal = $optRoomsVal = $optFloorsVal = $optElevatorsVal = $optConditionsVal = $optPropertyStatusVal = $optContractStatusVal = $optAdsyStatusVal = $optHeatingsVal = $optBathroomsVal = $optBoxVal = $optGardensVal = $optContractsVal = $optStatusVal = $optEnergyClassVal = $optIpeUmVal = $optCityVal = $optPriceLoweredVal = $optPrestigeVal = $optNegotiationVal = $optAdsStatusVal =  $optShowAddressVal = "";
 
 
-	$adsMng = new PropertyManager();
+	$pMng = new PropertyManager();
 
 	if(isset($_POST["id_ads"])){
 		$action = "update";
-		$id_ads = $_POST["id_ads"];
+        $id_property = $_POST["id_ads"];
 
 		// GET THE ADS DATA
-		$adsData 		= $adsMng->read("id=?","limit 1" ,array($id_ads));
-		$resDesc 		= $adsMng->getDescription($id_ads);
-		$resImages		= $adsMng->getImages("id_property =?",null,array($id_ads) ,"img_name");
-//		$resImagePath	= $adsMng->getImagesPath("id=?","",array("3") ,"path");
+		$adsData 		= $pMng->read("id=?","limit 1" ,array($id_property));
+		$resDesc 		= $pMng->getDescription($id_property);
+		$resImages		= $pMng->getImages("id_property =?",null,array($id_property) ,"img_name");
+//		$resImagePath	= $pMng->getImagesPath("id=?","",array("3") ,"path");
 
-
-
+        $id_easyWork                = $adsData[0]["id_easywork"];
 		$inpIpeVal		 			= $adsData[0]["ipe"];
 		$inpSurfaceVal	 			= $adsData[0]["mq"];
 		$InpPriceVal				= $adsData[0]["price"];
@@ -74,6 +73,8 @@
 		for($i = 0,$len = Count($resImages);$i<$len;$i++){
 			$imagesVal[$i] = $resImages[$i]["img_name"];
 		}
+
+		// APPOINTMENT DATA
 
 	}
 
@@ -136,7 +137,7 @@
 ?>
 <form name="FORM_PROPERTY" id="FORM_PROPERTY" novalidate accept-charset="UTF-8">
 	<input type ="hidden" name="action" id="action" value="<?php echo $action ?>" />
-	<input type ="hidden" name="id_ads" id="id_ads" value="<?php echo $id_ads ?>" />
+	<input type ="hidden" name="id_ads" id="id_ads" value="<?php echo $id_property ?>" />
 
 	<div class="row">
 	<!-- FILTRO PARAMETRI -->
@@ -165,7 +166,7 @@
 							Immagini
 						</a>
 					</li>
-					<?php if($userLogged->id_user_type==1 && isset($_POST["ID"])){?>
+					<?php if($userLogged->id_user_type==1 && $id_easyWork!=null){?>
 					<li>
 						<a href="#tab_appointment" data-toggle="tab" aria-expanded="true">
 							Scheda confidenziale
@@ -215,14 +216,15 @@
 						?>
 					</div><!-- ####################### FINE TAB IMMAGINI ############################## -->
 
-					<?php if($userLogged->id_user_type==1 && isset($_POST["ID"])){?>
+                    <!-- visualizzo i dati proprietario solo se sono admin e se id_easywork è diverso da 0 -->
+					<?php //if($userLogged->id_user_type==1 && $id_easyWork!=null){?>
 					<!-- #######################INIZIO TAB INCARICO ############################## -->
 					<div class="tab-pane" id="tab_appointment">
 						<?php
 						require("subcontents/add_property_appointment.inc.php");
 						?>
 					</div><!-- ####################### FINE TAB INCARICO ############################## -->
-					<?php } ?>
+					<?php //} ?>
 
 
 

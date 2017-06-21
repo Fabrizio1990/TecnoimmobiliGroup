@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/css/property_datatable.css">
 <table id="DT_ADS" class="table table-bordered table-hover display responsive no-wrap" width="100%">
 	<thead>
 		<tr>

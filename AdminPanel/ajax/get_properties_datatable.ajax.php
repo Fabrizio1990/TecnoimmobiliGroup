@@ -126,9 +126,29 @@
             $data_ins = Date("d-m-Y", strtotime($res[$i]["date_ins"]));
             $data_ins_field = "<span style='display:none'>" . $res[$i]["date_ins"] . "</span>" . $data_ins;
             $data_up_field = "<span style='display:none'>" . $res[$i]["date_up"] . "</span>" . $data_up;
+
+            $imgTit = "";
+
+
+            // Dati proprietario che verranno mostrati nel title dell' immagine (tooltip bootstrap)
+            $infoImg = "";
+            if($userLogged->id_user_type==1 &&  $res[$i]["id_easywork"]!=null){
+                $retApp = $propertyM->getAppointment($res[$i]["id"]);
+                $imgTit.="<h3>Dati proprietario</h3>";
+                $imgTit.="<p><i>Nome  : </i><b>".$retApp[0]["owner_name"]."</b>";
+                $imgTit.="<p><i>Cognome  : <b>".$retApp[0]["owner_lastname"]."</b>";
+                $imgTit.="<p><i>Provincia  : </i><b>".$retApp[0]["owner_town"]."</b>";
+                $imgTit.="<p><i>Indirizzo  : </i><b>".$retApp[0]["owner_address"]."</b>";
+                $imgTit.="<p><i>Cellulare : </i><b>".$retApp[0]["owner_mobile"]."</b>";
+                $infoImg = "<img style='position:absolute;'  src='".SITE_URL."/AdminPanel/images/icons/ico_info_20x20.png'/>";
+            }
+
             // Descrizione dell' immobile, verrà mostrata nel title dell immagine di copertina
+
+            $imgTit .="<h3>Descrizione Immobile</h3>";
             $description = htmlentities($res[$i]["desc_it"], ENT_QUOTES);
-            $description = $description ==""?"Nessuna descrizione":$description;
+            $imgTit .= $description ==""?"Nessuna descrizione":"<p>".$description."</p>";
+
 
             if($res[$i]["img_name"] =="")
                 $imgPath = $baseImgPath."/min/".$imgEof;
@@ -137,8 +157,9 @@
 
             $first_col = "
             <form name='GoToAds' method='POST' ACTION='".SITE_URL."/AdminPanel/add_property.php'>
-            <input type='hidden' name='id_ads' value='".$res[$i]["id"]."'>
-            <img onclick='this.parentNode.submit()' class='real_tumb POINTER' title='".$description."' src=$imgPath?id=". $rand_num . "' alt='Immagine Mancante'/> </form>";
+            <input type='hidden' name='id_ads' value='".$res[$i]["id"]."'/>
+            ".$infoImg."
+            <img  onclick='this.parentNode.submit()' class='real_tumb POINTER Tooltip'  src=$imgPath?id=". $rand_num . "' alt='Immagine Mancante' data-toggle='tooltip' data-placement='right' data-html='true' title='".$imgTit."'/> </form>";
 
             /* ------------ RECUPERO DATI PER COLONNA STATO ------------ */
             // immagine stato

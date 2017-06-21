@@ -1,0 +1,7 @@
+.tooltip.right{/*min-width:400px;*/width:auto;}
+.tooltip-inner {
+    background-color:#367fa9;
+    max-width:100%;
+    width:auto;
+}
+.tooltip-inner p{/*text-align:left;*/}

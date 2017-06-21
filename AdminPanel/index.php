@@ -175,7 +175,12 @@ folder instead of downloading all of them to reduce the load. -->
 					{ targets: "_all",className: "ALING_CENTER"}
 				  ],
                 "sAjaxSource": "ajax/get_properties_datatable.ajax.php",
-
+                "fnDrawCallback": function( oSettings ) {
+                    // serve per l' autowidht del tooltip
+                    $('.Tooltip').tooltip({
+                        container: 'body'
+                    });
+                },
             });
         });
 

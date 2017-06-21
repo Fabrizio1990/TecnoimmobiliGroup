@@ -172,6 +172,12 @@ class PropertyManager extends DbManager implements IDbManager {
         return $ret;
     }
 
+    public function getAppointment($id_property){
+        $this->currTable = "property_appointment";
+        $ret = $this->read("id_property = ?","limit 1",array($id_property));
+        $this->setDefTable();
+        return $ret;
+    }
 
 
     public function setDefTable(){
