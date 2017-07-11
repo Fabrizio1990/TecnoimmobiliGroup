@@ -1,5 +1,5 @@
 var BASE_PATH = "http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo";
-console.log(BASE_PATH);
+
 var debug = true;
 // OVERRIDE CONSOLE.LOG;
 (function(){

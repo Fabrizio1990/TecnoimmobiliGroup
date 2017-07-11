@@ -174,7 +174,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                             <!-- ########## FINE SEZIONE RIVISTA #########-->
 
                             <li <?php if($act_statistics) echo('class="active"')?>>
-                                <a href="#"><i class="fa fa-bar-chart"></i>
+                                <a href="statistics.php"><i class="fa fa-bar-chart"></i>
                                     Statistiche
                                 </a>
                             </li>
@@ -185,7 +185,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 </a>
                             </li>
 
-                            <!-- TODO da aggiungere  | E-COMMERCE | STATISTICHE -->
+                            <!-- TODO da aggiungere  | E-COMMERCE -->
                         </ul>
                     </li>
                     <!-- MENU UTILITY END -->

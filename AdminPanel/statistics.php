@@ -6,7 +6,7 @@ include(BASE_PATH."/app/classes/UserEntity.php");
 if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
     $agency_id 		= $SS_usr->id;
-    $tipo_utente 	= $SS_usr->id_user_type ;
+    $tipo_utente 	= $SS_usr->id_user_type;
     if($tipo_utente!="1")
         header("location:login.php");
 }else{
@@ -14,8 +14,9 @@ if(SessionManager::getVal("authenticated") != null){
 }
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
+$act_statistics		    = true; // setta attivo il link Statistiche
 $act_menu_utility       = true; // setta attivo il menu utility
-$act_agencies_access    = true; //setta attiva la voce accesso agenzie
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@ $act_agencies_access    = true; //setta attiva la voce accesso agenzie
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TecnoimmobiliGroup | Accesso Agenzie</title>
+    <title>TecnoimmobiliGroup | Statistiche</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -33,11 +34,18 @@ $act_agencies_access    = true; //setta attiva la voce accesso agenzie
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+   
+	<!-- Select2 -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.min.css">
+
 	<!-- Theme style -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/dist/css/AdminLTE.min.css">
 	<!-- AdminLTE Skin -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/dist/css/skins/skin-blue.min.css">
-
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datepicker/datepicker3.css">
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,9 +56,11 @@ $act_agencies_access    = true; //setta attiva la voce accesso agenzie
 
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/statistics.css" />
+    <!-- modals -->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
-
-    <!-- UTILS JS  JS are included here becouse i need it on included files and need to be loaded at start of page-->
+    <!-- UTILS JS AND FILE_UPLOAD JS are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
 </head>
 
@@ -76,18 +86,18 @@ $act_agencies_access    = true; //setta attiva la voce accesso agenzie
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small>Accesso Agenzie</small>
+                    <small>Statistiche</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-wrench"></i> Utility</a></li>
-                    <li><a href="#"><i class="fa fa-unlock"></i> Accesso Agenzie</a></li>
+                    <li><a href="#"><i class="fa fa-home"></i> Utilità</a></li>
+					<li><a href="#"><i class="fa fa-plus-square"></i> Statistiche</a></li>
                 </ol>
             </section>
 
             <!-- MAIN CONTENT -->
             <section class="content">
 				<?php 
-				include(BASE_PATH."/AdminPanel/include/contents/agencies_access.inc.php");
+				include(BASE_PATH."/AdminPanel/include/contents/statistics.inc.php");
 				?>
             </section>
             <!-- END MAIN CONTENT -->
@@ -120,14 +130,28 @@ $act_agencies_access    = true; //setta attiva la voce accesso agenzie
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
-    <!--<script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>-->
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap datepicker -->
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- ChartJS 2.6.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <!-- Select2 -->
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
+
 
     <!-- ----CUSTOM JS ------ -->
 	
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/statistics.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
+
+<script>
 
 
 
+</script>
 
 </body>
 

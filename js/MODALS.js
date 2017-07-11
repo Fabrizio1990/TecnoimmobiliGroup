@@ -8,6 +8,14 @@
 
 */
 // ##################  MODAL FUNCTIONS ####################
+// TYPE 		= TIPO MODALE DA APRIRE (CAMBIA SOLO IL COLORE)
+// TITLE 		= TITOLO MODALE
+// BODY 		= CORPO MODALE
+// btnSaveFunc 	= funzione da chiamare alla pressione del tasto start es: function(){console.log("SALVATO")}
+// btnCloseTxt 	= TESTO PULSANTE CHIUDI
+// btnSaveTxt 	= TESTO PULSANTE SALVA
+// hidden		= SE TRUE APRE LA MODALE NASCOSTA
+// callback		= EVENTUALE FUNZIONE DA CHIAMARE DOPO L' APERTURA DELLA MODALE
 function openModal(type,title,body,btnSaveFunc = null,btnCloseTxt = "Chiudi",btnSaveTxt = "Salva",hidden = false,callback = null){
     var modalId = "myModal";
     //  if modal already exist populate it with data
@@ -51,8 +59,7 @@ function openInfoModal(type,title,body,btnCloseTxt = "Chiudi",btnCloseFunc = nul
     var modalId = "myModalInfo";
     // if modal already exist populate it with data
     if ( $( "#" + modalId ).length ) {
-        if(btnCloseFunc!= null)
-            setInfoModalData(modalId,type,title,body,btnCloseTxt,btnCloseFunc);
+        setInfoModalData(modalId,type,title,body,btnCloseTxt,btnCloseFunc);
         if(callback!=null)callback();
         if(!hidden)showModal(modalId);
     // else get modal from page and populate data

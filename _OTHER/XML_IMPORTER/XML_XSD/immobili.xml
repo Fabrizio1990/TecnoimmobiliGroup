@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<properties>
+
+    <property id="5">
+        <agency_id>1</agency_id>
+        <agent_id>1</agent_id>
+
+        <reference_code>as</reference_code>
+        <id_contract>1</id_contract>
+        <id_contract_status>5</id_contract_status>
+        <id_country>1</id_country>
+        <id_region>2</id_region>
+        <id_city>1</id_city>
+        <id_town>2</id_town>
+        <id_district>1</id_district>
+        <street show_address="1"></street>
+        <street_num></street_num>
+        <longitude></longitude>
+        <latitude></latitude>
+        <id_category>1</id_category>
+        <id_tipology>2</id_tipology>
+        <mq>2</mq>
+        <price>100000</price>
+        <negotiation_reserved></negotiation_reserved>
+        <id_locals></id_locals>
+        <id_rooms></id_rooms>
+        <id_bathrooms></id_bathrooms>
+        <id_floor></id_floor>
+        <id_elevator></id_elevator>
+        <id_heating></id_heating>
+        <id_garden></id_garden>
+        <id_property_conditions></id_property_conditions>
+        <id_property_status></id_property_status>
+        <id_ads_status></id_ads_status>
+        <prestige></prestige>
+        <price_lowered></price_lowered>
+        <video_url></video_url>
+        <description></description>
+        <id_energy_class></id_energy_class>
+        <id_ipe_um></id_ipe_um>
+        <ipe></ipe>
+
+        <images>
+            <url></url>
+            <url></url>
+            <url></url>
+            <url></url>
+            <url></url>
+            <url></url>
+        </images>
+
+    </property>
+
+</properties>
