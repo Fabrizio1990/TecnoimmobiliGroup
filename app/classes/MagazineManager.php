@@ -72,12 +72,13 @@ class MagazineManager extends DbManager implements IDbManager {
         return $res;
     }
 
-    public function setPropertyMagazineStatusAndOrder($id,$status,$newOrder = 0){
+    public function setPropertyMagazineStatusAndOrder($id,$status,$newOrder = 0,$printQuery = false){
         // pos è status si equivalgono in questo caso perchè
         // se abilito metto in primo piano (pos 1) e se disabilito metto a 0
 
         $query = "CALL UpdateMagazinePropertyPosition(".$id.",".$status.",".$newOrder.")";
-        echo($query);
+        if($printQuery)
+            echo $query;
         $res = parent::executeQuery($query);
 
         return $res[0]["ret"];

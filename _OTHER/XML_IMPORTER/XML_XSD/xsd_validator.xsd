@@ -14,6 +14,13 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
+                            <xs:element name="agency_p_iva">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element  name="agent_id">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:integer">
@@ -29,16 +36,16 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_contract">
+                            <xs:element name="contract">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                        <xs:enumeration value="4"/>
-                                        <xs:enumeration value="5"/>
-                                        <xs:enumeration value="6"/>
-                                        <xs:enumeration value="7"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Affitto"/>
+										<xs:enumeration value="Vendita"/>
+										<xs:enumeration value="Leasing"/>
+										<xs:enumeration value="Nuda Proprietà"/>
+										<xs:enumeration value="Multiproprietà"/>
+										<xs:enumeration value="Affitto a riscatto"/>
+										<xs:enumeration value="Asta Immobiliare"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -53,60 +60,38 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_country">
+                            <xs:element name="country">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Italia"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_region">
+                            <xs:element name="region">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                        <xs:enumeration value="4"/>
-                                        <xs:enumeration value="5"/>
-                                        <xs:enumeration value="6"/>
-                                        <xs:enumeration value="7"/>
-                                        <xs:enumeration value="8"/>
-                                        <xs:enumeration value="9"/>
-                                        <xs:enumeration value="10"/>
-                                        <xs:enumeration value="11"/>
-                                        <xs:enumeration value="12"/>
-                                        <xs:enumeration value="13"/>
-                                        <xs:enumeration value="15"/>
-                                        <xs:enumeration value="16"/>
-                                        <xs:enumeration value="17"/>
-                                        <xs:enumeration value="18"/>
-                                        <xs:enumeration value="19"/>
-                                        <xs:enumeration value="20"/>
-                                        <xs:enumeration value="21"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="2"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_city">
+                            <xs:element name="city">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:minInclusive value="0"/>
-                                        <xs:maxInclusive value="9999"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="2"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_town">
+                            <xs:element name="town">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:minInclusive value="0"/>
-                                        <xs:maxInclusive value="9999"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="2"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_district">
+                            <xs:element name="district">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:minInclusive value="0"/>
-                                        <xs:maxInclusive value="9999"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="2"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -129,55 +114,17 @@
                             <xs:element type="xs:string" name="street_num"/>
                             <xs:element type="xs:string" name="longitude"/>
                             <xs:element type="xs:string" name="latitude"/>
-                            <xs:element name="id_category">
+                            <xs:element name="category">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="2"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_tipology">
+                            <xs:element name="tipology">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                        <xs:enumeration value="4"/>
-                                        <xs:enumeration value="5"/>
-                                        <xs:enumeration value="6"/>
-                                        <xs:enumeration value="7"/>
-                                        <xs:enumeration value="8"/>
-                                        <xs:enumeration value="9"/>
-                                        <xs:enumeration value="10"/>
-                                        <xs:enumeration value="11"/>
-                                        <xs:enumeration value="12"/>
-                                        <xs:enumeration value="13"/>
-                                        <xs:enumeration value="14"/>
-                                        <xs:enumeration value="15"/>
-                                        <xs:enumeration value="16"/>
-                                        <xs:enumeration value="17"/>
-                                        <xs:enumeration value="18"/>
-                                        <xs:enumeration value="19"/>
-                                        <xs:enumeration value="20"/>
-                                        <xs:enumeration value="21"/>
-                                        <xs:enumeration value="22"/>
-                                        <xs:enumeration value="23"/>
-                                        <xs:enumeration value="24"/>
-                                        <xs:enumeration value="25"/>
-                                        <xs:enumeration value="26"/>
-                                        <xs:enumeration value="27"/>
-                                        <xs:enumeration value="28"/>
-                                        <xs:enumeration value="29"/>
-                                        <xs:enumeration value="30"/>
-                                        <xs:enumeration value="31"/>
-                                        <xs:enumeration value="32"/>
-                                        <xs:enumeration value="33"/>
-                                        <xs:enumeration value="34"/>
-                                        <xs:enumeration value="35"/>
-                                        <xs:enumeration value="36"/>
-                                        <xs:enumeration value="37"/>
-                                        <xs:enumeration value="38"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="2"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -207,7 +154,7 @@
                             </xs:element>
                             <xs:element name="id_locals">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
+                                    <xs:restriction base="xs:string">
                                         <xs:enumeration value="1"/>
                                         <xs:enumeration value="2"/>
                                         <xs:enumeration value="3"/>
@@ -218,32 +165,13 @@
                                         <xs:enumeration value="8"/>
                                         <xs:enumeration value="9"/>
                                         <xs:enumeration value="10"/>
-                                        <xs:enumeration value="11"/>
+                                        <xs:enumeration value="0"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
                             <xs:element name="id_rooms">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                            <xs:element name="id_bathrooms">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                        <xs:enumeration value="4"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                            <xs:element name="id_floor">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
+                                    <xs:restriction base="xs:string">
                                         <xs:enumeration value="1"/>
                                         <xs:enumeration value="2"/>
                                         <xs:enumeration value="3"/>
@@ -254,28 +182,13 @@
                                         <xs:enumeration value="8"/>
                                         <xs:enumeration value="9"/>
                                         <xs:enumeration value="10"/>
-                                        <xs:enumeration value="11"/>
-                                        <xs:enumeration value="12"/>
-                                        <xs:enumeration value="13"/>
-                                        <xs:enumeration value="14"/>
-                                        <xs:enumeration value="15"/>
-                                        <xs:enumeration value="16"/>
-                                        <xs:enumeration value="17"/>
+                                        <xs:enumeration value="NN"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_elevator">
+                            <xs:element name="id_bathrooms">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                            <xs:element name="id_heating">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
+                                    <xs:restriction base="xs:string">
                                         <xs:enumeration value="1"/>
                                         <xs:enumeration value="2"/>
                                         <xs:enumeration value="3"/>
@@ -283,36 +196,102 @@
                                         <xs:enumeration value="5"/>
                                         <xs:enumeration value="6"/>
                                         <xs:enumeration value="7"/>
+                                        <xs:enumeration value="8"/>
+                                        <xs:enumeration value="9"/>
+                                        <xs:enumeration value="10"/>
+                                        <xs:enumeration value="NN"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_garden">
+                            <xs:element name="id_box">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                        <xs:enumeration value="4"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="NO"/>
+                                        <xs:enumeration value="S"/>
+                                        <xs:enumeration value="D"/>
+                                        <xs:enumeration value="T"/>
+                                        <xs:enumeration value="PC"/>
+                                        <xs:enumeration value="PS"/>
+                                        <xs:enumeration value="NN"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="id_property_conditions">
+                            <xs:element name="id_floor">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                            <xs:element name="id_property_status">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="T"/>
                                         <xs:enumeration value="1"/>
                                         <xs:enumeration value="2"/>
                                         <xs:enumeration value="3"/>
                                         <xs:enumeration value="4"/>
                                         <xs:enumeration value="5"/>
+                                        <xs:enumeration value="6"/>
+                                        <xs:enumeration value="7"/>
+                                        <xs:enumeration value="7+"/>
+                                        <xs:enumeration value="U"/>
+                                        <xs:enumeration value="NN"/>
+                                        <xs:enumeration value="2L"/>
+                                        <xs:enumeration value="3L"/>
+                                        <xs:enumeration value="SE"/>
+                                        <xs:enumeration value="PL"/>
+                                        <xs:enumeration value="PP"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="id_elevator">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="SI"/>
+                                        <xs:enumeration value="NO"/>
+                                        <xs:enumeration value="NN"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="id_heating">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="AUT"/>
+                                        <xs:enumeration value="CEN"/>
+                                        <xs:enumeration value="NO"/>
+                                        <xs:enumeration value="NN"/>
+                                        <xs:enumeration value="TL"/>
+                                        <xs:enumeration value="PSL"/>
+                                        <xs:enumeration value="AP"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="id_garden">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="NO"/>
+                                        <xs:enumeration value="PRI"/>
+                                        <xs:enumeration value="COM"/>
+                                        <xs:enumeration value="NN"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="id_property_conditions">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="AB"/>
+                                        <xs:enumeration value="NEW"/>
+                                        <xs:enumeration value="RIS"/>
+                                        <xs:enumeration value="DAR"/>
+                                        <xs:enumeration value="NN"/>
+                                        <xs:enumeration value="IC"/>
+                                        <xs:enumeration value="BC"/>
+                                        <xs:enumeration value="OC"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="id_property_status">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="AFF"/>
+                                        <xs:enumeration value="NP"/>
+                                        <xs:enumeration value="LIB"/>
+                                        <xs:enumeration value="OCC"/>
+                                        <xs:enumeration value="NN"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -346,29 +325,29 @@
                             <xs:element  name="description">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
-                                        <xs:minLength value="150"/>
+                                        <xs:minLength value="100"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
                             <xs:element name="id_energy_class">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
-                                        <xs:enumeration value="3"/>
-                                        <xs:enumeration value="4"/>
-                                        <xs:enumeration value="5"/>
-                                        <xs:enumeration value="6"/>
-                                        <xs:enumeration value="7"/>
-                                        <xs:enumeration value="8"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="A+"/>
+                                        <xs:enumeration value="A"/>
+                                        <xs:enumeration value="B"/>
+                                        <xs:enumeration value="C"/>
+                                        <xs:enumeration value="D"/>
+                                        <xs:enumeration value="E"/>
+                                        <xs:enumeration value="F"/>
+                                        <xs:enumeration value="G"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
                             <xs:element name="id_ipe_um">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:integer">
-                                        <xs:enumeration value="1"/>
-                                        <xs:enumeration value="2"/>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="kwh/m2 anno"/>
+                                        <xs:enumeration value="kwh/m3 anno"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -387,10 +366,10 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute  name="id">
+                        <xs:attribute  name="id_ew">
                             <xs:simpleType>
                                 <xs:restriction base="xs:integer">
-                                    <xs:minInclusive value="1"/>
+                                    <xs:minInclusive value="0"/>
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:attribute>

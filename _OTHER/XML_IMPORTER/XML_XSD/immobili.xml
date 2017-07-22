@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <properties>
 
-    <property id="5">
+    <property id_ew="0">
         <agency_id>1</agency_id>
         <agent_id>1</agent_id>
-
+	
         <reference_code>as</reference_code>
-        <id_contract>1</id_contract>
+        <contract>1</contract>
         <id_contract_status>5</id_contract_status>
-        <id_country>1</id_country>
-        <id_region>2</id_region>
-        <id_city>1</id_city>
+        <country>1</country>
+        <region>2</region>
+        <city>1</city>
         <id_town>2</id_town>
         <id_district>1</id_district>
         <street show_address="1"></street>

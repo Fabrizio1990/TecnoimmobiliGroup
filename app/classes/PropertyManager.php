@@ -45,7 +45,6 @@ class PropertyManager extends DbManager implements IDbManager {
 
 
     public function saveProperty($values,$fields=null,$printQuery = false){
-
         $ret = $this->create($values,$fields,$printQuery);
         if($ret=="" || $ret == null)// se va in errore ritorno ret che sarà vuoto e scatenerà l ' errore
             return "errore - Salvataggio immobile fallito";
@@ -79,6 +78,7 @@ class PropertyManager extends DbManager implements IDbManager {
 
     public function createRefenceCode($id_ads){
         $res = $this->readAllAds(array("id = ?"),null,array($id_ads),array("city_short","date_ins"));
+
         $date =Date("dmY",strtotime($res[0]["date_ins"]));
         $rif = $res[0]["city_short"].$date."RIF".$id_ads;
         $res = $this->update("reference_code = ?",array("id=?"),array($rif,$id_ads));
