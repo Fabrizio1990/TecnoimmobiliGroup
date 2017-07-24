@@ -29,7 +29,7 @@ class ImageManager {
 	// ################## FUNCTION FOR IMAGES RESIZE  ##################
 	
 	private function getImageSource($image){
-		if(is_string($image))
+		if(is_string($image) && !filter_var($image, FILTER_VALIDATE_URL))
 			return imagecreatefromstring($image);
 		else if($this->ext == "jpg" || $this->ext == "jpeg")
 			return imagecreatefromjpeg($image);

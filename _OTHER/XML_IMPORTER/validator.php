@@ -1,6 +1,6 @@
 <?php
-
-
+// TODO , MANCANO I DATI DELL' APPUNTAMENTO
+set_time_limit (0);
 function libxml_display_error($error)
 {
     $return = "<br/>\n";
@@ -36,27 +36,30 @@ function libxml_display_errors() {
 libxml_use_internal_errors(true);
 
 $xml = new DOMDocument();
-$xml->load('http://localhost/Tecnoimmobili/SITE/_export/export_immobili.php');
+//$xml->load('http://localhost/Tecnoimmobili/SITE/_export/export_immobili.php');
+$xml->load('http://www.tecnoimmobiligroup.it/_export/export_immobili.php');
 
 if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
     libxml_display_errors();
 }else{
     echo"valido";
+    //exit();
     include("../../config.php");
     include(BASE_PATH."/app/classes/PropertyManager.php");
     include(BASE_PATH."/app/classes/SessionManager.php");
     include(BASE_PATH."/app/classes/UserEntity.php");
     include(BASE_PATH."/app/classes/MagazineManager.php");
     include(BASE_PATH."/app/classes/GenericDbHelper.php");
+    include(BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
     $mng    = new PropertyManager();
     $mgzMng = new MagazineManager();
-    $dbH = new GenericDbHelper();
-
+    $dbH    = new GenericDbHelper();
 
 
     foreach ($xml->getElementsByTagName('property') as $property)
     {
+
         $id_easyWork            = $property->getAttribute("id_ew");
         //$id_agency              = $property->getElementsByTagName('agency_id')->item(0)->nodeValue;
         $p_iva                  = $property->getElementsByTagName('agency_p_iva')->item(0)->nodeValue;
@@ -107,6 +110,7 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
         $locals_txt             = $property->getElementsByTagName('id_locals')->item(0)->nodeValue;
         $id_locals              = getTableIdFromValue("property_locals",$locals_txt,"id","title_short");
 
+
         $rooms_txt              = $property->getElementsByTagName('id_rooms')->item(0)->nodeValue;
         $id_rooms               = getTableIdFromValue("property_rooms",$rooms_txt,"id","title_short");
 
@@ -148,22 +152,20 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
         $ipe_um_txt             = $property->getElementsByTagName('id_ipe_um')->item(0)->nodeValue;
         $id_ipe_um              = getTableIdFromValue("property_ipe_um",$ipe_um_txt,"id","title");
 
-
         $ipe                    = $property->getElementsByTagName('ipe')->item(0)->nodeValue;
-        $images = array("test1","test2","test2","test2","test2","test2","test2","test2","test2","test2");
 
-
-
+        $images = array();
+        foreach($property->getElementsByTagName('url') as $url){
+            $val = $url->nodeValue;
+            if($val!="")
+                array_push($images,$val);
+        }
 
 
         saveProperty($id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,"",$id_energy_class,$id_ipe_um,$ipe, $images,$description,$id_agency);
-
     }
 
-    // NB per id_locals 0 deve diventare NN
-
-
-
+    echo("Finito");
 
 
 }
@@ -207,9 +209,11 @@ function getAgentFromAgency($id_agency){
 function saveProperty($id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,$id_description,$id_energy_class,$id_ipe_um,$ipe ,$images,$txt_description,$id_agency)
 {
     global $mng, $mgzMng;
-
     $values = array($id_contract, $id_contract_status, $id_country, $id_region, $id_city, $id_town, $id_district, $street, $streetNum, $show_address, $latitude, $longitude, $id_category, $id_tipology, $mq, $price, $neg_reserved, $id_locals, $id_rooms, $id_bathrooms, $id_floor, $id_elevator, $id_heating, $id_box, $id_garden, $id_property_conditions, $id_property_status, $id_ads_status, $prestige, $price_lowered, $video_url, $id_description, $id_energy_class, $id_ipe_um, $ipe, date("Y-m-d H:i:s"));
 
+
+
+    $imgNames = saveImages($images);
 
 
     $id_agent = getAgentFromAgency($id_agency);
@@ -245,7 +249,7 @@ function saveProperty($id_contract,$id_contract_status,$id_country,$id_region,$i
         }
 
         // Saving Images
-        $resImgs = $mng->saveImages($id_property, $images);
+        $resImgs = $mng->saveImages($id_property, $imgNames);
         if ($resImgs == "" || $resImgs == null) {
             echo("errore - Salvataggio di alcune immagini");
             exit;
@@ -258,7 +262,58 @@ function saveProperty($id_contract,$id_contract_status,$id_country,$id_region,$i
             exit;
         }
     }
+
 }
 
+
+function saveImages($images){
+    global $imgMng;
+    $imgNames = array();
+    foreach($images as $image){
+        $imgName = saveImage($image);
+        array_push($imgNames,$imgName);
+    }
+    return $imgNames;
+}
+
+function saveImage($image){
+    global $isAsta;
+    $date = Date("Y-m-d_h-i-s");
+    $new_img_name = "img_".$date."_".rand(0,50);
+    $imageToSave 		= file_get_contents($image);
+    $imgInfo = pathinfo($image);
+    $imageName 	= $imgInfo['filename'].".".$imgInfo['extension'];
+
+    //echo($imageToSave);
+    $imgMng = new ImageManager($image,$imageName);
+
+    // RESIZE IMAGE 655,394
+    $resizedImg = $imgMng->resizeImage(655,394);
+
+        $save_path = "/public/images/images_properties/big";
+        $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+
+        //imposto  l' url dell' immagine da stampare
+        $imgName = $imgMng->getSavedImgName();
+        $res = SITE_URL.$save_path."/".$imgName;
+
+
+
+    // RESIZE IMAGE 360,265
+    $imgMng->setImage($image,$imageName);
+    $resizedImg = $imgMng->resizeImage(360,265);
+
+        $save_path = "/public/images/images_properties/normal";
+        $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+
+
+    // RESIZE IMAGE 68,49
+    $imgMng->setImage($image,$imageName);
+    $resizedImg = $imgMng->resizeImage(68,49);
+    $save_path = "/public/images/images_properties/min";
+    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+
+    return $imgName;
+}
 
 ?>

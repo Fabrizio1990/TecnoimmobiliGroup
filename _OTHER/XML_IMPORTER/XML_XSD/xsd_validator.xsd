@@ -3,7 +3,7 @@
     <xs:element name="properties">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="property">
+                <xs:element name="property" maxOccurs="unbounded" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="agency_id">
@@ -140,7 +140,7 @@
                                 <xs:simpleType>
                                     <xs:restriction base="xs:double">
                                         <xs:minInclusive value="0"/>
-                                        <xs:maxInclusive value="10000000"/>
+                                        <xs:maxInclusive value="100000000000"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -165,7 +165,27 @@
                                         <xs:enumeration value="8"/>
                                         <xs:enumeration value="9"/>
                                         <xs:enumeration value="10"/>
-                                        <xs:enumeration value="0"/>
+                                        <xs:enumeration value="11"/>
+                                        <xs:enumeration value="12"/>
+                                        <xs:enumeration value="13"/>
+                                        <xs:enumeration value="14"/>
+                                        <xs:enumeration value="15"/>
+                                        <xs:enumeration value="16"/>
+                                        <xs:enumeration value="17"/>
+                                        <xs:enumeration value="18"/>
+                                        <xs:enumeration value="19"/>
+                                        <xs:enumeration value="20"/>
+                                        <xs:enumeration value="21"/>
+                                        <xs:enumeration value="22"/>
+                                        <xs:enumeration value="23"/>
+                                        <xs:enumeration value="24"/>
+                                        <xs:enumeration value="25"/>
+                                        <xs:enumeration value="26"/>
+                                        <xs:enumeration value="27"/>
+                                        <xs:enumeration value="28"/>
+                                        <xs:enumeration value="29"/>
+                                        <xs:enumeration value="30"/>
+                                        <xs:enumeration value="NN"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -199,6 +219,28 @@
                                         <xs:enumeration value="8"/>
                                         <xs:enumeration value="9"/>
                                         <xs:enumeration value="10"/>
+                                        <xs:enumeration value="11"/>
+                                        <xs:enumeration value="12"/>
+                                        <xs:enumeration value="13"/>
+                                        <xs:enumeration value="14"/>
+                                        <xs:enumeration value="15"/>
+                                        <xs:enumeration value="16"/>
+                                        <xs:enumeration value="17"/>
+                                        <xs:enumeration value="18"/>
+                                        <xs:enumeration value="19"/>
+                                        <xs:enumeration value="20"/>
+                                        <xs:enumeration value="21"/>
+                                        <xs:enumeration value="22"/>
+                                        <xs:enumeration value="23"/>
+                                        <xs:enumeration value="24"/>
+                                        <xs:enumeration value="25"/>
+                                        <xs:enumeration value="26"/>
+                                        <xs:enumeration value="27"/>
+                                        <xs:enumeration value="28"/>
+                                        <xs:enumeration value="29"/>
+                                        <xs:enumeration value="30"/>
+                                        <xs:enumeration value="EST"/>
+                                        <xs:enumeration value="NO"/>
                                         <xs:enumeration value="NN"/>
                                     </xs:restriction>
                                 </xs:simpleType>
@@ -219,6 +261,7 @@
                             <xs:element name="id_floor">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
+                                        <xs:enumeration value="R"/>
                                         <xs:enumeration value="T"/>
                                         <xs:enumeration value="1"/>
                                         <xs:enumeration value="2"/>
@@ -325,7 +368,7 @@
                             <xs:element  name="description">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
-                                        <xs:minLength value="100"/>
+                                        <xs:minLength value="1"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -340,6 +383,7 @@
                                         <xs:enumeration value="E"/>
                                         <xs:enumeration value="F"/>
                                         <xs:enumeration value="G"/>
+                                        <xs:enumeration value="NN"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -367,6 +411,13 @@
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute  name="id_ew">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="0"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute  name="id">
                             <xs:simpleType>
                                 <xs:restriction base="xs:integer">
                                     <xs:minInclusive value="0"/>
