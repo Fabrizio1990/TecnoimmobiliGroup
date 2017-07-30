@@ -132,7 +132,7 @@
 
             // Dati proprietario che verranno mostrati nel title dell' immagine (tooltip bootstrap)
             $infoImg = "";
-            if($userLogged->id_user_type==1 &&  $res[$i]["id_easywork"]!=null){
+            if($userLogged->id_user_type==1 &&  $res[$i]["id_easywork"]!=null && $res[$i]["id_easywork"]!="0"){
                 $retApp = $propertyM->getAppointment($res[$i]["id"]);
                 $imgTit.="<h3>Dati proprietario</h3>";
                 $imgTit.="<p><i>Nome  : </i><b>".$retApp[0]["owner_name"]."</b>";
@@ -189,7 +189,7 @@
 				/* -----------   ------------ */
 
 				if($userLogged->id_user_type=="1"){
-				//controllo se l annuncio è sui portali per settare l immagine giusta, per fare ci� controllo se nella tabella immobili_portali c è almeno un portale settato a 1, se c � n � uno settato a 1 allora l immagine sarà mostra in portali, altrimenti sarà non in portali
+				//controllo se l annuncio è sui portali per settare l immagine giusta, per fare ciò controllo se nella tabella immobili_portali c è almeno un portale settato a 1, se c è n è uno settato a 1 allora l immagine sarà mostra in portali, altrimenti sarà non in portali
 					$trovato= 1;//controlloImmobiliSuiPortali($res['id'],$cn);
 					if($res[$i]["show_on_portal"]=="1"){
 						$strPortali = SITE_URL."/AdminPanel/images/icons/ico_portal_on.png";

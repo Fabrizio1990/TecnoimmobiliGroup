@@ -134,6 +134,15 @@ class PropertyManager extends DbManager implements IDbManager {
         return $res;
     }
 
+    public function saveAppointment($id_property,$owner_name,$owner_lastname,$owner_tel_home ,$owner_tel_office ,$owner_mobile,$owner_address,$owner_town,$occupant_name,$occupant_lastname,$occupant_tel,$appointment_date,$appointment_start_date,$appointment_end_date,$appointment_agent,$appointment_channel,$appointment_conditions,$appointment_renwable,$appointment_note){
+        $this->currTable = "property_appointment";
+        $fields = array("id_property","owner_name","owner_lastname","owner_tel_home","owner_tel_office","owner_mobile","owner_address","owner_town","occupant_name","occupant_lastname","occupant_tel","appointment_date","appointment_start_date","appointment_end_date","appointment_agent","appointment_channel","appointment_conditions","appointment_renwable","note");
+        $values = array($id_property,$owner_name,$owner_lastname,$owner_tel_home ,$owner_tel_office ,$owner_mobile,$owner_address,$owner_town,$occupant_name,$occupant_lastname,$occupant_tel,$appointment_date,$appointment_start_date,$appointment_end_date,$appointment_agent,$appointment_channel,$appointment_conditions,$appointment_renwable,$appointment_note);
+        $res = $this->create($values,$fields);
+        $this->setDefTable();
+        return $res;
+    }
+
     public function updateDescription($id_property,$descriptionIT,$descriptionEN = Null){
         $this->currTable = "property_descriptions";
         $resD = $this->delete("id_property = ?",array($id_property));

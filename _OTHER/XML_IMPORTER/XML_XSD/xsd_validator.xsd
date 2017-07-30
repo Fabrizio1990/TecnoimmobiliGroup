@@ -49,6 +49,7 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
+                            <xs:element type="xs:string" name="asta_immobiliare"/>
                             <xs:element name="id_contract_status">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:integer">
@@ -406,6 +407,29 @@
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="appointment">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="owner_name"/>
+                                        <xs:element type="xs:string" name="owner_tel_home"/>
+                                        <xs:element type="xs:string" name="owner_tel_office"/>
+                                        <xs:element type="xs:string" name="owner_mobile"/>
+                                        <xs:element type="xs:string" name="owner_address"/>
+                                        <xs:element type="xs:string" name="owner_town"/>
+                                        <xs:element type="xs:string" name="occupant_name"/>
+                                        <xs:element type="xs:string" name="occupant_tel"/>
+                                        <xs:element type="xs:string" name="appointment_date"/>
+                                        <xs:element type="xs:string" name="appointment_start_date"/>
+                                        <xs:element type="xs:string" name="appointment_end_date"/>
+                                        <xs:element type="xs:string" name="appointment_agent"/>
+                                        <xs:element type="xs:string" name="appointment_channel"/>
+                                        <xs:element type="xs:string" name="appointment_conditions"/>
+                                        <xs:element type="xs:string" name="appointment_renwable"/>
+                                        <xs:element type="xs:string" name="appointment_note"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>

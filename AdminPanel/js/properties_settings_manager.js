@@ -27,7 +27,7 @@ function openAdsStatusSwitch(idAds,currentStatus,elem){
 		function(){ // save click function
 			saveAdsStatus(idAds,elem);
 		},"Chiudi","Salva",false,
-		function(){getOpts("sel_status","properties","ads_status",null,"Seleziona un valore",currentStatus)
+		function(){getOpts("sel_status","ads_status",null,null,"Seleziona un valore",currentStatus)
 	});
 
 }

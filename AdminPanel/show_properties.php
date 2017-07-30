@@ -58,6 +58,8 @@ $act_list_properties 	= true; // setta attivo il menu immobili
 
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
+    <!-- modals -->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
    <!-- CUSTOM JS UTILS (is there becouse i need to have its function on included widgets  -->
   <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
@@ -151,7 +153,9 @@ $act_list_properties 	= true; // setta attivo il menu immobili
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/show_properties.js"></script>
+
 	
 	
 	<!-- INIT COMPONENTS -->
