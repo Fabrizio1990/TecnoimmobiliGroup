@@ -159,7 +159,7 @@
             <form name='GoToAds' method='POST' ACTION='".SITE_URL."/AdminPanel/add_property.php'>
             <input type='hidden' name='id_ads' value='".$res[$i]["id"]."'/>
             ".$infoImg."
-            <img  onclick='this.parentNode.submit()' class='real_tumb POINTER Tooltip'  src=$imgPath?id=". $rand_num . "' alt='Immagine Mancante' data-toggle='tooltip' data-placement='right' data-html='true' title='".$imgTit."'/> </form>";
+            <img  onclick='this.parentNode.submit()' class='real_tumb POINTER Tooltip' style='width:70px;height:50px'  src=$imgPath?id=". $rand_num . "' alt='Immagine Mancante' data-toggle='tooltip' data-placement='right' data-html='true' title='".$imgTit."'/> </form>";
 
             /* ------------ RECUPERO DATI PER COLONNA STATO ------------ */
             // immagine stato

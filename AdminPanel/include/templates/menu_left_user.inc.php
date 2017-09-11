@@ -18,7 +18,7 @@ $act_documents              = isset($act_documents)?$act_documents:false;
 $act_menu_utility           = isset($act_menu_utility)?$act_menu_utility:false;
 // MAGAZINE MANAGEMENT
 $act_magazine_management   = isset($act_magazine_management)?$act_magazine_management:false;
-$act_magazine_print        = isset($act_magaziner_print)?$act_magazine_print:false;
+$act_magazine_print        = isset($act_magazine_print)?$act_magazine_print:false;
 $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_customize:false;
  
 ?>
@@ -105,6 +105,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                                 </a>
+
                                 <ul class="treeview-menu">
                                     <li <?php if($act_magazine_print) echo('class="active"')?>><a href="magazine_print_selection.php"><i class="fa fa-print"></i> Stampa rivista</a></li>
                                     <li <?php if($act_magazine_customize) echo('class="active"')?>><a href="magazine_customization.php"><i class="fa fa-reorder"></i>Personalizza rivista</a></li>

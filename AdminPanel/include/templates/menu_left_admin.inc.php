@@ -25,6 +25,8 @@ $act_menu_news_management 	= isset($act_menu_news_management)?$act_menu_news_man
 $act_menu_utility           = isset($act_menu_utility)?$act_menu_utility:false;
 $act_agencies_access        = isset($act_agencies_access)?$act_agencies_access:false;
 $act_documents              = isset($act_documents)?$act_documents:false;
+$act_agency_add             = isset($act_agency_add)?$act_agency_add:false;
+$act_agency_list            = isset($act_agency_list)?$act_agency_list:false;
 $act_e_commerce             = isset($act_e_commerce)?$act_e_commerce:false;
 $act_newsletter             = isset($act_newsletter)?$act_newsletter:false;
 $act_statistics             = isset($act_statistics)?$act_statistics:false;
@@ -32,7 +34,7 @@ $act_statistics             = isset($act_statistics)?$act_statistics:false;
 $act_show_logs              = isset($act_show_logs)?$act_show_logs:false;
 // MAGAZINE MANAGEMENT
 $act_magazine_management   = isset($act_magazine_management)?$act_magazine_management:false;
-$act_magazine_print        = isset($act_magaziner_print)?$act_magazine_print:false;
+$act_magazine_print        = isset($act_magazine_print)?$act_magazine_print:false;
 $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_customize:false;
  
 ?>
@@ -113,8 +115,8 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 </a>
 
                                 <ul class="treeview-menu">
-                                    <li><a href="agency_add.php"><i class="fa fa-circle-o"></i> Aggiungi Agenzia</a></li>
-                                    <li><a href="agencies_list.php"><i class="fa fa-circle-o"></i> Modifica Agenzia</a></li>
+                                    <li <?php if($act_agency_add) echo('class="active"')?>><a href="agency_add.php"><i class="fa fa-circle-o"></i> Aggiungi Agenzia</a></li>
+                                    <li <?php if($act_agency_list) echo('class="active"')?>><a href="agencies_list.php"><i class="fa fa-circle-o"></i> Modifica Agenzia</a></li>
 
                                 </ul>
                             </li>
@@ -179,7 +181,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 </a>
                             </li>
 
-                            <li <?php if($act_newsletter) echo('class="active"')?>>
+                            <li <?php if($act_show_logs) echo('class="active"')?>>
                                 <a href="log_list.php"><i class="fa fa-file-text-o"></i>
                                     Log errori
                                 </a>

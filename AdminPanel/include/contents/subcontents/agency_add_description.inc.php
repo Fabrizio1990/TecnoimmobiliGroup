@@ -218,6 +218,25 @@
 
 </div><!-- /.row -->
 
+<!-- ################# AREA DI COMPETENZA ##################### -->
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Area di competenza</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-map-marker"></i>
+                </div>
+                <input  id="inp_competence_area" name="inp_competence_area" type="text" class="form-control" placeholder="Inserisci l' area di competenza dell' agenzia" value="<?php echo $inp_competence_area ?>">
+
+            </div>
+        </div>
+    </div><!-- /.col-md-6 -->
+
+</div><!-- /.row -->
+
+
 <div class="HR" ></div>
 
 <!-- ########## STATO (ABILITATO/DISABILITATO) - STATO PUBBLICAZIONE -  ########### -->

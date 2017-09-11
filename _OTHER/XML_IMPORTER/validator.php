@@ -56,7 +56,8 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     $mgzMng = new MagazineManager();
     $dbH    = new GenericDbHelper();
 
-
+    echo("<br>len =>".$xml->getElementsByTagName('property')->length);
+    //exit();
     foreach ($xml->getElementsByTagName('property') as $property)
     {
 
@@ -189,21 +190,24 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
 
         $id = saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,"",$id_energy_class,$id_ipe_um,$ipe, $images,$description,$id_agency);
 
-
-        // Saving Appointment
-        if($id_easyWork!=null){
-            $resAppointment = $mng->saveAppointment($id,$owner_name,"",$owner_tel_home ,$owner_tel_office ,$owner_mobile,$owner_address,$owner_town,$occupant_name,"",$occupant_tel,$appointment_date,$appointment_start_date,$appointment_end_date,$appointment_agent,$appointment_channel,$appointment_conditions,$appointment_renwable,$appointment_note);
-            if ($resAppointment == "" || $resAppointment == null) {
-                echo("errore - Salvataggio Appuntamento");
-                exit;
+        if($id != "errore nel salvataggio dell' immobile") {
+            // Saving Appointment
+            if ($id_easyWork != null) {
+                $resAppointment = $mng->saveAppointment($id, $owner_name, "", $owner_tel_home, $owner_tel_office, $owner_mobile, $owner_address, $owner_town, $occupant_name, "", $occupant_tel, $appointment_date, $appointment_start_date, $appointment_end_date, $appointment_agent, $appointment_channel, $appointment_conditions, $appointment_renwable, $appointment_note);
+                if ($resAppointment == "" || $resAppointment == null) {
+                    echo("errore - Salvataggio Appuntamento");
+                    return;
+                }
             }
+        }else{
+            echo $id;
         }
 
     }
 
 
 
-    echo("Finito");
+    echo("<br>Finito<br>");
 
 
 }
@@ -261,23 +265,22 @@ function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,
 
     //saving ads
     $id_property = $mng->saveProperty($values,$fields,false);//res must be the id of ads or an error
-    $res = $id_property;
 
     // if not save i will not execute the next command
-    if ($id_property != null && $id_property != "" & !strpos($id_property, "error")) {
+    if ($id_property != null && $id_property != "" & $id_property !="errore - Salvataggio immobile fallito") {
 
         // create reference code and update it on table
         $res_refC = $mng->createRefenceCode($id_property);
         if ($res_refC == "" || $res_refC == null) {
             echo("errore - Salvataggio del codice di riferimento fallito per l' immobile con id ".$id_property);
-            exit;
+            return;
         }
 
         // RELATE AGENT WITH PROPERTY
         $res_rel = $mng->savePropertyAgentRelations($id_agency, $id_agent, $id_property,false);
         if ($res_rel == "" || $res_rel == null) {
             echo("errore - Salvataggio della relazione Immbile - agenzia fallito per l' immobile con id ".$id_property);
-            exit;
+            return;
         }
 
 
@@ -286,14 +289,14 @@ function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,
         if ($res_desc == "" || $res_desc == null) {
 
             echo("errore - Salvataggio della descrizione fallito per l' immobile con id ".$id_property);
-            exit;
+            return;
         }
 
         // Saving Images
         $resImgs = $mng->saveImages($id_property, $imgNames);
         if ($resImgs == "" || $resImgs == null) {
             echo("errore - Salvataggio di alcune immagini per l' immobile con id ".$id_property);
-            exit;
+            return;
         }
 
 
@@ -302,10 +305,13 @@ function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,
         $resMagazine = $mgzMng->addOnMangazine($id_property, $id_agency, 0);
         if ($resMagazine == "" || $resMagazine == null) {
             echo("errore - Salvataggio nella rivista");
-            exit;
+            return;
         }
+        return $id_property;
+    }else{
+        return "errore nel salvataggio dell' immobile";
     }
-    return $id_property;
+
 }
 
 
@@ -320,7 +326,8 @@ function saveImages($images){
 }
 
 function saveImage($image){
-    global $isAsta;
+    if($image == "http://www.tecnoimmobiligroup.it/")
+        return "";
     $date = Date("Y-m-d_h-i-s");
     $new_img_name = "img_".$date."_".rand(0,50);
     $imageToSave 		= file_get_contents($image);
@@ -328,31 +335,26 @@ function saveImage($image){
     $imageName 	= $imgInfo['filename'].".".$imgInfo['extension'];
 
     //echo($imageToSave);
-    $imgMng = new ImageManager($image,$imageName);
+    $imgMng = new ImageManager($imageToSave,$imageName);
 
     // RESIZE IMAGE 655,394
-    $resizedImg = $imgMng->resizeImage(655,394);
-
-        $save_path = "/public/images/images_properties/big";
-        $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
-
-        //imposto  l' url dell' immagine da stampare
-        $imgName = $imgMng->getSavedImgName();
-        $res = SITE_URL.$save_path."/".$imgName;
-
+    $imgMng->resizeImage(948,632);
+    $save_path = "/public/images/images_properties/big";
+    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+    //imposto  l' url dell' immagine da stampare
+    $imgName = $imgMng->getSavedImgName();
 
 
     // RESIZE IMAGE 360,265
-    $imgMng->setImage($image,$imageName);
-    $resizedImg = $imgMng->resizeImage(360,265);
-
-        $save_path = "/public/images/images_properties/normal";
-        $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+    $imgMng->setImage($imageToSave,$imageName);
+    $imgMng->resizeImage(610,407);
+    $save_path = "/public/images/images_properties/normal";
+    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
 
 
     // RESIZE IMAGE 68,49
-    $imgMng->setImage($image,$imageName);
-    $resizedImg = $imgMng->resizeImage(68,49);
+    $imgMng->setImage($imageToSave,$imageName);
+    $imgMng->resizeImage(240,160);
     $save_path = "/public/images/images_properties/min";
     $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
 

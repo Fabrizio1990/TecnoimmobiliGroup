@@ -16,8 +16,8 @@ if(SessionManager::getVal("authenticated") != null){
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
 $act_menu_management                = true; // setta attivo il menu Gestione
-$act_menu_agencies_management		= true; // setta attivo il link agencies management
-
+$act_agencies_management		    = true; // setta attivo il link agencies management
+$act_agency_add	                    = true; // setta attivo il link Aggiungi agenzia
 ?>
 
 <!DOCTYPE html>

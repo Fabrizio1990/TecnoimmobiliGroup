@@ -65,6 +65,7 @@ $(document).ready(function () {
             inp_agency_BR           : { required: true , maxlength: 200},
             inp_address             : { required: true , minlength: 5, maxlength: 200 },
             inp_street_num          : { required: true , maxlength: 50 },
+            competence_area         : { required: true , minlength: 2 ,maxlength: 200 },
             // AGENT
             inp_agent_name          : { required: true , minlength: 2, maxlength: 200},
             inp_agent_lastname      : { required: true , minlength: 2, maxlength: 200},

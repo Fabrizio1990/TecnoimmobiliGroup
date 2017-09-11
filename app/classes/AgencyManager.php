@@ -16,7 +16,7 @@ class AgencyManager extends DbManager implements IDbManager
 
     public function create($values = null,$fields = null,$printQuery = false)
     {
-        $def_fields = array("logo_path","banner","name","description","id_country","id_region","id_city","id_town","id_district","street","street_num","longitude","latitude","p_iva","fiscal_code","rea","business_register","id_status","id_sub_status","id_portal_status");
+        $def_fields = array("logo_path","banner","name","description","id_country","id_region","id_city","id_town","id_district","street","street_num","competence_area","longitude","latitude","p_iva","fiscal_code","rea","business_register","id_status","id_sub_status","id_portal_status");
         $fields     = $fields == null ? $def_fields : $fields;
         $ret = parent::create($this->currTable,$fields,$values,$printQuery);
         return $ret;
@@ -57,7 +57,7 @@ class AgencyManager extends DbManager implements IDbManager
 
     public function updateAgency($values,$params = null,$extraParams = null,$fields = null,$printQuery = false){
 
-        $def_fields = array("logo_path = ?","banner = ?","name = ?","description = ?","id_country = ?","id_region = ?","id_city = ?","id_town = ?","id_district = ?","street = ?","street_num = ?","longitude = ?","latitude = ?","p_iva = ?","fiscal_code= ?","rea = ?","business_register = ?","id_status = ?","id_sub_status = ?","id_portal_status = ?","date_up = ?");
+        $def_fields = array("logo_path = ?","banner = ?","name = ?","description = ?","id_country = ?","id_region = ?","id_city = ?","id_town = ?","id_district = ?","street = ?","street_num = ?","competence_area = ?","longitude = ?","latitude = ?","p_iva = ?","fiscal_code= ?","rea = ?","business_register = ?","id_status = ?","id_sub_status = ?","id_portal_status = ?","date_up = ?");
         $fields = $fields == null ? $def_fields : $fields;
 
         $ret = $this->update($fields,$params,$values,$extraParams,$printQuery);

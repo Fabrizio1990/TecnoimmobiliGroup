@@ -7,7 +7,7 @@
  */
 
 // Check if all params was sent
-if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agency_pIva"],$_POST["sel_country"],$_POST["sel_region"],$_POST["sel_city"],$_POST["sel_town"],$_POST["sel_district"],$_POST["inp_address"],$_POST["inp_street_num"],$_POST["sel_status"],$_POST["sel_sub_status"],$_POST["sel_portal_status"])){
+if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agency_pIva"],$_POST["sel_country"],$_POST["sel_region"],$_POST["sel_city"],$_POST["sel_town"],$_POST["sel_district"],$_POST["inp_address"],$_POST["inp_street_num"],$_POST["inp_competence_area"],$_POST["sel_status"],$_POST["sel_sub_status"],$_POST["sel_portal_status"])){
 
 
 
@@ -26,6 +26,7 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
     $sel_district                       = $_POST["sel_district"];
     $inp_address                        = $_POST["inp_address"];
     $inp_street_num                     = $_POST["inp_street_num"];
+    $inp_competence_area                = $_POST["inp_competence_area"];
     $inp_longitude                      = $_POST["inp_longitude"];
     $inp_latitude                       = $_POST["inp_latitude"];
     $sel_status                         = $_POST["sel_status"];
@@ -51,7 +52,7 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
 
 
     // Check if all params was valorized
-    if($inp_banner =="" || $inp_name =="" || $inp_pIva =="" || $inp_CF =="" || $inp_REA == "" || $inp_business_register == "" || $sel_country =="" || $sel_region =="" || $sel_city =="" || $sel_town =="" || $sel_district =="" || $inp_address =="" || $inp_street_num =="" || $sel_status =="" ||  $sel_sub_status =="" || $sel_portal_status =="")
+    if($inp_banner =="" || $inp_name =="" || $inp_pIva =="" || $inp_CF =="" || $inp_REA == "" || $inp_business_register == "" || $sel_country =="" || $sel_region =="" || $sel_city =="" || $sel_town =="" || $sel_district =="" || $inp_address =="" || $inp_street_num =="" || $inp_competence_area == ""|| $sel_status =="" ||  $sel_sub_status =="" || $sel_portal_status =="")
     {
 
             echo("Errore: Alcuni campi non sono stati inviati o non sono stati valorizzati");// campi con valore "";
@@ -72,7 +73,7 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
             // -----------------------------------------------
             if($id_agency!="" && $id_agency!=null){
                 $date_up = date("y-m-d h:i:s");
-                $values = array($inp_logo,$inp_banner,$inp_name,$txt_description,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$inp_longitude,$inp_latitude,$inp_pIva,$inp_CF,$inp_REA,$inp_business_register,$sel_status,$sel_sub_status,$sel_portal_status,$date_up,$id_agency);
+                $values = array($inp_logo,$inp_banner,$inp_name,$txt_description,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$inp_competence_area,$inp_longitude,$inp_latitude,$inp_pIva,$inp_CF,$inp_REA,$inp_business_register,$sel_status,$sel_sub_status,$sel_portal_status,$date_up,$id_agency);
 
                 // AGENCY UPDATE
                 $ret = $agMng->updateAgency($values,array("id = ?"));
@@ -94,7 +95,7 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
             // -----------------------------------------------
             }else{
                 // AGENCY CRATE
-                $values = array($inp_logo,$inp_banner,$inp_name,$txt_description,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$inp_longitude,$inp_latitude,$inp_pIva,$inp_CF,$inp_REA,$inp_business_register,$sel_status,$sel_sub_status,$sel_portal_status);
+                $values = array($inp_logo,$inp_banner,$inp_name,$txt_description,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$inp_competence_area,$inp_longitude,$inp_latitude,$inp_pIva,$inp_CF,$inp_REA,$inp_business_register,$sel_status,$sel_sub_status,$sel_portal_status);
 
                 $id_agency = $agMng->saveAgency($values);
                 if( $id_agency == null ||

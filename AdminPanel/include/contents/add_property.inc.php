@@ -4,6 +4,7 @@
 	//SETTING UP DEFAULT VALUES
 	$action = "save";
 	$id_property ="";
+    $id_easyWork    = null;
 
 	$optCountriesVal 		= "1";
 	$inpIpeVal		 		= "175";

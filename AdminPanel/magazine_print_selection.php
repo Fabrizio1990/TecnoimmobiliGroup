@@ -7,16 +7,14 @@ if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
     $agency_id 		= $SS_usr->id;
     $tipo_utente 	= $SS_usr->id_user_type;
-    if($tipo_utente!="1")
-        header("location:login.php");
 }else{
     header("location:login.php");
 }
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
-$act_menu_utility                       = true; // setta attivo il menu Utility
+$act_menu_utility                     = true; // setta attivo il menu Utility
 $act_magazine_management              = true; // setta attivo il menu Rivista
-$act_magazine_print		           = true; // setta attivo il link Stampa Rivista
+$act_magazine_print		              = true; // setta attivo il link Stampa Rivista
 
 ?>
 
