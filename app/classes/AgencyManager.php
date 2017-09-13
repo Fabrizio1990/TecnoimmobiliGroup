@@ -87,12 +87,22 @@ class AgencyManager extends DbManager implements IDbManager
         require_once(BASE_PATH."/app/classes/UserManager.php");
         $usrMng = new UserManager();
         $ret = $this->update(array("id_status = ?","id_portal_status =?"),"id = ?" ,array($status,$status,$idAgency));
-
-
         return $ret;
-
     }
 
+    public function changePropertiesOwner($idFrom,$idTo){
+        $this->currTable ="property_agencies";
+        $ret = $this->update(array("id_agency_previous = id_agency","id_agency = ?"),"id_agency = ?",array($idTo,$idFrom),null,false);
+        $this->setDefTable();
+        return $ret;
+    }
+
+    public function restorePropertiesOwner($idAgencyOwner){
+        $this->currTable ="property_agencies";
+        $ret = $this->update(array("id_agency_previous = Null","id_agency = ?"),"id_agency_previous = ?",array($idAgencyOwner,$idAgencyOwner),null,true);
+        $this->setDefTable();
+        return $ret;
+    }
 
 
     public function setDefTable(){
