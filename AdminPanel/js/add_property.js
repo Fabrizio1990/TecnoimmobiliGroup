@@ -92,7 +92,7 @@ $(document).ready(function () {
             inp_surface             : { required: true , number: true },
             inp_price               : { required: true , number: true },
             inp_ipe                 : { required: true , number: true },
-            txt_description         : { required: true , minlength: 50, maxlength: 500 },
+            txt_description         : { required: true , minlength: 50/*, maxlength: 500*/ },
             /* LOCATION */
             inp_address             : { required: true, minlength: 3, maxlength: 240 },
             inp_street_num          : { required: true , maxlength: 50 }
