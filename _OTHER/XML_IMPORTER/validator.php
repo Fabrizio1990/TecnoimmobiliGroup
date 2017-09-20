@@ -1,4 +1,8 @@
 <?php
+// INIZIO CALCOLO DEL TEMPO DI ESECUZIONE
+$time_start = microtime(true);
+//----------------------------
+
 // TODO , MANCANO I DATI DELL' APPUNTAMENTO
 set_time_limit (0);
 function libxml_display_error($error)
@@ -207,8 +211,14 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
 
 
 
-    echo("<br>Finito<br>");
+    echo("<br>Finito <br>");
 
+    // FINE CALCOLO TEMPO DI ESECUZIONE
+    $time_end = microtime(true);
+    $time = $time_end - $time_start;
+    echo("<br><br>");
+    echo 'Execution time : '.$time.' seconds';
+    //--------------------------------------
 
 }
 
@@ -360,5 +370,8 @@ function saveImage($image){
 
     return $imgName;
 }
+
+
+
 
 ?>
