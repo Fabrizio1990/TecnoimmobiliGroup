@@ -5,7 +5,7 @@
                        <div class="logo-wrapper clearfix">
 							<div class="logo">
 								<a href="index.html" title="Home">
-									<img src="<?php echo SITE_URL ?>/images/Logos/Logo_216x35.png" alt="Estate">
+									<img src="<?php echo SITE_URL ?>/images/Logos/Logo_344x55.png" alt="TecnoimmobiliGroup Aste Immobiliari, Vendita Appartamenti">
 								</a>
 							</div><!-- /.site-name -->
 						</div><!-- /.logo-wrapper -->

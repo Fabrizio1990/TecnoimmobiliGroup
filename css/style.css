@@ -17,9 +17,9 @@
 	
 ################################################################# */ 
 
-@import url(import/flexslider.css) screen;
-@import url(import/sinister.css) screen;
-@import url(import/fhmm.css) screen;
+@import url(../libs/frontend/jQueryFlexSlider/css/flexslider.css) screen;
+@import url(sinister.css) screen;
+@import url(fhmm.css) screen;
 @import url(../libs/frontend/fancyBox/jquery.fancybox.css) screen;
 
 /*	################################################################
@@ -119,7 +119,7 @@
 		margin:10px;
 		padding-left:0 !important;
 		text-indent:-9999px;
-		background:url(images/remove.html) #01090C;
+		/*background:url(images/remove.html) #01090C;*/
 		border-radius:100px;
 		border-style:solid;
 		border-width:1px
@@ -899,11 +899,11 @@
 	}
 	
 	.widget .title .icon-sale {
-		background: url(images/icons/sale.png) no-repeat scroll left center;
+		background: url(../images/icons/sale.png) no-repeat scroll left center;
 	}
 	
 	.widget .title .icon-rent {
-		background: url(images/icons/rent.png) no-repeat scroll left center;
+		background: url(../images/icons/rent.png) no-repeat scroll left center;
 	}
 	
 	.widget .title [class^="icon-"] {
@@ -1133,6 +1133,7 @@
 		border-bottom:1px solid #efefef;
 		border-top:1px solid #efefef;
 		margin-bottom:15px;
+
 	}
 	
 	.property_wrapper div.boxed_mini_details1 span {
@@ -1199,7 +1200,7 @@
 		color:#010101;
 		top:230px;
 		background-color: rgba(255, 255, 255, 0.8);
-		background-color: #fff\8;
+		/*background-color: #fff\8;*/
 		padding: 15px 25px 20px;
 		width: 400px;
 			-webkit-border-radius: 20px 0 0 0;
@@ -1305,27 +1306,27 @@
 	}
 	
 	.boxes .icon-bed {
-		background: url(images/icons/bed.png) no-repeat scroll left center;
+		background: url(../images/icons/bed.png) no-repeat scroll left center;
 	}
 	
 	.boxes .icon-bath {
-		background: url(images/icons/bath.png) no-repeat scroll left center;
+		background: url(../images/icons/bath.png) no-repeat scroll left center;
 	}
 	
 	.boxes .icon-garage {
-		background: url(images/icons/garage.png) no-repeat scroll left center;
+		background: url(../images/icons/garage.png) no-repeat scroll left center;
 	}
 	
 	.boxes .icon-furnished {
-		background: url(images/icons/furnished.png) no-repeat scroll left center;
+		background: url(../images/icons/furnished.png) no-repeat scroll left center;
 	}
 
 	.boxes .icon-pool {
-		background: url(images/icons/pool.png) no-repeat scroll left center;
+		background: url(../images/icons/pool.png) no-repeat scroll left center;
 	}
 		
 	.boxes .icon-sqft {
-		background: url(images/icons/sqft.png) no-repeat scroll left center;
+		background: url(../images/icons/sqft.png) no-repeat scroll left center;
 	}
 	
 	.boxes [class^="icon-"] {
@@ -1436,7 +1437,8 @@
 	div.boxed_mini_details1 span{
 		float:left;
 		width:23%;
-		margin-right:2.5%
+		margin-right:2.5%;
+		font-size:10px ;
 	}
 	
 	div.boxed_mini_details1 span.last{
@@ -1636,7 +1638,7 @@
 	}
 	
 	.post-wrapper-top-shadow .s1 {
-	  background:url(images/shadow.png) center no-repeat;
+	  background:url(../images/shadow.png) center no-repeat;
 	  height:31px;
 	  margin:0 auto;
 	  bottom:-18px;
@@ -1984,31 +1986,7 @@
 		background-color:#19B8DF;
 	}
 	
-	.pagination > .active > a, .pagination > .active > span, 
-	.pagination > .active > a:hover, .pagination > .active > span:hover, 
-	.pagination > .active > a:focus, .pagination > .active > span:focus,
-	#help a,
-	.hovicon.effect-1.sub-a:hover,
-	.hovicon.effect-1.sub-a:hover i,
-	.hovicon.effect-1,
-	.hovicon.effect-1.sub-a:hover,
-	.flex-direction-nav a,
-	#tabbed_widget .nav-tabs > li > a:hover, 
-	#tabbed_widget .nav-tabs > li > a:active, 
-	#tabbed_widget .nav-tabs > li > a:focus, 
-	#tabbed_widget .nav-tabs > li.active > a, 
-	#tabbed_widget .nav-tabs > li.active > a:hover, 
-	#tabbed_widget .nav-tabs > li.active > a:focus,
-	.navbar-blue .navbar-toggle:hover,
-	.navbar-blue .navbar-toggle:focus,
-	.navbar-default .navbar-nav > .active > a, 
-	.navbar-default .navbar-nav > .active > a:hover, 
-	.navbar-default .navbar-nav > .active > a:focus, 
-	.navbar-default .navbar-nav > .open > a, 
-	.navbar-default .navbar-nav > .open > a:hover, 
-	.navbar-default .navbar-nav > .open > a:focus, 
-	.navbar-default .navbar-nav > li > a:hover, 
-	.navbar-default .navbar-nav > li > a:focus, 
+
 	.navbar-blue,
 	.boxes_img .box_type,
 	.dropdown-menu > li > a:hover,
@@ -2016,12 +1994,43 @@
 	.ps-mini-desc .price,
 	.blog-wrap div.post-date span.month,
 	.ps-desc .price {
-		background-color:#19B8DF;
+		background-color:#1a547a;
 		color: #ffffff;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	}
 
-	.topbar,
+pagination > .active > a, .pagination > .active > span,
+.pagination > .active > a:hover, .pagination > .active > span:hover,
+.pagination > .active > a:focus, .pagination > .active > span:focus,
+#help a,
+.hovicon.effect-1.sub-a:hover,
+.hovicon.effect-1.sub-a:hover i,
+.hovicon.effect-1,
+.hovicon.effect-1.sub-a:hover,
+.flex-direction-nav a,
+#tabbed_widget .nav-tabs > li > a:hover,
+#tabbed_widget .nav-tabs > li > a:active,
+#tabbed_widget .nav-tabs > li > a:focus,
+#tabbed_widget .nav-tabs > li.active > a,
+#tabbed_widget .nav-tabs > li.active > a:hover,
+#tabbed_widget .nav-tabs > li.active > a:focus,
+.navbar-blue .navbar-toggle:hover,
+.navbar-blue .navbar-toggle:focus,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus{
+	background-color:#ec403e ;
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+
+}
+
+.topbar,
 	.fhmm .dropdown-menu {
 		border-top-color:#19B8DF
 	}
@@ -2035,7 +2044,7 @@
 	}
 
 	.hovicon.effect-1:after {
-		box-shadow: 0 0 0 4px #19B8DF;
+		box-shadow: 0 0 0 4px #eb212e;
 	}
 
 	
@@ -2081,6 +2090,7 @@
 		color:#F6700E
 	}
 
+
 	.btn-primary:hover,
 	.btn-primary:focus,
 	.btn-primary:active,
@@ -2095,19 +2105,23 @@
 	.ps-desc .status,
 	.pricing-table > .price .name,
 	ul.real-estate-cats-widget li ul li:before {
-		background-color:#F6700E;
+		background-color:#ec403e;
 		color: #ffffff;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	}
-	
+
+	.btn-primary:hover{
+		background-color:#327cad !important;
+	}
+
 	.form-control:focus,
 	ul.real-estate-cats-widget li ul {
 		border-color:#F6700E;
 	}
 	
 	.btn-primary {
-		background: #F6700E !important;
-		border-color: #EF6907 !important;
+		background: #1a547a !important;
+		border-color: #1a547a !important;
 	}
 	
 	.btn-primary:active,
