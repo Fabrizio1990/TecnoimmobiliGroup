@@ -48,7 +48,7 @@
                         </div><!-- end property-slider -->
                     </div><!-- end col-lg-8 -->
 
-                    <!-- ######## HEADER contenente Logo, social buttons e menu########-->
+                    <!-- ######## RICERCA  ########-->
                     <?php include(BASE_PATH . "/app/include/Templates/research_panel_1.inc.php") ?>
 
                 </div><!-- end row -->

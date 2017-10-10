@@ -61,7 +61,7 @@
             </div><!-- services_section -->
         </div><!-- end row -->
         <div class="text-center clearfix">
-            <a class="btn btn-primary" href="#">I NOSTRI PARTNER IMMOBILIARI</a>
+            <a class="btn btn-tecnoimm-blue" href="#">I NOSTRI PARTNER IMMOBILIARI</a>
         </div><!-- end text-center -->
     </div><!-- end container -->
 </section><!-- end generalwrapper -->

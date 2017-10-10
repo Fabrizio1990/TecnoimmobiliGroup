@@ -1,6 +1,6 @@
 <?php
     require_once(BASE_PATH."/app/classes/PropertyManager.php");
-    require_once(BASE_PATH."/app/classes/Utils.php");
+
     $propertyMng = new PropertyManager();
 
     $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_up desc Limit 8 ",null,null,false);
@@ -25,7 +25,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="boxes first" data-effect="slide-bottom">
                             <div class="ImageWrapper boxes_img">
-                                <img class="img-responsive" src="<?php echo SITE_URL."/public/images/images_properties/min/".$properties[$i]["img_name"] ?>" alt="">
+                                <img class="img-responsive" src="<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                 <div class="ImageOverlayH"></div>
                                 <div class="Buttons StyleSc">
                                                 <span class="WhiteSquare"><a class="fancybox" href="<?php echo SITE_URL."/public/images/images_properties/big/".$properties[$i]["img_name"] ?>"><i class="fa fa-search"></i></a>

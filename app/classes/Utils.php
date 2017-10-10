@@ -12,10 +12,10 @@ require_once(BASE_PATH."/app/classes/DbManager.php");*/
 
 class Utils {
 
-    public static function rstToOptionsJson($rst){
+    public static function rstToOptionsJson($rst,$label1 = "value",$label2 = "text"){
         $arrOpts = Array();
         for($i=0,$len = count($rst);$i<$len;$i++){
-            array_push($arrOpts,array("value"=>$rst[$i][0],"text" => $rst[$i][1]));
+            array_push($arrOpts,array($label1=>$rst[$i][0],$label2 => $rst[$i][1]));
         }
         return json_encode($arrOpts);
     }

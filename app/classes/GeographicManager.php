@@ -27,9 +27,9 @@ class GeographicManager extends DbManager implements IDbManager
         return $ret;
     }
 
-    public function read($params = null,$extra_params = null,$values =null ,$fields = null){
+    public function read($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = false){
 
-        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields);
+        $ret = parent::read($this->currTable,$params,$extra_params,$values ,$fields,$printQuery);
         return $ret;
     }
 
@@ -136,50 +136,6 @@ class GeographicManager extends DbManager implements IDbManager
         }
         $this->setDefTable();
     }
-
-    /*function readOptions($what,$id_parent = null){
-        $parent_id_field_name = null;
-        $fields = null;
-        switch($what){
-            case "country":
-                $this->currTable = "geo_country";
-                break;
-            case "region" :
-                $this->currTable = "geo_region";
-                $parent_id_field_name = array("id_country = ?");
-                break;
-            case "city":
-                $this->currTable = "geo_city";
-                $parent_id_field_name = array("id_region = ?");
-                break;
-            case "town" :
-                $this->currTable = "geo_town";
-                $parent_id_field_name = array("id_city = ?");
-                break;
-            case "district":
-                $this->currTable = "geo_district";
-                $parent_id_field_name = array("id_town = ?");
-                break;
-            case "istat":
-                $this->currTable = "geo_town";
-                $parent_id_field_name = array("id = ?");
-                $fields = array("id", "istat as title");
-                break;
-            case "cap":
-                $this->currTable = "geo_district";
-                $parent_id_field_name = array("id = ?");
-                $fields = array("id","cap as title");
-                break;
-        }
-
-        if($id_parent!= null)
-            $ret = $this->read($parent_id_field_name,null,array($id_parent),$fields);
-        else
-            $ret = $this->read(null,null,null,$fields);
-
-        $this->setDefTable();
-        return $ret;
-    }*/
 
 
 
