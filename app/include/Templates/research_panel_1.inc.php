@@ -6,7 +6,7 @@ $optMng = new OptionsManager();
 
 $optCategoryVal     = 1;
 $optTipologyVal     = "";
-$optContractsVal    = "";
+$optContractsVal    = 2;
 $optLocalsVal       = "";
 $optBathroomsVal    = "";
 $optGardensVal      = "";
@@ -26,10 +26,6 @@ $optPropertyStatus   = $optMng->makeOptions("ads_property_status",$optPropertySt
 $optBox              = $optMng->makeOptions("ads_box",$optBox);
 
 
-
-
-
-
 ?>
 <!-- Style CSS -->
 <link href="<?php echo(SITE_URL) ?>/css/research_panel_1.css" rel="stylesheet">
@@ -41,20 +37,21 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 clearfix z-index-10" >
             <div id="tabbed_widget" class="tabbable clearfix" data-effect="slide-bottom">
                 <ul class="nav nav-tabs">
-                    <li class="active">
+                    <li id="research_switch_icon_1" class="active">
                             <a href="#tab" data-toggle="tab">
                                 <span>RICERCA IMMOBILE</span>
-                                <img src="<?php echo SITE_URL."/images/Logos/logo_research_33x33.png" ?>" />
+                                <img  id="ico_research_on" src="<?php echo SITE_URL."/images/icons/icona_immobile_on.png" ?>" />
+                                <img id="ico_research_off" class="hidden" src="<?php echo SITE_URL."/images/icons/icona_immobile_off.png" ?>" />
                             </a>
                     </li>
-                    <li>
+                    <li id="research_switch_icon_2">
                         <a href="#tab2" data-toggle="tab">
                             <span>RICERCA ASTE</span>
-                            <img src="<?php echo SITE_URL."/images/Logos/logo_research_aste_33x33.png" ?>" />
+                            <img  id="ico_research_auction_on" class="hidden" src="<?php echo SITE_URL."/images/icons/icona_aste_on.png" ?>" />
+                            <img  id="ico_research_auction_off"  src="<?php echo SITE_URL."/images/icons/icona_aste_off.png" ?>" />
                         </a>
                     </li>
                 </ul>
-
                 <div class="tab-content tabbed_widget clearfix">
                     <div class="tab-pane active" id="tab">
 
@@ -67,19 +64,22 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
 
                                     <div class="row">
                                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                            <label for="">&nbsp;</label>
-                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 no-lateral-padding">
+
+                                            <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 no-lateral-padding">
+                                                <label for="sel_category">Categoria</label>
                                                 <select id="sel_category" class="show-menu-arrow selectpicker" data-size="7">
                                                     <?php echo($optCategory) ?>
                                                 </select>
                                             </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 no-lateral-padding">
+
+                                            <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 no-lateral-padding">
+                                                <label for="sel_contract">Contratto</label>
                                                 <select  id="sel_contract" class="show-menu-arrow selectpicker" data-size="7">
-                                                    <option value="">Seleziona contratto</option>
                                                     <?php echo($optContracts) ?>
                                                 </select>
                                             </div>
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 no-lateral-padding">
+                                            <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 no-lateral-padding">
+                                                <label for="input_town">&nbsp;</label>
                                             <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Digita un comune">
                                             </div>
                                         </div>
@@ -100,7 +100,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
                                             <label for="bedrooms">Prezzo</label>
                                             <input type="text" name="priceFrom" id="priceFrom" class="form-control" placeholder="Da">
                                         </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-6 col-xs-6">
+                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                                             <label for="priceTo">&nbsp;</label>
                                             <input type="text" name="priceTo" id="priceTo" class="form-control" placeholder="a">
                                         </div>
@@ -109,7 +109,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
                                             <input type="text" name="mqFrom" id="mqFrom" class="form-control" placeholder="Da">
 
                                         </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-6 col-xs-6">
+                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                                             <label for="mqTo">&nbsp;</label>
                                             <input type="text" name="mqTo" id="name" class="form-control" placeholder="a">
                                         </div>

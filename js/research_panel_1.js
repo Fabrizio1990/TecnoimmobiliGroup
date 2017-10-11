@@ -8,6 +8,23 @@ $(document).ready(function(e){
     });
 
 
+    $("#research_switch_icon_1").click(function(){
+
+        $("#ico_research_on").removeClass("hidden");
+        $("#ico_research_off").addClass("hidden");
+        $("#ico_research_auction_on").addClass("hidden");
+        $("#ico_research_auction_off").removeClass("hidden");
+    });
+
+    $("#research_switch_icon_2").click(function(){
+
+        $("#ico_research_on").addClass("hidden");
+        $("#ico_research_off").removeClass("hidden");
+        $("#ico_research_auction_on").removeClass("hidden");
+        $("#ico_research_auction_off").addClass("hidden");
+
+    });
+
 
     var animating = false;
     var searchDetails = $("#search_details");

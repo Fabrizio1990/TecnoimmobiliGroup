@@ -15,6 +15,8 @@
         <!-- Style CSS -->
         <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
 
+
+
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic' rel='stylesheet' type='text/css'>
