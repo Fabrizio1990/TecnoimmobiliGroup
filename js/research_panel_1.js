@@ -29,7 +29,7 @@ $(document).ready(function(e){
     var animating = false;
     var searchDetails = $("#search_details");
 
-    $("#toggleSearchDetails").click(function(){
+    $(".toggleSearchDetails").click(function(){
         var upArrow   = $(this).children(".glyphicon-chevron-up");
         var downArrow = $(this).children(".glyphicon-chevron-down");
         if(!animating) {

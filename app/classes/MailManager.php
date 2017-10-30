@@ -87,6 +87,10 @@ class MailManager extends DbManager implements IDbManager {
         return $ret;
     }
 
+    public function getDefaultSenderData(){
+        return array("mail"=>"info@tecnoimmobiligroup.it","name"=>"TecnoImmobiliGroup services");
+    }
+
 
     public function updateStatus($idMail,$status){
         $ret = $this->update("status = ?","id = ?",array($status,$idMail));

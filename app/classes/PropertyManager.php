@@ -188,6 +188,15 @@ class PropertyManager extends DbManager implements IDbManager {
         return $ret;
     }
 
+    public function getAgentData($idProperty){
+        $this->currTable ="properties_agents";
+        $ret = $this->read("id_property = ?","Limit 1",array($idProperty) ,null,false);
+        $this->setDefTable();
+        return $ret;
+    }
+
+
+
 
     public function setDefTable(){
         $this->currTable = self::defTable;

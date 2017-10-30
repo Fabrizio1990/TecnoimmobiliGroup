@@ -81,8 +81,6 @@ class AgencyManager extends DbManager implements IDbManager
         return $ret;
     }
 
-
-
     public function updateStatus($idAgency,$status){
         require_once(BASE_PATH."/app/classes/UserManager.php");
         $usrMng = new UserManager();
@@ -103,6 +101,14 @@ class AgencyManager extends DbManager implements IDbManager
         $this->setDefTable();
         return $ret;
     }
+
+    public function GetRandomAgenciesData($numOfAgencies)
+    {
+        $this->currTable = "randomagencydata";
+        $res = $this->read(null, "limit $numOfAgencies");
+        return $res;
+    }
+
 
 
     public function setDefTable(){

@@ -9,3 +9,9 @@
 }
 
 .last_reseach_container .tab-content{border-top: 5px solid #eb212e;}
+
+.agents_widget .boxes .title {
+    margin-top: 0 !important;
+    height: 78px;
+}
+

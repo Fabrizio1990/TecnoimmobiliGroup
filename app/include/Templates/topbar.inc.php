@@ -17,7 +17,7 @@
                         <li><a data-placement="bottom" data-toggle="tooltip" data-original-title="Geek" title="" href="#"><img alt="gr" src="images/flags/gr.png"></a></li>
                     </ul>--><!-- end flags -->
                     <ul class="topmenu pull-right">
-                        <li><a href="login.html"><i class="fa fa-lock"></i> Login / Register</a></li>
+                        <li><a href="<?php echo SITE_URL."/AdminPanel/login.php"?>"><i class="fa fa-lock"></i> Login</a></li>
                     </ul><!-- topmenu -->
                 </div><!-- end marketing -->
             </div><!-- end col-lg-6 -->

@@ -123,3 +123,21 @@ function MyMap(loaded){
 }
 
 
+function createMap(address,town,country,defZoom = 2){
+    var zoom = defZoom;
+    var fullAddress = address + " " +town +" " +country;
+    // if full address is empty or is Italia  i set italia and put the zoom to 4
+    if(fullAddress.trim() == "" || fullAddress.trim() == "Italia") {
+        fullAddress = "Italia";
+        zoom = 4;
+    }
+    GMap = new MyMap(true);
+    GMap.init("map",fullAddress,zoom,2,BASE_PATH+"/images/icons/map_marker.png",false);
+
+    setTimeout(function(){
+        $("#inp_latitude").val(GMap.getLatitude());
+        $("#inp_longitude").val(GMap.getLongitude());
+    },1000);
+}
+
+

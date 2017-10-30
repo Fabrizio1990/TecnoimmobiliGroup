@@ -1,17 +1,19 @@
-<?php require_once(BASE_PATH."/app/classes/Utils.php"); ?>
+<?php
+require_once(BASE_PATH."/app/classes/Utils.php");
+$parallax = true;
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="author" content="Fabrizio Coppolecchia">
 
-        <title>ESTATE PLUS - Real Estate HTML5 Website Template</title>
+        <title>Appartamenti in vendita e in affitto - TecnoimmobiliGroup</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
-
         <!-- Style CSS -->
         <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
 
@@ -25,7 +27,8 @@
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="htt
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
         <!-- Favicons -->
         <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">

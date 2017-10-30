@@ -142,7 +142,7 @@ function insertOrUpdateAgent(){
         if(($ret > 1 || $ret =="Success")){
             include(BASE_PATH."/app/classes/MailManager.php");
             $mailMng = new MailManager();
-            $template = $mailMng->getEmailTemplete(1);// 1 è l' id della mail di iscrizione nuovo utente
+            $template = $mailMng->getEmailTemplate(1);// 1 è l' id della mail di iscrizione nuovo utente
 
             $ccn = "webmaster@tecnoimmobiligroup.it";
             // prendo il corpo del template e sostituisco i placeholder

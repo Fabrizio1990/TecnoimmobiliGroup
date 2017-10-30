@@ -145,7 +145,7 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 	
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
-    <script src="<?php echo SITE_URL ?>/js/Widgets/maps_utils.js" ></script>
+    <script src="<?php echo(SITE_URL) ?>/js/Widgets/maps_utils.js" ></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_property.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
@@ -158,8 +158,6 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 	<!-- INIT COMPONENTS -->
     <script>
 		 $(function() {
-
-
             INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_property_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
         });
 		

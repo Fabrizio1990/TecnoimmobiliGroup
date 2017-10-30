@@ -1,0 +1,12 @@
+#DT_PROPERTIES thead{display:none;}
+#DT_PROPERTIES tr td{border:none;}
+
+#DT_PROPERTIES .property_wrapper{}
+
+#DT_PROPERTIES .property_wrapper.boxes .title{margin-top:0px;}
+#DT_PROPERTIES .property_wrapper.boxes .title h3{margin-top:0px;}
+#DT_PROPERTIES .property_wrapper.boxes .title h3 a{color:#1a5479;font-size:15px;}
+
+#DT_PROPERTIES .property_wrapper.boxes  .boxed_mini_details1 span{width:16%;font-size:13px;text-align: center;}
+#DT_PROPERTIES .property_wrapper.boxes  .boxed_mini_details1 span.price{font-size:18px;width:40%;}
+#DT_PROPERTIES .property_wrapper.boxes  .boxed_mini_details1 span.price strong{color: #656565;}

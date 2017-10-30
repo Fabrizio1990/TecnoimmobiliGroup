@@ -41,7 +41,7 @@
                             <h2 class="title"><a href="single-property.html"> <?php echo $title ?></a> <small class="small_title"><?php echo $address ?></small></h2>
 
                             <div class="boxed_mini_details1 clearfix" >
-                                <span class="garage first" title="<?php echo $properties[$i]["box"] ?>"><strong>Box</strong><i class="icon-garage"></i> <?php echo $boxTxt ?></span>
+                                <span class="garage first" title="<?php echo $properties[$i]["box"] ?>"><strong>P.Auto</strong><i class="icon-garage"></i> <?php echo $boxTxt ?></span>
                                 <span class="bedrooms" title="<?php echo $properties[$i]["rooms"] ?>"><strong>Camere</strong><i class="icon-bed"></i> <?php echo $properties[$i]["rooms_short"] ?></span>
                                 <span class="status" title="<?php echo $properties[$i]["bathrooms"] ?>"><strong>Bagni</strong><i class="icon-bath"></i> <?php echo $properties[$i]["bathrooms_short"] ?></span>
                                 <span class="sqft last"><strong>Mq</strong><i class="icon-sqft"></i> <?php echo $properties[$i]["mq"] ?></span>

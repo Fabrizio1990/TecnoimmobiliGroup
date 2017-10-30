@@ -1,5 +1,14 @@
 RewriteEngine On
 
-RewriteRule ^([^/]*)\.html$ index.php?page=$1
 
+RewriteRule ^([^/]+)/RIF-([^/]+)$ index.php?page=Dettaglio_immobile&rif=$2&title=$1
+
+RewriteRule ^([^/]*)\.html$ index.php?page=$1
 RewriteRule ^([^/]*)/([^/]*)\.html$ index.php?folder=$1&page=$2
+
+
+
+
+
+#RewriteRule ^([^/]+)-Vendita-([^/]+).html$ pages/Dettaglio_immobile.php?id=$1&title=Vendita-$2 [L]
+#RewriteRule ^([^/]+)-Affitto-([^/]+).html$ pages/Dettaglio_immobile.php?id=$1&title=Affitto-$2 [L]

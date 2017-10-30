@@ -47,6 +47,13 @@ class Utils {
     static  function formatPrice($price){
         return number_format ( $price , 0 ,",",".");
     }
+
+    static function truncateText($text,$maxLen,$truncateChars ="..."){
+        $ret = strlen($text)>$maxLen?substr($text,0,$maxLen)." ".$truncateChars:$text;
+        return $ret;
+    }
+
+
 }
 
 

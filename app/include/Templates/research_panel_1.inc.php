@@ -116,7 +116,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
 
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                                             <label for="mqTo">&nbsp;</label>
-                                            <a href="#" class="btn btn-tecnoimm-red" id="btn_search"><i class="fa fa-search"></i> SEARCH PROPERTY</a>
+                                            <a href="#" class="btn btn-tecnoimm-red" id="btn_search"><i class="fa fa-search"></i> Avvia Ricerca</a>
                                         </div>
                                     </div>
 
@@ -173,7 +173,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
 
 
                                 </form>
-                                <div style="margin-bottom: 0px;margin-left:0px;" id="toggleSearchDetails">
+                                <div style="margin-bottom: 0px;margin-left:0px;" class="toggleSearchDetails">
                                     Ricerca Avanzata
                                     <i class="glyphicon glyphicon-chevron-down"></i>
                                     <i class="glyphicon glyphicon-chevron-up" style="display:none;"></i>

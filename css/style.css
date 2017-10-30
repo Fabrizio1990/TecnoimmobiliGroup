@@ -877,14 +877,19 @@
 		color:#656565;
 		padding:0 5px;
 	}
-	
+
+	.agents_widget .boxes{
+		margin-bottom:48px;
+	}
 	.agents_widget .boxes .title {
-		margin-top:0 !important
+		margin-top:0 !important;
+		height: 60px;
 	}
 	
 	.testimonial_desc i {
 		color:#999;
 		padding:0 5px;
+
 	}
 	
 	.testimonial_widget .testimonial_desc {
@@ -896,6 +901,7 @@
 	.testomonial_widget .testomonial_desc p,
 	.agents_widget .agent .agent_desc p {
 		margin:5px 0;
+		font-size:11px;
 	}
 	
 	.widget .title .icon-sale {
@@ -1135,13 +1141,16 @@
 		margin-bottom:15px;
 
 	}
-	
+
 	.property_wrapper div.boxed_mini_details1 span {
 		border-right: 1px solid #EFEFEF;
 		float: left;
 		padding: 10px 5px;
 		width: 11.8%;
 	}
+
+	.property_wrapper .boxed_mini_details1.col-4 span{width:25%;padding:5px 0px 5px 0px;margin:0;}
+	.property_wrapper .boxed_mini_details1.col-3 span{width:33%;padding:5px 0px 5px 0px;margin:0;}
 	
 	.property_wrapper div.boxed_mini_details1 span:last-child {
 		border-right:0;
@@ -2231,17 +2240,11 @@ pagination > .active > a, .pagination > .active > span,
 		z-index:9
 	}
 	
-	.map .row{
-		position:relative
-	}
+	.map .row{position:relative}
 	
-	.infobox img {
-		width:100% !important;
-	}
+	.infobox img {width:100% !important;}
 	
-	.map .searchmodule {
-		padding:18px 10px
-	}
+	.map .searchmodule {padding:18px 10px}
 	
 	.infobox {
 		display: inline-block;
@@ -2250,9 +2253,7 @@ pagination > .active > a, .pagination > .active > span,
 		width: 270px;
 	}
 
-	.infobox img {
-		width:115px !important;
-	}
+	.infobox img {width:115px !important;}
 	
 	.infobox .title {
 		font-size:13px;
@@ -2264,14 +2265,22 @@ pagination > .active > a, .pagination > .active > span,
 		padding-bottom:5px;
 	}
 	
-	.infobox .title a {
-		font-weight:bold;
-	}
+	.infobox .title a {font-weight:bold;}
 
-	.no-lateral-padding{
-		padding-left:0px; padding-right:0px;
-	}
+	.no-lateral-padding{padding-left:0px; padding-right:0px;}
 
-	.z-index-10{
-		z-index: 10;
-	}
+	.z-index-10{z-index: 10;}
+
+	.col-lg-hide{display:none;}
+
+	.col-md-hide{display:none;}
+
+	.col-sm-hide{display:none;}
+
+	.col-xs-hide{display:none;}
+	/* FONT AWESOME OVERRIDE */
+	.fa-2{font-size: 2em;line-height: 1.5;}
+	.fa-3{font-size: 4em;}
+	.fa-4{font-size: 7em;}
+
+	/* BOX DETAILS */
