@@ -1,4 +1,3 @@
-
 <?php
 //TODO IMPOSTARE PATH IMMAGINE PICCOLA ,recuperare campi veri e non id , immagini non ancora presenti, prenderle dall' altro sito e molte altre cose da finire
 header('Content-type: text/json; charset=utf-8');

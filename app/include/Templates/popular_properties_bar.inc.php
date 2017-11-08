@@ -1,9 +1,15 @@
 <?php
     require_once(BASE_PATH."/app/classes/PropertyManager.php");
+    require_once(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 
     $propertyMng = new PropertyManager();
 
     $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_up desc Limit 8 ",null,null,false);
+
+
+    $imgPathMin = $propertyMng->getImagesPath("title = ?","limit 1", array("min"),"path",false)[0]["path"];
+    $imgPathBig = $propertyMng->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
+    $imgEof  = "img_eof/Immagine_eof.jpg";
 ?>
 <section id="three-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL."/images/ParallaxBg/02_parallax.jpg" ?>');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
     <div class="threewrapper">
@@ -14,28 +20,60 @@
                         <h3 class="big_title">Ultimi annunci inseriti/aggiornati <small>Visualizza i nostri ultimi annunci</small></h3>
                     </div>
                     <?php for($i = 0 ; $i< Count($properties);$i++){
-                        $boxTxt = $properties[$i]["box_short"];
+
                         $title  = $properties[$i]["tipology"]." in ".$properties[$i]["contract"];
                         $address = $properties[$i]["street"]."  ".$properties[$i]["city"];
+                        $boxTxt = $properties[$i]["box_short"];
                         if($boxTxt != "NO" && $boxTxt!= "NN"){
                             $boxTxt = "SI";
+                        }
+
+                        $price = $properties[$i]["price"];
+                        if($price == 0 ){
+                            $price = "TR";
+                            $priceTit = "Trattativa riservata";
+                        }else{
+                            $price ="&euro;".Utils::formatPrice($price);
+                        }
+
+                        $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
+
+                        $agentData = $propertyMng->getAgentData($properties[$i]["id"]);
+                        $agentTel = $agentData[0]["phone"];
+                        $agentMobile = $agentData[0]["mobile_phone"];
+                        $agentMail = $agentData[0]["email"];
+
+                        /*  IMAGES */
+                        $imgMin = SITE_URL."/".$imgPathMin."/".$imgEof;
+                        $imgBig =  SITE_URL."/".$imgPathBig."/".$imgEof;
+                        if($properties[$i]["img_name"]!=""){
+                            $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
+                            $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                         }
 
                     ?>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="boxes first" data-effect="slide-bottom">
                             <div class="ImageWrapper boxes_img">
-                                <img class="img-responsive" src="<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
+                                <img class="img-responsive" src="<?php echo $imgMin ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                 <div class="ImageOverlayH"></div>
                                 <div class="Buttons StyleSc">
-                                                <span class="WhiteSquare"><a class="fancybox" href="<?php echo SITE_URL."/public/images/images_properties/big/".$properties[$i]["img_name"] ?>"><i class="fa fa-search"></i></a>
-                                                </span>
-                                    <span class="WhiteSquare"><a class="fancybox" data-type="iframe" href="http://player.vimeo.com/video/64550407?autoplay=1"><i class="fa fa-video-camera"></i></a>
-                                                </span>
-                                    <span class="WhiteSquare"><a href="single-property.html"><i class="fa fa-link"></i></a>
-                                                </span>
+                                    <span class='WhiteSquare' title='Vai al dettaglio'>
+                                        <a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a>
+                                    </span>
+                                    <span class='WhiteSquare' title='Ingrandisci Foto'>
+                                        <a class='fancybox' href='<?php echo $imgBig ?>'><i class='fa fa-picture-o'></i></a>
+                                    </span>
+                                    <span class='WhiteSquare' title='Contattaci'>
+                                        <a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o'></i></a>
+                                    </span>
+                                    <div class='hiddenInfo'>
+                                        <input type='hidden' class='email_info' value='<?php echo $agentMail?>' />
+                                        <input type='hidden' class='telephone_info' value='<?php echo $agentTel?>' />
+                                        <input type='hidden' class='mobile_info' value='<?php echo $agentMobile?>' />
+                                    </div>
                                 </div>
-                                <div class="box_type"><?php echo "&euro;".Utils::formatPrice($properties[$i]["price"]) ?></div>
+                                <div class="box_type"><?php echo $price ?></div>
                                 <div class="status_type"><?php echo $properties[$i]["contract_status"] ?></div>
                             </div>
                             <h2 class="title"><a href="single-property.html"> <?php echo $title ?></a> <small class="small_title"><?php echo $address ?></small></h2>

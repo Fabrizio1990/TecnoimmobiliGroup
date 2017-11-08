@@ -1,11 +1,11 @@
 <?php
-header('Content-type: text/json; charset=utf-8');
+header('Content-type: application/json;  Charset=UTF-8');
 include("../config.php");
 include(BASE_PATH."/app/classes/PropertyManager.php");
 include(BASE_PATH."/app/classes/Utils.php");
 include(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 
-$params = Array();
+$params = Array("id_ads_status = 1");
 $values = Array();
 $rand_num = Rand(0,100);
 $baseImgPath = SITE_URL."/public/images/images_properties";
@@ -27,34 +27,40 @@ if(isset($_GET["sel_category"])){
 }
 
 
-$res = $propertyM->readAllAds($params,null,$values,null);
+$res = $propertyM->readAllAds($params,null,$values,null,false);
+
 
 $resultFound = Count($res);
+
 if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
     for($i=0;$i<$resultFound;$i++) {
 
-        $agentData = $propertyM->getAgentData($res[$i]["id"]);
-        $agentTel = $agentData[0]["phone"];
-        $agentMobile = $agentData[0]["mobile_phone"];
-        $agentMail = $agentData[0]["email"];
+        /*$agentData = $propertyM->getAgentData($res[$i]["id"]);*/
+        $agentTel = $res[$i]["agent_phone"];
+        $agentMobile = $res[$i]["agent_mobile_phone"];
+        $agentMail = $res[$i]["agent_email"];
 
 
-        //$title = $res[$i]["tipology"]. " " .$res[$i]["street"];
-        //$title .= $res[$i]["district"] == $res[$i]["town"] ? ", ". $res[$i]["town"]: ", ".  $res[$i]["district"] .", ". $res[$i]["town"];
+        $link = PropertyLinksAndTitles::getDetailLink($res[$i]["contract"],$res[$i]["tipology"],$res[$i]["street"],$res[$i]["town"],$res[$i]["reference_code"]);
 
-        $title = PropertyLinksAndTitles::getTitle($res[0]["reference_code"],4);
-
+        $title = PropertyLinksAndTitles::getTitleNoDb($res[$i]["tipology"],$res[$i]["contract"],$res[$i]["town"],$res[$i]["street"],$res[$i]["district"]);
         $title_short = Utils::truncateText($title,$maxTitLen);
 
-
-        $desc = $res[$i]["desc_it"];
+        $desc = UTILS::escapeJsonString($res[$i]["desc_it"]);
         $desc_short = substr($desc,0,250)."...";
         $price =  $res[$i]["negotiation_reserved"]?"Tratt. Riservata":"&euro; ".Utils::formatPrice($res[$i]["price"]);
 
-        if($res[$i]["img_name"] =="")
-            $imgPath = $baseImgPath."/normal/".$imgEof;
-        else
-            $imgPath = $baseImgPath."/normal/".$res[$i]["img_name"];
+        /*  IMAGES */
+        $imgPathNormal = $propertyM->getImagesPath("title = ?","limit 1", array("normal"),"path",false)[0]["path"];
+        $imgPathBig = $propertyM->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
+
+        $imgNormal = SITE_URL."/".$imgPathNormal."/".$imgEof;
+        $imgBig = SITE_URL."/".$imgPathBig."/".$imgEof;
+        if($res[$i]["img_name"]!=""){
+            $imgNormal =  SITE_URL."/".$imgPathNormal.$res[$i]["img_name"];
+            $imgBig = SITE_URL."/".$imgPathBig.$res[$i]["img_name"];
+        }
+
 
 
 
@@ -62,11 +68,11 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
             $property_box .= "<div class='row'>";
                 $property_box .= "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
                     $property_box .= "<div class='ImageWrapper boxes_img'>";
-                        $property_box .= "<img class='img-responsive' src='$imgPath' alt=''>";
+                        $property_box .= "<img class='img-responsive' src='$imgNormal' alt=''>";
                         $property_box .= "<div class='ImageOverlayH'></div>";
                         $property_box .= "<div class='Buttons StyleSc'>";
-                            $property_box .= "<span class='WhiteSquare' title='Vai al dettaglio'><a  href='demos/01_home.jpg'><i class='fa fa-search fa-2'></i></a></span>";
-                            $property_box .= "<span class='WhiteSquare' title='Ingrandisci Foto'><a class='fancybox' href='#'><i class='fa fa-picture-o fa-2'></i></a></span>";
+                            $property_box .= "<span class='WhiteSquare' title='Vai al dettaglio'><a  href='$link'><i class='fa fa-search fa-2'></i></a></span>";
+                            $property_box .= "<span class='WhiteSquare' title='Ingrandisci Foto'><a class='fancybox' href='".$imgBig."'><i class='fa fa-picture-o fa-2'></i></a></span>";
                             $property_box .= "<span class='WhiteSquare' title='Contattaci'><a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o fa-2'></i></a></span>";
                                 $property_box .= "<div class='hiddenInfo'>";
                                     $property_box .= "<input type='hidden' class='email_info' value='$agentMail' />";
@@ -81,7 +87,7 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
 
                 $property_box .= "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
                     $property_box .= "<div class='title clearfix'>";
-                        $property_box .= "<h3><a href='single-property.html' title='$title'>$title_short</a> <small class='small_title'>in ".$res[$i]['contract']."</small> </h3>";
+                        $property_box .= "<h3><a href='".$link."' title='$title'>$title_short</a> <small class='small_title'>in ".$res[$i]['contract']."</small> </h3>";
                     $property_box .="</div>";//<!-- end title -->
                     $property_box .="<div class='boxed_mini_details1 clearfix'>";
 
@@ -102,11 +108,11 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
         $property_box .="</div>";//<!-- end property_wrapper -->
 
 
-
-
         array_push($array_res["aaData"], array($property_box));
 
     }
+
+    echo(json_encode($array_res));
 }
 
-echo(json_encode($array_res));
+//echo(json_encode($array_res));

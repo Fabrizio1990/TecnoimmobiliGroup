@@ -17,13 +17,13 @@ $optBox             = "";
 $optCategory 		= $optMng->makeOptions("ads_category",$optCategoryVal,null);
 $optTipology		= $optMng->makeOptions("ads_tipologies",$optTipologyVal,$optCategoryVal);
 $optContracts 		= $optMng->makeOptions("ads_contracts",$optContractsVal);
-$optLocals  		= $optMng->makeOptions("ads_locals",$optLocalsVal);
-$optBathrooms		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal);
-$optGardens         = $optMng->makeOptions("ads_gardens",$optGardensVal);
+$optLocals  		= $optMng->makeOptions("ads_locals",$optLocalsVal,null,"Non specificato");
+$optBathrooms		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal,null,"Non specificato");
+$optGardens         = $optMng->makeOptions("ads_gardens",$optGardensVal,null,"Non specificato");
 
-$optElevator         = $optMng->makeOptions("ads_elevators",$optElevatorVal);
-$optPropertyStatus   = $optMng->makeOptions("ads_property_status",$optPropertyStatus);
-$optBox              = $optMng->makeOptions("ads_box",$optBox);
+$optElevator         = $optMng->makeOptions("ads_elevators",$optElevatorVal,null,"Non specificato");
+$optPropertyStatus   = $optMng->makeOptions("ads_property_status",$optPropertyStatus,null,"Non specificato");
+$optBox              = $optMng->makeOptions("ads_box",$optBox,null,"Non specificato");
 
 
 ?>
@@ -35,7 +35,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
 
         <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 clearfix"></div>
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 clearfix z-index-10" >
-            <div id="tabbed_widget" class="tabbable clearfix" data-effect="slide-bottom">
+            <div id="tabbed_widget" class="tabbable clearfix OPACITY-0" data-effect="slide-bottom">
                 <ul class="nav nav-tabs">
                     <li id="research_switch_icon_1" class="active">
                             <a href="#tab" data-toggle="tab">
@@ -45,7 +45,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
                             </a>
                     </li>
                     <li id="research_switch_icon_2">
-                        <a href="#tab2" data-toggle="tab">
+                        <a href="#tab1" data-toggle="tab">
                             <span>RICERCA ASTE</span>
                             <img  id="ico_research_auction_on" class="hidden" src="<?php echo SITE_URL."/images/icons/icona_aste_on.png" ?>" />
                             <img  id="ico_research_auction_off"  src="<?php echo SITE_URL."/images/icons/icona_aste_off.png" ?>" />
@@ -56,7 +56,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
                     <div class="tab-pane active" id="tab">
 
 
-                            <div class="searchmodule clearfix" data-effect="slide-right">
+                            <div class="searchmodule clearfix OPACITY-0" data-effect="fade">
 
                                 <div class="subtitle_bar col-lg-12 col-md-12 col-sm-12 col-xs-12">CERCA CASE O APPARTAMENTI<hr/></div>
 

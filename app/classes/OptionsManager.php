@@ -232,19 +232,28 @@ class OptionsManager extends DbManager{
     }
 
     // CHIAMA readOptions e invece di restituire un array con il resultset restituisce direttamente le options <option value="valore">testo</option>
-    public function makeOptions($what,$selectedVal = null,$id_parent = null,$printQuery = false){
+    //NB REMOVEELEMS PERMETTE DI RIMUOVERE UNO O PIU ELEMENTI IN BASE AL TESTO *non al value
+    //PER ELIMINARNE DI PIU PASSARE UN ARRAY INVECE CHE UNA STRINGA
+    public function makeOptions($what,$selectedVal = null,$id_parent = null,$removeElems = null,$printQuery = false){
         if(!is_null ($id_parent) && $id_parent == "")
             return "";
         $res = $this->readOptions($what,$id_parent,$printQuery);
         $optRes = "";
 
         for($i=0,$cnt = count($res);$i<$cnt;$i++){
-            if(is_array($selectedVal))
-                $selected = in_array($res[$i][0],$selectedVal)? "selected " : "";
+            $needRemove = false;
+            if(is_array($removeElems))
+                $needRemove = in_array($res[$i][1],$removeElems);
             else
-                $selected = $selectedVal == $res[$i][0]?"selected":"";
+                $needRemove = $res[$i][1] == $removeElems;
+            if(!$needRemove){
+                if(is_array($selectedVal))
+                    $selected = in_array($res[$i][0],$selectedVal)? "selected " : "";
+                else
+                    $selected = $selectedVal == $res[$i][0]?"selected":"";
 
-            $optRes.="<option $selected value='".$res[$i][0]."'>".$res[$i][1]."</option>";
+                $optRes.="<option $selected value='".$res[$i][0]."'>".$res[$i][1]."</option>";
+            }
         }
         return $optRes;
     }

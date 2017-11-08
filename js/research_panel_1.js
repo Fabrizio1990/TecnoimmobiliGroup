@@ -14,6 +14,9 @@ $(document).ready(function(e){
         $("#ico_research_off").addClass("hidden");
         $("#ico_research_auction_on").addClass("hidden");
         $("#ico_research_auction_off").removeClass("hidden");
+        $("#sel_contract").val(2);
+        $('#sel_contract').selectpicker('refresh');
+        $(".research_container .tabbed_widget").css("background-color","rgba(255, 255, 255, .95)");
     });
 
     $("#research_switch_icon_2").click(function(){
@@ -22,6 +25,12 @@ $(document).ready(function(e){
         $("#ico_research_off").removeClass("hidden");
         $("#ico_research_auction_on").removeClass("hidden");
         $("#ico_research_auction_off").addClass("hidden");
+
+
+        $("#sel_contract").val(7);
+        $('#sel_contract').selectpicker('refresh');
+        $(".research_container .tabbed_widget").css("background-color","rgba(255, 255, 255, 1)");
+
 
     });
 

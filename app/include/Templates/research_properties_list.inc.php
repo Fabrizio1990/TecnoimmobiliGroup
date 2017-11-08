@@ -1,6 +1,3 @@
-
-
-
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
         <div class="row">

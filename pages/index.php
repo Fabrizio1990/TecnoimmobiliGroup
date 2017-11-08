@@ -16,7 +16,7 @@ $parallax = true;
         <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
         <!-- Style CSS -->
         <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
-
+        <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
 
 
         <!-- Google Fonts -->
@@ -41,6 +41,9 @@ $parallax = true;
     </head>
     <body>
 
+
+        <!-- MODALE CONTATTACI -->
+        <?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>
 
         <!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
         <?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
@@ -87,6 +90,7 @@ $parallax = true;
         <script src="<?php echo SITE_URL."/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
         <script src="<?php echo SITE_URL."/js/application.js" ?>"></script>
         <script src="<?php echo SITE_URL."/js/research_panel_1.js" ?>"></script>
+        <script src="<?php echo SITE_URL. "/js/contact_modal.js" ?>"></script>
 
         <!-- FlexSlider JavaScript
         ================================================== -->
@@ -122,7 +126,7 @@ $parallax = true;
                 });
             });
 
-
+            bindButtons();
 
         </script>
 

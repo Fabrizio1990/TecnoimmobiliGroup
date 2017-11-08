@@ -10,11 +10,11 @@ $propertyM = new PropertyManager();
 
 $reference_code = $_GET["rif"];
 $title          = $_GET["title"];
-
-
 $details = $propertyM->readAllAds("reference_code = ?","limit 1",array($reference_code),null,false);
-if(Count($details)<=0)
+if(Count($details)<=0 || $details[0]["id_ads_status"] != 1)
     header("location: ".SITE_URL."/404.html");
+
+
 $details = $details[0];
 
 $title = PropertyLinksAndTitles::getTitle($reference_code,3);
@@ -34,6 +34,8 @@ $title = PropertyLinksAndTitles::getTitle($reference_code,3);
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
     <!-- Style CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
+    <!-- utils CSS -->
+    <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
     <!-- DETTAGLIO CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/dettaglio_immobile.css" rel="stylesheet">
 
@@ -62,6 +64,9 @@ $title = PropertyLinksAndTitles::getTitle($reference_code,3);
 
 <!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
 <?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
+
+<!-- MODALE CONTATTACI -->
+<?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>
 
 <!-- ######## TOPBAR contenente contatti e pulsante di login ########-->
 <?php include(BASE_PATH."/app/include/Templates/topbar.inc.php") ?>
@@ -119,6 +124,9 @@ $title = PropertyLinksAndTitles::getTitle($reference_code,3);
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/Widgets/maps_utils.js" ?>" ></script>
+<script src="<?php echo SITE_URL . "/js/contact_modal.js" ?>"></script>
+<script src="<?php echo SITE_URL . "/js/dettaglio_immobile.js" ?>" ></script>
+
 
 
 <!-- FlexSlider JavaScript

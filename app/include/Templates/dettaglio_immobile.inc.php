@@ -1,10 +1,13 @@
 <?php
 if(!isset($propertyM)){
     require_once(BASE_PATH."/app/classes/PropertyManager.php");
+
     $propertyM = new PropertyManager();
     $details = $propertyM->readAllAds("reference_code = ?","limit 1",array($reference_code),null,false);
     $details = $details[0];
+
 }
+
 
 $id_property = $details["id"];
 
@@ -23,6 +26,13 @@ for($i = 0 ; $i < Count($images) ; $i++){
     $listImgNormal.= "<li><img class='img-thumbnail' src='".$imgPathNormal.$images[$i]["img_name"]."' alt=''></li>";
     $listImgMin.= "<li><img class='img-thumbnail' src='".$imgPathMin.$images[$i]["img_name"]."' alt=''></li>";
 }
+
+
+// DATI AGENTE
+$agentData = $propertyM->getAgentData($id_property);
+$agentTel = $agentData[0]["phone"];
+$agentMobile = $agentData[0]["mobile_phone"];
+$agentMail = $agentData[0]["email"];
 
 
 
@@ -136,53 +146,7 @@ for($i = 0 ; $i < Count($images) ; $i++){
             </div>
         </div>
     </div><!-- end property_wrapper -->
+    <?php include (BASE_PATH."/app/include/Templates/dettaglio_immobile_contact_form.inc.php") ?>
 
-    <div class="agent_boxes boxes clearfix">
-        <div class="agent_details clearfix">
-            <div class="col-lg-7 col-md-7 col-sm-12">
-                <div class="agents_widget">
-                    <h3 class="big_title">Mark ANTHONY<small>Total (36) pieces of property</small></h3>
-                    <div class="agencies_widget row">
-                        <div class="col-lg-5 clearfix">
-                            <img class="img-thumbnail img-responsive" src="demos/03_team.png" alt="">
-                        </div><!-- end col-lg-5 -->
-                        <div class="col-lg-7 clearfix">
-                            <div class="agencies_meta clearfix">
-                                <span><i class="fa fa-envelope"></i> <a href="mailto:support@sitename.com">support@sitename.com</a></span>
-                                <span><i class="fa fa-link"></i> <a href="#">www.sitename.com</a></span>
-                                <span><i class="fa fa-phone-square"></i> +1 232 444 55 66</span>
-                                <span><i class="fa fa-print"></i> +1 232 444 55 66</span>
-                                <span><i class="fa fa-facebook-square"></i> <a href="#">facebook.com/tagline</a></span>
-                                <span><i class="fa fa-twitter-square"></i> <a href="#">twitter.com/tagline</a></span>
-                                <span><i class="fa fa-linkedin-square"></i> <a href="#">linkedin.com/tagline</a></span>
-                            </div><!-- end agencies_meta -->
-
-                        </div><!-- end col-lg-7 -->
-
-                        <div class="clearfix"></div>
-
-                        <hr>
-
-                        <div class="col-lg-12">
-                            <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.. Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free.</p>
-                        </div>
-                    </div><!-- end agencies_widget -->
-                </div><!-- agents_widget -->
-            </div><!-- end col-lg-7 -->
-
-            <div class="col-lg-5 col-md-5 col-sm-12">
-                <h3 class="big_title">Contact Agent<small>Have a Question? Ask this Agent</small></h3>
-                <form action="#" id="agent_form">
-                    <input type="text" class="form-control" placeholder="Name">
-                    <input type="text" class="form-control" placeholder="Email">
-                    <input type="text" class="form-control" placeholder="Phone">
-                    <input type="text" class="form-control" placeholder="Subject">
-                    <textarea class="form-control" rows="5" placeholder="Message goes here..."></textarea>
-                    <button class="btn btn-primary">Send Message</button>
-                </form><!-- end search form -->
-
-            </div><!-- end col-lg-6 -->
-        </div><!-- end agent_details -->
-    </div><!-- end agent_boxes -->
         <?php include(BASE_PATH."/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
 </div><!-- end content -->

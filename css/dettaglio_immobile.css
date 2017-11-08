@@ -24,3 +24,8 @@
     width:100%;}
 
 /* TABELLA DETTAGLI END */
+
+/* CONTACT FORM */
+.property_contact_form ul li i{color: #19B8DF;}
+.property_contact_form ul{list-style: none;}
+/* END CONTACT FORM */

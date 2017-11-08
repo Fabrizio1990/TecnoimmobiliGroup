@@ -27,6 +27,7 @@ $parallax = false;
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css" />
 
     <!-- CUSTOM STYLES CSS -->
+    <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
     <link href="<?php echo(SITE_URL) ?>/css/ricerca_immobili.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -124,6 +125,7 @@ $parallax = false;
             "language": {
                 "url": BASE_PATH+"/AdminPanel/plugins/datatables/localizations/italian.json"
             },
+            "bProcessing": true,
             "bPaginate": true,
             "lengthChange": true,
             "searching": false,
@@ -132,8 +134,10 @@ $parallax = false;
             "bLengthChange": false,
             "pageLength": 5,
             "sAjaxSource": BASE_PATH+"/ajax/properties_list_datatable.ajax.php",
+            "bDeferRender": true,
             "initComplete": function() {
                 bindButtons();
+                $("#DT_PROPERTIES .fancybox").fancybox({});
             }
 
         });

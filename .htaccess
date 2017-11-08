@@ -10,5 +10,173 @@ RewriteRule ^([^/]*)/([^/]*)\.html$ index.php?folder=$1&page=$2
 
 
 
-#RewriteRule ^([^/]+)-Vendita-([^/]+).html$ pages/Dettaglio_immobile.php?id=$1&title=Vendita-$2 [L]
-#RewriteRule ^([^/]+)-Affitto-([^/]+).html$ pages/Dettaglio_immobile.php?id=$1&title=Affitto-$2 [L]
+# Comincia compressione
+
+SetOutputFilter DEFLATE
+
+AddOutputFilter DEFLATE text/plain
+
+AddOutputFilter DEFLATE text/html
+
+AddOutputFilter DEFLATE text/xml
+
+AddOutputFilter DEFLATE text/css
+
+AddOutputFilter DEFLATE application/xml
+
+AddOutputFilter DEFLATE application/xhtml+xml
+
+AddOutputFilter DEFLATE application/rss+xml
+
+AddOutputFilter DEFLATE application/javascript
+
+AddOutputFilter DEFLATE application/x-javascript
+
+AddOutputFilter DEFLATE application/x-httpd-php
+
+AddOutputFilter DEFLATE application/x-httpd-fastphp
+
+AddOutputFilter DEFLATE image/svg+xml
+
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+BrowserMatch ^Mozilla/4.0[678] no-gzip
+
+BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+
+SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
+
+
+# chace espire
+
+<IfModule mod_expires.c>
+
+ExpiresActive On
+
+ExpiresByType text/css A31536000
+
+ExpiresByType application/x-javascript A31536000
+
+ExpiresByType text/html A31536000
+
+ExpiresByType text/richtext A31536000
+
+ExpiresByType image/svg+xml A31536000
+
+ExpiresByType text/plain A31536000
+
+ExpiresByType text/xsd A31536000
+
+ExpiresByType text/xsl A31536000
+
+ExpiresByType text/xml A31536000
+
+ExpiresByType video/asf A31536000
+
+ExpiresByType video/avi A31536000
+
+ExpiresByType image/bmp A31536000
+
+ExpiresByType application/java A31536000
+
+ExpiresByType video/divx A31536000
+
+ExpiresByType application/msword A31536000
+
+ExpiresByType application/x-msdownload A31536000
+
+ExpiresByType image/gif A31536000
+
+ExpiresByType application/x-gzip A31536000
+
+ExpiresByType image/x-icon A31536000
+
+ExpiresByType application/vnd.ms-access A31536000
+
+ExpiresByType audio/midi A31536000
+
+ExpiresByType video/quicktime A31536000
+
+ExpiresByType audio/mpeg A31536000
+
+ExpiresByType video/mp4 A31536000
+
+ExpiresByType video/mpeg A31536000
+
+ExpiresByType application/vnd.ms-project A31536000
+
+ExpiresByType application/vnd.oasis.opendocument.database A31536000
+
+ExpiresByType application/vnd.oasis.opendocument.chart A31536000
+
+ExpiresByType application/vnd.oasis.opendocument.formula A31536000
+
+ExpiresByType application/vnd.oasis.opendocument.graphics A31536000
+
+ExpiresByType application/vnd.oasis.opendocument.presentation A31536000
+
+ExpiresByType application/vnd.oasis.opendocument.spreadsheet A31536000
+
+ExpiresByType application/vnd.oasis.opendocument.text A31536000
+
+ExpiresByType audio/ogg A31536000
+
+ExpiresByType application/pdf A31536000
+
+ExpiresByType image/png A31536000
+
+ExpiresByType application/vnd.ms-powerpoint A31536000
+
+ExpiresByType audio/x-realaudio A31536000
+
+ExpiresByType application/x-shockwave-flash A31536000
+
+ExpiresByType application/x-tar A31536000
+
+ExpiresByType image/tiff A31536000
+
+ExpiresByType audio/wav A31536000
+
+ExpiresByType audio/wma A31536000
+
+ExpiresByType application/vnd.ms-write A31536000
+
+ExpiresByType application/vnd.ms-excel A31536000
+
+ExpiresByType application/zip A31536000
+
+</IfModule>
+
+# Requires mod_expires to be enabled.
+
+<IfModule mod_expires.c>
+
+ExpiresActive on
+
+ExpiresByType text/css "access plus 10 years"
+
+ExpiresByType text/js "access plus 10 years"
+
+ExpiresByType text/javascript "access plus 10 years"
+
+ExpiresByType application/javascript "access plus 10 years"
+
+ExpiresByType application/x-javascript "access plus 10 years"
+
+#
+
+FileETag MTime Size
+
+#
+
+# Cache all files for 2 weeks after access (A).
+
+ExpiresDefault A1209600
+
+#
+
+# Do not cache dynamically generated pages.
+
+ExpiresByType text/html A1
+
+</IfModule>

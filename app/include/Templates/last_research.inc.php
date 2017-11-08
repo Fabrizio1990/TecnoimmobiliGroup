@@ -1,7 +1,12 @@
 <?php
 require_once(BASE_PATH."/app/classes/PropertyManager.php");
+require_once(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 $propertyMng = new PropertyManager();
 $parallax = isset($parallax)?$parallax:false;
+
+$imgPathMin = $propertyMng->getImagesPath("title = ?","limit 1", array("min"),"path",false)[0]["path"];
+$imgPathBig = $propertyMng->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
+$imgEof  = "img_eof/Immagine_eof.jpg";
 ?>
 
 <!-- Style CSS -->
@@ -35,6 +40,8 @@ $parallax = isset($parallax)?$parallax:false;
 
                                     for($i = 0 ; $i < Count($properties) ; $i++){
 
+                                        $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
+
                                         $agentData = $propertyMng->getAgentData($properties[$i]["id"]);
                                         $agentTel = $agentData[0]["phone"];
                                         $agentMobile = $agentData[0]["mobile_phone"];
@@ -42,11 +49,28 @@ $parallax = isset($parallax)?$parallax:false;
 
 
                                         $boxTxt = $properties[$i]["box_short"];
+                                        if($boxTxt != "NO" && $boxTxt!= "NN"){
+                                            $boxTxt = "SI";
+                                        }
+
+                                        $price = $properties[$i]["price"];
+                                        if($price == 0 ){
+                                            $price = "TR";
+                                            $priceTit = "Trattativa riservata";
+                                        }else{
+                                            $price ="&euro;".Utils::formatPrice($price);
+                                        }
+
                                         $title  = $properties[$i]["tipology"]." ".$properties[$i]["contract"];
                                         $title2 = $properties[$i]["tipology"]." ".$properties[$i]["town"];
                                         $address = $properties[$i]["street"];
-                                        if($boxTxt != "NO" && $boxTxt!= "NN"){
-                                            $boxTxt = "SI";
+
+                                        /*  IMAGES */
+                                        $imgMin =  SITE_URL."/".$imgPathMin."/".$imgEof;
+                                        $imgBig =  $imgPath = SITE_URL."/".$imgPathBig."/".$imgEof;
+                                        if($properties[$i]["img_name"]!=""){
+                                            $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
+                                            $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                                         }
 
                                     ?>
@@ -54,11 +78,11 @@ $parallax = isset($parallax)?$parallax:false;
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
                                                 <div class="ImageWrapper boxes_img">
-                                                    <img class="img-responsive" src="<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
+                                                    <img class="img-responsive" src="<?php echo $imgMin ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                                     <div class="ImageOverlayH"></div>
                                                     <div class="Buttons StyleSc">
-                                                        <span class='WhiteSquare' title='Vai al dettaglio'><a  href='#'><i class='fa fa-search'></i></a></span>
-                                                        <span class='WhiteSquare' title='Ingrandisci Foto'><a class='fancybox' href='<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>'><i class='fa fa-picture-o'></i></a></span>
+                                                        <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>
+                                                        <span class='WhiteSquare' title='Ingrandisci Foto'><a class='fancybox' href='<?php echo $imgBig ?>'><i class='fa fa-picture-o'></i></a></span>
                                                         <span class='WhiteSquare' title='Contattaci'><a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o'></i></a></span>
                                                         <div class='hiddenInfo'>
                                                             <input type='hidden' class='email_info' value='<?php echo $agentMail?>' />
@@ -66,7 +90,7 @@ $parallax = isset($parallax)?$parallax:false;
                                                             <input type='hidden' class='mobile_info' value='<?php echo $agentMobile?>' />
                                                         </div>
                                                     </div>
-                                                    <div class="box_type"><?php echo "&euro;".Utils::formatPrice($properties[$i]["price"]) ?></div>
+                                                    <div class="box_type"><?php echo $price ?></div>
                                                     <div class="status_type"><?php echo $properties[$i]["contract_status"] ?></div>
                                                 </div>
                                                 <h2 class="title"><a href="single-property.html"> <?php echo $title2?></a></h2>
@@ -88,6 +112,8 @@ $parallax = isset($parallax)?$parallax:false;
                                     $properties = $propertyMng->readAllAds("id_ads_status = 1","order by views desc,date_up desc Limit 6 ",null,null,false);
 
                                     for($i = 0 ; $i < Count($properties) ; $i++){
+                                        $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
+
                                         $agentData = $propertyMng->getAgentData($properties[$i]["id"]);
                                         $agentTel = $agentData[0]["phone"];
                                         $agentMobile = $agentData[0]["mobile_phone"];
@@ -101,15 +127,31 @@ $parallax = isset($parallax)?$parallax:false;
                                             $boxTxt = "SI";
                                         }
 
+                                        $price = $properties[$i]["price"];
+                                        if($price == 0 ){
+                                            $price = "TR";
+                                            $priceTit = "Trattativa riservata";
+                                        }else{
+                                            $price ="&euro;".Utils::formatPrice($price);
+                                        }
+
+                                        /*  IMAGES */
+                                        $imgMin =  $imgPath = SITE_URL."/".$imgPathMin."/".$imgEof;
+                                        $imgBig =  $imgPath = SITE_URL."/".$imgPathBig."/".$imgEof;
+                                        if($properties[$i]["img_name"]!=""){
+                                            $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
+                                            $imgBig =  SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
+                                        }
+
                                         ?>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
                                                 <div class="ImageWrapper boxes_img">
-                                                    <img class="img-responsive" src="<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
+                                                    <img class="img-responsive" src="<?php echo $imgMin ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                                     <div class="ImageOverlayH"></div>
                                                     <div class="Buttons StyleSc">
-                                                        <span class='WhiteSquare' title='Vai al dettaglio'><a  href='#'><i class='fa fa-search'></i></a></span>
-                                                        <span class='WhiteSquare' title='Ingrandisci Foto'><a  class='fancybox' href='<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>'><i class='fa fa-picture-o'></i></a></span>
+                                                        <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>
+                                                        <span class='WhiteSquare' title='Ingrandisci Foto'><a  class='fancybox' href='<?php echo $imgBig ?>'><i class='fa fa-picture-o'></i></a></span>
                                                         <span class='WhiteSquare' title='Contattaci'><a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o'></i></a></span>
                                                         <div class='hiddenInfo'>
                                                             <input type='hidden' class='email_info' value='<?php echo $agentMail?>' />
@@ -117,7 +159,7 @@ $parallax = isset($parallax)?$parallax:false;
                                                             <input type='hidden' class='mobile_info' value='<?php echo $agentMobile?>' />
                                                         </div>
                                                     </div>
-                                                    <div class="box_type"><?php echo "&euro;".Utils::formatPrice($properties[$i]["price"]) ?></div>
+                                                    <div class="box_type"><?php echo $price ?></div>
                                                     <div class="status_type"><?php echo $properties[$i]["contract_status"] ?></div>
                                                 </div>
                                                 <h2 class="title"><a href="single-property.html"> <?php echo $title2?></a></h2>
@@ -139,6 +181,8 @@ $parallax = isset($parallax)?$parallax:false;
                                     $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_ins desc Limit 6 ",null,null,false);
 
                                     for($i = 0 ; $i < Count($properties) ; $i++){
+                                        $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
+
                                         $agentData = $propertyMng->getAgentData($properties[$i]["id"]);
                                         $agentTel = $agentData[0]["phone"];
                                         $agentMobile = $agentData[0]["mobile_phone"];
@@ -152,15 +196,31 @@ $parallax = isset($parallax)?$parallax:false;
                                             $boxTxt = "SI";
                                         }
 
+                                        $price = $properties[$i]["price"];
+                                        if($price == 0 ){
+                                            $price = "TR";
+                                            $priceTit = "Trattativa riservata";
+                                        }else{
+                                            $price ="&euro;".Utils::formatPrice($price);
+                                        }
+
+                                        /*  IMAGES */
+                                        $imgMin =  $imgPath = SITE_URL."/".$imgPathMin."/".$imgEof;
+                                        $imgBig =  $imgPath = SITE_URL."/".$imgPathBig."/".$imgEof;
+                                        if($properties[$i]["img_name"]!="") {
+                                            $imgMin = SITE_URL . "/" . $imgPathMin . $properties[$i]["img_name"];
+                                            $imgBig = SITE_URL . "/" . $imgPathBig . $properties[$i]["img_name"];
+                                        }
+
                                         ?>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
                                                 <div class="ImageWrapper boxes_img">
-                                                    <img class="img-responsive" src="<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
+                                                    <img class="img-responsive" src="<?php echo $imgMin ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                                     <div class="ImageOverlayH"></div>
                                                     <div class="Buttons StyleSc">
-                                                        <span class='WhiteSquare' title='Vai al dettaglio'><a  href='#'><i class='fa fa-search'></i></a></span>
-                                                        <span class='WhiteSquare' title='Ingrandisci Foto'><a  class='fancybox' href='<?php echo SITE_URL."/public/images/images_properties/normal/".$properties[$i]["img_name"] ?>'><i class='fa fa-picture-o'></i></a></span>
+                                                        <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>
+                                                        <span class='WhiteSquare' title='Ingrandisci Foto'><a  class='fancybox' href='<?php echo $imgBig ?>'><i class='fa fa-picture-o'></i></a></span>
                                                         <span class='WhiteSquare' title='Contattaci'><a class='contact-modal-toggle' href="#"><i class='fa fa-envelope-o'></i></a></span>
                                                         <div class='hiddenInfo'>
                                                             <input type='hidden' class='email_info' value='<?php echo $agentMail?>' />
@@ -168,14 +228,14 @@ $parallax = isset($parallax)?$parallax:false;
                                                             <input type='hidden' class='mobile_info' value='<?php echo $agentMobile?>' />
                                                         </div>
                                                     </div>
-                                                    <div class="box_type"><?php echo "&euro;".Utils::formatPrice($properties[$i]["price"]) ?></div>
+                                                    <div class="box_type"><?php echo $price ?></div>
                                                     <div class="status_type"><?php echo $properties[$i]["contract_status"] ?></div>
                                                 </div>
                                                 <h2 class="title"><a href="single-property.html"> <?php echo $title2?></a></h2>
                                                 <div class="boxed_mini_details clearfix">
-                                                    <span class="first" title="<?php echo $properties[$i]["box"] ?>"><strong></strong><i class="icon-garage"></i><b> <?php echo $boxTxt ?></b></span>
-                                                    <span class="" title="<?php echo $properties[$i]["rooms"] ?>"><i class="icon-bed"></i> <b><?php echo $properties[$i]["rooms_short"] ?></b></span>
-                                                    <span class="last" title="<?php echo $properties[$i]["bathrooms"] ?>" ><i class="icon-bath"></i><b><?php echo $properties[$i]["bathrooms_short"] ?></b>  </span>
+                                                    <span class="first" title="<?php echo $properties[$i]["box"] ?>"><strong></strong><i class="icon-garage"></i> <?php echo $boxTxt ?></span>
+                                                    <span class="" title="<?php echo $properties[$i]["rooms"] ?>"><strong></strong><i class="icon-bed"></i> <?php echo $properties[$i]["rooms_short"] ?></span>
+                                                    <span class="last" title="<?php echo $properties[$i]["bathrooms"] ?>" ><strong></strong><i class="icon-bath"></i><?php echo $properties[$i]["bathrooms_short"] ?>  </span>
                                                 </div>
                                             </div><!-- end boxes -->
                                         </div>

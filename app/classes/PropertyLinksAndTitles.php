@@ -18,19 +18,28 @@ class PropertyLinksAndTitles
     public static function getTitleFromId($id){
         $mng = new PropertyManager();
         $res = $mng->readAllAds("id = ?","limit 1",array($id),null,null);
-        return PropertyLinksAndTitles::getTitle($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"]);
+        if(Count($res)>0)
+            return PropertyLinksAndTitles::getTitle($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"]);
+        else
+            return false;
     }
 
     public static function getTitleFromRef($ref){
         $mng = new PropertyManager();
         $res = $mng->readAllAds("reference_code = ?","limit 1",array($ref),null,null);
-        return PropertyLinksAndTitles::getTitle($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"]);
+        if(Count($res)>0)
+            return PropertyLinksAndTitles::getTitle($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"]);
+        else
+            return false;
     }
 
     public static function getTitle($ref,$titleType){
 
         $mng = new PropertyManager();
         $res = $mng->readAllAds("reference_code = ?","limit 1",array($ref),null,null);
+        if(Count($res)<=0)
+            return false;
+
         $res = $res[0];
         $ret = "";
         switch ($titleType){
@@ -54,8 +63,18 @@ class PropertyLinksAndTitles
         return $ret;
     }
 
-    public static function getTitleShort($rif){
-
+    public static function getTitleNoDb($tipology,$contract,$town = null,$street = null,$district){
+        if($town == null)
+            return $tipology. " in ". $contract;
+        else if($street == null)
+            return $tipology. " in ". $contract ." ".$town;
+        else if($district == null)
+            return $tipology. " in ". $contract ." ".$town.", ".$street;
+        else{
+            $ret = $tipology. " " .$street;
+            $ret .= $district == $town ? ", ". $town: ", ".  $district .", ".$town;
+            return $ret;
+        }
     }
 
     //##################################################################################
@@ -64,17 +83,23 @@ class PropertyLinksAndTitles
     public static function getDetailLinkFromId($id){
         $mng = new PropertyManager();
         $res = $mng->readAllAds("id = ?","limit 1",array($id),null,null);
-        return PropertyLinksAndTitles::getDetailLink($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"],$res[0]["reference_code"]);
+        if(Count($res)>0)
+            return PropertyLinksAndTitles::getDetailLink($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"],$res[0]["reference_code"]);
+        else
+            return false;
     }
 
     public static function getDetailLinkFromRef($ref){
         $mng = new PropertyManager();
         $res = $mng->readAllAds("reference_code = ?","limit 1",array($ref),null,null);
-        return PropertyLinksAndTitles::getDetailLink($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"],$ref);
+        if(Count($res)>0)
+            return SITE_URL."/".PropertyLinksAndTitles::getDetailLink($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"],$ref);
+        else
+            return false;
     }
 
     public static function getDetailLink($contract,$tipology,$street,$town,$ref){
-        return $contract."-".$tipology."/".$town."/".$street."/RIF-".$ref;
+        return str_replace(" ","_",$contract."-".$tipology."-".$town."-".$street."/RIF-".$ref);
     }
 
 }

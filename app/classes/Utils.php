@@ -22,10 +22,13 @@ class Utils {
 
 
 
-    function escapeJsonString($value) { # list from www.json.org: (\b backspace, \f formfeed)
+    static function escapeJsonString($value) { # list from www.json.org: (\b backspace, \f formfeed)
         $escapers = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");
         $replacements = array("\\\\", "\\/", "\\\"", "\\n", "\\r", "\\t", "\\f", "\\b");
+
         $result = str_replace($escapers, $replacements, $value);
+
+        $result = htmlentities($result, ENT_QUOTES);
         return $result;
     }
 
@@ -51,6 +54,12 @@ class Utils {
     static function truncateText($text,$maxLen,$truncateChars ="..."){
         $ret = strlen($text)>$maxLen?substr($text,0,$maxLen)." ".$truncateChars:$text;
         return $ret;
+    }
+
+    static function getCurrentUrl(){
+        $url =  "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+        $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
+        return $escaped_url ;
     }
 
 

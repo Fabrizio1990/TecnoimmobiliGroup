@@ -17,13 +17,13 @@ $optBox             = isset($_POST["sel_box"])?$sel_category:"";
 $optCategory 		= $optMng->makeOptions("ads_category",$optCategoryVal,null);
 $optTipology		= $optMng->makeOptions("ads_tipologies",$optTipologyVal,$optCategoryVal);
 $optContracts 		= $optMng->makeOptions("ads_contracts",$optContractsVal);
-$optLocals  		= $optMng->makeOptions("ads_locals",$optLocalsVal);
-$optBathrooms		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal);
-$optGardens         = $optMng->makeOptions("ads_gardens",$optGardensVal);
+$optLocals  		= $optMng->makeOptions("ads_locals",$optLocalsVal,null,"Non specificato");
+$optBathrooms		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal,null,"Non specificato");
+$optGardens         = $optMng->makeOptions("ads_gardens",$optGardensVal,null,"Non specificato");
 
-$optElevator         = $optMng->makeOptions("ads_elevators",$optElevatorVal);
-$optPropertyStatus   = $optMng->makeOptions("ads_property_status",$optPropertyStatus);
-$optBox              = $optMng->makeOptions("ads_box",$optBox);
+$optElevator         = $optMng->makeOptions("ads_elevators",$optElevatorVal,null,"Non specificato");
+$optPropertyStatus   = $optMng->makeOptions("ads_property_status",$optPropertyStatus,null,"Non specificato");
+$optBox              = $optMng->makeOptions("ads_box",$optBox,null,"Non specificato");
 
 
 ?>
@@ -34,10 +34,10 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox);
     <div class="row small_esearch_container">
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix z-index-10 " >
-            <div id="tabbed_widget" class="tabbable clearfix" data-effect="slide-bottom">
+            <div id="tabbed_widget" class="tabbable clearfix OPACITY-0" data-effect="slide-left">
 
 
-                <div class="searchmodule clearfix" data-effect="slide-right">
+                <div class="searchmodule clearfix" data-effect="fade">
 
                 <form id="advanced_search_small" action="#" class="clearfix" name="advanced_search" method="post">
 

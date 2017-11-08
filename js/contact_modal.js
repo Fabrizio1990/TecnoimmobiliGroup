@@ -1,3 +1,4 @@
+
 function bindButtons(){
     $(".contact-modal-toggle").bind("click",function(event) {
         event.preventDefault();
