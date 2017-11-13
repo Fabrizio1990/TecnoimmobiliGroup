@@ -1,5 +1,12 @@
 <?php
 require_once(BASE_PATH."/app/classes/Utils.php");
+
+
+//if(SessionManager::getVal("research") != null){
+//var_dump(SessionManager::getVal("research_opts",true));
+//}
+
+
 $parallax = true;
 ?>
 <!DOCTYPE html>
@@ -18,6 +25,8 @@ $parallax = true;
         <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
         <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
 
+        <!-- Jquery validate  override css-->
+        <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/jquery_validate_override.css" />
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -88,9 +97,16 @@ $parallax = true;
         <script src="<?php echo SITE_URL."/libs/frontend/Others/fhmm.js"?>"></script>
         <script src="<?php echo SITE_URL."/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
         <script src="<?php echo SITE_URL."/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
+        <!-- Jquery validate -->
+        <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+        <!-- Jquery validate -->
+        <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_selectpicker_override.js"></script>
+        <!-- Jquery validate IT localization -->
+        <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
         <script src="<?php echo SITE_URL."/js/application.js" ?>"></script>
         <script src="<?php echo SITE_URL."/js/research_panel_1.js" ?>"></script>
         <script src="<?php echo SITE_URL. "/js/contact_modal.js" ?>"></script>
+
 
         <!-- FlexSlider JavaScript
         ================================================== -->

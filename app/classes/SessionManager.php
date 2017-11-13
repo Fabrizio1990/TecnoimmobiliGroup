@@ -6,11 +6,12 @@
  * Date: 14/11/2016
  * Time: 17:17
  */
+
 class SessionManager
 {
 
     private static $usecoockie = true;
-    private static $cookieLifetime = 36000;
+    private static $cookieLifetime = 86400;//1 day
 
     private static function startSession(){
         if (session_status() == PHP_SESSION_NONE) {
@@ -19,9 +20,9 @@ class SessionManager
     }
 
 
-    public static function setVal($key,$obj){
+    public static function setVal($key,$obj,$cookieDuration = null){
         if( SessionManager::$usecoockie)
-            SessionManager::setCookie($key,$obj);
+            SessionManager::setCookie($key,$obj,$cookieDuration);
         else
             sessionManager::setSession($key,$obj);
     }
@@ -47,9 +48,9 @@ class SessionManager
         $_SESSION[$key] = (is_object($val) ? serialize($val) : $val);
     }
 
-    public static function setCookie($key,$val){
-
-        setcookie($key, (is_object($val) ? serialize($val) : $val), time()+SessionManager::$cookieLifetime, '/');
+    public static function setCookie($key,$val,$cookieDuration){
+        $durationVal = $cookieDuration==null?SessionManager::$cookieLifetime:$cookieDuration;
+        setcookie($key, (is_object($val) ? serialize($val) : $val), time()+$durationVal, "/");
     }
 
     // ++++++++++ FUNZIONI DI RECUPERO DATO DA SESSIONE/COOKIE ++++++++++++++

@@ -16,16 +16,19 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
 ?>
 
 <div class="property_wrapper boxes clearfix">
-    <h3 class="big_title">Similar Properties<small>View other properties from this agent</small></h3>
+    <h3 class="big_title">Ricerche correlate<small>Immobili simili a quello ricercato</small></h3>
     <div class="row">
         <?php
         for($i = 0 ;$i < Count($resSP);$i++){
 
+            $link = PropertyLinksAndTitles::getDetailLink($resSP[$i]["contract"],$resSP[$i]["tipology"],$resSP[$i]["street"],$resSP[$i]["town"],$resSP[$i]["reference_code"]);
 
-            $agentData = $propertyM->getAgentData($resSP[$i]["id"]);
-            $agentTel = $agentData[0]["phone"];
-            $agentMobile = $agentData[0]["mobile_phone"];
-            $agentMail = $agentData[0]["email"];
+            $title = PropertyLinksAndTitles::getTitleNoDb($resSP[$i]["tipology"],$resSP[$i]["contract"],$resSP[$i]["town"]);
+
+
+            $agentTel = $resSP[$i]["agent_phone"];
+            $agentMobile = $resSP[$i]["agent_mobile_phone"];
+            $agentMail = $resSP[$i]["agent_email"];
 
             $reference_code = $resSP[$i]["reference_code"];
 
@@ -59,7 +62,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                             <img class="img-responsive" src="<?php echo $imgMin?>" alt="<?php echo $imgAlt ?>" />
                             <div class="ImageOverlayH"></div>
                             <div class="Buttons StyleB">
-                                <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo PropertyLinksAndTitles::getDetailLinkFromRef($reference_code) ?>'><i class='fa fa-search'></i></a></span>
+                                <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>
                                 <span class='WhiteSquare' title='Ingrandisci Foto'><a  class='fancybox' href='<?php echo $imgBig ?>'><i class='fa fa-picture-o'></i></a></span>
                                 <!--<span class='WhiteSquare' title='Contattaci'><a class='contact-modal-toggle' href="#"><i class='fa fa-envelope-o'></i></a></span>-->
                                 <div class='hiddenInfo'>

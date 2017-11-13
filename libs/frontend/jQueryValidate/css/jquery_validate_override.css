@@ -15,3 +15,11 @@ label.valid{
 }
 
 
+button.error{
+    border:1px solid #FF0000;
+}
+
+button.valid{
+    border:1px solid #00CC00;
+}
+

@@ -1,6 +1,12 @@
 <?php
 
     require("config.php");
+
+    if(HIDE_PAGES){
+        include(BASE_PATH . "/pages/in_costruzione.php");
+        exit();
+    }
+
     include(BASE_PATH."/app/include/statistic_start.inc.php");
 
     $url="pages/";

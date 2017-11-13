@@ -59,22 +59,22 @@
 
 
 
+                <!-- standard drop down -->
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">IL GRUPPO<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="testimonials.html">Chi siamo</a></li>
+                        <li><a href="testimonials.html">Dove Siamo</a></li>
+                        <li><a href="testimonials.html">Contatti</a></li>
+                        <li><a href="testimonials.html">Lavora con noi</a></li>
+                    </ul><!-- end dropdown-menu -->
+                </li><!-- end standard drop down -->
 
-                <li class="dropdown fhmm-fw">
-                    <a href="<?php echo SITE_URL ?>"> CHI SIAMO</a>
-                </li>
-
-                <li class="dropdown fhmm-fw">
-                    <a href="<?php echo SITE_URL ?>"> DOVE SIAMO</a>
-                </li>
 
                 <li class="dropdown fhmm-fw">
                     <a href="<?php echo SITE_URL ?>"> PARTNER</a>
                 </li>
 
-                <li class="dropdown fhmm-fw">
-                    <a href="<?php echo SITE_URL ?>"> CONTATTI</a>
-                </li>
+
 
             </ul><!-- end nav navbar-nav -->
         </div><!-- end #navbar-collapse-1 -->

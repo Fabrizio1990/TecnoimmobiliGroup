@@ -30,6 +30,8 @@ $parallax = false;
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
     <link href="<?php echo(SITE_URL) ?>/css/ricerca_immobili.css" rel="stylesheet">
 
+    <!-- Jquery validate  override css-->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/jquery_validate_override.css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -112,6 +114,14 @@ $parallax = false;
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+
+<!-- Jquery validate -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+<!-- Jquery validate -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_selectpicker_override.js"></script>
+<!-- Jquery validate IT localization -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
+
 
 <script src="<?php echo SITE_URL . "/js/research_panel_1.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/contact_modal.js" ?>"></script>

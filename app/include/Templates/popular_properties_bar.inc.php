@@ -21,7 +21,7 @@
                     </div>
                     <?php for($i = 0 ; $i< Count($properties);$i++){
 
-                        $title  = $properties[$i]["tipology"]." in ".$properties[$i]["contract"];
+                        $title  = PropertyLinksAndTitles::getTitleNoDb($properties[$i]["tipology"],$properties[$i]["contract"]);
                         $address = $properties[$i]["street"]."  ".$properties[$i]["city"];
                         $boxTxt = $properties[$i]["box_short"];
                         if($boxTxt != "NO" && $boxTxt!= "NN"){

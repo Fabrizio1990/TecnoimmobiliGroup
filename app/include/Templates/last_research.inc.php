@@ -42,10 +42,9 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
 
                                         $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
 
-                                        $agentData = $propertyMng->getAgentData($properties[$i]["id"]);
-                                        $agentTel = $agentData[0]["phone"];
-                                        $agentMobile = $agentData[0]["mobile_phone"];
-                                        $agentMail = $agentData[0]["email"];
+                                        $agentTel = $properties[$i]["agent_phone"];
+                                        $agentMobile = $properties[$i]["agent_mobile_phone"];
+                                        $agentMail = $properties[$i]["agent_email"];
 
 
                                         $boxTxt = $properties[$i]["box_short"];
@@ -114,10 +113,9 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                     for($i = 0 ; $i < Count($properties) ; $i++){
                                         $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
 
-                                        $agentData = $propertyMng->getAgentData($properties[$i]["id"]);
-                                        $agentTel = $agentData[0]["phone"];
-                                        $agentMobile = $agentData[0]["mobile_phone"];
-                                        $agentMail = $agentData[0]["email"];
+                                        $agentTel = $properties[$i]["agent_phone"];
+                                        $agentMobile = $properties[$i]["agent_mobile_phone"];
+                                        $agentMail = $properties[$i]["agent_email"];
 
                                         $boxTxt = $properties[$i]["box_short"];
                                         $title  = $properties[$i]["tipology"]." in ".$properties[$i]["contract"];
@@ -183,10 +181,9 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                     for($i = 0 ; $i < Count($properties) ; $i++){
                                         $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
 
-                                        $agentData = $propertyMng->getAgentData($properties[$i]["id"]);
-                                        $agentTel = $agentData[0]["phone"];
-                                        $agentMobile = $agentData[0]["mobile_phone"];
-                                        $agentMail = $agentData[0]["email"];
+                                        $agentTel = $properties[$i]["agent_phone"];
+                                        $agentMobile = $properties[$i]["agent_mobile_phone"];
+                                        $agentMail = $properties[$i]["agent_email"];
 
                                         $boxTxt = $properties[$i]["box_short"];
                                         $title  = $properties[$i]["tipology"]." in ".$properties[$i]["contract"];

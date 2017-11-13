@@ -4,3 +4,17 @@
 .my-valid-class {
     color:#00CC00; /* green */
 }
+
+.error{
+    color:#FF0000 !important;  /* red */
+}
+
+
+button.error,input.error{
+    border:1px solid #FF0000 !important;
+}
+
+button.valid,input.valid{
+    border:1px solid #00CC00 !important;
+}
+

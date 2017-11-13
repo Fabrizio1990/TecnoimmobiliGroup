@@ -12,3 +12,10 @@
 $.validator.addMethod('greatherThanEqual', function(value, element, param) {
     return parseInt(param[0]) >=  parseInt(param[1]);
 }, "Il valore massimo è minore del valore minimo");
+$.validator.addMethod("valueNotEquals", function(value, element, arg){
+    console.log(arg !== value);
+    return arg !== value;
+}, "Inserisci un valore valido");
+jQuery.validator.addMethod('selectRequired', function (value) {
+    return (value != '');
+}, "year required");

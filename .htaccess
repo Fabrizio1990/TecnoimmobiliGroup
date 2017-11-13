@@ -1,7 +1,7 @@
 RewriteEngine On
 
 
-RewriteRule ^([^/]+)/RIF-([^/]+)$ index.php?page=Dettaglio_immobile&rif=$2&title=$1
+RewriteRule ^([^/]+)/RIF-([^/]+)$ index.php?page=dettaglio_immobile&rif=$2&title=$1
 
 RewriteRule ^([^/]*)\.html$ index.php?page=$1
 RewriteRule ^([^/]*)/([^/]*)\.html$ index.php?folder=$1&page=$2

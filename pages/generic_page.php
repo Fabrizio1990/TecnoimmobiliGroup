@@ -10,7 +10,7 @@
     <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>Pagina non tovata</title>
+    <title>{TITOLO PAGINA}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -66,9 +66,9 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li>Pagina non trovata</li>
+                <li>{PAGINA}</li>
             </ul>
-            <h2>Pagina non trovata</h2>
+            <h2>{titolo}</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -81,15 +81,7 @@
         <div class="row">
 
 
-            <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-                <div class="error404 text-center">
-                    <h2>
-                        <span>404</span>
-                    </h2>
-                    <h3>La pagina ricercata non è stata trovata</h3>
-                    <a class="btn btn-primary" href="<?php echo BASE_PATH ?>">Torna alla Home</a>
-                </div><br><br><br>
-            </div><!-- end content -->
+            // METTI QUI PAGINA
 
         </div><!-- end row -->
     </div><!-- end container -->

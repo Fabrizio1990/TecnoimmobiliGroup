@@ -63,7 +63,7 @@ class PropertyLinksAndTitles
         return $ret;
     }
 
-    public static function getTitleNoDb($tipology,$contract,$town = null,$street = null,$district){
+    public static function getTitleNoDb($tipology,$contract,$town = null,$street = null,$district = null){
         if($town == null)
             return $tipology. " in ". $contract;
         else if($street == null)

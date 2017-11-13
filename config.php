@@ -7,7 +7,7 @@ define("BASE_PATH", realpath(dirname(__FILE__) ));
 define("LOG_PATH", BASE_PATH."/app/logs/");
 define("ENVOIRMENT",$envoirments[0]);
 define("DEBUG",ENVOIRMENT == $envoirments[2]?false:true);
-
+define("HIDE_PAGES",false);
 require (BASE_PATH."/app/classes/LogHelper/Flog.php");
 
 // MY ERROR HANDLER THAT SUBSTITUTE THE PHP ONES

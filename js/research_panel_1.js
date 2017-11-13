@@ -74,4 +74,59 @@ $(document).ready(function(e){
         }
     });
 
+
+
+    $(".selectpicker").selectpicker().change(function() {
+        $(this).valid();
+    });
+        //FORM VALIDATION
+        form = $("#advanced_search").validate({
+            ignore: [],
+            //ignore: 'input[type=hidden]',/*,:not(select:hidden, input:visible, textarea:visible)*/
+            rules:
+                {
+                    /*--- SELECT ---*/
+                    // LOCATION
+                    sel_category            : { required: true },
+                    sel_contract            : { required: true },
+                    sel_tipology            : { required: true },
+
+
+                    /*--- INPUT ---*/
+                    input_town  : { required: true, minlength: 3, maxlength: 240 },
+                    priceFrom   : { number: true },
+                    priceTo     : { number: true },
+                    mqFrom      : { number: true },
+                    mqTo        : { number: true },
+
+                },
+
+            submitHandler: function(form) {
+                var page = BASE_PATH+"/ajax/research_set_session.ajax.php";
+                var params = $(form).serialize();
+                params+="&sel_category="+$("#sel_category").val();
+                params+="&sel_locals="+$("#sel_locals").val();
+                params+="&sel_bathrooms="+$("#sel_bathrooms").val();
+                params+="&sel_property_status="+$("#sel_property_status").val();
+                params+="&sel_garden="+$("#sel_garden").val();
+                params+="&sel_elevator="+$("#sel_elevator").val();
+                params+="&sel_box="+$("#sel_box").val();
+
+                ajaxCall(page,params,form,researchSet,null,"POST");
+            },
+            invalidHandler: function(event, validator) {
+                console.log("NOT VALID");
+            },errorPlacement: function(error, element) {
+              // NON VOGLIO VISUALIZZARE ERRORI SCRITTI
+            }
+
+        });
+
+    function researchSet(form){
+        document.location.href = "ricerca_immobili.html";
+    }
+    function researchNotSet(){
+        openInfoModal(5,"Errore!","è avvenuto un errore durante la ricerca, riprova a breve.","Chiudi");
+    }
+
 });

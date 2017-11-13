@@ -2,17 +2,45 @@
 
 <?php
 require_once(BASE_PATH."/app/classes/OptionsManager.php");
+require_once(BASE_PATH."/app/classes/SessionManager.php");
 $optMng = new OptionsManager();
 
-$optCategoryVal     = isset($_POST["sel_category"])?$sel_category:1;
-$optTipologyVal     = isset($_POST["sel_tipology"])?$sel_category:"";
-$optContractsVal    = isset($_POST["sel_contracts"])?$sel_category:2;
-$optLocalsVal       = isset($_POST["sel_locals"])?$sel_category:"";
-$optBathroomsVal    = isset($_POST["sel_bathrooms"])?$sel_category:"";
-$optGardensVal      = isset($_POST["sel_garden"])?$sel_category:"";
-$optElevatorVal     = isset($_POST["sel_elevator"])?$sel_category:"";
-$optPropertyStatus  = isset($_POST["sel_property_status"])?$sel_category:"";
-$optBox             = isset($_POST["sel_box"])?$sel_category:"";
+$optCategoryVal     = 1;
+$optTipologyVal     = "";
+$optContractsVal    = 2;
+$optLocalsVal       = "";
+$optBathroomsVal    = "";
+$optGardensVal      = "";
+$optElevatorVal     = "";
+$optPropertyStatusVal  = "";
+$optBoxVal             = "";
+
+$InpTownVal            = "";
+$inpPriceFromVal       = "";
+$inpPriceToVal         = "";
+$inpMqFromVal          = "";
+$inpMqToVal            = "";
+
+$session_opts = SessionManager::getVal("research_opts",true);
+if($session_opts!= null){
+    $optCategoryVal     = $session_opts["category"];
+    $optTipologyVal     = $session_opts["tipology"];
+    $optContractsVal    = $session_opts["contract"];
+    $optLocalsVal       = $session_opts["locals"];
+    $optBathroomsVal    = $session_opts["bathrooms"];
+    $optGardensVal      = $session_opts["garden"];
+    $optElevatorVal     = $session_opts["elevator"];
+    $optPropertyStatus  = $session_opts["propertyStatus"];
+    $optBox             = $session_opts["box"];
+
+    $InpTownVal         = $session_opts["town"];
+    $inpPriceFromVal    = $session_opts["priceFrom"];
+    $inpPriceToVal      = $session_opts["priceTo"];
+    $inpMqFromVal       = $session_opts["mqFrom"];
+    $inpMqToVal         = $session_opts["mqTo"];
+
+}
+
 
 $optCategory 		= $optMng->makeOptions("ads_category",$optCategoryVal,null);
 $optTipology		= $optMng->makeOptions("ads_tipologies",$optTipologyVal,$optCategoryVal);
@@ -22,8 +50,8 @@ $optBathrooms		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal,null,"Non
 $optGardens         = $optMng->makeOptions("ads_gardens",$optGardensVal,null,"Non specificato");
 
 $optElevator         = $optMng->makeOptions("ads_elevators",$optElevatorVal,null,"Non specificato");
-$optPropertyStatus   = $optMng->makeOptions("ads_property_status",$optPropertyStatus,null,"Non specificato");
-$optBox              = $optMng->makeOptions("ads_box",$optBox,null,"Non specificato");
+$optPropertyStatus   = $optMng->makeOptions("ads_property_status",$optPropertyStatusVal,null,"Non specificato");
+$optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non specificato");
 
 
 ?>
@@ -39,7 +67,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox,null,"Non specific
 
                 <div class="searchmodule clearfix" data-effect="fade">
 
-                <form id="advanced_search_small" action="#" class="clearfix" name="advanced_search" method="post">
+                <form id="advanced_search" action="#" class="clearfix" name="advanced_search" method="post">
 
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
@@ -56,7 +84,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox,null,"Non specific
                                 </select>
                             </div>
                             <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 no-lateral-padding">
-                            <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Digita un comune">
+                            <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Digita un comune" value="<?php echo $InpTownVal ?>">
                             </div>
                         </div>
 
@@ -71,21 +99,21 @@ $optBox              = $optMng->makeOptions("ads_box",$optBox,null,"Non specific
 
                     <div class="row">
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <input type="text" name="priceFrom" id="priceFrom" class="form-control" placeholder="Da">
+                            <input type="text" name="priceFrom" id="priceFrom" class="form-control" placeholder="Da" value="<?php echo $inpPriceFromVal ?>">
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <input type="text" name="priceTo" id="priceTo" class="form-control" placeholder="a">
+                            <input type="text" name="priceTo" id="priceTo" class="form-control" placeholder="a" value="<?php echo $inpPriceToVal ?>">
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <input type="text" name="mqFrom" id="mqFrom" class="form-control" placeholder="Da">
+                            <input type="text" name="mqFrom" id="mqFrom" class="form-control" placeholder="Da" value="<?php echo $inpMqFromVal ?>">
 
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <input type="text" name="mqTo" id="name" class="form-control" placeholder="a">
+                            <input type="text" name="mqTo" id="name" class="form-control" placeholder="a" value="<?php echo $inpMqToVal ?>">
                         </div>
 
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-                            <a href="#" class="btn btn-tecnoimm-red" id="btn_search"><i class="fa fa-search"></i> Avvia Ricerca</a>
+                            <button type="submit" class="btn btn-tecnoimm-red" id="btn_search"><i class="fa fa-search"></i> Avvia Ricerca</button>
                         </div>
                     </div>
 
