@@ -16,9 +16,8 @@
 		if(isset($_GET["folder"])){
 			$url .= $_GET["folder"]."/";
 		}
-		//echo($_GET["page"]);
+
 		$url .= $_GET["page"].".php";
-		//echo($url);
 
     }else{
         $url.="index.php";

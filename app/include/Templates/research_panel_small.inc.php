@@ -1,25 +1,27 @@
-
-
 <?php
 require_once(BASE_PATH."/app/classes/OptionsManager.php");
 require_once(BASE_PATH."/app/classes/SessionManager.php");
 $optMng = new OptionsManager();
 
-$optCategoryVal     = 1;
-$optTipologyVal     = "";
-$optContractsVal    = 2;
-$optLocalsVal       = "";
-$optBathroomsVal    = "";
-$optGardensVal      = "";
-$optElevatorVal     = "";
-$optPropertyStatusVal  = "";
-$optBoxVal             = "";
 
-$InpTownVal            = "";
-$inpPriceFromVal       = "";
-$inpPriceToVal         = "";
-$inpMqFromVal          = "";
-$inpMqToVal            = "";
+$optCategoryVal         = 1;
+$optTipologyVal         = "";
+$optContractsVal        = 2;
+$optLocalsVal              = "";
+$optBathroomsVal        = "";
+$optGardensVal          = "";
+$optElevatorVal         = "";
+$optPropertyStatusVal   = "";
+$optBoxVal              = "";
+
+$inpLocalsFromVal       = "";
+$inpLocalsToVal         = "";
+$inpTownVal             = "";
+$inpPriceFromVal        = "";
+$inpPriceToVal          = "";
+$inpMqFromVal           = "";
+$inpMqToVal             = "";
+
 
 $session_opts = SessionManager::getVal("research_opts",true);
 if($session_opts!= null){
@@ -33,7 +35,7 @@ if($session_opts!= null){
     $optPropertyStatus  = $session_opts["propertyStatus"];
     $optBox             = $session_opts["box"];
 
-    $InpTownVal         = $session_opts["town"];
+    $inpTownVal         = $session_opts["town"];
     $inpPriceFromVal    = $session_opts["priceFrom"];
     $inpPriceToVal      = $session_opts["priceTo"];
     $inpMqFromVal       = $session_opts["mqFrom"];
@@ -45,7 +47,7 @@ if($session_opts!= null){
 $optCategory 		= $optMng->makeOptions("ads_category",$optCategoryVal,null);
 $optTipology		= $optMng->makeOptions("ads_tipologies",$optTipologyVal,$optCategoryVal);
 $optContracts 		= $optMng->makeOptions("ads_contracts",$optContractsVal);
-$optLocals  		= $optMng->makeOptions("ads_locals",$optLocalsVal,null,"Non specificato");
+$optLocals  		= $optMng->makeOptions("ads_locals2",$optLocalsVal,null,"NN");
 $optBathrooms		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal,null,"Non specificato");
 $optGardens         = $optMng->makeOptions("ads_gardens",$optGardensVal,null,"Non specificato");
 
@@ -73,7 +75,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
 
                             <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 no-lateral-padding">
-                                <select id="sel_category" class="show-menu-arrow selectpicker dropdown" data-size="7" data-dropup-auto="false" data-dropup-auto="false">
+                                <select id="sel_category" onchange="getTipologies(this,'','seleziona');" class="show-menu-arrow selectpicker dropdown" data-size="7" data-dropup-auto="false" data-dropup-auto="false">
                                     <?php echo($optCategory) ?>
                                 </select>
                             </div>
@@ -84,13 +86,13 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                                 </select>
                             </div>
                             <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 no-lateral-padding">
-                            <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Digita un comune" value="<?php echo $InpTownVal ?>">
+                            <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Digita un comune" value="<?php echo $inpTownVal ?>">
                             </div>
                         </div>
 
 
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <select id="type" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                            <select id="sel_tipology" name="sel_tipology" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
                                 <option value="">Seleziona Tipologia</option>
                                 <?php echo($optTipology) ?>
                             </select>
@@ -123,7 +125,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                 <select id="sel_locals" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
-                                    <option value="">Seleziona Locali</option>
+                                    <option value="" >Seleziona Locali</option>
                                     <?php echo($optLocals) ?>
                                 </select>
                             </div>

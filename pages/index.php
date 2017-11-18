@@ -1,12 +1,5 @@
 <?php
 require_once(BASE_PATH."/app/classes/Utils.php");
-
-
-//if(SessionManager::getVal("research") != null){
-//var_dump(SessionManager::getVal("research_opts",true));
-//}
-
-
 $parallax = true;
 ?>
 <!DOCTYPE html>
@@ -103,7 +96,10 @@ $parallax = true;
         <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_selectpicker_override.js"></script>
         <!-- Jquery validate IT localization -->
         <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
+
         <script src="<?php echo SITE_URL."/js/application.js" ?>"></script>
+        <script src="<?php echo SITE_URL . "/js/form/form_utils.js" ?>"></script>
+        <script src="<?php echo SITE_URL."/AdminPanel/js/options_populate.js" ?>"></script>
         <script src="<?php echo SITE_URL."/js/research_panel_1.js" ?>"></script>
         <script src="<?php echo SITE_URL. "/js/contact_modal.js" ?>"></script>
 

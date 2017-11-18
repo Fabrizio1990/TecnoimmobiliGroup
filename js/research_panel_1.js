@@ -64,7 +64,7 @@ $(document).ready(function(e){
 
     $('#input_town').typeahead({
         ajax: {
-            url: 'ajax/townsJson.php',
+            url: BASE_PATH+'/ajax/townsJson.php',
             query: $('#input_town').val() ,
             loadingClass: "loading-circle",
             triggerLength: 1
@@ -79,54 +79,77 @@ $(document).ready(function(e){
     $(".selectpicker").selectpicker().change(function() {
         $(this).valid();
     });
-        //FORM VALIDATION
-        form = $("#advanced_search").validate({
-            ignore: [],
-            //ignore: 'input[type=hidden]',/*,:not(select:hidden, input:visible, textarea:visible)*/
-            rules:
-                {
-                    /*--- SELECT ---*/
-                    // LOCATION
-                    sel_category            : { required: true },
-                    sel_contract            : { required: true },
-                    sel_tipology            : { required: true },
+    //FORM VALIDATION
+    form = $("#advanced_search").validate({
+        ignore: [],
+        //ignore: 'input[type=hidden]',/*,:not(select:hidden, input:visible, textarea:visible)*/
+        rules:
+            {
+                /*--- SELECT ---*/
+                // LOCATION
+                sel_category            : { required: true },
+                sel_contract            : { required: true },
+                sel_tipology            : { required: true },
 
 
-                    /*--- INPUT ---*/
-                    input_town  : { required: true, minlength: 3, maxlength: 240 },
-                    priceFrom   : { number: true },
-                    priceTo     : { number: true },
-                    mqFrom      : { number: true },
-                    mqTo        : { number: true },
+                /*--- INPUT ---*/
+                input_town  : { required: true, minlength: 3, maxlength: 240 },
+                priceFrom   : { number: true },
+                priceTo     : { number: true },
+                mqFrom      : { number: true },
+                mqTo        : { number: true },
 
-                },
-
-            submitHandler: function(form) {
-                var page = BASE_PATH+"/ajax/research_set_session.ajax.php";
-                var params = $(form).serialize();
-                params+="&sel_category="+$("#sel_category").val();
-                params+="&sel_locals="+$("#sel_locals").val();
-                params+="&sel_bathrooms="+$("#sel_bathrooms").val();
-                params+="&sel_property_status="+$("#sel_property_status").val();
-                params+="&sel_garden="+$("#sel_garden").val();
-                params+="&sel_elevator="+$("#sel_elevator").val();
-                params+="&sel_box="+$("#sel_box").val();
-
-                ajaxCall(page,params,form,researchSet,null,"POST");
             },
-            invalidHandler: function(event, validator) {
-                console.log("NOT VALID");
-            },errorPlacement: function(error, element) {
-              // NON VOGLIO VISUALIZZARE ERRORI SCRITTI
-            }
 
-        });
+        submitHandler: function(form) {
+            var refLink = researchGetLink();
 
-    function researchSet(form){
-        document.location.href = "ricerca_immobili.html";
+            var page = BASE_PATH+"/ajax/research_set_session.ajax.php";
+            var params = $(form).serialize();
+
+            // /params+="&sel_category="+$("#sel_category").val();
+            params+="&locals_from="+$("#sel_locals").val();
+            params+="&sel_locals="+$("#sel_locals").val();
+            params+="&sel_bathrooms="+$("#sel_bathrooms").val();
+            params+="&sel_property_status="+$("#sel_property_status").val();
+            params+="&sel_garden="+$("#sel_garden").val();
+            params+="&sel_elevator="+$("#sel_elevator").val();
+            params+="&sel_box="+$("#sel_box").val();
+
+
+
+            ajaxCall(page,params,refLink,researchSet,researchNotSet,"POST");
+        },
+        invalidHandler: function(event, validator) {
+            console.log("NOT VALID");
+        },errorPlacement: function(error, element) {
+            // NON VOGLIO VISUALIZZARE ERRORI SCRITTI
+        }
+
+    });
+
+    function researchSet(res,link){
+        //console.log(link);
+        document.location.href = link;
+
     }
     function researchNotSet(){
         openInfoModal(5,"Errore!","è avvenuto un errore durante la ricerca, riprova a breve.","Chiudi");
+    }
+
+
+    function researchGetLink(){
+
+        var category,contract,tipology,town;
+
+        category    = $('#sel_category option:selected').text();
+        contract    = $('#sel_contract option:selected').text();
+        tipology    = $('#sel_tipology option:selected').text();
+        town        = $('#input_town').val();
+
+        var refLink =BASE_PATH+"/"+contract+"/"+category+"/"+tipology+"/"+town;
+
+        return refLink;
     }
 
 });

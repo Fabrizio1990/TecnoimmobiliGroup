@@ -8,21 +8,23 @@ $optMng = new OptionsManager();
 
 
 
-$optCategoryVal     = 1;
-$optTipologyVal     = "";
-$optContractsVal    = 2;
-$optLocalsVal       = "";
-$optBathroomsVal    = "";
-$optGardensVal      = "";
-$optElevatorVal     = "";
-$optPropertyStatusVal  = "";
-$optBoxVal             = "";
+$optCategoryVal         = 1;
+$optTipologyVal         = "";
+$optContractsVal        = 2;
+$optLocalsVal           = "";
+$optBathroomsVal        = "";
+$optGardensVal          = "";
+$optElevatorVal         = "";
+$optPropertyStatusVal   = "";
+$optBoxVal              = "";
 
-$InpTownVal            = "";
-$inpPriceFromVal       = "";
-$inpPriceToVal         = "";
-$inpMqFromVal          = "";
-$inpMqToVal            = "";
+$inpLocalsFromVal       = "";
+$inpLocalsToVal         = "";
+$inpTownVal             = "";
+$inpPriceFromVal        = "";
+$inpPriceToVal          = "";
+$inpMqFromVal           = "";
+$inpMqToVal             = "";
 
 
 $session_opts = SessionManager::getVal("research_opts",true);
@@ -31,13 +33,14 @@ if($session_opts!= null){
     $optTipologyVal     = $session_opts["tipology"];
     $optContractsVal    = $session_opts["contract"];
     $optLocalsVal       = $session_opts["locals"];
+
     $optBathroomsVal    = $session_opts["bathrooms"];
     $optGardensVal      = $session_opts["garden"];
     $optElevatorVal     = $session_opts["elevator"];
     $optPropertyStatus  = $session_opts["propertyStatus"];
     $optBox             = $session_opts["box"];
 
-    $InpTownVal         = $session_opts["town"];
+    $inpTownVal         = $session_opts["town"];
     $inpPriceFromVal    = $session_opts["priceFrom"];
     $inpPriceToVal      = $session_opts["priceTo"];
     $inpMqFromVal       = $session_opts["mqFrom"];
@@ -46,11 +49,11 @@ if($session_opts!= null){
 }
 
 
-
 $optCategory 		= $optMng->makeOptions("ads_category",$optCategoryVal,null);
 $optTipology		= $optMng->makeOptions("ads_tipologies",$optTipologyVal,$optCategoryVal);
 $optContracts 		= $optMng->makeOptions("ads_contracts",$optContractsVal);
-$optLocals  		= $optMng->makeOptions("ads_locals",$optLocalsVal,null,"Non specificato");
+$optLocals  		= $optMng->makeOptions("ads_locals2",$optLocalsVal,null,"Non specificato");
+
 $optBathrooms		= $optMng->makeOptions("ads_bathrooms",$optBathroomsVal,null,"Non specificato");
 $optGardens         = $optMng->makeOptions("ads_gardens",$optGardensVal,null,"Non specificato");
 
@@ -93,15 +96,16 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
 
                                 <div class="subtitle_bar col-lg-12 col-md-12 col-sm-12 col-xs-12">CERCA CASE O APPARTAMENTI<hr/></div>
 
-                                <form id="advanced_search" action="#" class="clearfix" name="advanced_search" method="post">
+                                <form id="advanced_search"  class="clearfix" name="advanced_search" method="post">
 
                                     <div class="row">
                                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 
                                             <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 no-lateral-padding">
                                                 <div class="form-group">
+
                                                 <label for="sel_category">Categoria</label>
-                                                <select id="sel_category" class="show-menu-arrow selectpicker" data-size="7">
+                                                <select id="sel_category" onchange="getTipologies(this,'','seleziona')" class="show-menu-arrow selectpicker" data-size="7">
                                                     <?php echo($optCategory) ?>
                                                 </select>
                                                 </div>
@@ -118,7 +122,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                                             <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 no-lateral-padding">
                                                 <div class="form-group">
                                                     <label for="input_town">&nbsp;</label>
-                                                    <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Digita un comune" value="<?php echo $InpTownVal ?>">
+                                                    <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Digita un comune" value="<?php echo $inpTownVal ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -126,7 +130,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
 
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                             <div class="form-group">
-                                                <label for="type">Tipologia</label>
+                                                <label for="sel_tipology">Tipologia</label>
                                                 <select id="sel_tipology" name="sel_tipology" class="show-menu-arrow selectpicker" data-size="7">
                                                     <option value="">Seleziona</option>
                                                     <?php echo($optTipology) ?>
@@ -157,7 +161,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                                             <label for="mqTo">&nbsp;</label>
-                                            <input type="text" name="mqTo" id="name" class="form-control" placeholder="a" value="<?php echo $inpMqToVal ?>">
+                                            <input type="text" name="mqTo" id="mqTo" class="form-control" placeholder="a" value="<?php echo $inpMqToVal ?>">
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
@@ -173,22 +177,22 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                                     <div  id="search_details">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <label for="1">Locali</label>
-                                                <select id="sel_locals" class="show-menu-arrow selectpicker" data-size="7">
-                                                    <option value="">Seleziona</option>
+                                                <label for="sel_locals">Locali</label>
+                                                <select id="sel_locals" name="sel_locals" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                                                    <option value="" >Seleziona Locali</option>
                                                     <?php echo($optLocals) ?>
                                                 </select>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <label for="2">Bagni</label>
-                                                <select id="sel_bathrooms" class="show-menu-arrow selectpicker" data-size="7">
+                                                <label for="sel_bathrooms">Bagni</label>
+                                                <select id="sel_bathrooms" name="sel_bathrooms" class="show-menu-arrow selectpicker" data-size="7">
                                                     <option value="">Seleziona</option>
                                                     <?php echo($optBathrooms) ?>
                                                 </select>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <label for="3">Stato immobile</label>
-                                                <select id="sel_property_status" class="show-menu-arrow selectpicker" data-size="7">
+                                                <label for="sel_property_status">Stato immobile</label>
+                                                <select id="sel_property_status" name="sel_property_status" class="show-menu-arrow selectpicker" data-size="7">
                                                     <option value="">Seleziona</option>
                                                     <?php echo($optPropertyStatus) ?>
                                                 </select>
@@ -196,21 +200,21 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <label for="4">Giardino</label>
+                                                <label for="sel_garden">Giardino</label>
                                                 <select  id="sel_garden" class="show-menu-arrow selectpicker" data-size="7">
                                                     <option value="">Seleziona</option>
                                                     <?php echo($optGardens) ?>
                                                 </select>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <label for="2">Ascensore</label>
-                                                <select id="sel_elevator" class="show-menu-arrow selectpicker" data-size="7">
+                                                <label for="sel_elevator">Ascensore</label>
+                                                <select id="sel_elevator" name="sel_elevators" class="show-menu-arrow selectpicker" data-size="7">
                                                     <option value="">Seleziona</option>
                                                     <?php echo($optElevator) ?>
                                                 </select>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <label for="4">Posto auto</label>
+                                                <label for="sel_box">Posto auto</label>
                                                 <select id="sel_box" class="show-menu-arrow selectpicker" data-size="7">
                                                     <option value="">Seleziona</option>
                                                     <?php echo($optBox) ?>

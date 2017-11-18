@@ -53,6 +53,11 @@ class SessionManager
         setcookie($key, (is_object($val) ? serialize($val) : $val), time()+$durationVal, "/");
     }
 
+    public static function fastSessionSet($key,$val){
+        SessionManager :: startSession();
+        $_SESSION["fastSession"] = (is_object($val) ? serialize($val) : $val);
+    }
+
     // ++++++++++ FUNZIONI DI RECUPERO DATO DA SESSIONE/COOKIE ++++++++++++++
 
     public static function getSessionVal($key,$isSerialized){
@@ -72,6 +77,15 @@ class SessionManager
         return $ret;
     }
 
+    public static function fastSessionGet($key,$isSerialized){
+        SessionManager :: startSession();
+        $ret = null;
+        if(isset($_SESSION["fastSession"][$key])){
+            $ret = $isSerialized ? unserialize($_SESSION["fastSession"][$key]) : $_SESSION["fastSession"][$key];
+        }
+        return $ret;
+    }
+
     // ++++++++++ FUNZIONI DI CANCELLAZIONE SESSIONE/COOKIE ++++++++++++++
 
     public static function sessionUnsetkey($key){
@@ -81,5 +95,11 @@ class SessionManager
 
     public static function cookieUnsetKey($key){
         setcookie($key, null, -1, '/');
+    }
+
+    public static function fastSessionClear(){
+        SessionManager :: startSession();
+        if(isset($_SESSION["fastSession"]))
+            unset($_SESSION["fastSession"]);
     }
 }

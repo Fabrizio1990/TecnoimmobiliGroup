@@ -18,13 +18,32 @@ $propertyM = new PropertyManager();
 //sintassi di base che si aspetta datatable , cioè un json con elemento padre aaData e i sottoelementi contengono i dati
 $array_res = array("aaData"=>array());
 
-if(isset($_GET["sel_category"])){
-    $category = $_GET["sel_category"];
-    if($category!="") {
-        array_push($params, " id_category in(?)");
-        array_push($values, str_replace(",","','",urldecode($category)));
-    }
-}
+
+
+if(isset($_GET["category"]))bindParamsValues("category = ?",$_GET["category"]);
+if(isset($_GET["contract"]))bindParamsValues("contract = ?",$_GET["contract"]);
+if(isset($_GET["tipology"]))bindParamsValues("tipology in(?)",$_GET["tipology"]);
+if(isset($_GET["town"]))bindParamsValues("town in(?)",$_GET["town"]);
+if(isset($_GET["district"]))bindParamsValues("district =?",$_GET["district"]);
+
+if(isset($_GET["priceMin"]))bindParamsValues("price >= CAST(? AS UNSIGNED)",$_GET["priceMin"]);
+if(isset($_GET["priceMax"]))bindParamsValues("price <= CAST(? AS UNSIGNED)",$_GET["priceMax"]);
+if(isset($_GET["mqMin"]))bindParamsValues("mq >= CAST(? AS UNSIGNED)",$_GET["mqMin"]);
+if(isset($_GET["mqMax"]))bindParamsValues("mq <= CAST(? AS UNSIGNED)",$_GET["mqMax"]);
+if(isset($_GET["locals"]))bindParamsValues("locals = ?",$_GET["locals"]);
+if(isset($_GET["bathrooms"]))bindParamsValues("bathrooms_short >= ?",$_GET["bathrooms"]);
+if(isset($_GET["propertyStatus"]))bindParamsValues("property_status = ?",$_GET["propertyStatus"]);
+if(isset($_GET["garden"]))bindParamsValues("garden = ?",$_GET["garden"]);
+if(isset($_GET["elevator"]))bindParamsValues("elevator = ?",$_GET["elevator"]);
+if(isset($_GET["box"]))bindParamsValues("box = ?",$_GET["box"]);
+
+/*var_dump($params);
+var_dump($values);*/
+
+
+
+
+
 
 
 $res = $propertyM->readAllAds($params,null,$values,null,false);
@@ -41,7 +60,7 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
         $agentMail = $res[$i]["agent_email"];
 
 
-        $link = PropertyLinksAndTitles::getDetailLink($res[$i]["contract"],$res[$i]["tipology"],$res[$i]["street"],$res[$i]["town"],$res[$i]["reference_code"]);
+        $link = SITE_URL."/".PropertyLinksAndTitles::getDetailLink($res[$i]["contract"],$res[$i]["tipology"],$res[$i]["street"],$res[$i]["town"],$res[$i]["reference_code"]);
 
         $title = PropertyLinksAndTitles::getTitleNoDb($res[$i]["tipology"],$res[$i]["contract"],$res[$i]["town"],$res[$i]["street"],$res[$i]["district"]);
         $title_short = Utils::truncateText($title,$maxTitLen);
@@ -112,7 +131,14 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
 
     }
 
-    echo(json_encode($array_res));
+    //echo(json_encode($array_res));
 }
 
+echo(json_encode($array_res));
+
+function bindParamsValues($param,$value){
+    global $params,$values;
+    array_push($params, $param);
+    array_push($values, urldecode($value));
+}
 //echo(json_encode($array_res));

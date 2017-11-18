@@ -1,6 +1,33 @@
 <?php
 require_once(BASE_PATH."/app/classes/Utils.php");
 $parallax = false;
+
+//require_once(BASE_PATH."/app/classes/SessionManager.php");
+$srcPar = array();
+if(isset($_GET["category"]))$srcPar["category"]=$_GET["category"];
+if(isset($_GET["contract"]))$srcPar["contract"]=$_GET["contract"];
+if(isset($_GET["tipology"]))$srcPar["tiplogy"]=$_GET["tipology"];
+if(isset($_GET["town"]))$srcPar["town"]=$_GET["town"];
+if(isset($_GET["district"]))$srcPar["district"]=$_GET["district"];
+if(isset($_GET["prezzoMinimo"]))$srcPar["priceMin"]=$_GET["prezzoMinimo"];
+if(isset($_GET["prezzoMassimo"]))$srcPar["priceMax"]=$_GET["prezzoMassimo"];
+if(isset($_GET["superficieMinima"]))$srcPar["mqMin"]=$_GET["superficieMinima"];
+if(isset($_GET["superficieMassima"]))$srcPar["mqMax"]=$_GET["superficieMassima"];
+if(isset($_GET["locali"]))$srcPar["locals"]=$_GET["locali"];
+if(isset($_GET["bagni"]))$srcPar["bathrooms"]=$_GET["bagni"];
+if(isset($_GET["statoImmobile"]))$srcPar["propertyStatus"]=$_GET["statoImmobile"];
+if(isset($_GET["giardino"]))$srcPar["garden"]=$_GET["giardino"];
+if(isset($_GET["ascensore"]))$srcPar["elevator"]=$_GET["ascensore"];
+if(isset($_GET["postoAuto"]))$srcPar["box"]=$_GET["postoAuto"];
+
+// GENERO PARAMETRI PER CHIAMATA AJAX
+$ajaxUrlParams="";
+foreach($srcPar as $key => $value)
+    $ajaxUrlParams.=$key."=".$value."&";
+
+$ajaxUrlParams = rtrim($ajaxUrlParams,"&");
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,6 +78,7 @@ $parallax = false;
 
 </head>
 <body>
+
 
 <!-- MODALE CONTATTACI -->
 <?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>
@@ -109,20 +137,17 @@ $parallax = false;
 <script src="<?php echo SITE_URL . "/libs/frontend/Others/fhmm.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
-
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
 <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
-
-<!-- Jquery validate -->
 <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
-<!-- Jquery validate -->
 <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_selectpicker_override.js"></script>
-<!-- Jquery validate IT localization -->
 <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
 
 
+<script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
+<script src="<?php echo SITE_URL . "/js/form/form_utils.js" ?>"></script>
+<script src="<?php echo SITE_URL."/AdminPanel/js/options_populate.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/research_panel_1.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/contact_modal.js" ?>"></script>
 
@@ -143,7 +168,7 @@ $parallax = false;
             "info": true,
             "bLengthChange": false,
             "pageLength": 5,
-            "sAjaxSource": BASE_PATH+"/ajax/properties_list_datatable.ajax.php",
+            "sAjaxSource": BASE_PATH+"/ajax/properties_list_datatable.ajax.php?<?php echo $ajaxUrlParams ?>",
             "bDeferRender": true,
             "initComplete": function() {
                 bindButtons();

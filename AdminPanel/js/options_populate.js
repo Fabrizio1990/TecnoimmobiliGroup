@@ -4,18 +4,21 @@
 function getTipologies(elem,defVal=null,defTxt =null){
     elem = $(elem);
     var val 			= elem.select2?elem.select2("val"):elem.val();
-
     var sel_tipology 	= GEBI("sel_tipology");
+    var callback = null;
     //i will mantain selected items
     var sel_jq = $("#sel_tipology");
     var selectedOpts = sel_jq.select2?sel_jq.select2("val"):sel_jq.val();
 
-
+    if(sel_jq.hasClass("selectpicker")) {
+        callback =function(){sel_jq.selectpicker('refresh')};
+    }
+console.log("VAL = " +val);
     // truncate the select
     sel_tipology.options.length = 0;
     // and populate it only if i have select a category
     if(val!=null)
-        getOpts(sel_tipology,'ads_tipologies',val,defVal,defTxt,selectedOpts);
+        getOpts(sel_tipology,'ads_tipologies',val,defVal,defTxt,selectedOpts,callback);
 }
 
 function getRegions(elem,defVal=null,defTxt =null,callback_fn = null){
@@ -28,7 +31,6 @@ function getRegions(elem,defVal=null,defTxt =null,callback_fn = null){
     }
 
     var val 			= elem.select2?elem.select2("val"):elem.val();
-
     var sel_region 		= GEBI("sel_region");
     var sel_city 		= GEBI("sel_city");
     var sel_town 		= GEBI("sel_town");
@@ -70,6 +72,16 @@ function getRegions(elem,defVal=null,defTxt =null,callback_fn = null){
         if(selectedOptsCity != null && selectedOptsCity != "" && isMultiple){
             getCities(elem,null,null);
         }
+
+        if(sel_jq.hasClass("selectpicker"))
+            callback =function(){sel_jq.selectpicker('refresh')};
+        if($(sel_city).hasClass("selectpicker"))
+            callback =function(){$(sel_city).selectpicker('refresh')};
+        if($(sel_town).hasClass("selectpicker"))
+            callback =function(){$(sel_town).selectpicker('refresh')};
+        if($(sel_district).hasClass("selectpicker"))
+            callback =function(){$(sel_district).selectpicker('refresh')};
+
     };
 
 
@@ -79,7 +91,7 @@ function getRegions(elem,defVal=null,defTxt =null,callback_fn = null){
     //if(val!=null)
         getOpts(sel_region,'geo_region',val,defVal,defTxt,selectedOpts,callback_fn);
 
-    console.log("val = " + val);
+    //console.log("val = " + val);
 
     //truncate all other selects that depends from country
     if(!isMultiple || selectedOptsCity == null || selectedOptsCity == ""){
@@ -132,6 +144,12 @@ function getCities(elem = null,defVal=null,defTxt =null,callback_fn = null){
         if(selectedOptsTown != null && selectedOptsTown!="" && isMultiple){
             getTowns();
         }
+
+
+        if($(sel_town).hasClass("selectpicker"))
+            callback =function(){$(sel_town).selectpicker('refresh')};
+        if($(sel_district).hasClass("selectpicker"))
+            callback =function(){$(sel_district).selectpicker('refresh')};
     };
 
 
@@ -184,6 +202,8 @@ function getTowns(elem = null,defVal=null,defTxt =null,callback_fn = null){
         if(selectedOptsDistrict != null && selectedOptsDistrict != "" && isMultiple){
             getDistricts();
         }
+        if($(sel_district).hasClass("selectpicker"))
+            callback =function(){$(sel_district).selectpicker('refresh')};
     };
     // truncate the select
     sel_town.options.length = 0;
@@ -196,7 +216,7 @@ function getTowns(elem = null,defVal=null,defTxt =null,callback_fn = null){
 }
 
 function getDistricts(elem,defVal=null,defTxt =null,callback_fn = null){
-    console.log("chiamo getDistricts");
+
     if(elem == null || elem == undefined){
         elem = $("#sel_town");
     }else{

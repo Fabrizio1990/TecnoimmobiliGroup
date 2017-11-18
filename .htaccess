@@ -1,8 +1,21 @@
 RewriteEngine On
 
+# <RICERCA IMMOBILI>
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/filtri/([^/]+)$ index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&district=$5&$6
 
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)$ index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&district=$5
+
+#RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+) index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&district=$5
+#RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/filtri/([^/]+)=([^/]+)$ index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&district=$5&$6=$7
+
+
+# </RICERCA IMMOBILI>
+
+# DETTAGLIO IMMOBILE
 RewriteRule ^([^/]+)/RIF-([^/]+)$ index.php?page=dettaglio_immobile&rif=$2&title=$1
 
+
+# PAGINE GENERICHE + PARAMETRI
 RewriteRule ^([^/]*)\.html$ index.php?page=$1
 RewriteRule ^([^/]*)/([^/]*)\.html$ index.php?folder=$1&page=$2
 
