@@ -27,7 +27,7 @@
 	});
 		
 // Menu
-	//$('.dropdown-toggle').dropdownHover().dropdown();
+	$('.dropdown-toggle').dropdownHover().dropdown();
 	$(document).on('click', '.fhmm .dropdown-menu', function(e) {
 		e.stopPropagation()
 	})

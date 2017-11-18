@@ -107,8 +107,7 @@ $(document).ready(function(e){
             var page = BASE_PATH+"/ajax/research_set_session.ajax.php";
             var params = $(form).serialize();
 
-            // /params+="&sel_category="+$("#sel_category").val();
-            params+="&locals_from="+$("#sel_locals").val();
+            params+="&sel_category="+$("#sel_category").val();
             params+="&sel_locals="+$("#sel_locals").val();
             params+="&sel_bathrooms="+$("#sel_bathrooms").val();
             params+="&sel_property_status="+$("#sel_property_status").val();
@@ -140,14 +139,30 @@ $(document).ready(function(e){
 
     function researchGetLink(){
 
-        var category,contract,tipology,town;
+        var category,contract,tipology,town,locals,bathrooms,property_status,garden,elevator,box;
 
         category    = $('#sel_category option:selected').text();
         contract    = $('#sel_contract option:selected').text();
         tipology    = $('#sel_tipology option:selected').text();
         town        = $('#input_town').val();
 
-        var refLink =BASE_PATH+"/"+contract+"/"+category+"/"+tipology+"/"+town;
+
+        locals              = $('#sel_locals option:selected').text();
+        bathrooms           = $('#sel_bathrooms option:selected').text();
+        property_status     = $('#sel_property_status option:selected').text();
+        garden              = $('#sel_garden option:selected').text();
+        elevator            = $('#sel_elevator option:selected').text();
+        box                 = $('#sel_box option:selected').text();
+
+        var refLink =BASE_PATH+"/"+contract+"/"+category+"/"+tipology+"/"+town+"/filtri/criterio=abilitati";
+
+        if($('#sel_locals').val()!="")  refLink+="&locali="+locals;
+        if($('#sel_bathrooms').val()!="")  refLink+="&bagni="+bathrooms;
+        if($('#sel_property_status').val()!="")  refLink+="&statoImmobile="+property_status;
+        if($('#sel_garden').val()!="")  refLink+="&giardino="+garden;
+        if($('#sel_elevator').val()!="")  refLink+="&ascensore="+elevator;
+        if($('#sel_box').val()!="")  refLink+="&postoAuto="+box;
+
 
         return refLink;
     }

@@ -25,6 +25,7 @@ $inpMqToVal             = "";
 
 $session_opts = SessionManager::getVal("research_opts",true);
 if($session_opts!= null){
+
     $optCategoryVal     = $session_opts["category"];
     $optTipologyVal     = $session_opts["tipology"];
     $optContractsVal    = $session_opts["contract"];
