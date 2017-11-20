@@ -1,6 +1,7 @@
 <?php
     require("config.php");
-    if(HIDE_PAGES){
+    require(BASE_PATH."/app/classes/SessionManager.php");
+    if(HIDE_PAGES && SessionManager::getVal("authenticated") == null){
         include(BASE_PATH . "/pages/in_costruzione.php");
         exit();
     }

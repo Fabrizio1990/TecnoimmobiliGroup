@@ -5,7 +5,7 @@ require_once(BASE_PATH."/app/classes/DbManager.php");
 
 class GenericDbHelper extends DbManager implements IDbManager {
 
-    const defTable  = "";
+    const defTable  = "properties_view";
     private $currTable;
 
     public function __construct() {
@@ -39,6 +39,16 @@ class GenericDbHelper extends DbManager implements IDbManager {
     public function delete($params = null,$values = null,$extra_params = null,$printQuery = false)
     {
         $ret = parent::delete($this->currTable,$params,$values,$extra_params,$printQuery);
+        return $ret;
+    }
+
+
+
+
+    public function getFieldFromValue($table,$fieldNeeded,$fieldUsed,$value){
+        $this->setTable($table);
+        $ret = $this->read($fieldUsed." = ?",null,array($value),$fieldNeeded,null);
+        $this->setDefTable();
         return $ret;
     }
 

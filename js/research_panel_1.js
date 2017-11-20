@@ -104,19 +104,25 @@ $(document).ready(function(e){
         submitHandler: function(form) {
             var refLink = researchGetLink();
 
-            var page = BASE_PATH+"/ajax/research_set_session.ajax.php";
-            var params = $(form).serialize();
+            var location = splitTownDistrict($("#input_town").val());
 
+            var page = BASE_PATH+"/ajax/research_set_session.ajax.php";
+            var params = "";
+            params+="sel_contract="+$("#sel_contract").val();
             params+="&sel_category="+$("#sel_category").val();
+            params+="&sel_tipology="+$("#sel_tipology").val();
+            params+="&input_town="+encodeURIComponent(location[0].trim());
+            params+="&input_district="+ (location.length>1?encodeURIComponent(location[1].trim()):"");
+            params+="&priceFrom="+$("#priceFrom").val();
+            params+="&priceTo="+$("#priceTo").val();
+            params+="&mqFrom="+$("#mqFrom").val();
+            params+="&mqTo="+$("#mqTo").val();
             params+="&sel_locals="+$("#sel_locals").val();
             params+="&sel_bathrooms="+$("#sel_bathrooms").val();
-            params+="&sel_property_status="+$("#sel_property_status").val();
+            params+="&sel_conditions="+$("#sel_conditions").val();
             params+="&sel_garden="+$("#sel_garden").val();
             params+="&sel_elevator="+$("#sel_elevator").val();
             params+="&sel_box="+$("#sel_box").val();
-
-
-
             ajaxCall(page,params,refLink,researchSet,researchNotSet,"POST");
         },
         invalidHandler: function(event, validator) {
@@ -128,10 +134,9 @@ $(document).ready(function(e){
     });
 
     function researchSet(res,link){
-        //console.log(link);
         document.location.href = link;
-
     }
+
     function researchNotSet(){
         openInfoModal(5,"Errore!","è avvenuto un errore durante la ricerca, riprova a breve.","Chiudi");
     }
@@ -139,32 +144,51 @@ $(document).ready(function(e){
 
     function researchGetLink(){
 
-        var category,contract,tipology,town,locals,bathrooms,property_status,garden,elevator,box;
+        var category,contract,tipology,town,district,locals,priceFrom,priceTo,mqFrom,mqTo,bathrooms,conditions,garden,elevator,box;
+
+        var location = splitTownDistrict($("#input_town").val());
 
         category    = $('#sel_category option:selected').text();
         contract    = $('#sel_contract option:selected').text();
         tipology    = $('#sel_tipology option:selected').text();
-        town        = $('#input_town').val();
+        town        = encodeURIComponent(location[0].trim());
+        district    = location.length>1?encodeURIComponent(location[1].trim()):"";
+        priceFrom   = $('#priceFrom').val();
+        priceTo     = $('#priceTo').val()
+        mqFrom      = $('#mqFrom').val();
+        mqTo        = $('#mqTo').val();
+
 
 
         locals              = $('#sel_locals option:selected').text();
         bathrooms           = $('#sel_bathrooms option:selected').text();
-        property_status     = $('#sel_property_status option:selected').text();
+        conditions          = $('#sel_conditions option:selected').text();
         garden              = $('#sel_garden option:selected').text();
         elevator            = $('#sel_elevator option:selected').text();
         box                 = $('#sel_box option:selected').text();
 
-        var refLink =BASE_PATH+"/"+contract+"/"+category+"/"+tipology+"/"+town+"/filtri/criterio=abilitati";
+        var refLink =BASE_PATH+"/"+category+"/"+contract+"/"+tipology+"/"+town+"/filtri/criterio=abilitati";
+
+        if(district!="")  refLink+="&zona="+district;
+        if(priceFrom!="")  refLink+="&prezzoMinimo="+priceFrom;
+        if(priceTo!="")  refLink+="&prezzoMassimo="+priceTo;
+        if(mqFrom!="")  refLink+="&superficieMinima="+mqFrom;
+        if(mqTo!="")  refLink+="&superficieMassima="+mqTo;
 
         if($('#sel_locals').val()!="")  refLink+="&locali="+locals;
-        if($('#sel_bathrooms').val()!="")  refLink+="&bagni="+bathrooms;
-        if($('#sel_property_status').val()!="")  refLink+="&statoImmobile="+property_status;
+        if($('#sel_bathrooms').val()!="")  refLink+="&bagni="+bathrooms.replace(" Bagni","");
+        if($('#sel_conditions').val()!="")  refLink+="&condizioni="+conditions;
         if($('#sel_garden').val()!="")  refLink+="&giardino="+garden;
         if($('#sel_elevator').val()!="")  refLink+="&ascensore="+elevator;
         if($('#sel_box').val()!="")  refLink+="&postoAuto="+box;
 
 
         return refLink;
+    }
+
+
+    function splitTownDistrict(txt,splitChar =","){
+        return txt.split(splitChar);
     }
 
 });

@@ -4,6 +4,16 @@ include("../config.php");
 include(BASE_PATH."/app/classes/PropertyManager.php");
 include(BASE_PATH."/app/classes/Utils.php");
 include(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
+include(BASE_PATH."/app/classes/GenericDbHelper.php");
+
+
+function bindParamsValues($param,$value){
+    global $params,$values;
+    array_push($params, $param);
+    array_push($values, urldecode($value));
+}
+
+
 
 $params = Array("id_ads_status = 1");
 $values = Array();
@@ -19,25 +29,50 @@ $propertyM = new PropertyManager();
 $array_res = array("aaData"=>array());
 
 
+$dbH = new GenericDbHelper();
 
-if(isset($_GET["category"]))bindParamsValues("category = ?",$_GET["category"]);
-if(isset($_GET["contract"]))bindParamsValues("contract = ?",$_GET["contract"]);
-if(isset($_GET["tipology"]))bindParamsValues("tipology in(?)",$_GET["tipology"]);
-if(isset($_GET["town"]))bindParamsValues("town in(?)",$_GET["town"]);
-if(isset($_GET["district"]))bindParamsValues("district =?",$_GET["district"]);
 
-if(isset($_GET["priceMin"]))bindParamsValues("price >= CAST(? AS UNSIGNED)",$_GET["priceMin"]);
-if(isset($_GET["priceMax"]))bindParamsValues("price <= CAST(? AS UNSIGNED)",$_GET["priceMax"]);
-if(isset($_GET["mqMin"]))bindParamsValues("mq >= CAST(? AS UNSIGNED)",$_GET["mqMin"]);
-if(isset($_GET["mqMax"]))bindParamsValues("mq <= CAST(? AS UNSIGNED)",$_GET["mqMax"]);
-if(isset($_GET["locals"]))bindParamsValues("locals = ?",$_GET["locals"]);
-if(isset($_GET["bathrooms"]))bindParamsValues("bathrooms_short >= ?",$_GET["bathrooms"]);
-if(isset($_GET["propertyStatus"]))bindParamsValues("property_status = ?",$_GET["propertyStatus"]);
-if(isset($_GET["garden"]))bindParamsValues("garden = ?",$_GET["garden"]);
-if(isset($_GET["elevator"]))bindParamsValues("elevator = ?",$_GET["elevator"]);
-if(isset($_GET["box"]))bindParamsValues("box = ?",$_GET["box"]);
 
-/*var_dump($params);
+
+
+$contract   = isset($_GET["contract"])?$_GET["contract"]:"";
+$category   = isset($_GET["category"])?$_GET["category"]:"";
+$tipology   = isset($_GET["tipology"])?$_GET["tipology"]:"";
+$town       = isset($_GET["town"])?$_GET["town"]:"";
+$conditions = isset($_GET["conditions"])?$_GET["conditions"]:"";
+$garden     = isset($_GET["garden"])?$_GET["garden"]:"";
+$elevator   = isset($_GET["elevator"])?$_GET["elevator"]:"";
+$box        = isset($_GET["box"])?$_GET["box"]:"";
+
+$district = isset($_GET["district"])?$_GET["district"]:"";
+$priceMin = isset($_GET["priceMin"])?$_GET["priceMin"]:"";
+$priceMax = isset($_GET["priceMax"])?$_GET["priceMax"]:"";
+$mqMin = isset($_GET["mqMin"])?$_GET["mqMin"]:"";
+$mqMax = isset($_GET["mqMax"])?$_GET["mqMax"]:"";
+$locals = isset($_GET["locals"])?str_replace("+","",$_GET["locals"]):"";
+$bathrooms = isset($_GET["bathrooms"])?str_replace("+","",$_GET["bathrooms"]):"";
+
+
+
+
+if($contract!="")bindParamsValues("id_contract = ?",$contract);
+if($category!="")bindParamsValues("id_category = ?",$category);
+if($tipology!="")bindParamsValues("id_tipology = ?",$tipology);
+if($town!="")bindParamsValues("id_town = ?",$town);
+if($district!="")bindParamsValues("district Like(?)","%".$district."%");
+if($priceMin!="")bindParamsValues("price >= CAST(? AS UNSIGNED)",$priceMin);
+if($priceMax!="")bindParamsValues("price <= CAST(? AS UNSIGNED)",$priceMax);
+if($mqMin!="")bindParamsValues("mq >= CAST(? AS UNSIGNED)",$mqMin);
+if($mqMax!="")bindParamsValues("mq <= CAST(? AS UNSIGNED)",$mqMax);
+if($locals!="")bindParamsValues("locals_num >= ?",$locals);
+if($bathrooms!="")bindParamsValues("bathrooms_num >= ?",$bathrooms);
+if($conditions!="")bindParamsValues("id_property_conditions = ?",$conditions);
+if($garden!="")bindParamsValues("id_garden = ?",$garden);
+if($elevator!="")bindParamsValues("id_elevator = ?",$elevator);
+if($box!="")bindParamsValues("id_box = ?",$box);
+
+/*
+var_dump($params);
 var_dump($values);*/
 
 
@@ -50,8 +85,7 @@ $res = $propertyM->readAllAds($params,null,$values,null,false);
 
 
 $resultFound = Count($res);
-
-if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
+if ($res & $resultFound>0 && $resultFound!="" && $resultFound!=null){;
     for($i=0;$i<$resultFound;$i++) {
 
         /*$agentData = $propertyM->getAgentData($res[$i]["id"]);*/
@@ -84,45 +118,45 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
 
 
         $property_box = "<div class='property_wrapper boxes clearfix'>";
-            $property_box .= "<div class='row'>";
-                $property_box .= "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
-                    $property_box .= "<div class='ImageWrapper boxes_img'>";
-                        $property_box .= "<img class='img-responsive' src='$imgNormal' alt=''>";
-                        $property_box .= "<div class='ImageOverlayH'></div>";
-                        $property_box .= "<div class='Buttons StyleSc'>";
-                            $property_box .= "<span class='WhiteSquare' title='Vai al dettaglio'><a  href='$link'><i class='fa fa-search fa-2'></i></a></span>";
-                            $property_box .= "<span class='WhiteSquare' title='Ingrandisci Foto'><a class='fancybox' href='".$imgBig."'><i class='fa fa-picture-o fa-2'></i></a></span>";
-                            $property_box .= "<span class='WhiteSquare' title='Contattaci'><a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o fa-2'></i></a></span>";
-                                $property_box .= "<div class='hiddenInfo'>";
-                                    $property_box .= "<input type='hidden' class='email_info' value='$agentMail' />";
-                                    $property_box .= "<input type='hidden' class='telephone_info' value='$agentTel' />";
-                                    $property_box .= "<input type='hidden' class='mobile_info' value='$agentMobile' />";
-                                $property_box .= "</div>";//<!-- end hiddenInfo -->
-                        $property_box .="</div>";//<!-- end Buttons -->
-                        $property_box .= "<div class='box_type'>".$price."</div>";
-                        $property_box .= "<div class='status_type'>".$res[$i]['contract']."</div>";
-                        $property_box .="</div>";//<!-- ImageWrapper -->
-                $property_box .="</div>";//<!-- end col-lg-6 -->
+        $property_box .= "<div class='row'>";
+        $property_box .= "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
+        $property_box .= "<div class='ImageWrapper boxes_img'>";
+        $property_box .= "<img class='img-responsive' src='$imgNormal' alt=''>";
+        $property_box .= "<div class='ImageOverlayH'></div>";
+        $property_box .= "<div class='Buttons StyleSc'>";
+        $property_box .= "<span class='WhiteSquare' title='Vai al dettaglio'><a  href='$link'><i class='fa fa-search fa-2'></i></a></span>";
+        $property_box .= "<span class='WhiteSquare' title='Ingrandisci Foto'><a class='fancybox' href='".$imgBig."'><i class='fa fa-picture-o fa-2'></i></a></span>";
+        $property_box .= "<span class='WhiteSquare' title='Contattaci'><a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o fa-2'></i></a></span>";
+        $property_box .= "<div class='hiddenInfo'>";
+        $property_box .= "<input type='hidden' class='email_info' value='$agentMail' />";
+        $property_box .= "<input type='hidden' class='telephone_info' value='$agentTel' />";
+        $property_box .= "<input type='hidden' class='mobile_info' value='$agentMobile' />";
+        $property_box .= "</div>";//<!-- end hiddenInfo -->
+        $property_box .="</div>";//<!-- end Buttons -->
+        $property_box .= "<div class='box_type'>".$price."</div>";
+        $property_box .= "<div class='status_type'>".$res[$i]['contract']."</div>";
+        $property_box .="</div>";//<!-- ImageWrapper -->
+        $property_box .="</div>";//<!-- end col-lg-6 -->
 
-                $property_box .= "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
-                    $property_box .= "<div class='title clearfix'>";
-                        $property_box .= "<h3><a href='".$link."' title='$title'>$title_short</a> <small class='small_title'>in ".$res[$i]['contract']."</small> </h3>";
-                    $property_box .="</div>";//<!-- end title -->
-                    $property_box .="<div class='boxed_mini_details1 clearfix'>";
+        $property_box .= "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
+        $property_box .= "<div class='title clearfix'>";
+        $property_box .= "<h3><a href='".$link."' title='$title'>$title_short</a> <small class='small_title'>in ".$res[$i]['contract']."</small> </h3>";
+        $property_box .="</div>";//<!-- end title -->
+        $property_box .="<div class='boxed_mini_details1 clearfix'>";
 
-                        $property_box .="<span class='type first price' title='".$price."'><strong>".$price."</strong></span>";
-                        $property_box .="<span class='rooms' title='".$res[$i]['rooms']."'> <i class='icon-bed'></i><b>". $res[$i]['rooms_short']."</b><br>Camere</span></span>";
-                        $property_box .="<span class='bathrooms' title='".$res[$i]['bathrooms']."'><i class='icon-bath'></i><b>". $res[$i]['bathrooms_short']."</b><br>Bagni</span>";
-                        $property_box .="<span class='sqft' title='superficie'><b>". $res[$i]['mq']."</b> m<sup>2</sup><br>Superficie</span>";
+        $property_box .="<span class='type first price' title='".$price."'><strong>".$price."</strong></span>";
+        $property_box .="<span class='rooms' title='".$res[$i]['rooms']."'> <i class='icon-bed'></i><b>". $res[$i]['rooms_short']."</b><br>Camere</span></span>";
+        $property_box .="<span class='bathrooms' title='".$res[$i]['bathrooms']."'><i class='icon-bath'></i><b>". $res[$i]['bathrooms_short']."</b><br>Bagni</span>";
+        $property_box .="<span class='sqft' title='superficie'><b>". $res[$i]['mq']."</b> m<sup>2</sup><br>Superficie</span>";
 
-                    $property_box .="</div>";//<!-- end boxed_mini_details1 -->
+        $property_box .="</div>";//<!-- end boxed_mini_details1 -->
 
-                    $property_box .="<div class='property_desc clearfix'>";
-                        $property_box .="<p>".$desc_short."</p>";
-                    $property_box .="</div>";//<!-- end property_desc -->
+        $property_box .="<div class='property_desc clearfix'>";
+        $property_box .="<p>".$desc_short."</p>";
+        $property_box .="</div>";//<!-- end property_desc -->
 
-                $property_box .="</div>";//<!-- end col-lg-6 -->
-            $property_box .="</div>";//<!-- end row -->
+        $property_box .="</div>";//<!-- end col-lg-6 -->
+        $property_box .="</div>";//<!-- end row -->
 
         $property_box .="</div>";//<!-- end property_wrapper -->
 
@@ -136,9 +170,7 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
 
 echo(json_encode($array_res));
 
-function bindParamsValues($param,$value){
-    global $params,$values;
-    array_push($params, $param);
-    array_push($values, urldecode($value));
-}
+
+
+
 //echo(json_encode($array_res));

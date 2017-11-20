@@ -67,7 +67,7 @@ class OptionsManager extends DbManager{
                 break;
             case "ads_locals2":
                 $params = array("enabled = 1");
-                $fields = array("title_short","concat(title_short,'+') as title");
+                $fields = array("numeric_value","concat(numeric_value,'+') as title");
                 $extra_params = "order by id asc";
                 $this->currTable = "property_locals";
                 break;
@@ -111,6 +111,12 @@ class OptionsManager extends DbManager{
                 $params = array("enabled = 1");
                 $fields = array("id","title");
                 $extra_params = "order by title asc";
+                $this->currTable = "property_bathrooms";
+                break;
+            case "ads_bathrooms2":
+                $params = array("enabled = 1");
+                $fields = array("numeric_value","concat(numeric_value,'+') as title");
+                $extra_params = "order by id asc";
                 $this->currTable = "property_bathrooms";
                 break;
             case "ads_box":

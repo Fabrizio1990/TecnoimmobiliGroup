@@ -1,31 +1,94 @@
 <?php
 require_once(BASE_PATH."/app/classes/Utils.php");
+require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
 $parallax = false;
 
 //require_once(BASE_PATH."/app/classes/SessionManager.php");
 $srcPar = array();
-if(isset($_GET["category"]))$srcPar["category"]=$_GET["category"];
-if(isset($_GET["contract"]))$srcPar["contract"]=$_GET["contract"];
-if(isset($_GET["tipology"]))$srcPar["tiplogy"]=$_GET["tipology"];
-if(isset($_GET["town"]))$srcPar["town"]=$_GET["town"];
-if(isset($_GET["district"]))$srcPar["district"]=$_GET["district"];
+
+
+/* CHECK IF DISTRICT EXIST "IF NOT I WILL REMOVE IT"*/
+$dbH = new GenericDbHelper();
+
+$district = isset($_GET["zona"])?$_GET["zona"]:"";
+if($district!=""){
+$dbH->setTable("geo_district");
+$res = $dbH->read("title Like ?",null,array("%".$district."%"),null,false);
+
+if(!$res || count($res)<1)
+    $district = "";
+}
+
+
+
+
+$contract = CheckAndConvertParams("contract","property_contracts","id","title");
+$category = CheckAndConvertParams("category","property_categories","id","title");
+$tipology = CheckAndConvertParams("tipology","property_tipologies","id","title");
+$town = CheckAndConvertParams("town","geo_town","id","title");
+$conditions = CheckAndConvertParams("condizioni","property_conditions","id","title");
+$garden = CheckAndConvertParams("giardino","property_gardens","id","title");
+$elevator = CheckAndConvertParams("ascensore","property_elevators","id","title");
+$box = CheckAndConvertParams("postoAuto","property_box","id","title");
+if(!$contract || !$category || !$tipology || !$town ){
+     header("location: ".SITE_URL."/404.html");
+}
+
+
+if($category!="")$srcPar["category"]=$category;
+if($contract!="")$srcPar["contract"]=$contract;
+if($tipology!="")$srcPar["tipology"]=$tipology;
+if($town!="")$srcPar["town"]=$town;
+if($district!=""){$srcPar["district"]=urldecode($district);};
+if($conditions!="")$srcPar["conditions"]=$conditions;
+if($garden!="")$srcPar["garden"]=$garden;
+if($elevator)$srcPar["elevator"]=$elevator;
+if($box)$srcPar["box"]=$box;
 if(isset($_GET["prezzoMinimo"]))$srcPar["priceMin"]=$_GET["prezzoMinimo"];
 if(isset($_GET["prezzoMassimo"]))$srcPar["priceMax"]=$_GET["prezzoMassimo"];
 if(isset($_GET["superficieMinima"]))$srcPar["mqMin"]=$_GET["superficieMinima"];
 if(isset($_GET["superficieMassima"]))$srcPar["mqMax"]=$_GET["superficieMassima"];
 if(isset($_GET["locali"]))$srcPar["locals"]=$_GET["locali"];
 if(isset($_GET["bagni"]))$srcPar["bathrooms"]=$_GET["bagni"];
-if(isset($_GET["statoImmobile"]))$srcPar["propertyStatus"]=$_GET["statoImmobile"];
-if(isset($_GET["giardino"]))$srcPar["garden"]=$_GET["giardino"];
-if(isset($_GET["ascensore"]))$srcPar["elevator"]=$_GET["ascensore"];
-if(isset($_GET["postoAuto"]))$srcPar["box"]=$_GET["postoAuto"];
+
+
+
+
 
 // GENERO PARAMETRI PER CHIAMATA AJAX
 $ajaxUrlParams="";
+/*var_dump($srcPar);*/
 foreach($srcPar as $key => $value)
     $ajaxUrlParams.=$key."=".$value."&";
 
 $ajaxUrlParams = rtrim($ajaxUrlParams,"&");
+//echo($ajaxUrlParams);
+
+// STRINGA RISULTATI TROVATI
+$resultString = $_GET["tipology"]." in ".$_GET["contract"] ." ".$_GET["town"];
+if( $district!="")$resultString.= " : ".$district;
+
+
+
+
+
+
+
+function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
+    global $dbH;
+
+    if(isset($_GET[$getParamName])){
+        $convertedPar = $dbH->getFieldFromValue($table,$fieldNeeded,$fieldUsed,$_GET[$getParamName]);
+        if(Count($convertedPar)>0) {
+            //echo($_GET[$getParamName] . " DIVENTA " . $convertedPar[0][$fieldNeeded] . "<--##########-->");
+            return $convertedPar[0][$fieldNeeded];
+        }
+        else{
+            return false;
+        }
+    }
+    return "";
+}
 
 
 ?>
@@ -106,7 +169,7 @@ $ajaxUrlParams = rtrim($ajaxUrlParams,"&");
                 <li><a href="index.html">Home</a></li>
                 <li>Lista immobili</li>
             </ul>
-            <h2><?php echo "XXXX risultati per: case in vendita Torino: Centro " ?></h2>
+            <h2><span id="results_found">X</span><?php echo " risultati per: $resultString " ?></h2>
         </div>
     </div>
 </section><!-- end post-wrapper-top -->
@@ -173,6 +236,8 @@ $ajaxUrlParams = rtrim($ajaxUrlParams,"&");
             "initComplete": function() {
                 bindButtons();
                 $("#DT_PROPERTIES .fancybox").fancybox({});
+                $("#results_found").text(table.rows().count());
+                //alert( 'Rows '+table.rows().count()+' are selected' );
             }
 
         });

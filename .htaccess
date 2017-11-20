@@ -1,7 +1,7 @@
 RewriteEngine On
 
 # <RICERCA IMMOBILI>
-RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/filtri/([^/]+)$ index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&district=$5&$6
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/filtri/([^/]+)$ index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&$5
 
 #RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)$ index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&district=$5
 
