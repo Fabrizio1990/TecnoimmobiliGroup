@@ -365,6 +365,7 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
+                            <xs:element type="xs:string" name="views"/>
                             <xs:element type="xs:string" name="video_url"/>
                             <xs:element  name="description">
                                 <xs:simpleType>

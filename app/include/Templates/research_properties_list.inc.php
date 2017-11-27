@@ -3,7 +3,7 @@
             <?php
 
             $order = isset($_GET["campoOrdinamento"])?urldecode($_GET["campoOrdinamento"]):"date_up|desc";
-            echo("----------------->".$order);
+
             function getSelected($val){
                 global $order;
                 if($order == $val)

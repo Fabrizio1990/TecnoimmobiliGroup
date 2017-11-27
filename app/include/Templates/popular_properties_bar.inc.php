@@ -4,6 +4,7 @@
 
     $propertyMng = new PropertyManager();
 
+    $elemXRow = 4;
     $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_up desc Limit 8 ",null,null,false);
 
 
@@ -51,6 +52,11 @@
                             $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                         }
 
+
+                        if($i%$elemXRow == 0){
+                            if($i!=0) echo("</div>");
+                            echo("<div class='row row-eq-height'>");
+                        }
                     ?>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="boxes first" data-effect="slide-bottom">

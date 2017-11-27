@@ -34,6 +34,7 @@
         <id_ads_status></id_ads_status>
         <prestige></prestige>
         <price_lowered></price_lowered>
+        <views></views>
         <video_url></video_url>
         <description></description>
         <id_energy_class></id_energy_class>

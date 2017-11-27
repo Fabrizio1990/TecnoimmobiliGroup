@@ -3,7 +3,7 @@ require_once(BASE_PATH."/app/classes/PropertyManager.php");
 require_once(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 $propertyMng = new PropertyManager();
 $parallax = isset($parallax)?$parallax:false;
-
+$elemXRow = 3;
 $imgPathMin = $propertyMng->getImagesPath("title = ?","limit 1", array("min"),"path",false)[0]["path"];
 $imgPathBig = $propertyMng->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
 $imgEof  = "img_eof/Immagine_eof.jpg";
@@ -71,7 +71,10 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                             $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
                                             $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                                         }
-
+                                        if($i % $elemXRow == 0){
+                                            if($i!=0) {echo("</div>");}
+                                            echo("<div class='row row-eq-height'>");
+                                        }
                                     ?>
 
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -101,6 +104,8 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                             </div><!-- end boxes -->
                                         </div>
                                     <?php
+                                        if($i == Count($properties) -1)
+                                            echo("</div>");
                                     }
                                     ?>
 
@@ -140,7 +145,10 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                             $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
                                             $imgBig =  SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                                         }
-
+                                        if($i % $elemXRow == 0){
+                                            if($i!=0) {echo("</div>");}
+                                            echo("<div class='row row-eq-height'>");
+                                        }
                                         ?>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
@@ -169,6 +177,8 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                             </div><!-- end boxes -->
                                         </div>
                                         <?php
+                                        if($i == Count($properties) -1)
+                                            echo("</div>");
                                     }
                                     ?>
                                 </div><!-- tab pane -->
@@ -208,7 +218,10 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                             $imgMin = SITE_URL . "/" . $imgPathMin . $properties[$i]["img_name"];
                                             $imgBig = SITE_URL . "/" . $imgPathBig . $properties[$i]["img_name"];
                                         }
-
+                                        if($i % $elemXRow == 0){
+                                            if($i!=0) {echo("</div>");}
+                                            echo("<div class='row row-eq-height'>");
+                                        }
                                         ?>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
@@ -237,6 +250,8 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                             </div><!-- end boxes -->
                                         </div>
                                         <?php
+                                        if($i == Count($properties) -1)
+                                            echo("</div>");
                                     }
                                     ?>
                                 </div><!-- tab pane -->
