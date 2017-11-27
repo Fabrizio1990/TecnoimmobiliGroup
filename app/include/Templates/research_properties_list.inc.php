@@ -1,29 +1,59 @@
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
-        <div class="row">
+            <?php
 
+            $order = isset($_GET["campoOrdinamento"])?urldecode($_GET["campoOrdinamento"]):"date_up|desc";
+            echo("----------------->".$order);
+            function getSelected($val){
+                global $order;
+                if($order == $val)
+                    echo "selected";
+            }
+            ?>
 
             <div id="content" class="col-lg-9 col-md-9 col-sm-8 col-xs-12 clearfix ">
 
-                <table id="DT_PROPERTIES" class="table  display responsive no-wrap compact" width="100%">
+                <!-- ORDINAMENTO -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 col-lg-push-9 col-md-push-9 col-sm-push-8">
+                        <label for="sel_order_filter" class="lbl_tecnoimmobili_blue">Ordine</label>
+                        <select id="sel_order_filter" name="sel_order_filter" class="form-control selectpicker sel_tecnoimm_blue">
+                            <optgroup label="" style="letter-spacing:-1px;">
+                                <option <?php getSelected("price|asc") ?> value="price|asc">Meno costosi</option>
+                                <option  <?php getSelected("locals|asc") ?>  value="locals|asc">Meno locali</option>
+                                <option <?php getSelected("mq|asc") ?> value="mq|asc">Meno grandi</option>
+                                <option <?php getSelected("date_up|asc") ?> value="date_up|asc">Meno recenti</option>
+                            </optgroup>
+                            <optgroup label="" style="letter-spacing:-1px;">
+                                <option <?php getSelected("price|desc") ?> value="price|desc">Più costosi</option>
+                                <option <?php getSelected("locals|desc") ?> value="locals|desc">Più locali</option>
+                                <option <?php getSelected("mq|desc") ?> value="mq|desc">Più grandi</option>
+                                <option <?php getSelected("date_up|desc") ?> value="date_up|desc">Più recenti</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- TABELLA IMMOBILI -->
+                    <table id="DT_PROPERTIES" class="table  display responsive no-wrap compact" width="100%">
 
-                    <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                        <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                    <!--
-                    ##########################################################################################
-                    il corpo della tabella viene scritto dalla funzione javascript al fondo della pagina padre
-                    ##########################################################################################
-                    -->
+                        <!--
+                        ##########################################################################################
+                        il corpo della tabella viene scritto dalla funzione javascript al fondo della pagina padre
+                        ##########################################################################################
+                        -->
 
-                    </tbody>
+                        </tbody>
 
-                </table>
-
+                    </table>
+                </div>
 
             </div><!-- end content -->
 

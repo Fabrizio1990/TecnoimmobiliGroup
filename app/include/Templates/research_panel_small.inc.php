@@ -81,28 +81,28 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
 
                             <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 no-lateral-padding">
-                                <label for="sel_category">Categoria</label>
-                                <select id="sel_category" onchange="getTipologies(this,'','seleziona');" class="show-menu-arrow selectpicker dropdown" data-size="7" data-dropup-auto="false" data-dropup-auto="false">
+                                <label for="sel_category" class="lbl_tecnoimmobili_blue">Categoria</label>
+                                <select id="sel_category" onchange="getTipologies(this,'','seleziona');" class="show-menu-arrow selectpicker dropdown sel_tecnoimm_blue" data-size="7" data-dropup-auto="false" data-dropup-auto="false">
                                     <?php echo($optCategory) ?>
                                 </select>
                             </div>
 
                             <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 no-lateral-padding">
-                                <label for="sel_contract">Contratto</label>
-                                <select  id="sel_contract" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                                <label for="sel_contract" class="lbl_tecnoimmobili_blue">Contratto</label>
+                                <select  id="sel_contract" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false">
                                     <?php echo($optContracts) ?>
                                 </select>
                             </div>
                             <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 no-lateral-padding">
-                                <label for="input_town">&nbsp;</label>
+                                <label for="input_town" class="lbl_tecnoimmobili_blue">&nbsp;</label>
                                 <input type="text" class="form-control typeahead" name="input_town" id="input_town" placeholder="Es : Torino , Mirafiori nord" value="<?php echo $inpLocationVal ?>">
                             </div>
                         </div>
 
 
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <label for="sel_tipology">Tipologia</label>
-                            <select id="sel_tipology" name="sel_tipology" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                            <label for="sel_tipology" class="lbl_tecnoimmobili_blue">Tipologia</label>
+                            <select id="sel_tipology" name="sel_tipology" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false">
                                 <option value="">Qualsiasi</option>
                                 <?php echo($optTipology) ?>
                             </select>
@@ -111,25 +111,25 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
 
                     <div class="row">
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <label for="priceFrom">Prezzo Da:</label>
+                            <label for="priceFrom" class="lbl_tecnoimmobili_blue">Prezzo Da:</label>
                             <input type="text" name="priceFrom" id="priceFrom" class="form-control" placeholder="Da" value="<?php echo $inpPriceFromVal ?>">
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <label for="priceTo"> A:</label>
+                            <label for="priceTo" class="lbl_tecnoimmobili_blue"> A:</label>
                             <input type="text" name="priceTo" id="priceTo" class="form-control" placeholder="a" value="<?php echo $inpPriceToVal ?>">
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <label for="mqFrom">Superficie Da:</label>
+                            <label for="mqFrom" class="lbl_tecnoimmobili_blue">Superficie Da:</label>
                             <input type="text" name="mqFrom" id="mqFrom" class="form-control" placeholder="Da" value="<?php echo $inpMqFromVal ?>">
 
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                            <label for="mqTo"> A:</label>
+                            <label for="mqTo" class="lbl_tecnoimmobili_blue"> A:</label>
                             <input type="text" name="mqTo" id="mqTo" class="form-control" placeholder="a" value="<?php echo $inpMqToVal ?>">
                         </div>
 
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-                            <label for="btn_search">&nbsp;</label>
+                            <label for="btn_search" class="lbl_tecnoimmobili_blue">&nbsp;</label>
                             <button type="submit" class="btn btn-tecnoimm-red" id="btn_search"><i class="fa fa-search"></i> Avvia Ricerca</button>
                         </div>
                     </div>
@@ -139,22 +139,22 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                     <div  id="search_details">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <label for="sel_locals">Locali</label>
-                                <select id="sel_locals" name="sel_locals" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                                <label for="sel_locals" class="lbl_tecnoimmobili_blue">Locali</label>
+                                <select id="sel_locals" name="sel_locals" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false">
                                     <option value="" >Qualsiasi</option>
                                     <?php echo($optLocals) ?>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <label for="sel_bathrooms">Bagni</label>
-                                <select id="sel_bathrooms" name="sel_bathrooms" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                                <label for="sel_bathrooms" class="lbl_tecnoimmobili_blue">Bagni</label>
+                                <select id="sel_bathrooms" name="sel_bathrooms" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false">
                                     <option value="" >Qualsiasi</option>
                                     <?php echo($optBathrooms) ?>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <label for="sel_conditions">Condizioni</label>
-                                <select id="sel_conditions" name="sel_conditions" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                                <label for="sel_conditions" class="lbl_tecnoimmobili_blue">Condizioni</label>
+                                <select id="sel_conditions" name="sel_conditions" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false">
                                     <option value="">Qualsiasi</option>
                                     <?php echo($optConditions) ?>
                                 </select>
@@ -162,29 +162,29 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <label for="sel_garden">Giardino</label>
-                                <select  id="sel_garden" name="sel_garden" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                                <label for="sel_garden" class="lbl_tecnoimmobili_blue">Giardino</label>
+                                <select  id="sel_garden" name="sel_garden" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false">
                                     <option value="">Qualsiasi</option>
                                     <?php echo($optGardens) ?>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <label for="sel_elevator">Ascensore</label>
-                                <select id="sel_elevator" name="sel_elevator" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false">
+                                <label for="sel_elevator" class="lbl_tecnoimmobili_blue">Ascensore</label>
+                                <select id="sel_elevator" name="sel_elevator" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false">
                                     <option value="">Qualsiasi</option>
                                     <?php echo($optElevator) ?>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <label for="sel_box">Posto Auto</label>
-                                <select id="sel_box" class="show-menu-arrow selectpicker" data-size="7" data-dropup-auto="false" >
+                                <label for="sel_box" class="lbl_tecnoimmobili_blue">Posto Auto</label>
+                                <select id="sel_box" class="show-menu-arrow selectpicker sel_tecnoimm_blue" data-size="7" data-dropup-auto="false" >
                                     <option value="">Qualsiasi</option>
                                     <?php echo($optBox) ?>
                                 </select>
                             </div>
                         </div>
                     </div>
-
+                    <input type="hidden" id="inp_h_order" value="date_up"/>
 
                 </form>
                 <div style="margin-bottom: 0px;margin-left:0px;" class="toggleSearchDetails">

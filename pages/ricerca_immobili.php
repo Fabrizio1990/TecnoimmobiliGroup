@@ -34,7 +34,6 @@ if(!$contract || !$category || !$tipology || !$town ){
      header("location: ".SITE_URL."/404.html");
 }
 
-
 if($category!="")$srcPar["category"]=$category;
 if($contract!="")$srcPar["contract"]=$contract;
 if($tipology!="")$srcPar["tipology"]=$tipology;
@@ -50,6 +49,8 @@ if(isset($_GET["superficieMinima"]))$srcPar["mqMin"]=$_GET["superficieMinima"];
 if(isset($_GET["superficieMassima"]))$srcPar["mqMax"]=$_GET["superficieMassima"];
 if(isset($_GET["locali"]))$srcPar["locals"]=$_GET["locali"];
 if(isset($_GET["bagni"]))$srcPar["bathrooms"]=$_GET["bagni"];
+
+if(isset($_GET["campoOrdinamento"]))$srcPar["order"]=urldecode($_GET["campoOrdinamento"]);
 
 
 
@@ -67,9 +68,6 @@ $ajaxUrlParams = rtrim($ajaxUrlParams,"&");
 // STRINGA RISULTATI TROVATI
 $resultString = $_GET["tipology"]." in ".$_GET["contract"] ." ".$_GET["town"];
 if( $district!="")$resultString.= " : ".$district;
-
-
-
 
 
 
@@ -213,7 +211,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
 <script src="<?php echo SITE_URL."/AdminPanel/js/options_populate.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/research_panel_1.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/contact_modal.js" ?>"></script>
-
+<script src="<?php echo SITE_URL . "/js/ricerca_immobili.js" ?>"></script>
 
 <script>
     $(window).load(function () {

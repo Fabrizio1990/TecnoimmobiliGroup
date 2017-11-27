@@ -76,7 +76,7 @@ $(document).ready(function(e){
 
 
 
-    $(".selectpicker").selectpicker().change(function() {
+    $("#advanced_search .selectpicker").selectpicker().change(function() {
         $(this).valid();
     });
     //FORM VALIDATION
@@ -144,7 +144,7 @@ $(document).ready(function(e){
 
     function researchGetLink(){
 
-        var category,contract,tipology,town,district,locals,priceFrom,priceTo,mqFrom,mqTo,bathrooms,conditions,garden,elevator,box;
+        var category,contract,tipology,town,district,locals,priceFrom,priceTo,mqFrom,mqTo,bathrooms,conditions,garden,elevator,box,order;
 
         var location = splitTownDistrict($("#input_town").val());
 
@@ -166,8 +166,9 @@ $(document).ready(function(e){
         garden              = $('#sel_garden option:selected').text();
         elevator            = $('#sel_elevator option:selected').text();
         box                 = $('#sel_box option:selected').text();
+        order               = $("#inp_h_order").length ?encodeURIComponent($("#inp_h_order").val()):"date_up";
 
-        var refLink =BASE_PATH+"/"+category+"/"+contract+"/"+tipology+"/"+town+"/filtri/criterio=abilitati";
+        var refLink =BASE_PATH+"/"+category+"/"+contract+"/"+tipology+"/"+town+"/filtri/campoOrdinamento="+order;
 
         if(district!="")  refLink+="&zona="+district;
         if(priceFrom!="")  refLink+="&prezzoMinimo="+priceFrom;

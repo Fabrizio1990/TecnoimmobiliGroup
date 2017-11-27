@@ -16,6 +16,7 @@ function bindParamsValues($param,$value){
 
 
 $params = Array("id_ads_status = 1");
+$extra_params = array();
 $values = Array();
 $rand_num = Rand(0,100);
 $baseImgPath = SITE_URL."/public/images/images_properties";
@@ -30,8 +31,6 @@ $array_res = array("aaData"=>array());
 
 
 $dbH = new GenericDbHelper();
-
-
 
 
 
@@ -52,7 +51,10 @@ $mqMax = isset($_GET["mqMax"])?$_GET["mqMax"]:"";
 $locals = isset($_GET["locals"])?str_replace("+","",$_GET["locals"]):"";
 $bathrooms = isset($_GET["bathrooms"])?str_replace("+","",$_GET["bathrooms"]):"";
 
-
+/* VARIABILI PER ORDINAMENTO */
+$orderGet      = isset($_GET["order"])?explode("|",$_GET["order"]):"";
+$orderKey = isset($orderGet[0]) ?$orderGet[0]:"";
+$orderDir = isset($orderGet[1]) ?$orderGet[1]:"";
 
 
 if($contract!="")bindParamsValues("id_contract = ?",$contract);
@@ -71,17 +73,21 @@ if($garden!="")bindParamsValues("id_garden = ?",$garden);
 if($elevator!="")bindParamsValues("id_elevator = ?",$elevator);
 if($box!="")bindParamsValues("id_box = ?",$box);
 
+/* CONTROLLO SE E' STATO SETTATO L' ORDINAMENTO E SE IL CAMPO DA ORDINARE ESISTE, SE ESISTE ORDINO, ALTRIMENTI NO*/
+if($orderKey!=""){
+    $query = "CALL `new_tecnoimmobili`.`CheckColumnExist`('properties_view', '".$orderKey."')";
+    $orderParExist = $dbH->executeQuery("CALL `new_tecnoimmobili`.`CheckColumnExist`('properties_view', '".$orderKey."')");
+    if(intval($orderParExist[0][0]) > 0){
+        array_push($extra_params,"order by ".$orderKey. " ".$orderDir);
+    }
+}
 /*
 var_dump($params);
 var_dump($values);*/
 
 
 
-
-
-
-
-$res = $propertyM->readAllAds($params,null,$values,null,false);
+$res = $propertyM->readAllAds($params,$extra_params,$values,null,false);
 
 
 $resultFound = Count($res);

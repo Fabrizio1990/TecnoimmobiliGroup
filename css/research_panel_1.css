@@ -8,10 +8,10 @@
 .research_container #tabbed_widget .nav-tabs > li > a:active,.research_container #tabbed_widget .nav-tabs > li > a:focus, #tabbed_widget .nav-tabs > li.active > a, .research_container #tabbed_widget .nav-tabs > li.active > a:hover, .research_container #tabbed_widget .nav-tabs > li.active > a:focus{
     background-color:#fefefd; color:#1a5479!important;
 }
-.research_container .tab-pane .dropdown-toggle{background-color: transparent!important;border:1px solid #1a5479;background-image: none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;color:#1a5479!important;}
+/*.research_container .tab-pane .dropdown-toggle{background-color: transparent!important;border:1px solid #1a5479;background-image: none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;color:#1a5479!important;}*/
 
 .research_container #advanced_search,#toggleSearchDetails{padding-left:10px;padding-right:10px;}
-.research_container #advanced_search label{color:#1a5479 !important;}
+/*.research_container #advanced_search label{color:#1a5479 !important;}*/
 
 .research_container .subtitle_bar h3{color:#1a5479;}
 .research_container hr{display: block;border-top: 1px solid #1a5479;}

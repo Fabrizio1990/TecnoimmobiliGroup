@@ -2283,4 +2283,29 @@ pagination > .active > a, .pagination > .active > span,
 	.fa-3{font-size: 4em;}
 	.fa-4{font-size: 7em;}
 
-	/* BOX DETAILS */
+	/* LABELS TECNOIMMOBILI */
+	label.lbl_tecnoimmobili_blue{
+		color:#1a5479 !important;
+	}
+	label.lbl_tecnoimmobili_red{
+		color:#eb212e !important;
+	}
+	/* LABELS TECNOIMMOBILI */
+	/* SELECTPICKER TECNOIMMOBILI */
+	.bootstrap-select.sel_tecnoimm_blue .selectpicker{
+		border:1px solid #1a5479 ;
+		color:#1a5479;
+		background-color: transparent!important;
+		background-image: none;
+		-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;
+	}
+
+	.bootstrap-select.sel_tecnoimm_red .selectpicker{
+		border:1px solid #eb212e ;
+		color:#eb212e;
+		background-color: transparent!important;
+		background-image: none;
+		-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;
+
+	}
+	/* END SELECTPICKER TECNOIMMOBILI */
