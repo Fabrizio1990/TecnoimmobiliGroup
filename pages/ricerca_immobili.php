@@ -3,6 +3,7 @@ require_once(BASE_PATH."/app/classes/Utils.php");
 require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
 $parallax = false;
 
+
 //require_once(BASE_PATH."/app/classes/SessionManager.php");
 $srcPar = array();
 
@@ -52,7 +53,7 @@ if(isset($_GET["bagni"]))$srcPar["bathrooms"]=$_GET["bagni"];
 
 if(isset($_GET["campoOrdinamento"]))$srcPar["order"]=urldecode($_GET["campoOrdinamento"]);
 
-
+echo(urldecode($_GET["campoOrdinamento"]));
 
 
 

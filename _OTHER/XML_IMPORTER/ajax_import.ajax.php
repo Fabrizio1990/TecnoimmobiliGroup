@@ -39,15 +39,18 @@ function libxml_display_errors() {
 // Enable user error handling
 libxml_use_internal_errors(true);
 
+//$defUrl = "http://localhost/Tecnoimmobili/SITE/_export/export_immobili.php";
+$defUrl = "http://www.tecnoimmobiligroup.it/_export/export_immobili.php";
+$xmlUrl = isset($_POST["xmlUrl"])?$_POST["xmlUrl"]:$defUrl;
+
 $xml = new DOMDocument();
-//$xml->load('http://localhost/Tecnoimmobili/SITE/_export/export_immobili.php');
-$xml->load('http://www.tecnoimmobiligroup.it/_export/export_immobili.php');
+$xml->load($xmlUrl);
 
 if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
-    print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
+    print '<b style=\'color:red\'>DOMDocument::schemaValidate() Generated Errors!</b>';
     libxml_display_errors();
 }else{
-    echo"valido";
+    echo "<b style='color:green'>Xml valido</b><br>";
     //exit();
     include("../../config.php");
     include(BASE_PATH."/app/classes/PropertyManager.php");
@@ -60,13 +63,13 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     $mgzMng = new MagazineManager();
     $dbH    = new GenericDbHelper();
 
-    echo("<br>len =>".$xml->getElementsByTagName('property')->length);
+    echo("<br>Tot Immobili nell Xml =>".$xml->getElementsByTagName('property')->length."<br>");
     //exit();
     foreach ($xml->getElementsByTagName('property') as $property)
     {
 
         $id_easyWork            = $property->getAttribute("id_ew");
-        //$id_agency              = $property->getElementsByTagName('agency_id')->item(0)->nodeValue;
+        //$id_agency             = $property->getElementsByTagName('agency_id')->item(0)->nodeValue;
         $p_iva                  = $property->getElementsByTagName('agency_p_iva')->item(0)->nodeValue;
         $id_agency              = findAgency($p_iva);   // troverò l' agenzia tramite la partita iva
         $id_agent               = $property->getElementsByTagName('agent_id')->item(0)->nodeValue;
@@ -195,12 +198,12 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
 
         $id = saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,"",$id_energy_class,$id_ipe_um,$ipe, $images,$description,$id_agency,$views);
 
-        if($id != "errore nel salvataggio dell' immobile") {
+        if($id != "errore nel salvataggio dell' immobile con id EW= ".$id_easyWork."<br>") {
             // Saving Appointment
             if ($id_easyWork != null) {
                 $resAppointment = $mng->saveAppointment($id, $owner_name, "", $owner_tel_home, $owner_tel_office, $owner_mobile, $owner_address, $owner_town, $occupant_name, "", $occupant_tel, $appointment_date, $appointment_start_date, $appointment_end_date, $appointment_agent, $appointment_channel, $appointment_conditions, $appointment_renwable, $appointment_note);
                 if ($resAppointment == "" || $resAppointment == null) {
-                    echo("errore - Salvataggio Appuntamento");
+                    echo("errore - Salvataggio Appuntamento dell immobile con id EW = ".$id_easyWork."<br>");
                     return;
                 }
             }
@@ -218,7 +221,7 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     $time_end = microtime(true);
     $time = $time_end - $time_start;
     echo("<br><br>");
-    echo 'Execution time : '.$time.' seconds';
+    echo 'Tempo di esecuzione : '.Round($time,2).' seconds';
     //--------------------------------------
 
 }
@@ -283,14 +286,14 @@ function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,
         // create reference code and update it on table
         $res_refC = $mng->createRefenceCode($id_property);
         if ($res_refC == "" || $res_refC == null) {
-            echo("errore - Salvataggio del codice di riferimento fallito per l' immobile con id ".$id_property);
+            echo("errore - Salvataggio del codice di riferimento fallito per l' immobile con id ".$id_property."<br>");
             return;
         }
 
         // RELATE AGENT WITH PROPERTY
         $res_rel = $mng->savePropertyAgentRelations($id_agency, $id_agent, $id_property,false);
         if ($res_rel == "" || $res_rel == null) {
-            echo("errore - Salvataggio della relazione Immbile - agenzia fallito per l' immobile con id ".$id_property);
+            echo("errore - Salvataggio della relazione Immbile - agenzia fallito per l' immobile con id ".$id_property."<br>");
             return;
         }
 
@@ -299,14 +302,14 @@ function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,
         $res_desc = $mng->saveDescription($id_property, $txt_description, "");
         if ($res_desc == "" || $res_desc == null) {
 
-            echo("errore - Salvataggio della descrizione fallito per l' immobile con id ".$id_property);
+            echo("errore - Salvataggio della descrizione fallito per l' immobile con id ".$id_property."<br>");
             return;
         }
 
         // Saving Images
         $resImgs = $mng->saveImages($id_property, $imgNames);
         if ($resImgs == "" || $resImgs == null) {
-            echo("errore - Salvataggio di alcune immagini per l' immobile con id ".$id_property);
+            echo("errore - Salvataggio di alcune immagini per l' immobile con id ".$id_property."<br>");
             return;
         }
 
@@ -315,12 +318,12 @@ function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,
         // SET PROPERTY ON MAGAZINE TABLE (WITH STATUS DISABLED)
         $resMagazine = $mgzMng->addOnMangazine($id_property, $id_agency, 0);
         if ($resMagazine == "" || $resMagazine == null) {
-            echo("errore - Salvataggio nella rivista");
+            echo("errore - Salvataggio nella rivista<br>");
             return;
         }
         return $id_property;
     }else{
-        return "errore nel salvataggio dell' immobile";
+        return "errore nel salvataggio dell' immobile<br>";
     }
 
 }

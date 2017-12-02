@@ -2033,10 +2033,14 @@ pagination > .active > a, .pagination > .active > span,
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus{
-	background-color:#ec403e ;
+	background-color:#1a5479 ;
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 
+}
+
+.navbar-default .navbar-nav > .active > a{
+	background-color:#ec403e;
 }
 
 .topbar,
@@ -2309,3 +2313,4 @@ pagination > .active > a, .pagination > .active > span,
 
 	}
 	/* END SELECTPICKER TECNOIMMOBILI */
+

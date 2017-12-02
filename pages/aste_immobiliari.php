@@ -1,3 +1,8 @@
+<?php
+$parallax = false;
+$menuSelected ="aste_immobiliari";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +11,7 @@
     <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>{TITOLO PAGINA}</title>
+    <title>Aste Immobiliari</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -62,9 +67,9 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li>{PAGINA}</li>
+                <li>Aste immobiliari</li>
             </ul>
-            <h2>{titolo}</h2>
+            <h2>Aste immobiliari</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 

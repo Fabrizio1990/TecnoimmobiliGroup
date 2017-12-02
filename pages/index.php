@@ -1,6 +1,7 @@
 <?php
 require_once(BASE_PATH."/app/classes/Utils.php");
 $parallax = true;
+$menuSelected ="home";
 ?>
 <!DOCTYPE html>
 <html>

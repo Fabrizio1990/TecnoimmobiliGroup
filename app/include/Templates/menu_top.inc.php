@@ -1,4 +1,15 @@
 <!-- INCLUDED IN APP/INCLUDE/TEMPLATES/HEADER.INC.PHP -->
+<?php
+if(!isset($menuSelected))
+    $menuSelected ="home";
+
+function checkSelected($menuName,$activeCommand = "active"){
+    global $menuSelected;
+    if($menuSelected == $menuName)
+        echo "active";
+}
+?>
+
 
 <nav class="navbar navbar-default fhmm" role="navigation">
     <div class="menudrop container">
@@ -8,18 +19,18 @@
         <div id="defaultmenu" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
 
-                <li class="dropdown fhmm-fw active">
+                <li class="dropdown fhmm-fw <?php checkSelected("home") ?>">
                     <a href="<?php echo SITE_URL ?>"><i class="fa fa-home"></i> HOME</a>
                 </li>
 
 
-                <li class="dropdown fhmm-fw">
-                    <a href="<?php echo SITE_URL ?>"> ASTE IMMOBILIARI</a>
+                <li class="dropdown fhmm-fw <?php checkSelected("aste_immobiliari") ?>">
+                    <a href="<?php echo SITE_URL."/aste_immobiliari.html" ?>"> ASTE IMMOBILIARI</a>
                 </li>
 
 
                 <!-- standard drop down -->
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">FINANZIARIA<b class="caret"></b></a>
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("finanziaria") ?>">FINANZIARIA<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="testimonials.html">Mutui</a></li>
                         <li><a href="faqs.html">Perizie bancarie</a></li>
@@ -28,7 +39,7 @@
 
 
                 <!-- standard drop down -->
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">STUDIO TECNICO<b class="caret"></b></a>
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("studio_tecnico") ?>">STUDIO TECNICO<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="testimonials.html">Perizie legali</a></li>
                         <li class="dropdown-submenu">
@@ -47,7 +58,7 @@
 
 
                 <!-- standard drop down -->
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">MEDIAZIONE CIVILE<b class="caret"></b></a>
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("mediazione_civile") ?>">MEDIAZIONE CIVILE<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="testimonials.html">Mediazione obbligatoria</a></li>
                         <li><a href="testimonials.html">Mediazione facoltativa</a></li>
@@ -60,7 +71,7 @@
 
 
                 <!-- standard drop down -->
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">IL GRUPPO<b class="caret"></b></a>
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("gruppo") ?>">IL GRUPPO<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="testimonials.html">Chi siamo</a></li>
                         <li><a href="testimonials.html">Dove Siamo</a></li>
@@ -70,7 +81,7 @@
                 </li><!-- end standard drop down -->
 
 
-                <li class="dropdown fhmm-fw">
+                <li class="dropdown fhmm-fw <?php checkSelected("partner") ?>">
                     <a href="<?php echo SITE_URL ?>"> PARTNER</a>
                 </li>
 

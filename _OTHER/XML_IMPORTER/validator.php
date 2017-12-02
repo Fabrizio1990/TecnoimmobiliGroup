@@ -1,3 +1,4 @@
+<?php include("../../config.php")?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,7 @@
     <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>{TITOLO PAGINA}</title>
+    <title>Importatore</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -40,9 +41,6 @@
 <body>
 
 
-<!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
-<?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
-
 <!-- MODALE CONTATTACI -->
 <?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>
 
@@ -62,9 +60,9 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li>{PAGINA}</li>
+                <li>Importatore</li>
             </ul>
-            <h2>{titolo}</h2>
+            <h2>Importatore TecnoimmobiliGroup</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -76,8 +74,19 @@
     <div class="container">
         <div class="row">
 
+            <div style="display: none;" id="import_response" class="alert alert-warning">
+                <p class="alert-link"></p>
+            </div>
 
-            // METTI QUI PAGINA
+            <label for="inp_url">Url Xml</label>
+            <input type="text" id="inp_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php"/>
+
+            <button class="btn btn-tecnoimm-blue" onclick="startImport()">Inizia import</button>
+            <!--<h4>Stato Importazione</h4>
+            <div class="progress progress-striped active">
+                <div data-effect="slide-left" class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                </div>
+            </div>-->
 
         </div><!-- end row -->
     </div><!-- end container -->
@@ -101,8 +110,63 @@
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
 
 
+<script>
 
 
+
+
+
+
+    function startImport(){
+       var xmlUrl =$("#inp_url").val();
+       var responseTextContainer = $("#import_response p");
+       console.log(responseTextContainer);
+       $.ajax({
+           method : 'POST',
+           url : "ajax_import.ajax.php",
+           data :{"xmlUrl":xmlUrl},
+           datatype : 'text/html',
+           beforeSend: function( xrh ) {
+               console.log("sending");
+               $("#import_response").show();
+               responseTextContainer.html("Parsing Data...");
+               $(window).on("beforeunload", function() {
+                   return "Import in corso, sei sicuro di voler uscire?";//TANTO QUALSIASI COSA SCRIVO NON VIENE MOSTRATA, MA SEMBRA L' UNICO METODO PER MOSTRARE UN ALERT
+               });
+           },
+           success : function(data){
+               responseTextContainer.html(data);
+               console.log(data);
+               $(window).off("beforeunload");
+
+           },
+           error : function(xhr, ajaxOptions, thrownError){
+               console.log(xhr.status);
+               console.log(thrownError);
+               $(window).off("beforeunload");
+           },
+           progress : function(e){
+               console.log("progress call");
+               if(e.lengthComputable) {
+                   var pct = (e.loaded / e.total) * 100;
+                   console.log(pct);
+               }else{
+                   console.log("lenght is not computable")
+               }
+           },
+           uploadProgress :(function(e) {
+               // tracking uploading
+               console.log("uploadProgress call");
+               if (e.lengthComputable) {
+                 var percentage = Math.round((e.loaded * 100) / e.total);
+                 console.log(percentage);
+               }
+           })
+
+       })
+    }
+
+</script>
 
 
 </body>

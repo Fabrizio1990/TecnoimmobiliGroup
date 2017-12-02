@@ -166,7 +166,7 @@ $(document).ready(function(e){
         garden              = $('#sel_garden option:selected').text();
         elevator            = $('#sel_elevator option:selected').text();
         box                 = $('#sel_box option:selected').text();
-        order               = $("#inp_h_order").length ?encodeURIComponent($("#inp_h_order").val()):"date_up";
+        order               = encodeURIComponent($("#inp_h_order").length ?$("#inp_h_order").val():"date_up|asc");
 
         var refLink =BASE_PATH+"/"+category+"/"+contract+"/"+tipology+"/"+town+"/filtri/campoOrdinamento="+order;
 

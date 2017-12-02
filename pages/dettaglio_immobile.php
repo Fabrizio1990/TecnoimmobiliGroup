@@ -2,6 +2,8 @@
 if(!isset($_GET["rif"]))
     header("location:index.html");
 
+
+
 include(BASE_PATH."/app/classes/PropertyManager.php");
 require_once(BASE_PATH."/app/classes/Utils.php");
 require_once(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
