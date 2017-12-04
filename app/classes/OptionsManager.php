@@ -9,8 +9,8 @@ class OptionsManager extends DbManager{
     const defTable  = "properties";
     private $currTable;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
     }
 

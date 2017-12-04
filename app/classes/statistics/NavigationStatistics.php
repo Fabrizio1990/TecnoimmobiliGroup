@@ -21,7 +21,6 @@ class NavigationStatistics extends DbManager{
 	private $guest_is_mobile;
 	private $guest_is_robot;
 
-    public $conn = null;
 	
 
 	

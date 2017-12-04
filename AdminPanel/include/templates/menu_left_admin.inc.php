@@ -122,7 +122,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                             </li>
 
                                 <!-- TABELLE -->
-                            <li <?php if($act_tables_management) echo('class="active"')?>><a href="tables_management.php"><i class="fa fa-table"></i> Gestione Tabelle</a></li>
+                            <!--<li <?php //if($act_tables_management) echo('class="active"')?>><a href="tables_management.php"><i class="fa fa-table"></i> Gestione Tabelle</a></li>-->
                         </ul>
                     </li>
                     <!-- MENU GESTIONE END -->

@@ -13,8 +13,8 @@ class DocumentManager extends DbManager implements IDbManager {
     const defTable  = "documents";
     private $currTable;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
     }
     public function create($values, $fields = null,$printQuery = false)

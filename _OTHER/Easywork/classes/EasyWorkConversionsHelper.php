@@ -39,12 +39,14 @@ class EasyWorkConversionsHelper extends DbManager implements IDbManager {
     }
 
 
-    public function TextToId($field,$text){
+    public function TextToId($field,$text,$compareField = "title"){
         $this->currTable = $field;
-
-        $idRet = $this->read("title=?",null,array($text),"id",false);
+        $ret ="";
+        $idRet = $this->read("$compareField=?",null,array($text),"id",false);
         if(Count($idRet)>0)
             $ret = $idRet[0]["id"];
+        /*lse
+            echo "--->field =".$compareField."<---- ----->table = ".$field."<----- ---->text =".$text;*/
         $this->setDefTable();
         return $ret;
     }

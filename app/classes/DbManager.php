@@ -6,9 +6,9 @@ require_once(BASE_PATH."/app/classes/MyCrypter/MyCrypter.php");
 class DbManager 
 {
     // PARAMETRI DI CONNESSIONE
-    private $hostName = "localhost";
-    private $dbName  = "new_tecnoimmobili";
-    private $user = "root";
+    private $hostName;
+    private $dbName;
+    private $user;
     private $password;
 
     public $conn = null;
@@ -16,13 +16,16 @@ class DbManager
 
     public $tableName ="" ; // verrà valorizzato per poi utilizzare una qualsiasi funzionalità di questa classe. come il count
 
-    function __construct() {
+    function __construct($conn = null) {
         $config = parse_ini_file(BASE_PATH."/app/classes/Configs/dbConfig.ini");
         $this->hostName = MyCrypter::myDecrypt($config['hostname']);
         $this->dbName = MyCrypter::myDecrypt($config['dbName']);
         $this->user = MyCrypter::myDecrypt($config['username']);
         $this->password = MyCrypter::myDecrypt($config['password']);
-
+        if($conn == null)
+            $this->openConnection();
+        else
+            $this->conn = $conn;
     }
 
 
@@ -45,9 +48,23 @@ class DbManager
         $this->conn = null;
 	}
 
+
+	public function beginTransaction(){
+	    $this->conn->beginTransaction();
+    }
+
+    public function commit(){
+        $this->conn->commit();
+    }
+
+    public function rollback(){
+        $this->conn->rollback();
+    }
+
+
     //METODO PER INTERROGAZIONE DB STANDARD, PASSI UNA QUERY E LUI RESTITUISCE IL RESULTSET
 	public function executeQuery($query){
-        $this->openConnection();
+        //$this->openConnection();
         $res =$this->conn->query($query);
         if(!$res){
             // CONTROLLO SE CI SONO ERRORI
@@ -58,13 +75,13 @@ class DbManager
         }
 
         $ret = $res->fetchAll();
-        $this->closeConnection();
+        //$this->closeConnection();
         return $ret;
     }
 
     // METODO PER ESECUZIONE QUERY DI INSERIMENTO / UPDATE /DELETE (per ora è uguale all' altro)
     public function executeNonQuery($query){
-        $this->openConnection();
+        //$this->openConnection();
         //echo($query);
         $res = $this->conn->query($query);
         if(!$res){
@@ -75,7 +92,7 @@ class DbManager
             }
         }
         $ret = $res->fetchAll();
-        $this->closeConnection();
+        //$this->closeConnection();
         return $ret;
     }
 
@@ -90,7 +107,7 @@ class DbManager
     // NB: la lunghezza di $fields e $values deve essere coerente (uguale)
 
     protected function create($table,$fields,$values,$printQuery = false){
-        $this->openConnection();
+        //$this->openConnection();
         $values_plh="";
         //foreach field must be created the relative placeholder "?"
         for($i=0,$len =Count($fields); $i<$len; $i++){
@@ -118,7 +135,7 @@ class DbManager
             $ret = false;
         }
         $this->lastInsertId = $this->conn->lastInsertId();
-        $this->closeConnection();
+        //$this->closeConnection();
 
         return $ret;
     }
@@ -134,7 +151,7 @@ class DbManager
     // NOTE THAT THE ARRAY VALUES LENGHT MUST BE EQUAL OF THE SUM OF $params+$extra_params lenght
     protected function read($table,$params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = false){
         $ret = false;
-        $this->openConnection();
+        //$this->openConnection();
         $fields         = $this->getFields($fields);// convert $fields array to useful string
         $params         = $this->getParams($params);// convert $params array to useful string
         $extra_params   = $this->getExtraParams($extra_params);// convert $extra_params array to useful string
@@ -160,13 +177,13 @@ class DbManager
 
         $ret = $sth->fetchAll();
 
-        $this->closeConnection();
+        //$this->closeConnection();
         return $ret;
     }
 
     protected function update($table,$fields = null,$params = null,$values = null,$extra_params = null,$printQuery = false){
         $ret = false;
-        $this->openConnection();
+        //$this->openConnection();
 
 
         $fields         = $this->getFields($fields);
@@ -190,14 +207,14 @@ class DbManager
         }
 
         $count = $sth->rowCount();
-        $this->closeConnection();
+        //$this->closeConnection();
 
         return $count;
     }
 
     protected function delete($table,$params = null,$values = null,$extra_params = null,$printQuery = false){
         $ret = false;
-        $this->openConnection();
+        //$this->openConnection();
 
         $params         = $this->getParams($params);
         $extra_params   = $this->getExtraParams($extra_params);
@@ -219,14 +236,14 @@ class DbManager
         }
 
         $ret = $sth->rowCount();
-        $this->closeConnection();
+        //$this->closeConnection();
 
         return $ret;
     }
 
     protected function executeSp($spName,$params,$values){
         $ret = false;
-        $this->openConnection();
+        //$this->openConnection();
         $params         = $this->getParams($params);// convert $params array to useful string
 
         $query = "CALL $spName($params)";
@@ -245,7 +262,7 @@ class DbManager
             return $ret;
         }
 
-        $this->closeConnection();
+        //$this->closeConnection();
         return $ret;
     }
 
@@ -296,6 +313,11 @@ class DbManager
             else $ret = $extra_params;
         }
         return $ret;
+    }
+
+
+    function __destruct() {
+        $this->closeConnection();
     }
 
 	

@@ -118,6 +118,7 @@ if(isset($_POST["sel_category"],$_POST["sel_tipology"],$_POST["inp_surface"],$_P
                 $id_agent       = $SS_usr->id_agent;
                 $mgzMng = new MagazineManager();
                 //saving ads
+
                 $id_property = $mng->saveProperty($values);//res must be the id of ads or an error
                 $res = $id_property;
                 // if not save i will not execute the next command
@@ -141,7 +142,6 @@ if(isset($_POST["sel_category"],$_POST["sel_tipology"],$_POST["inp_surface"],$_P
                     // Saving Description
                     $res_desc = $mng->saveDescription($id_property,$txt_description,"");
                     if($res_desc =="" || $res_desc == null){
-
                         echo("errore - Salvataggio della descrizione fallito ");
                         exit;
                     }

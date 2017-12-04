@@ -47,7 +47,7 @@ class Flog{
 
 
 
-    private function deleteOlderLog($path){
+    private static function deleteOlderLog($path){
 
 
         $tmpFolder=$path.'/';

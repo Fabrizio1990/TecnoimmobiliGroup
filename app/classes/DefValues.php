@@ -9,8 +9,8 @@ require_once(BASE_PATH."/app/classes/DbManager.php");
     public  $currTable;
 
 
-    public  function __construct() {
-        parent::__construct();
+    public  function __construct($conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
     }
 

@@ -14,8 +14,8 @@ class NewsManager extends DbManager implements IDbManager {
     const defTable  = "news";
     private $currTable;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
     }
     public function create($values, $fields = null)

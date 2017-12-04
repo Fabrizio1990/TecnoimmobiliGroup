@@ -15,8 +15,8 @@ class MailManager extends DbManager implements IDbManager {
     const defTable  = "mailer";
     private $currTable;
     private $mailer = null;
-    public function __construct($configPath = "/app/classes/Configs/emailConfig.ini") {
-        parent::__construct();
+    public function __construct($configPath = "/app/classes/Configs/emailConfig.ini",$conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
         $this->mailer = new Mailer($configPath);
     }

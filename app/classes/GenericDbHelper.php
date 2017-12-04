@@ -8,8 +8,8 @@ class GenericDbHelper extends DbManager implements IDbManager {
     const defTable  = "properties_view";
     private $currTable;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
     }
 	// IMPLEMENTO I METODI DELL INTERFACCIA

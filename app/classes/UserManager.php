@@ -16,8 +16,8 @@ class UserManager extends DbManager implements IDbManager
     private $currTable;
 
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
     }
 

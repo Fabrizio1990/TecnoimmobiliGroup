@@ -8,8 +8,8 @@ class MagazineManager extends DbManager implements IDbManager {
     const defTable  = "magazine";
     private $currTable;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($conn = null) {
+        parent::__construct($conn);
         $this->currTable = self::defTable;
     }
 	// IMPLEMENTO I METODI DELL INTERFACCIA
@@ -44,6 +44,7 @@ class MagazineManager extends DbManager implements IDbManager {
     }
 
     public function addOnMangazine($id_property,$id_agency,$status){
+
         $fields = array("id_property","id_agency","enabled" );
         $values = array($id_property,$id_agency,$status);
         $ret = $this->create($values,$fields,false);
@@ -55,6 +56,7 @@ class MagazineManager extends DbManager implements IDbManager {
 
     public function getMagazineProperties($agency = null,$enabled = 1){
         $this->currTable = "magazine_view";
+        $extra_params ="";
         if($enabled == 0 )
             $extra_params = "order by date_up desc";
         else
@@ -66,7 +68,7 @@ class MagazineManager extends DbManager implements IDbManager {
             array_push($params,"id_agency = ?");
             array_push($values,$agency);
         }
-       $res =  $this->read($params,"order by `order` asc",$values,null,false);
+       $res =  $this->read($params,$extra_params,$values,null,false);
 
         $this->setDefTable();
         return $res;

@@ -2,9 +2,9 @@
 include("../../config.php");
 include("resources.php");
 
-if(isset($_REQUEST['operazione'])){
-    $operazione=$_REQUEST['operazione'];
-    switch($operazione){
+if(isset($_REQUEST['operation'])){
+    $operation=$_REQUEST['operation'];
+    switch($operation){
         case "getAgencyData":
             include('bridge_actions/getAgencyData.inc.php');
             break;
@@ -17,7 +17,6 @@ if(isset($_REQUEST['operazione'])){
         case "delete":
             include('bridge_actions/deleteProperty.inc.php');
             break;
-
         default :
             break;
     }
