@@ -197,7 +197,7 @@ if(Count($retApp)>0){
 
 
                 <!-- DATI INCARICO -->
-                <div class="box box-info">
+                <div class="box box-danger">
                     <div class="box-header with-border">
                         <h3 class="box-title">Incarico di mediazione</h3>
                     </div>

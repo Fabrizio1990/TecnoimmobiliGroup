@@ -52,6 +52,9 @@ $act_documents          = true; //setta attiva la voce accesso agenzie
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
+
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/documents.css" />

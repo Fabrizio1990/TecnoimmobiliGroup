@@ -41,9 +41,13 @@ function saveAdsStatus(idAds,elem){
 }
 
 
-function UpdateAdsStatusIcon(strRes,params,elem){
+function UpdateAdsStatusIcon(strRes,params){
 	if(parseInt(strRes)>0){
-		GEBI(params[2]).src = img_ads_stats[params[1]]+"?"+Math.random(1,100);
+
+		if(params[1] == 3) // se eliminato ricarico la pagina
+            table.ajax.reload();
+		else // altrimenti metto l' immagine relativa al nuovo stato
+            GEBI(params[2]).src = img_ads_stats[params[1]]+"?"+Math.random(1,100);
 		hideModal("myModal");
 	}
 	else{

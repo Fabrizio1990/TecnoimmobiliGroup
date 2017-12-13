@@ -58,6 +58,9 @@ $act_agency_list                = true;
     <!-- modals -->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
+
     <!-- UTILS JS and  modals.js are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/UTILS_JQ.js"></script>

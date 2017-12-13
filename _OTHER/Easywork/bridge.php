@@ -1,6 +1,11 @@
 <?php
-include("../../config.php");
-include("resources.php");
+include ("../../config.php");
+include ("resources.php");
+include ("Utilities.php");
+include (BASE_PATH."/app/classes/PropertyManager.php");
+include (BASE_PATH."/_OTHER/Easywork/classes/EasyWorkConversionsHelper.php");
+
+$pMng = new PropertyManager();
 
 if(isset($_REQUEST['operation'])){
     $operation=$_REQUEST['operation'];
@@ -9,31 +14,27 @@ if(isset($_REQUEST['operation'])){
             include('bridge_actions/getAgencyData.inc.php');
             break;
         case "insert":
-            include('bridge_actions/saveProperty.inc.php');
+            $pMng = new PropertyManager();
+            if(isset($_POST["id_easywork"])){
+                $property = $pMng->read("id_easywork = ?",null,array($_POST["id_easywork"]),"id",false);
+                if(count($property)>0){
+                    $id_property = $property[0]["id"];
+                    include('bridge_actions/updateProperty.inc.php');
+                }else{
+                    include('bridge_actions/saveProperty.inc.php');
+                }
+            }else{
+                printMessage("ERR_MISSING_ID_EASYWORK");
+            }
             break;
-        case "update":
-            include('bridge_actions/updateProperty.inc.php');
+        case "newsletter_save":
+            include('bridge_actions/saveOrUpdateRequest.inc.php');
             break;
-        case "delete":
-            include('bridge_actions/deleteProperty.inc.php');
+        case "saveImage":
+            include('bridge_actions/saveImage.inc.php');
             break;
         default :
             break;
     }
 }
 
-
-/*if(isset($_REQUEST["getAgencyData"])){// Richiesta informazioni agenzia (identificativo = telefono)
-    include (BASE_PATH."/app/classes/AgencyManager.php");
-    $agMng = new AgencyManager();
-    $phone = $_REQUEST['phone'];
-    $operator = $agMng->getOperators("phone Like ?","limit 1",array("%".$phone."%"),"id,id_agency");
-
-    if(Count($operator) <= 0)
-        echo "Agenzia non trovata";
-    else{
-        $agId = $operator[0]["id_agency"];
-        $agStatus = $agMng->read("","","",array("name,id_status,id_sub_status"));
-    }
-}*/
-//SELECT eliminato,abilitato,alert_pagamento,abilitato_pubblicazione from agenzie where telefono

@@ -80,9 +80,10 @@ class DbManager
     }
 
     // METODO PER ESECUZIONE QUERY DI INSERIMENTO / UPDATE /DELETE (per ora è uguale all' altro)
-    public function executeNonQuery($query){
+    public function executeNonQuery($query,$printQuery = false){
         //$this->openConnection();
-        //echo($query);
+        if($printQuery)
+            echo($query);
         $res = $this->conn->query($query);
         if(!$res){
             // CONTROLLO SE CI SONO ERRORI

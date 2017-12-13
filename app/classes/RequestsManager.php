@@ -1,13 +1,7 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: Developer
- * Date: 14/11/2016
- * Time: 17:17
- */
 require_once(BASE_PATH."/app/interfaces/IDbManager.php");
 require_once(BASE_PATH."/app/classes/DbManager.php");
+
 class RequestManager extends DbManager implements IDbManager {
 
     const defTable  = "requests";
@@ -44,7 +38,7 @@ class RequestManager extends DbManager implements IDbManager {
     }
 
     // SAVE AND UPDATE REQUEST BY MYSQL FUNCTION
-    public function saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$enabled,$id_request = "NULL"){
+    public function saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$enabled,$id_request = "NULL",$printQuery = false){
         parent::openConnection();// devo aprire la connessione per fare l' escape
         $query = "SELECT `new_tecnoimmobili`.`save_request`($id_request,
         $id_easywork,".
@@ -65,12 +59,13 @@ class RequestManager extends DbManager implements IDbManager {
         parent::escapeString($mq_max).",".
         $enabled.") as saved";
 
-        $ret = parent::executeNonQuery($query);
+        $ret = parent::executeNonQuery($query,$printQuery);
 
         parent::closeConnection();
         return $ret;
 
     }
+
 
 
     public function readRequests($id= null){
@@ -108,6 +103,40 @@ class RequestManager extends DbManager implements IDbManager {
     public function updateStatus($id_request,$status){
         $res = $this->update("enabled = ?","id = ? ",array($status,$id_request),null,false);
         return $res;
+    }
+
+    // ############################# EASY WORK FUNCTIONS ############################
+
+    public function requestExistEw($id_easywork,$printQuery = false){
+        $this->currTable = "requests";
+        $params = "id_easywork = ?";
+        $values = array($id_easywork);
+
+        $ret = $this->read($params,null,$values,"Count(id) as cnt",$printQuery);
+        $this->setDefTable();
+        if($ret[0]["cnt"]>0)
+            return true;
+        else
+            return false;
+    }
+
+
+    public function getRequestIdFromEw($id_easywork,$printQuery = false){
+        $this->currTable = "requests";
+        $params = "id_easywork = ?";
+        $values = array($id_easywork);
+
+        $ret = $this->read($params,null,$values,"id",$printQuery);
+        $this->setDefTable();
+        return $ret;
+    }
+
+    public function deleteRequest($id, $printQuery = false){
+        $this->currTable ="requests";
+        $ret = $this->delete(array("id = ?"),array($id),null,$printQuery);
+        $this->currTable ="requests_preferences";
+        $ret = $this->delete(array("id_request = ?"),array($id),null,$printQuery);
+        $this->setDefTable();
     }
 
     public function setDefTable(){

@@ -3,4 +3,13 @@
 .DISPL_BLOCK{display:block;}
 .OPACITY-0{opacity:0;}
 .PADDING-0{padding:0;}
+.COLOR_RED{
+    color:#eb212e!important;
+}
+.BG_COLOR_RED{
+    background-color: #eb212e;
+}
+.POINTER:hover{
+    cursor:pointer;
+}
 

@@ -4,13 +4,13 @@
 // header_opt   = if i need first parameter to be a coustom string es: "select a option"
 function getOpts(elem,action,id_parent = null,header_opt_val = null,header_opt_txt = null,selected = null,callback= null,callback_par = null){
     if(callback != null) {
-        console.log("c è un callback ed è :");
-        console.log(callback);
+        /*console.log("c è un callback ed è :");
+        console.log(callback);*/
 
     }
         page = BASE_PATH + "/ajax/form/get_opts.ajax.php";
         params = "id_action="+action;
-        console.log("----"+id_parent);
+        //console.log("----"+id_parent);
         if(id_parent!=null){
             if(id_parent.constructor === Array)  id_parent = id_parent.join();
             params+="&id_parent="+id_parent;
@@ -23,8 +23,8 @@ function getOpts(elem,action,id_parent = null,header_opt_val = null,header_opt_t
             callback_func = function(resp,params,callback_par){
                 populateSelectByJson(resp,params); // THIS WILL BE TRIGGERED ANYWAY
                 if(callback != null) {
-                    console.log("c è un callback i parametri sono :");
-                    console.log(callback_par);
+                    /*console.log("c è un callback i parametri sono :");
+                    console.log(callback_par);*/
                     callback(callback_par); // THIS IS OPTIONAL (SENT FROM PARAMETERS)
                 }
             }

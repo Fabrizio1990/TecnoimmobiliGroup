@@ -24,8 +24,9 @@
         $imgMng = new ImageManager($image,$imageName);
 
         // RESIZE IMAGE 655,394
-        $resizedImg = $imgMng->resizeImage(655,394);
-        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",150,300)){
+
+        $resizedImg = $imgMng->resizeImage(948,632);
+        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",260,540)){
             $save_path = "/public/images/images_properties/big";
             $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
 
@@ -39,8 +40,8 @@
 
         // RESIZE IMAGE 360,265
         $imgMng->setImage($image,$imageName);
-        $resizedImg = $imgMng->resizeImage(360,265);
-        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_normal.png",70,220)){
+        $resizedImg = $imgMng->resizeImage(610,407);
+        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_normal.png",190,350)){
             $save_path = "/public/images/images_properties/normal";
             $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
         }else{
@@ -49,7 +50,7 @@
 
         // RESIZE IMAGE 68,49
         $imgMng->setImage($image,$imageName);
-        $resizedImg = $imgMng->resizeImage(68,49);
+        $resizedImg = $imgMng->resizeImage(240,160);
         $save_path = "/public/images/images_properties/min";
         $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
 

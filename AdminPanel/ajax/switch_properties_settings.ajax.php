@@ -37,8 +37,6 @@ if(isset($_GET["field"]) && isset($_GET["id"]) && isset($_GET["status"])){
 
     }
 
-
-
     echo($ret);
 }else
     echo("ACCESSO NON AUTORIZZATO!!");

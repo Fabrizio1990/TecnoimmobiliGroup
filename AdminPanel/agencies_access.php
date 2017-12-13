@@ -49,6 +49,8 @@ $act_agencies_access    = true; //setta attiva la voce accesso agenzie
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
 
     <!-- UTILS JS  JS are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>

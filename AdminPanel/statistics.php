@@ -46,6 +46,9 @@ $act_menu_utility       = true; // setta attivo il menu utility
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/daterangepicker/daterangepicker.css">
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datepicker/datepicker3.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

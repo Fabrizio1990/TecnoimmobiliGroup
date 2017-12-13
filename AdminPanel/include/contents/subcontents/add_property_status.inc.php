@@ -119,8 +119,8 @@
 
                 <select id="sel_prestige" name="sel_prestige" class="form-control select2" style="width: 100%;" data-placeholder="Seleziona un valore">
                     <option value="">Seleziona un valore</option>
-                    <option value="1" <?php if($optPrestigeVal=="0")echo'selected'?>>SI</option>
-                    <option value="0" <?php if($optPrestigeVal=="1")echo'selected'?>>No</option>
+                    <option value="1" <?php if($optPrestigeVal=="1")echo'selected'?>>SI</option>
+                    <option value="0" <?php if($optPrestigeVal=="0")echo'selected'?>>No</option>
                 </select>
             </div>
         </div><!-- /.form-group -->

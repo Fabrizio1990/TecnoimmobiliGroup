@@ -1,6 +1,5 @@
 <?php
-require_once  (BASE_PATH."/_OTHER/Easywork/classes/EasyWorkConversionsHelper.php");
-require_once (BASE_PATH."/app/classes/PropertyManager.php");
+
 require_once (BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 require_once (BASE_PATH."/app/classes/MagazineManager.php");
 /*require_once (BASE_PATH."/app/classes/AgencyManager.php");*/
@@ -47,7 +46,17 @@ echo("--->".$_POST["prestige"]."<br>");*/
 
 if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["tipology"],$_POST["surface"],$_POST["locals"],$_POST["rooms"],$_POST["floors"],$_POST["elevator"],$_POST["conditions"],$_POST["property_status"],$_POST["heatings"],$_POST["bathrooms"],$_POST["box"],$_POST["gardens"],$_POST["contract"],$_POST["price"],$_POST["energy_class"],$_POST["ipe_um"],$_POST["ipe"],$_POST["description"],$_POST["country"],$_POST["city"],$_POST["town"],$_POST["district"],$_POST["address"],$_POST["street_num"],$_POST["show_street_num"],$_POST["ads_status"],$_POST["contract_status"],$_POST["negotiation"],$_POST["price_lowered"],$_POST["prestige"])){
 
-    $pMng = new PropertyManager();
+    // SE NON CI SONO I DATI DELL INCARICO RESTITUISCO ERRORE
+
+    /*echo($_POST["owner_name"]);
+    echo($_POST["appointment_date"]);
+    echo($_POST["appointment_start_date"]);*/
+    if(!isset($_POST["owner_name"],$_POST["appointment_date"],$_POST["appointment_start_date"],$_POST["appointment_end_date"])){
+        printMessage("ERR_MISSING_REQUEST_PARAMS");
+        exit();
+    }
+
+
     $ewConvH = new EasyWorkConversionsHelper($pMng->conn);
     $linkMng = new PropertyLinksAndTitles();
 
@@ -60,16 +69,13 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
     $city                       = getConvertedField($ewConvH->TextToId("geo_city",$_POST["city"],"title_short"),"city");
     $town                       = getConvertedField($ewConvH->TextToId("geo_town",$_POST["town"]),"town");
     $district                   = getConvertedField($ewConvH->TextToId("geo_district",$_POST["district"]),"district");
-
     $address                    = $_POST["address"];if($debugMode)echo("Address -> ".$address."<br>");
-
     $street_num                 = $_POST["street_num"];
     $show_street_num            = $_POST["show_street_num"];
     $latitude                   = isset($_POST["latitude"])?$_POST["latitude"]:"";
     $latitude                   = substr($latitude,0,10);
     $longitude                  = isset($_POST["longitude"])?$_POST["longitude"]:"";
     $longitude                  = substr($longitude,0,10);
-
     $category                   = getConvertedField($ewConvH->TextToId("property_categories",$_POST["category"]),"category");
     $tipology                   = getConvertedField($ewConvH->TextToId("property_tipologies",$_POST["tipology"]),"tipology");
     $surface                    = $_POST["surface"];if($debugMode)echo("surface -> ".$surface."<br>");
@@ -99,6 +105,27 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
     $id_description             = 0;
     $txt_description            = $_POST["description"];if($debugMode)echo("description -> ".$txt_description."<br>");
 
+    // DATI INCARICO
+    $owner_name 				= $_POST["owner_name"];
+    $owner_lastname 			= isset($_POST["owner_lastname"])?$_POST["owner_lastname"]:"";
+    $owner_tel_home 			= isset($_POST["owner_tel_home"])?$_POST["owner_tel_home"]:"";
+    $owner_tel_office 			= isset($_POST["owner_tel_office"])?$_POST["owner_tel_office"]:"";
+    $owner_mobile 				= isset($_POST["owner_mobile"])?$_POST["owner_mobile"]:"";
+    $owner_address 				= isset($_POST["owner_address"])?$_POST["owner_address"]:"";
+    $owner_town 				= isset($_POST["owner_town"])?$_POST["owner_town"]:"";
+    $occupant_name 				= isset($_POST["occupant_name"])?$_POST["occupant_name"]:"";
+    $occupant_lastname 			= isset($_POST["occupant_lastname"])?$_POST["occupant_lastname"]:"";
+    $occupant_tel 				= isset($_POST["occupant_tel"])?$_POST["occupant_tel"]:"";
+    $appointment_date 			= date('Y-m-d', $_POST["appointment_date"]);
+    $appointment_start_date 	= date('Y-m-d', $_POST["appointment_start_date"]);
+    $appointment_end_date 		= date('Y-m-d', $_POST["appointment_end_date"]);
+    $appointment_agent			= isset($_POST["appointment_agent"])?$_POST["appointment_agent"]:"";
+    $appointment_channel		= isset($_POST["appointment_channel"])?$_POST["appointment_channel"]:"";
+    $appointment_conditions		= isset($_POST["appointment_conditions"])?$_POST["appointment_conditions"]:"";
+    $appointment_renwable		= isset($_POST["appointment_renwable"])?$_POST["appointment_renwable"]:"";
+    $appointment_note			= isset($_POST["note"])?$_POST["note"]:"";
+    $date_ins					= date("Y-m-d H:i:s");
+
 
 
     // RECUPERO LA REGIONE ( SU EW NON CI SONO LE REGIONI QUINDI VA RECUPERATA DA QUA)
@@ -122,7 +149,6 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
 
 
         $pMng->beginTransaction();// INIZIO TRANSAZIONE (Se va in errore da qualche parte deve annullare tutto
-
 
 
         /* SALVATAGGIO IMMOBILE E RECUPERO ID*/
@@ -168,6 +194,13 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
             exit;
         }
 
+        // SALVATAGGIO DATI APPUNTAMENTO
+        $resAppointment = $pMng->saveAppointment($id_property, $owner_name, $owner_lastname, $owner_tel_home, $owner_tel_office, $owner_mobile, $owner_address, $owner_town, $occupant_name, $occupant_lastname, $occupant_tel, $appointment_date, $appointment_start_date, $appointment_end_date, $appointment_agent, $appointment_channel, $appointment_conditions, $appointment_renwable, $appointment_note);
+        if($resAppointment =="" || $resAppointment == null){
+            $pMng->rollback();
+            printMessage("ERR_SAVE_APPOINTMENT");
+            exit;
+        }
 
         // SET PROPERTY ON MAGAZINE TABLE (WITH STATUS ENABLED)
         $mgzMng = new MagazineManager($pMng->conn);
@@ -194,13 +227,3 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
 
 
 
-function getConvertedField($conversionRet,$fieldName){
-    global  $debugMode;
-    if($conversionRet ==""){
-        printMessage("ERR_INVALID_CONVERSION_R",$fieldName." ".$conversionRet,true);
-        exit();
-    }else{
-        if($debugMode)echo($fieldName." -> ".$conversionRet."<br>");
-    }
-    return $conversionRet;
-}

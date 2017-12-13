@@ -10,15 +10,15 @@ class ImageManager {
 	private $tmpImg;
 	private $watemark;
 
-    public function ImageManager($image,$sourceImageName) {
-        $this->setImage($image,$sourceImageName);
+    public function ImageManager($image,$sourceImageName,$forceNotString = false) {
+        $this->setImage($image,$sourceImageName,$forceNotString);
     }
 
-    public function setImage($sourceImage,$sourceImageName){
+    public function setImage($sourceImage,$sourceImageName,$forceNotString = false){
 		$this->currImageName 	= $sourceImageName;
         $this->ext       		= $this->getExtension($sourceImageName);
 		
-		$this->currImage 		= $this->getImageSource($sourceImage);
+		$this->currImage 		= $this->getImageSource($sourceImage,$forceNotString);
 		
     }
 
@@ -28,14 +28,14 @@ class ImageManager {
 
 	// ################## FUNCTION FOR IMAGES RESIZE  ##################
 	
-	private function getImageSource($image){
-		if(is_string($image) && !filter_var($image, FILTER_VALIDATE_URL))
+	private function getImageSource($image,$forceNotString = false){
+		if(!$forceNotString && is_string($image) && !filter_var($image, FILTER_VALIDATE_URL))
 			return imagecreatefromstring($image);
-		else if($this->ext == "jpg" || $this->ext == "jpeg")
+		else if(strtolower($this->ext) == "jpg" || $this->ext == "jpeg")
 			return imagecreatefromjpeg($image);
-        else if($this->ext == "png" || $this->ext == "PNG")
+        else if(strtolower($this->ext) == "png" || $this->ext == "PNG")
             return imagecreatefrompng($image);
-	    else if($this->ext == "gif")
+	    else if(strtolower($this->ext) == "gif")
 			return imagecreatefromgif($image);
 		else 
 			return false;
@@ -112,5 +112,7 @@ class ImageManager {
     public function getExt(){
         return $this->ext;
     }
+
+
 
 }

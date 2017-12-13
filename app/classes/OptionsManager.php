@@ -236,7 +236,7 @@ class OptionsManager extends DbManager{
         if($id_parent!= null)
             $ret = $this->read($params,$extra_params,$id_parent,$fields,$printQuery);
         else
-            $ret = $this->read(null,$extra_params,null,$fields,$printQuery);
+            $ret = $this->read($params,$extra_params,null,$fields,$printQuery);
 
         $this->setDefTable();
         //var_dump($ret);

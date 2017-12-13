@@ -134,12 +134,14 @@
             $infoImg = "";
             if($userLogged->id_user_type==1 &&  $res[$i]["id_easywork"]!=null && $res[$i]["id_easywork"]!="0"){
                 $retApp = $propertyM->getAppointment($res[$i]["id"]);
-                $imgTit.="<h3>Dati proprietario</h3>";
-                $imgTit.="<p><i>Nome  : </i><b>".$retApp[0]["owner_name"]."</b>";
-                $imgTit.="<p><i>Cognome  : <b>".$retApp[0]["owner_lastname"]."</b>";
-                $imgTit.="<p><i>Provincia  : </i><b>".$retApp[0]["owner_town"]."</b>";
-                $imgTit.="<p><i>Indirizzo  : </i><b>".$retApp[0]["owner_address"]."</b>";
-                $imgTit.="<p><i>Cellulare : </i><b>".$retApp[0]["owner_mobile"]."</b>";
+                if(count($retApp)>0){
+                    $imgTit.="<h3>Dati proprietario</h3>";
+                    $imgTit.="<p><i>Nome  : </i><b>".$retApp[0]["owner_name"]."</b>";
+                    $imgTit.="<p><i>Cognome  : <b>".$retApp[0]["owner_lastname"]."</b>";
+                    $imgTit.="<p><i>Provincia  : </i><b>".$retApp[0]["owner_town"]."</b>";
+                    $imgTit.="<p><i>Indirizzo  : </i><b>".$retApp[0]["owner_address"]."</b>";
+                    $imgTit.="<p><i>Cellulare : </i><b>".$retApp[0]["owner_mobile"]."</b>";
+                    }
                 $infoImg = "<img style='position:absolute;'  src='".SITE_URL."/AdminPanel/images/icons/ico_info_20x20.png'/>";
             }
 
@@ -174,7 +176,7 @@
                 $ico_contract_status = "<img style=' border:0;' title='".$res[$i]["contract_status"]."' src='".SITE_URL."/".$contract_status_image_path."'>";
 
         //compongo la cella stato
-        $ads_status = '<div id="stato_annuncio'.$res[$i]["id"].'"><img onclick="openAdsStatusSwitch('.$res[$i]["id"].',' . $res[$i]['id_ads_status'] . ',this)" id="ads_status_img_'.$res[$i]["id"].'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstatus.'" ><p>'.$ico_contract_status.'</p></div>';
+        $ads_status = '<div id="stato_annuncio'.$res[$i]["id"].'"><img class="POINTER" onclick="openAdsStatusSwitch('.$res[$i]["id"].',' . $res[$i]['id_ads_status'] . ',this)" id="ads_status_img_'.$res[$i]["id"].'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstatus.'" ><p>'.$ico_contract_status.'</p></div>';
             /* ------------   ------------ */
 
             /* ------------ RECUPERO DATI PER COLONNA RIVISTA ------------ */
@@ -185,7 +187,7 @@
             {
                 $strRivista = SITE_URL."/AdminPanel/images/icons/ico_newspaper_off.png";
             }
-            $rivista = '<input type="hidden" id="magazine_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_magazine"] .'"/><img onclick="SwitchNewsStatus('.$res[$i]["id"].',this)" id="news_status_img_'.$res[$i]["id"].'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" >';
+            $rivista = '<input type="hidden" id="magazine_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_magazine"] .'"/><img class="POINTER" onclick="SwitchNewsStatus('.$res[$i]["id"].',this)" id="news_status_img_'.$res[$i]["id"].'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" >';
 				/* -----------   ------------ */
 
 				if($userLogged->id_user_type=="1"){
@@ -199,7 +201,7 @@
 						$strPortali = SITE_URL."/AdminPanel/images/icons/ico_portal_off.png";
 					}
 
-					$portali = '<input type="hidden" id="ads_portal_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_portal"] .'"/><img onclick="SwitchPortalStatus('.$res[$i]["id"].',this)" id="portal_status_img_'.$res[$i]["id"].'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
+					$portali = '<input type="hidden" id="ads_portal_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_portal"] .'"/><img class="POINTER" onclick="SwitchPortalStatus('.$res[$i]["id"].',this)" id="portal_status_img_'.$res[$i]["id"].'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
 
 					// se sono amministratore restituisco anche i dati dei portali alla datatable
 					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$ads_status,$rivista,$portali));

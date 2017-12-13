@@ -96,8 +96,8 @@ class PropertyManager extends DbManager implements IDbManager {
                 if($i>0){
                     $id_image_type ="2";
                 }
-                $values = array($id_property,$id_image_type,$images[$i]);
-                $ret = $this->saveImage($values);
+                //$values = array($id_property,$id_image_type,$images[$i]);
+                $ret = $this->saveImage($id_property,$id_image_type,$images[$i]);
 
                 if ($ret !="1") return $ret;
             }
@@ -113,13 +113,16 @@ class PropertyManager extends DbManager implements IDbManager {
         $this->currTable = "property_images";
         $resI = $this->delete("id_property = ?",array($id_property));
         $res = $this->saveImages($id_property,$images);
+        $this->setDefTable();
         return $res;
     }
 
     // save single image
-    private function saveImage($values){
+    public function saveImage($id_property,$id_image_type,$image){
+        $this->currTable = "property_images";
         $fields = array("id_property","id_img_type","img_name");
-        $ret = $this->create($values,$fields);
+        $ret = $this->create(array($id_property,$id_image_type,$image),$fields);
+        $this->setDefTable();
         return $ret;
     }
 
@@ -139,6 +142,17 @@ class PropertyManager extends DbManager implements IDbManager {
         $fields = array("id_property","owner_name","owner_lastname","owner_tel_home","owner_tel_office","owner_mobile","owner_address","owner_town","occupant_name","occupant_lastname","occupant_tel","appointment_date","appointment_start_date","appointment_end_date","appointment_agent","appointment_channel","appointment_conditions","appointment_renwable","note");
         $values = array($id_property,$owner_name,$owner_lastname,$owner_tel_home ,$owner_tel_office ,$owner_mobile,$owner_address,$owner_town,$occupant_name,$occupant_lastname,$occupant_tel,$appointment_date,$appointment_start_date,$appointment_end_date,$appointment_agent,$appointment_channel,$appointment_conditions,$appointment_renwable,$appointment_note);
         $res = $this->create($values,$fields);
+        $this->setDefTable();
+        return $res;
+    }
+
+
+    public function updateAppointment($id_property,$owner_name,$owner_lastname,$owner_tel_home ,$owner_tel_office ,$owner_mobile,$owner_address,$owner_town,$occupant_name,$occupant_lastname,$occupant_tel,$appointment_date,$appointment_start_date,$appointment_end_date,$appointment_agent,$appointment_channel,$appointment_conditions,$appointment_renwable,$appointment_note){
+        $this->currTable = "property_appointment";
+        $fields = array("owner_name = ?","owner_lastname = ?","owner_tel_home = ?","owner_tel_office = ?","owner_mobile = ?","owner_address = ?","owner_town = ?","occupant_name = ?","occupant_lastname = ?","occupant_tel = ?","appointment_date = ?","appointment_start_date = ?","appointment_end_date = ?","appointment_agent = ?","appointment_channel = ?","appointment_conditions = ?","appointment_renwable = ?","note = ?");
+        $values = array($owner_name,$owner_lastname,$owner_tel_home ,$owner_tel_office ,$owner_mobile,$owner_address,$owner_town,$occupant_name,$occupant_lastname,$occupant_tel,$appointment_date,$appointment_start_date,$appointment_end_date,$appointment_agent,$appointment_channel,$appointment_conditions,$appointment_renwable,$appointment_note,$id_property);
+
+        $res = $this->update($fields,"id_property = ?",$values);
         $this->setDefTable();
         return $res;
     }
@@ -191,6 +205,47 @@ class PropertyManager extends DbManager implements IDbManager {
     public function getAgentData($idProperty){
         $this->currTable ="properties_agents";
         $ret = $this->read("id_property = ?","Limit 1",array($idProperty) ,null,false);
+        $this->setDefTable();
+        return $ret;
+    }
+
+
+    public function deletePropertyImages($id_property){
+
+        $this->deletePropertyImagesFromFolder($id_property);
+        if(!$this->deletePropertyImagesFromDb($id_property))
+            return false;
+
+        return true;
+    }
+
+
+    public function deletePropertyImagesFromFolder($id_property){
+        $retMin = $this->executeQuery("select path from property_images_size where title='min'");
+        $retNormal = $this->executeQuery("select path from property_images_size where title='normal'");
+        $retBig = $this->executeQuery("select path from property_images_size where title='big'");
+
+        $pathMin    = BASE_PATH."/".$retMin[0]["path"];
+        $pathNormal = BASE_PATH."/".$retNormal[0]["path"];
+        $pathBig    = BASE_PATH."/".$retBig[0]["path"];
+
+        $images = $this->getImages("id_property = ?",null,array($id_property));
+        for($i = 0,$len = count($images); $i < $len;$i++){
+            if(file_exists($pathMin.$images[$i]["img_name"]))
+                unlink($pathMin.$images[$i]["img_name"]);
+            if(file_exists($pathNormal.$images[$i]["img_name"]))
+                unlink($pathNormal.$images[$i]["img_name"]);
+            if(file_exists($pathBig.$images[$i]["img_name"]))
+                unlink($pathBig.$images[$i]["img_name"]);
+        }
+
+    }
+
+    public function deletePropertyImagesFromDb($id_property){
+        $this->setTable("property_images");
+
+        $ret = $this->delete("id_property = ?",array($id_property),null,false);
+
         $this->setDefTable();
         return $ret;
     }
