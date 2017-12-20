@@ -130,8 +130,8 @@ box-shadow:0 0 #fff;
 .navbar-default .navbar-nav > .open > a .caret,
 .navbar-default .navbar-nav > .open > a .caret,
 .navbar-default .navbar-nav > .open > a .caret {
-    border-bottom-color: #FFFFFF !important;
-    border-top-color: #FFFFFF !important;
+    border-bottom-color: #000000 !important;
+    border-top-color: #000000 !important;
 }
 
 .fhmm .dropdown-menu .withoutdesc ul li:hover i,
@@ -185,7 +185,7 @@ box-shadow:0 0 #fff;
 	margin-right:-10px;
 }
 .fhmm .dropdown-submenu:hover>a:after{
-	border-left-color:#ffffff;
+	border-left-color:#000000;
 }
 .fhmm .dropdown-submenu.pull-left{
 	float:none;

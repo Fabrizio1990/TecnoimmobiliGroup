@@ -37,6 +37,7 @@ $dbH = new GenericDbHelper();
 $contract   = isset($_GET["contract"])?$_GET["contract"]:"";
 $category   = isset($_GET["category"])?$_GET["category"]:"";
 $tipology   = isset($_GET["tipology"])?$_GET["tipology"]:"";
+if($tipology =="Qualsiasi") $tipology = "";
 $town       = isset($_GET["town"])?$_GET["town"]:"";
 $conditions = isset($_GET["conditions"])?$_GET["conditions"]:"";
 $garden     = isset($_GET["garden"])?$_GET["garden"]:"";

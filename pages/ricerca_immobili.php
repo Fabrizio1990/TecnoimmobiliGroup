@@ -25,6 +25,8 @@ if(!$res || count($res)<1)
 
 $contract = CheckAndConvertParams("contract","property_contracts","id","title");
 $category = CheckAndConvertParams("category","property_categories","id","title");
+
+
 $tipology = CheckAndConvertParams("tipology","property_tipologies","id","title");
 $town = CheckAndConvertParams("town","geo_town","id","title");
 $conditions = CheckAndConvertParams("condizioni","property_conditions","id","title");
@@ -53,7 +55,7 @@ if(isset($_GET["bagni"]))$srcPar["bathrooms"]=$_GET["bagni"];
 
 if(isset($_GET["campoOrdinamento"]))$srcPar["order"]=urldecode($_GET["campoOrdinamento"]);
 
-echo(urldecode($_GET["campoOrdinamento"]));
+
 
 
 
@@ -77,6 +79,10 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
     global $dbH;
 
     if(isset($_GET[$getParamName])){
+
+        if(strtolower($_GET[$getParamName]) == "qualsiasi")
+            return $_GET[$getParamName];
+
         $convertedPar = $dbH->getFieldFromValue($table,$fieldNeeded,$fieldUsed,$_GET[$getParamName]);
         if(Count($convertedPar)>0) {
             //echo($_GET[$getParamName] . " DIVENTA " . $convertedPar[0][$fieldNeeded] . "<--##########-->");

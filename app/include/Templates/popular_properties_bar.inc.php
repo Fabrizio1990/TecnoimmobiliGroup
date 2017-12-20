@@ -23,7 +23,7 @@
                     <?php for($i = 0 ; $i< Count($properties);$i++){
 
                         $title  = PropertyLinksAndTitles::getTitleNoDb($properties[$i]["tipology"],$properties[$i]["contract"]);
-                        $address = $properties[$i]["street"]."  ".$properties[$i]["city"];
+                        $address = $properties[$i]["street"]."  ".$properties[$i]["town"]." (".$properties[$i]["city_short"].")";
                         $boxTxt = $properties[$i]["box_short"];
                         if($boxTxt != "NO" && $boxTxt!= "NN"){
                             $boxTxt = "SI";
@@ -74,9 +74,10 @@
                                         <a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o'></i></a>
                                     </span>
                                     <div class='hiddenInfo'>
-                                        <input type='hidden' class='email_info' value='<?php echo $agentMail?>' />
-                                        <input type='hidden' class='telephone_info' value='<?php echo $agentTel?>' />
-                                        <input type='hidden' class='mobile_info' value='<?php echo $agentMobile?>' />
+                                        <input type='hidden' class='cntct_email_info' value='<?php echo $agentMail?>' />
+                                        <input type='hidden' class='cntct_telephone_info' value='<?php echo $agentTel?>' />
+                                        <input type='hidden' class='cntct_mobile_info' value='<?php echo $agentMobile?>' />
+                                        <input type='hidden' class='cntct_ref_code' value='<?php echo $properties[$i]["reference_code"]?>' />
                                     </div>
                                 </div>
                                 <div class="box_type"><?php echo $price ?></div>

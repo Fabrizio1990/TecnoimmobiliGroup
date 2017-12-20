@@ -89,7 +89,7 @@ $(document).ready(function(e){
                 // LOCATION
                 sel_category            : { required: true },
                 sel_contract            : { required: true },
-                sel_tipology            : { required: true },
+                //sel_tipology            : { required: true },
 
 
                 /*--- INPUT ---*/

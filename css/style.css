@@ -244,6 +244,7 @@
 		background:#ffffff;
 		position:relative;
 		display:block;
+		border-bottom: 3px solid #eb212e;
 	}
 
 	.logo {
@@ -1992,7 +1993,7 @@
 	.fhmm .dropdown-menu > li > a:hover,
 	.fhmm .dropdown-menu > li > a:focus,
 	.searchmodule {
-		background-color:#19B8DF;
+		background-color:#efefef;
 	}
 	
 
@@ -2004,9 +2005,18 @@
 	.blog-wrap div.post-date span.month,
 	.ps-desc .price {
 		background-color:#1a5479;
-		color: #ffffff;
+		color: #FFFFFF;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	}
+
+/*.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus{
+	color: #000000;
+}*/
+
+.dropdown .dropdown-menu > li > a:hover,.dropdown .dropdown-menu > li > a:focus{
+	color: #000000;
+}
 
 pagination > .active > a, .pagination > .active > span,
 .pagination > .active > a:hover, .pagination > .active > span:hover,
@@ -2033,27 +2043,38 @@ pagination > .active > a, .pagination > .active > span,
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus{
-	background-color:#1a5479 ;
+	background-color:#eb212e ;
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 
 }
 
-.navbar-default .navbar-nav > .active > a{
-	background-color:#ec403e;
+#tabbed_widget .nav-tabs > li > a:hover,
+.hovicon.effect-1.sub-a:hover,
+#tabbed_widget .nav-tabs > li > a:hover,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover
+{
+	background-color:#efefef;
+	color: #000000;
 }
+.navbar-default .navbar-nav > .open > a .caret, .navbar-default .navbar-nav > .open > a .caret, .navbar-default .navbar-nav > .open > a .caret .navbar-default .navbar-nav > .active > a{
+	background-color:#efefef;
+}
+
 
 .topbar,
 	.fhmm .dropdown-menu {
-		border-top-color:#19B8DF
+		border-top-color:#1a5479;
 	}
 	
 	.post-wrapper-top h2 {
-		border-bottom-color:#19B8DF
+		border-bottom-color:#1a5479
 	}
 	
 	.navbar.affix {
-		border-bottom:3px solid #19B8DF !important
+		border-bottom:3px solid #eb212e !important
 	}
 
 	.hovicon.effect-1:after {
@@ -2100,7 +2121,8 @@ pagination > .active > a, .pagination > .active > span,
 	div.popup ul li a:hover,
 	div.popup ul li a:focus,
 	div.popup ul li a:active {
-		color:#F6700E
+		/*color:#F6700E*/
+		color:#000000;
 	}
 
 
@@ -2130,7 +2152,7 @@ pagination > .active > a, .pagination > .active > span,
 	.ps-desc .status,
 	.pricing-table > .price .name,
 	ul.real-estate-cats-widget li ul li:before {
-		background-color:#ec403e;
+		background-color:#eb212e;
 		color: #ffffff ;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	}

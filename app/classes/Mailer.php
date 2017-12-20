@@ -66,6 +66,8 @@ class Mailer
     public function sendMail($recipients, $cc, $ccn, $object, $body, $altBody, $attachmentPaths = "", $isHtml = false, $fromEmail = "", $fromName = ""){
         if($fromEmail!=""){
             $this->mailer->setFrom($fromEmail,$fromName);
+            $this->mailer->addReplyTo($fromEmail,$fromName);
+
         }
 
         $this->mailer->isHTML($isHtml);

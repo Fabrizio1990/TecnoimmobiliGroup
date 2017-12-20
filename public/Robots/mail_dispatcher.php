@@ -1,5 +1,5 @@
 <?php
-include("../config.php");
+include("../../config.php");
 include(BASE_PATH."/app/classes/DbManager.php");
 include(BASE_PATH."/app/classes/Mailer.php");
 $dbMng  = new DbManager();

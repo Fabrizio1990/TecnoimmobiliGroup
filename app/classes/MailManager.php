@@ -88,7 +88,7 @@ class MailManager extends DbManager implements IDbManager {
     }
 
     public function getDefaultSenderData(){
-        return array("mail"=>"info@tecnoimmobiligroup.it","name"=>"TecnoImmobiliGroup services");
+        return array("email"=>"info@tecnoimmobiligroup.it","name"=>"TecnoImmobiliGroup services");
     }
 
 
