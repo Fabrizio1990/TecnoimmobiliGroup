@@ -1,4 +1,4 @@
-<div class="modal fade" id="ContactFormModal" tabindex="-1" role="dialog" aria-labelledby="ContactFormModalLabel" aria-hidden="true">
+<div class="modal fade" id="property_contact_form" tabindex="-1" role="dialog" aria-labelledby="ContactFormModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <form id="contact" class="row" action="http://designingmedia.com/html/estate-plus/contact.php" name="contactform" method="post">
+                        <form id="contact" class="row" action="" name="contactform" method="post">
                             <input type="text" name="frm_contact_name" id="frm_contact_name" class="form-control" placeholder="Nome">
                             <input type="text" name="frm_contact_email" id="frm_contact_email" class="form-control" placeholder="Email">
                             <input type="text" name="frm_contact_phone" id="frm_contact_phone" class="form-control" placeholder="Telefono">
@@ -43,6 +43,7 @@
                             <input type="hidden" name="frm_contact_ref_code" id="frm_contact_ref_code" />
                             <textarea class="form-control" name="frm_contact_body" id="frm_contact_body" rows="6" placeholder="Testo ...."></textarea>
                             <button type="button" id="c_f_send_message" class="btn btn-tecnoimm-red" >Invia messaggio</button>
+                            <button type="button" id="c_f_close" class="btn btn-tecnoimm-red HIDDEN" >Chiudi</button>
                         </form>
                     </div>
                 </div>

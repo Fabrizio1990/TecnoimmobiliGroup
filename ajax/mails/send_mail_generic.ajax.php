@@ -11,15 +11,18 @@ if(isset($_POST["to"],$_POST["object"],$_POST["body"])){
     $cc         = isset($_POST["cc"])?urldecode($_POST["cc"]):null;
     $ccn        = isset($_POST["ccn"])?urldecode($_POST["ccn"]):null;
     $obj        = $_POST["object"];
-    $altBody    = isset($_POST["altBody"])?urldecode($_POST["body"]):"";
-    $body       = $_POST["body"];
+    $body       = urldecode($_POST["body"]);
+    $altBody    = isset($_POST["altBody"])?urldecode($_POST["altBody"]):"";
     $isHtml     = isset($_POST["isHtml"])?$_POST["isHtml"]:1;
     $attachment = isset($_POST["attachment"])?$_POST["attachment"]:"";
     $mailType   = isset($_POST["mailType"])?$_POST["mailType"]:1;
     $status     = isset($_POST["status"])?$_POST["status"]:1;
 
     // INVIO LA MAIL CON LE CREDENZIALI
-    $res = $mailMng->addEmail($mailType,$status,$fromMail,$fromName,$to,$cc,$ccn,$obj,$body,$altBody,$isHtml,$attachment);
+    $mailId = $mailMng->addEmail($mailType,$status,$fromMail,$fromName,$to,$cc,$ccn,$obj,$body,$altBody,$isHtml,$attachment,true);
 
-    echo($res);
+
+    //$mailMng->sendMailByID($mailId);
+
+    echo($mailId);
 }

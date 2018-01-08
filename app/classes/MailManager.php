@@ -49,11 +49,16 @@ class MailManager extends DbManager implements IDbManager {
 
 
 
-    public function addEmail($type,$status,$from_email,$from_name,$to,$cc,$ccn,$object,$body,$altBody = "",$ishtml = 0,$attachments =""){
+    public function addEmail($type,$status,$from_email,$from_name,$to,$cc,$ccn,$object,$body,$altBody = "",$ishtml = 0,$attachments ="",$autoSend = false){
 
         $values = array($type,$status,$from_email,$from_name,$to,$cc,$ccn,$ishtml,$object,$body,$altBody,$attachments);
 
-        $ret = $this->create($values,null,false);
+        $this->create($values,null,false);
+        $ret = $this->lastInsertId;
+        if($autoSend && $ret > 0 ){
+            $this->sendMailByID($ret);
+        }
+
         return $ret;
     }
 
@@ -76,6 +81,22 @@ class MailManager extends DbManager implements IDbManager {
             else
                 $this->updateStatus($mail["id"],4);
         }
+    }
+
+    public function sendMailByID($id){
+        $ret_mail= $this->read("id = ?",null,array($id),null,false);
+
+        if(Count($ret_mail) > 0){
+            $mail = $ret_mail[0];
+            //var_dump($mail);
+                $isSent = $this->mailer->sendMail($mail["to"], $mail["cc"], $mail["ccn"], $mail["object"], $mail["body"], $mail["altbody"], $mail["attachment_path"], $mail["ishtml"], $mail["from_email"], $mail["from_name"]);
+
+                if($isSent == 1)
+                    $this->updateStatus($mail["id"],2);
+                else
+                    $this->updateStatus($mail["id"],4);
+        }
+
     }
 
     public function getEmailTemplete($id){

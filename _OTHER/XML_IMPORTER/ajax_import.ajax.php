@@ -59,6 +59,9 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     include(BASE_PATH."/app/classes/MagazineManager.php");
     include(BASE_PATH."/app/classes/GenericDbHelper.php");
     include(BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
+    include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+
+    $imgH = new ImagesInfo();
     $mng    = new PropertyManager();
     $mgzMng = new MagazineManager();
     $dbH    = new GenericDbHelper();
@@ -340,6 +343,7 @@ function saveImages($images){
 }
 
 function saveImage($image){
+    global $imgH;
     if($image == "http://www.tecnoimmobiligroup.it/")
         return "";
     $date = Date("Y-m-d_h-i-s");
@@ -352,30 +356,30 @@ function saveImage($image){
     $imgMng = new ImageManager($imageToSave,$imageName);
 
     // RESIZE IMAGE 655,394
-    $imgMng->resizeImage(948,632);
+    $info = $imgH->GetImagesInfoParams("big");
+    $imgMng->resizeImage($info["width"],$info["height"]);
     $save_path = "/public/images/images_properties/big";
-    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
     //imposto  l' url dell' immagine da stampare
     $imgName = $imgMng->getSavedImgName();
 
 
     // RESIZE IMAGE 360,265
     $imgMng->setImage($imageToSave,$imageName);
-    $imgMng->resizeImage(610,407);
+    $info = $imgH->GetImagesInfoParams("normal");
+    $imgMng->resizeImage($info["width"],$info["height"]);
     $save_path = "/public/images/images_properties/normal";
-    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
 
 
     // RESIZE IMAGE 68,49
     $imgMng->setImage($imageToSave,$imageName);
-    $imgMng->resizeImage(240,160);
+    $info = $imgH->GetImagesInfoParams("min");
+    $imgMng->resizeImage($info["width"],$info["height"]);
     $save_path = "/public/images/images_properties/min";
-    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
 
     return $imgName;
 }
 
 
-
-
-?>

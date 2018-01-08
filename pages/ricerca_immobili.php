@@ -217,7 +217,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
 <script src="<?php echo SITE_URL . "/js/form/form_utils.js" ?>"></script>
 <script src="<?php echo SITE_URL."/AdminPanel/js/options_populate.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/research_panel_1.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/contact_modal.js" ?>"></script>
+<script src="<?php echo SITE_URL . "/js/contact_form.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/ricerca_immobili.js" ?>"></script>
 
 <script>
@@ -239,7 +239,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
             "sAjaxSource": BASE_PATH+"/ajax/properties_list_datatable.ajax.php?<?php echo $ajaxUrlParams ?>",
             "bDeferRender": true,
             "initComplete": function() {
-                bindButtons();
+                //bindButtons();
                 $("#DT_PROPERTIES .fancybox").fancybox({});
                 $("#results_found").text(table.rows().count());
                 //alert( 'Rows '+table.rows().count()+' are selected' );

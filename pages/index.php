@@ -102,7 +102,7 @@ $menuSelected ="home";
         <script src="<?php echo SITE_URL . "/js/form/form_utils.js" ?>"></script>
         <script src="<?php echo SITE_URL."/AdminPanel/js/options_populate.js" ?>"></script>
         <script src="<?php echo SITE_URL."/js/research_panel_1.js" ?>"></script>
-        <script src="<?php echo SITE_URL. "/js/contact_modal.js" ?>"></script>
+        <script src="<?php echo SITE_URL. "/js/contact_form.js" ?>"></script>
 
 
         <!-- FlexSlider JavaScript
@@ -139,7 +139,7 @@ $menuSelected ="home";
                 });
             });
 
-            bindButtons();
+            //bindButtons();
 
         </script>
 

@@ -64,9 +64,6 @@ if(isset($_REQUEST["reference_code"],$_REQUEST["sender_name"],$_REQUEST["sender_
         .btn-tecnoimm-red.active {
             background-color: #af0813 \9 !important;
         }
-
-
-
     </style>
 
     <div id="mail_content">
@@ -89,7 +86,7 @@ if(isset($_REQUEST["reference_code"],$_REQUEST["sender_name"],$_REQUEST["sender_
                     <p> <b>Codie riferimento : </b><?php echo $ref_code ?></p>
                 </div>
                 <div id="btn_details_container">
-                    <button class="btn-tecnoimm-red">Dettagli</button>
+                    <a href="<?php echo $link ?>" class="btn-tecnoimm-red">Dettagli</a>
                 </div>
             </div>
 

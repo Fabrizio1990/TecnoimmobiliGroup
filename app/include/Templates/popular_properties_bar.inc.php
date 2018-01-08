@@ -8,7 +8,7 @@
     $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_up desc Limit 8 ",null,null,false);
 
 
-    $imgPathNormal = $propertyMng->getImagesPath("title = ?","limit 1", array("normal"),"path",false)[0]["path"];
+    $imgPathMin = $propertyMng->getImagesPath("title = ?","limit 1", array("min"),"path",false)[0]["path"];
     $imgPathBig = $propertyMng->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
     $imgEof  = "img_eof/Immagine_eof.jpg";
 ?>
@@ -45,10 +45,10 @@
                         $agentMail = $agentData[0]["email"];
 
                         /*  IMAGES */
-                        $imgMin = SITE_URL."/".$imgPathNormal."/".$imgEof;
+                        $imgMin = SITE_URL."/".$imgPathMin."/".$imgEof;
                         $imgBig =  SITE_URL."/".$imgPathBig."/".$imgEof;
                         if($properties[$i]["img_name"]!=""){
-                            $imgMin = SITE_URL."/".$imgPathNormal.$properties[$i]["img_name"];
+                            $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
                             $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                         }
 

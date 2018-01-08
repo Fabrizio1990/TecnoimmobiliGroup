@@ -67,8 +67,6 @@ $title = PropertyLinksAndTitles::getTitle($reference_code,3);
 <!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
 <?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
 
-<!-- MODALE CONTATTACI -->
-<?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>
 
 <!-- ######## TOPBAR contenente contatti e pulsante di login ########-->
 <?php include(BASE_PATH."/app/include/Templates/topbar.inc.php") ?>
@@ -126,8 +124,8 @@ $title = PropertyLinksAndTitles::getTitle($reference_code,3);
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/Widgets/maps_utils.js" ?>" ></script>
-<script src="<?php echo SITE_URL . "/js/contact_modal.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/dettaglio_immobile.js" ?>" ></script>
+<script src="<?php echo SITE_URL . "/js/contact_form.js" ?>"></script>
 
 
 
