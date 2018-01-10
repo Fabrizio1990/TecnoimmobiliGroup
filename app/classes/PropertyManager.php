@@ -181,12 +181,6 @@ class PropertyManager extends DbManager implements IDbManager {
         return $ret;
     }
 
-    public function getImagesPath($params = null,$extra_params = null,$values =null ,$fields = null){
-        $this->currTable = "property_images_size";
-        $ret = $this->read($params,$extra_params,$values ,$fields);
-        $this->setDefTable();
-        return $ret;
-    }
 
     public function getDescription($id_property){
         $this->currTable = "property_descriptions";

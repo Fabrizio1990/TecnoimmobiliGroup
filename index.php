@@ -1,6 +1,12 @@
 <?php
     require("config.php");
+    require(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
     require(BASE_PATH."/app/classes/SessionManager.php");
+
+    // INFO IMMAGINI ("CATEGORY,SIZEDEFINITION,PATH,WIDTH,HEIGHT,QUALITY") GLOBALE
+    $imgInfo = new ImagesInfo();
+    $IMG_INFO = $imgInfo->info;
+
     if(HIDE_PAGES && SessionManager::getVal("authenticated") == null){
         include(BASE_PATH . "/pages/in_costruzione.php");
         exit();

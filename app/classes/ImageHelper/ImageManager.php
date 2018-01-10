@@ -88,9 +88,13 @@ class ImageManager {
 	// ################## SAVE FUNCTIONS  ##################
 	public function saveImage($path, $name, $quality = 80){
 		$ret = false;
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
         // if name contain extension, must be removed
         $name =  preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
-        $savePath = $path."/".$name.".".$this->ext;
+        $savePath = $path.$name.".".$this->ext;
 		if($this->ext == "jpg" || $this->ext == "jpeg")
 			$ret = imagejpeg($this->tmpImg,$savePath,$quality);
         else if($this->ext == "png")//png ha un range di quality minore di 10 volte

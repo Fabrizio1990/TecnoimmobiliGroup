@@ -1,4 +1,8 @@
 <?php
+require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+
+$imgInfo = new ImagesInfo();
+
 if(!isset($propertyM)){
     require_once(BASE_PATH."/app/classes/PropertyManager.php");
 
@@ -14,16 +18,17 @@ $id_property = $details["id"];
 $images = $propertyM->getImages("id_property =?",null,array($id_property) ,"img_name");
 
 
-$imgPathNormal = $propertyM->getImagesPath("title = ?","limit 1", array("normal"),"path",false);
-$imgPathNormal = SITE_URL."/".$imgPathNormal[0]["path"];
-$imgPathMin = $propertyM->getImagesPath("title = ?","limit 1", array("min"),"path",false);
-$imgPathMin = SITE_URL."/".$imgPathMin[0]["path"];
+$imgPathMin = SITE_URL."/".$IMG_INFO["properties"]["min"]['path'];
+$imgPathNormal = SITE_URL."/".$IMG_INFO["properties"]["normal"]['path'];
+$imgPathBig = SITE_URL."/".$IMG_INFO["properties"]["big"]['path'];
+
+
 
 // GENERO GLI ELEMENTI CON LE IMMAGINI QUI IN UN SOLO CICLO SIA PER LE MINUATURE CHE PER QUELLE GRANDI
 $listImgNormal = "";
 $listImgMin = "";
 for($i = 0 ; $i < Count($images) ; $i++){
-    $listImgNormal.= "<li><img class='img-thumbnail' src='".$imgPathNormal.$images[$i]["img_name"]."' alt=''></li>";
+    $listImgNormal.= "<li><img class='img-thumbnail' src='".$imgPathBig.$images[$i]["img_name"]."' alt=''></li>";
     $listImgMin.= "<li><img class='img-thumbnail' src='".$imgPathMin.$images[$i]["img_name"]."' alt=''></li>";
 }
 

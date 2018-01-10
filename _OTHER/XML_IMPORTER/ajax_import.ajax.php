@@ -355,29 +355,43 @@ function saveImage($image){
     //echo($imageToSave);
     $imgMng = new ImageManager($imageToSave,$imageName);
 
-    // RESIZE IMAGE 655,394
-    $info = $imgH->GetImagesInfoParams("big");
+
+    // RESIZE IMAGE Extra
+    $info = $imgH->info["properties"]["extra"];
     $imgMng->resizeImage($info["width"],$info["height"]);
-    $save_path = "/public/images/images_properties/big";
-    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
+    $save_path = BASE_PATH."/".$info["path"];
+    $imgMng->saveImage($save_path, $new_img_name, $info["quality"]);
     //imposto  l' url dell' immagine da stampare
     $imgName = $imgMng->getSavedImgName();
 
-
-    // RESIZE IMAGE 360,265
+    // RESIZE IMAGE Big
     $imgMng->setImage($imageToSave,$imageName);
-    $info = $imgH->GetImagesInfoParams("normal");
+    $info = $imgH->info["properties"]["big"];
     $imgMng->resizeImage($info["width"],$info["height"]);
-    $save_path = "/public/images/images_properties/normal";
-    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
+    $save_path = BASE_PATH."/".$info["path"];
+    $imgMng->saveImage($save_path, $new_img_name, $info["quality"]);
 
 
-    // RESIZE IMAGE 68,49
+    // RESIZE IMAGE Normal
     $imgMng->setImage($imageToSave,$imageName);
-    $info = $imgH->GetImagesInfoParams("min");
+    $info = $imgH->info["properties"]["normal"];
     $imgMng->resizeImage($info["width"],$info["height"]);
-    $save_path = "/public/images/images_properties/min";
-    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
+    $save_path = BASE_PATH."/".$info["path"];
+    $imgMng->saveImage($save_path, $new_img_name, $info["quality"]);
+
+    // RESIZE IMAGE Medium
+    $imgMng->setImage($imageToSave,$imageName);
+    $info = $imgH->info["properties"]["medium"];
+    $imgMng->resizeImage($info["width"],$info["height"]);
+    $save_path = BASE_PATH."/".$info["path"];
+    $imgMng->saveImage($save_path, $new_img_name, $info["quality"]);
+
+    // RESIZE IMAGE Min
+    $imgMng->setImage($imageToSave,$imageName);
+    $info = $imgH->info["properties"]["min"];
+    $imgMng->resizeImage($info["width"],$info["height"]);
+    $save_path = BASE_PATH."/".$info["path"];
+    $imgMng->saveImage($save_path, $new_img_name, $info["quality"]);
 
     return $imgName;
 }

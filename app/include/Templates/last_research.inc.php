@@ -1,11 +1,13 @@
 <?php
 require_once(BASE_PATH."/app/classes/PropertyManager.php");
 require_once(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
+
 $propertyMng = new PropertyManager();
 $parallax = isset($parallax)?$parallax:false;
 $elemXRow = 3;
-$imgPathMin = $propertyMng->getImagesPath("title = ?","limit 1", array("min"),"path",false)[0]["path"];
-$imgPathBig = $propertyMng->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
+
+$imgPathNormal = $IMG_INFO["properties"]["medium"]['path'];
+$imgPathBig = $IMG_INFO['properties']['big']['path'];
 $imgEof  = "img_eof/Immagine_eof.jpg";
 ?>
 
@@ -27,9 +29,6 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                 <li><a href="#tab_frequently_searched" data-toggle="tab">RICERCHE FREQUENTI</a></li>
                                 <li><a href="#tab_last_insert" data-toggle="tab">ULTIMI ANNUNCI INSERITI</a></li>
                             </ul>
-
-
-
 
 
                             <div class="tab-content tabbed_widget clearfix">
@@ -65,10 +64,10 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                         $address = $properties[$i]["street"];
 
                                         /*  IMAGES */
-                                        $imgMin =  SITE_URL."/".$imgPathMin."/".$imgEof;
+                                        $imgNormal =  SITE_URL."/".$imgPathNormal."/".$imgEof;
                                         $imgBig =  $imgPath = SITE_URL."/".$imgPathBig."/".$imgEof;
                                         if($properties[$i]["img_name"]!=""){
-                                            $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
+                                            $imgNormal = SITE_URL."/".$imgPathNormal.$properties[$i]["img_name"];
                                             $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                                         }
                                         if($i % $elemXRow == 0){
@@ -80,7 +79,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
                                                 <div class="ImageWrapper boxes_img">
-                                                    <img class="img-responsive" src="<?php echo $imgMin ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
+                                                    <img class="img-responsive" src="<?php echo $imgNormal ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                                     <div class="ImageOverlayH"></div>
                                                     <div class="Buttons StyleSc">
                                                         <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>
@@ -139,10 +138,10 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                         }
 
                                         /*  IMAGES */
-                                        $imgMin =  $imgPath = SITE_URL."/".$imgPathMin."/".$imgEof;
+                                        $imgNormal =  $imgPath = SITE_URL."/".$imgPathNormal."/".$imgEof;
                                         $imgBig =  $imgPath = SITE_URL."/".$imgPathBig."/".$imgEof;
                                         if($properties[$i]["img_name"]!=""){
-                                            $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
+                                            $imgNormal = SITE_URL."/".$imgPathNormal.$properties[$i]["img_name"];
                                             $imgBig =  SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                                         }
                                         if($i % $elemXRow == 0){
@@ -153,7 +152,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
                                                 <div class="ImageWrapper boxes_img">
-                                                    <img class="img-responsive" src="<?php echo $imgMin ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
+                                                    <img class="img-responsive" src="<?php echo $imgNormal ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                                     <div class="ImageOverlayH"></div>
                                                     <div class="Buttons StyleSc">
                                                         <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>
@@ -212,10 +211,10 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                         }
 
                                         /*  IMAGES */
-                                        $imgMin =  $imgPath = SITE_URL."/".$imgPathMin."/".$imgEof;
+                                        $imgNormal =  $imgPath = SITE_URL."/".$imgPathNormal."/".$imgEof;
                                         $imgBig =  $imgPath = SITE_URL."/".$imgPathBig."/".$imgEof;
                                         if($properties[$i]["img_name"]!="") {
-                                            $imgMin = SITE_URL . "/" . $imgPathMin . $properties[$i]["img_name"];
+                                            $imgNormal = SITE_URL . "/" . $imgPathNormal . $properties[$i]["img_name"];
                                             $imgBig = SITE_URL . "/" . $imgPathBig . $properties[$i]["img_name"];
                                         }
                                         if($i % $elemXRow == 0){
@@ -226,7 +225,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="boxes">
                                                 <div class="ImageWrapper boxes_img">
-                                                    <img class="img-responsive" src="<?php echo $imgMin ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
+                                                    <img class="img-responsive" src="<?php echo $imgNormal ?>" title="<?php echo $title . " " .$address ?>" alt="<?php echo $title . " " .$address ?>">
                                                     <div class="ImageOverlayH"></div>
                                                     <div class="Buttons StyleSc">
                                                         <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>

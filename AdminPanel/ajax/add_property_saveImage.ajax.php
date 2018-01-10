@@ -5,8 +5,8 @@
         include("../../config.php");
         include(BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
         include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+        $imgH = new ImagesInfo();
 
-        $imgInfo = new ImagesInfo();
 
 
 
@@ -28,41 +28,59 @@
 
         $imgMng = new ImageManager($image,$imageName);
 
-        // RESIZE IMAGE 655,394
-        $info = $imgInfo->GetImagesInfoParams("big");
-
+        // RESIZE IMAGE EXTRA
+        $info = $imgH->info["properties"]["extra"];
         $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
-        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",260,540)){
-            $save_path = "/public/images/images_properties/big";
-            $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
+        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",310,690)){
+            $save_path = $info["path"];
+            $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
+
+
+
+        }else{
+            echo("è avvenuto un errore applicando il watemark dell immagine 'EXTRA' controlla che il watemark sia in formato png");
+        }
+
+        // RESIZE IMAGE BIG
+        $imgMng->setImage($image,$imageName);
+        $info = $imgH->info["properties"]["big"];
+        $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
+        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",190,500)){
+            $save_path = $info["path"];
+            $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
 
             //imposto  l' url dell' immagine da stampare
             $imgName = $imgMng->getSavedImgName();
-            $res = SITE_URL.$save_path."/".$imgName;
-
+            $res = SITE_URL."/".$save_path.$imgName;
         }else{
-            echo("è avvenuto un errore applicando il watemark dell immagine 655,394 controlla che il watemark sia in formato png");
+            echo("è avvenuto un errore applicando il watemark dell immagine 'BIG' controlla che il watemark sia in formato png");
         }
 
-        // RESIZE IMAGE 360,265
+        // RESIZE IMAGE NORMAL
         $imgMng->setImage($image,$imageName);
-        $info = $imgInfo->GetImagesInfoParams("normal");
-
+        $info = $imgH->info["properties"]["normal"];
         $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
-        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_normal.png",190,350)){
-            $save_path = "/public/images/images_properties/normal";
-            $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
+        if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_normal.png",120,320)){
+            $save_path = $info["path"];
+            $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
         }else{
-            echo("è avvenuto un errore applicando il watemark dell immagine 360,265 controlla che il watemark sia in formato png");
+            echo("è avvenuto un errore applicando il watemark dell immagine 'NORMAL' controlla che il watemark sia in formato png");
         }
 
-        // RESIZE IMAGE 68,49
+        // RESIZE IMAGE MEDIUM
         $imgMng->setImage($image,$imageName);
-        $info = $imgInfo->GetImagesInfoParams("min");
-
+        $info = $imgH->info["properties"]["medium"];
         $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
-        $save_path = "/public/images/images_properties/min";
-        $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, $info["quality"]);
+        $save_path = $info["path"];
+        $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
+
+
+        // RESIZE IMAGE min
+        $imgMng->setImage($image,$imageName);
+        $info = $imgH->info["properties"]["min"];
+        $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
+        $save_path = $info["path"];
+        $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
 
         echo $res;
     }

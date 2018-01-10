@@ -10,8 +10,11 @@ $values = array($contract,$category,$town,$reference_code);
 
 $resSP = $propertyM->readAllAds($params,array("ORDER BY FIELD(id_contract,".$contract.") desc","limit 3"),$values,null,false);
 
-$imgPathMin = $propertyM->getImagesPath("title = ?","limit 1", array("min"),"path",false)[0]["path"];
-$imgPathBig = $propertyM->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
+
+
+$imgPathNormal = SITE_URL."/".$IMG_INFO["properties"]["medium"]['path'];
+$imgPathBig = SITE_URL."/".$IMG_INFO["properties"]["big"]['path'];
+
 $imgEof  = "img_eof/Immagine_eof.jpg";
 ?>
 
@@ -46,11 +49,11 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
 
             /*  IMAGES */
             $imgAlt = $resSP[$i]["tipology"].' in '.$resSP[$i]['contract']." ".$resSP[$i]["district"].", ".$resSP[$i]["street"];
-            $imgMin =  $imgPath = SITE_URL."/".$imgPathMin."/".$imgEof;
-            $imgBig =  $imgPath = SITE_URL."/".$imgPathBig."/".$imgEof;
+            $imgNormal =  $imgPathNormal."/".$imgEof;
+            $imgBig =  $imgPathBig."/".$imgEof;
             if($resSP[$i]["img_name"]!=""){
-                $imgMin =   SITE_URL."/".$imgPathMin.$resSP[$i]["img_name"];
-                $imgBig =  SITE_URL."/".$imgPathBig.$resSP[$i]["img_name"];
+                $imgNormal =   $imgPathNormal.$resSP[$i]["img_name"];
+                $imgBig =  $imgPathBig.$resSP[$i]["img_name"];
             }
 
         ?>
@@ -59,7 +62,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="boxes">
                     <div class="boxes_img ImageWrapper">
-                            <img class="img-responsive" src="<?php echo $imgMin?>" alt="<?php echo $imgAlt ?>" />
+                            <img class="img-responsive" src="<?php echo $imgNormal?>" alt="<?php echo $imgAlt ?>" />
                             <div class="ImageOverlayH"></div>
                             <div class="Buttons StyleB">
                                 <span class='WhiteSquare' title='Vai al dettaglio'><a  href='<?php echo $link ?>'><i class='fa fa-search'></i></a></span>

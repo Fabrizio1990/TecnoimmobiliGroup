@@ -8,7 +8,9 @@ if(isset($_REQUEST['slots'])){
         exit();
     }
     require_once (BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
+    require_once (BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
+    $imgH = new ImagesInfo();
     $slot = $_REQUEST["slots"];
     $id_easywork = $_REQUEST['id_easywork'];
     $is_cover = isset($_REQUEST["photo_type"])?$_REQUEST["photo_type"]:2;
@@ -44,37 +46,53 @@ if(isset($_REQUEST['slots'])){
 
 
     $imgMng = new ImageManager($image,$imageName,true);
-
-
-    // RESIZE IMAGE 655,394
-    $resizedImg = $imgMng->resizeImage(948,632);
-    if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",260,540)){
-        $save_path = "/public/images/images_properties/big";
-        $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
-
-        //imposto  l' url dell' immagine da stampare
-        $imgName = $imgMng->getSavedImgName();
-        $res = SITE_URL.$save_path."/".$imgName;
-
+    // RESIZE IMAGE EXTRA
+    $info = $imgH->info["properties"]["extra"];
+    $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
+    if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",310,690)){
+        $save_path = $info["path"];
+        $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
     }else{
-        echo("è avvenuto un errore applicando il watemark dell immagine 948,632 controlla che il watemark sia in formato png");
+        echo("è avvenuto un errore applicando il watemark dell immagine 'EXTRA' controlla che il watemark sia in formato png");
     }
 
-    // RESIZE IMAGE 360,265
+    // RESIZE IMAGE BIG
     $imgMng->setImage($image,$imageName,true);
-    $resizedImg = $imgMng->resizeImage(610,407);
-    if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_normal.png",190,350)){
-        $save_path = "/public/images/images_properties/normal";
-        $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+    $info = $imgH->info["properties"]["big"];
+    $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
+    if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_big.png",190,500)){
+        $save_path = $info["path"];
+        $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
     }else{
-        echo("è avvenuto un errore applicando il watemark dell immagine 610,407 controlla che il watemark sia in formato png");
+        echo("è avvenuto un errore applicando il watemark dell immagine 'BIG' controlla che il watemark sia in formato png");
     }
 
-    // RESIZE IMAGE 68,49
+
+    // RESIZE IMAGE NORMAL
     $imgMng->setImage($image,$imageName,true);
-    $resizedImg = $imgMng->resizeImage(240,160);
-    $save_path = "/public/images/images_properties/min";
-    $imgMng->saveImage(BASE_PATH.$save_path, $new_img_name, 80);
+    $info = $imgH->info["properties"]["normal"];
+    $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
+    if($imgMng->applyWatemark(BASE_PATH."/AdminPanel/images/watermarks/".$watermark."_normal.png",120,320)){
+        $save_path = $info["path"];
+        $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
+    }else{
+        echo("è avvenuto un errore applicando il watemark dell immagine 'NORMAL' controlla che il watemark sia in formato png");
+    }
+
+    // RESIZE IMAGE MEDIUM
+    $imgMng->setImage($image,$imageName,true);
+    $info = $imgH->info["properties"]["medium"];
+    $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
+    $save_path = $info["path"];
+    $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
+
+    // RESIZE IMAGE MIN
+    $imgMng->setImage($image,$imageName,true);
+    $info = $imgH->info["properties"]["min"];
+    $resizedImg = $imgMng->resizeImage($info["width"],$info["height"]);
+    $save_path = $info["path"];
+    $imgMng->saveImage(BASE_PATH."/".$save_path, $new_img_name, $info["quality"]);
+
 
 
     // SALVATAGGIO SU DB

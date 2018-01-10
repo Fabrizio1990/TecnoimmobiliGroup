@@ -7,9 +7,8 @@
     $elemXRow = 4;
     $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_up desc Limit 8 ",null,null,false);
 
-
-    $imgPathMin = $propertyMng->getImagesPath("title = ?","limit 1", array("min"),"path",false)[0]["path"];
-    $imgPathBig = $propertyMng->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
+    $imgPathNormal = $IMG_INFO["properties"]["medium"]['path'];
+    $imgPathBig = $IMG_INFO['properties']['big']['path'];
     $imgEof  = "img_eof/Immagine_eof.jpg";
 ?>
 <section id="three-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL."/images/ParallaxBg/02_parallax.jpg" ?>');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
@@ -44,11 +43,12 @@
                         $agentMobile = $agentData[0]["mobile_phone"];
                         $agentMail = $agentData[0]["email"];
 
+
                         /*  IMAGES */
-                        $imgMin = SITE_URL."/".$imgPathMin."/".$imgEof;
-                        $imgBig =  SITE_URL."/".$imgPathBig."/".$imgEof;
+                        $imgMin = SITE_URL."/".$imgPathNormal.$imgEof;
+                        $imgBig =  SITE_URL."/".$imgPathBig.$imgEof;
                         if($properties[$i]["img_name"]!=""){
-                            $imgMin = SITE_URL."/".$imgPathMin.$properties[$i]["img_name"];
+                            $imgMin = SITE_URL."/".$imgPathNormal.$properties[$i]["img_name"];
                             $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
                         }
 

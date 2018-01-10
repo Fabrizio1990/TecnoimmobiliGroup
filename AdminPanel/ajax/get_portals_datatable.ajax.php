@@ -7,9 +7,7 @@
 
     $imgH = new ImagesInfo();
 
-$info = $imgH->GetImagesInfoParams("big");
-echo($info["width"]);
-
+    $info = $imgH->info;
 
     $prtMng = new PortalManager();
 

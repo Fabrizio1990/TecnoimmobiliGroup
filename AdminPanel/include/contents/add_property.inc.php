@@ -1,6 +1,13 @@
 <?php 
 	require_once(BASE_PATH."/app/classes/OptionsManager.php");
 	require_once(BASE_PATH."/app/classes/PropertyManager.php");
+    require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+
+    $imgInfo = new ImagesInfo();
+    $imgPathMin = $imgInfo->info["properties"]["min"]["path"];
+    $imgPathNormal = $imgInfo->info["properties"]["normal"]["path"];
+    $imgPathBig = $imgInfo->info["properties"]["big"]["path"];
+
 	//SETTING UP DEFAULT VALUES
 	$action = "save";
 	$id_property ="";
