@@ -67,8 +67,5 @@
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->
 
-
-
-
 </div><!-- /.row -->
 

@@ -12,6 +12,7 @@ $defFeedPath = "_OTHER/FEED_XML/output_feed";
 
 $id_portal                  = 0;
 
+// SEZIONE DATI PORTALE
 $inpPortalName              = "";
 $inpPortalSite              = "";
 $inpPortalUsername          = "";
@@ -21,13 +22,25 @@ $inpPortalHasContract       = "";
 $inpPortalContractStart     = "";
 $inpPortalContractEnd       = "";
 $inpPortalContractPrice     = "";
+$txtPortalNotes             = "";
 
+// SEZIONE DATI FTP
 $inpPortalHasFtp            = "";
 $inpPortalLinkFtp           = "";
 $inpPortalUserFtp           = "";
 $inpPortalPswFtp            = "";
 
+//SEZIONE DATI FEED
+$inpPortalFeedsDoc       = "";
 
+
+// SEZIONE DATI CONTATTO
+$inpPortalContactName       = "";
+$inpPortalContactEmail      = "";
+$inpPortalContactPhone      = "";
+$inpPortalContactMobile     = "";
+$inpPortalContactCity       = "";
+$inpPortalContactAddress    = "";
 
 ?>
 <form name="FORM_PORTAL" id="FORM_PORTAL" novalidate accept-charset="UTF-8">

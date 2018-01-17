@@ -90,7 +90,7 @@ function load_page(page,container = null,callback = null,callback_params = null,
                 callback(http.responseText.trim(), callback_params);
         }
     }
-};
+}
 
 
 var dateToMysqlFormat = function(date){

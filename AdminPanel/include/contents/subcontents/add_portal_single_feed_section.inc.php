@@ -8,9 +8,14 @@ $feed_notes = isset($_GET["feed_notes"])?$_GET["feed_notes"]:"";
 ?>
 
 
-<div class="box box-primary ">
+<div class="box box-primary">
     <div class="box-header">
         <h3 class="box-title">FEED</h3>
+        <div class="pull-right box-tools">
+            <button type="button" title="Cancella feed" class="btn btn-secondary btn-sm pull-right btn_delete_feed" onclick="removeFeedRow(this)"><i class="fa fa-times ico_delete_feed" ></i>
+            </button>
+
+        </div>
     </div>
     <div class="box-body FEED_DATA">
 
@@ -33,7 +38,7 @@ $feed_notes = isset($_GET["feed_notes"])?$_GET["feed_notes"]:"";
                 <div class="form-group">
                     <label>Cartella feed</label>
                     <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                        <div class="input-group-addon"><i class="fa fa-folder"></i></div>
                         <input  type="text" class="form-control inp_portal_feed_foolder" placeholder="Cartella feed"  value="<?php echo $feed_folder?>">
 
                     </div>
@@ -49,7 +54,7 @@ $feed_notes = isset($_GET["feed_notes"])?$_GET["feed_notes"]:"";
                 <div class="form-group">
                     <label >Link al feed</label>
                     <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                        <div class="input-group-addon"><i class="fa  fa-link"></i></div>
                         <input  type="text" class="form-control inp_portal_feed_link" placeholder="Link feed"  value="<?php echo $feed_link?>">
 
                     </div>

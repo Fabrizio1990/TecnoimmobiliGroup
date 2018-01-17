@@ -36,7 +36,7 @@
         <div class="form-group">
             <label>Numero annunci</label>
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                <div class="input-group-addon"><i class="fa fa-bar-chart"></i></div>
                 <input id="inp_portal_properties_count" name="inp_portal_properties_count" type="number" class="form-control" placeholder="Numero annunci"  value="<?php echo $inpPortalPropertiesCount ?>">
             </div>
         </div><!-- /.form-group -->
@@ -59,7 +59,7 @@
         <div class="form-group">
             <label>Username Area riservata</label>
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                <div class="input-group-addon"><i class="fa fa-user"></i></div>
                 <input id="inp_portal_username" name="inp_portal_username" type="text" class="form-control" placeholder="Username area riservata"  value="<?php echo $inpPortalUsername ?>">
 
             </div>
@@ -71,7 +71,7 @@
         <div class="form-group">
             <label>Password Area riservata</label>
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-globe"></i></div>
+                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
                 <input id="inp_portal_password" name="inp_portal_password" type="password" class="form-control" placeholder="Password area riservata"  value="<?php echo $inpPortalPassword ?>">
 
             </div>
@@ -111,7 +111,7 @@
         <div class="form-group">
             <label>Inizio contratto</label>
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                <div class="input-group-addon"><i class="fa fa-calendar-times-o"></i></div>
                 <input id="inp_portal_contract_start" name="inp_portal_contract_start" type="date" class="form-control" placeholder="Inizio contratto"  value="<?php echo $inpPortalContractStart ?>">
             </div>
         </div><!-- /.form-group -->
@@ -122,7 +122,7 @@
         <div class="form-group">
             <label>Fine contratto</label>
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                <div class="input-group-addon"><i class="fa fa-calendar-times-o"></i></div>
                 <input id="inp_portal_contract_end" name="inp_portal_contract_end" type="date" class="form-control" placeholder="Fine contratto"  value="<?php echo $inpPortalContractEnd ?>">
             </div>
         </div><!-- /.form-group -->
@@ -139,7 +139,7 @@
         <div class="form-group">
             <label>Prezzo</label>
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                <div class="input-group-addon"><i class="fa fa-credit-card"></i></div>
                 <input id="inp_portal_contract_price" name="inp_portal_contract_price" type="text" class="form-control" placeholder="Prezzo contratto"  value="<?php echo $inpPortalContractPrice ?>">
             </div>
         </div><!-- /.form-group -->
@@ -151,4 +151,18 @@
 </div><!-- /.row -->
 
 
+<div class="HR"></div>
 
+
+
+<!-- ####################  NOTE   ######################## -->
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Note</label>
+            <textarea class="form-control txt_portal_notes" rows="3" placeholder="Annotazioni"><?php echo $txtPortalNotes ?></textarea>
+        </div>
+    </div>
+
+</div><!-- /.row -->
