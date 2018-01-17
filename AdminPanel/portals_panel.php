@@ -17,6 +17,7 @@ if(SessionManager::getVal("authenticated") != null){
 
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
+$act_menu_management = true;
 $act_feed_management = true;
 $act_portals_panel = true;
 
@@ -28,7 +29,7 @@ $act_portals_panel = true;
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>AdminLTE 2 | Portali</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -58,12 +59,14 @@ folder instead of downloading all of them to reduce the load. -->
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
 
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
 
     <!-- My UTILS LO METTO PRIMA DI TUTTI I JS CHE SONO CARICATI A FONDO PAGINA PERCHé CONTIENE FUNZIONALITà UTILI A QUALSIASI JS , QUINDI SE CARICO UN JS DA UN INCLUDE DEVO AVERE UTILS -->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/UTILS_JQ.js"></script>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -91,7 +94,7 @@ folder instead of downloading all of them to reduce the load. -->
                     <small>Portali</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Lista Portali/a></li>
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Lista Portali</a></li>
                 </ol>
             </section>
 

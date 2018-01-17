@@ -5,12 +5,18 @@
 	include("../../config.php");
     include(BASE_PATH."/app/classes/UserManager.php");
     include(BASE_PATH."/app/classes/PropertyManager.php");
+    include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+
+
+    $imgH = new ImagesInfo();
+    $imgPaths = $imgH->info;
+
 
 
     $params = Array();
     $values = Array();
 	$rand_num = Rand(0,100);
-    $baseImgPath = SITE_URL."/public/images/images_properties";
+    $imgMinPath = SITE_URL."/".$imgPaths["properties"]["min"]["path"];
     $imgEof  = "img_eof/Immagine_eof.jpg";
 
     $propertyM = new PropertyManager();
@@ -153,9 +159,9 @@
 
 
             if($res[$i]["img_name"] =="")
-                $imgPath = $baseImgPath."/min/".$imgEof;
+                $imgPath = $imgMinPath.$imgEof;
             else
-                $imgPath = $baseImgPath."/min/".$res[$i]["img_name"];
+                $imgPath = $imgMinPath.$res[$i]["img_name"];
 
             $first_col = "
             <form name='GoToAds' method='POST' ACTION='".SITE_URL."/AdminPanel/add_property.php'>

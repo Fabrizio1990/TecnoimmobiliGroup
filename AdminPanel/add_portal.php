@@ -1,5 +1,4 @@
 <?php
-// TODO AGGIUNGERE GEOLOCALIZZAZIONE E AREA DI COMPETENZA
 include("../config.php");
 include(BASE_PATH."/app/classes/SessionManager.php");
 include(BASE_PATH."/app/classes/UserEntity.php");
@@ -8,16 +7,20 @@ if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
     $agency_id 		= $SS_usr->id;
     $tipo_utente 	= $SS_usr->id_user_type;
-    if($tipo_utente!="1")
-        header("location:login.php");
+    //$referente 	= $_COOKIE['refer_name'];
 }else{
     header("location:login.php");
 }
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
-$act_menu_management                = true; // setta attivo il menu Gestione
-$act_agencies_management		    = true; // setta attivo il link agencies management
-$act_agency_add	                    = true; // setta attivo il link Aggiungi agenzia
+$act_menu_management    = true;
+$act_feed_management    = true;
+$act_portal_add         = true;
+
+$id_portal = isset($_POST["id_ads"])?$_POST["id_ads"]:"";
+
+$prefixAction = $id_portal == ""?"Inserimento" :"Modifica";
+
 ?>
 
 <!DOCTYPE html>
@@ -26,11 +29,12 @@ $act_agency_add	                    = true; // setta attivo il link Aggiungi age
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TecnoimmobiliGroup  | Aggiungi Agenzia</title>
+    <title>TecnoimmobiliGroup | <?php echo $prefixAction?> Portale</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/css/bootstrap3/bootstrap-switch.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -50,10 +54,9 @@ $act_agency_add	                    = true; // setta attivo il link Aggiungi age
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/agency_add.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/add_portal.css" />
     <!-- Jquery validate  override css-->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override_select2.css" />
@@ -63,10 +66,8 @@ $act_agency_add	                    = true; // setta attivo il link Aggiungi age
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
 
-    <!-- UTILS JS and  modals.js are included here becouse i need it on included files and need to be loaded at start of page-->
+    <!-- UTILS JS AND FILE_UPLOAD JS are included here becouse i need it on included files and need to be loaded at start of page-->
     <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/UTILS_JQ.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/IMAGES_UPLOAD.js"></script>
 </head>
 
@@ -92,23 +93,19 @@ $act_agency_add	                    = true; // setta attivo il link Aggiungi age
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small>Gestione Agenzie</small>
+                    <small><?php echo $prefixAction?> Portale</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-cog"></i> Gestione Admin</a></li>
-                    <li><a href="#"><i class="fa fa-group"></i> Gestione Agenzie</a></li>
-                    <li><a href="#"><i class="fa fa-group"></i> Aggiungi/Modifica Agenzia</a></li>
+                    <li><a href="#"><i class="fa fa-home"></i> Portali</a></li>
+					<li><a href="#"><i class="fa fa-plus-square"></i> <?php echo $prefixAction?> Portale</a></li>
                 </ol>
             </section>
 
             <!-- MAIN CONTENT -->
             <section class="content">
-
-                <?php
-                include(BASE_PATH."/AdminPanel/include/contents/agency_add.inc.php");
-                ?>
-
-
+				<?php 
+				include(BASE_PATH."/AdminPanel/include/contents/add_portal.inc.php");
+				?>
             </section>
             <!-- END MAIN CONTENT -->
         </div>
@@ -119,9 +116,9 @@ $act_agency_add	                    = true; // setta attivo il link Aggiungi age
 		<!-- END FOOTER -->
 		
         <!-- CONTROL SIDEBAR -->
-        <?php
-        include(BASE_PATH."/AdminPanel/include/templates/control_sidebar.inc.php");
-        ?>
+                <?php 
+				include(BASE_PATH."/AdminPanel/include/templates/control_sidebar.inc.php");
+				?>
         <!-- END CONTROL SIDEBAR -->
         
         
@@ -138,35 +135,46 @@ $act_agency_add	                    = true; // setta attivo il link Aggiungi age
     </script>
     <!-- Bootstrap 3.3.6 -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/js/bootstrap-switch.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
     <!-- Select2 -->
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
-    <!-- Jquery validate -->
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.full.min.js"></script>
+	<!-- Jquery validate -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
-    <!-- Jquery validate additional methods -->
-    <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_additional_methods.js"></script>
     <!-- Jquery validate select2 override -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_select2_override.js"></script>
     <!-- Jquery validate IT localization -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
 
+
+    
+
     <!-- ----CUSTOM JS ------ -->
 	
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
-    <script src="<?php echo SITE_URL ?>/js/Widgets/maps_utils.js" ></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_portal.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/agency_add.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
 
 
 
+	<!-- INIT COMPONENTS -->
+    <script>
+        //TODO RIABILITA LA FUNZIONE DRAG DROP MA CON IL PUNTAMENTO AL LINK GIUSTO (PRENDILA DA ADD PROPERTIES)
 
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvZ4NUmjF7SgprOVDTqd7ToL8jq7Z1ynE&callback=initMap">
+        var options = {
+            inverse: true,
+            size: "normal",
+            onColor: 'success',
+            offColor: 'danger',
+            animate: true,
+        };
+        $(".switch").bootstrapSwitch(options);
     </script>
-
 </body>
 
 </html>

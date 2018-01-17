@@ -137,7 +137,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
 
                                 <ul class="treeview-menu">
                                     <li <?php if($act_portals_panel) echo('class="active"')?>><a href="portals_panel.php"><i class="fa fa-circle-o"></i> Pannello Portali</a></li>
-                                    <li <?php if($act_portal_add) echo('class="active"')?>><a href="portal_add.php"><i class="fa fa-circle-o"></i> Aggiungi/Modifica Portale</a></li>
+                                    <li <?php if($act_portal_add) echo('class="active"')?>><a href="add_portal.php"><i class="fa fa-circle-o"></i> Aggiungi/Modifica Portale</a></li>
                                     <li <?php if($act_feed_log) echo('class="active"')?>><a href="feed_log.php"><i class="fa fa-circle-o"></i> Log Feed</a></li>
 
                                 </ul>

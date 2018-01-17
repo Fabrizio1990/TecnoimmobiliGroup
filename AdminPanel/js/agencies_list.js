@@ -28,6 +28,7 @@ function populateAgencyList(){
 
 function bindSwitches() {
     var options = {
+        inverse: true,
         size: "mini",
         onColor: 'success',
         offColor: 'danger',

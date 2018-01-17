@@ -41,9 +41,6 @@ body {
     margin:0 auto;
 }
 
-.BTN_TECNOIMM{
-
-}
 
 .HIDDEN{display:none;}
 
@@ -57,4 +54,24 @@ body {
     border-top: 2px solid #d5d5d5;
     margin: 10px 11px 10px 11px;
     padding: 0;
+}
+
+.HR_RED{
+    display: block;
+    border: 0;
+    border-top: 2px solid #eb212e;
+    margin: 10px 11px 10px 11px;
+    padding: 0;
+}
+
+.HR_BLUE{
+    display: block;
+    border: 0;
+    border-top: 2px solid #1a547a;
+    margin: 10px 11px 10px 11px;
+    padding: 0;
+}
+
+.HR_BOLD{
+    border-width:4px;
 }

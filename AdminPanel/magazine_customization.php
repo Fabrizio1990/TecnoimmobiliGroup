@@ -25,7 +25,7 @@ $act_magazine_customize		       = true; // setta attivo il link Stampa Rivista
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TecnoimmobiliGroup | Visualizza Immobili</title>
+    <title>TecnoimmobiliGroup | Personalizzazione Rivista</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
