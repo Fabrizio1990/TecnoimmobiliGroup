@@ -3,15 +3,23 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label title="è anche il nome del file">Documenti feed</label>
+            <label title="è anche il nome del file">Documenti feed Locali</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-file-archive-o"></i></div>
-                <input  type="file" id="inp_portal_feeds_doc" class="form-control" />
+                <input  type="file" id="inp_portal_feeds_doc" name="inp_portal_feeds_doc" class="form-control" />
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->
 
-    <div class="col-md-6">  </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label title="è anche il nome del file">Documenti feed Online</label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-globe"></i></div>
+                <input  type="text" id="inp_portal_feeds_doc_link" name="inp_portal_feeds_doc_link" value="<?php echo $inpPortalDocLink ?>" class="form-control" />
+            </div>
+        </div><!-- /.form-group -->
+    </div><!-- /.col-md-6 -->
 </div><!-- /.row -->
 
 

@@ -165,6 +165,12 @@ $prefixAction = $id_portal == ""?"Inserimento" :"Modifica";
 	<!-- INIT COMPONENTS -->
     <script>
         //TODO RIABILITA LA FUNZIONE DRAG DROP MA CON IL PUNTAMENTO AL LINK GIUSTO (PRENDILA DA ADD PROPERTIES)
+        $(function() {
+            INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_portal_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
+        });
+
+
+
 
         var options = {
             inverse: true,
@@ -174,6 +180,11 @@ $prefixAction = $id_portal == ""?"Inserimento" :"Modifica";
             animate: true,
         };
         $(".switch").bootstrapSwitch(options);
+
+
+
+
+
     </script>
 </body>
 

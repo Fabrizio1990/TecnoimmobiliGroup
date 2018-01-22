@@ -1,5 +1,17 @@
 $(document).ready(function () {
 
+
+    // Save image when input file change
+    $(".file_explorer").change(function(e) {
+        var elem = e.target;
+        var imgField = $(elem).parent().parent().parent().prev().children("img")[0];
+        var imgName = $(elem).parent().children(".hidden_img_name")[0].value;
+
+        saveImage(elem,"/AdminPanel/ajax/add_portal_saveImage.ajax.php",imgField,imgName);
+    });
+
+
+    // CONTROLLO VISIBILITà DI CAMPI DISPONIBILI IN BASE A UN TOGGLE
     toggleVisibility($(".CONTRACT_DATA"),$('#inp_portal_hasContract').bootstrapSwitch('state'));
 
     toggleVisibility($(".FTP_INFO"),$('#inp_portal_hasFtp').bootstrapSwitch('state'));
@@ -37,6 +49,11 @@ $(document).ready(function () {
 
 });
 
+
+
+function selectFile(elem){
+    $(elem).next(".file_explorer").click();
+}
 
 function removeFeedRow(elem){
     $(elem).closest(".box").remove();

@@ -4,8 +4,9 @@ require_once(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
 require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
 $imgInfo = new ImagesInfo();
+$prtMng  = new PortalManager();
 $imgPathMin = $imgInfo->info["portals"]["min"]["path"];
-$imgPathNormal = $imgInfo->info["properties"]["normal"]["path"];
+$imgPathNormal = $imgInfo->info["portals"]["normal"]["path"];
 
 
 $defFeedPath = "_OTHER/FEED_XML/output_feed";
@@ -15,9 +16,10 @@ $id_portal                  = 0;
 // SEZIONE DATI PORTALE
 $inpPortalName              = "";
 $inpPortalSite              = "";
+$inpPortalPersonalAreaLink  = "";
 $inpPortalUsername          = "";
 $inpPortalPassword          = "";
-$inpPortalPropertiesCount   = "";
+$inpPortalMaxProperties     = "";
 $inpPortalHasContract       = "";
 $inpPortalContractStart     = "";
 $inpPortalContractEnd       = "";
@@ -32,6 +34,7 @@ $inpPortalPswFtp            = "";
 
 //SEZIONE DATI FEED
 $inpPortalFeedsDoc       = "";
+$inpPortalDocLink        = "";
 
 
 // SEZIONE DATI CONTATTO
@@ -41,6 +44,52 @@ $inpPortalContactPhone      = "";
 $inpPortalContactMobile     = "";
 $inpPortalContactCity       = "";
 $inpPortalContactAddress    = "";
+
+
+
+if(isset($_REQUEST["id_portal"])){
+    $id_portal = $_REQUEST["id_portal"];
+    $res = $prtMng->getPortalDetails($id_portal);
+    if(Count($res)> 0){
+        $details = $res[0];
+
+        // SEZIONE DATI PORTALE
+        $imgPortal                  = $imgPathMin.$details["logo_name"];
+        $inpPortalName              = $details["portal_name"];
+        $inpPortalSite              = $details["portal_site"];
+        $inpPortalPersonalAreaLink  = $details["personal_area_link"];
+        $inpPortalUsername          = $details["portal_login_usr"];
+        $inpPortalPassword          = $details["portal_login_psw"];
+        $inpPortalMaxProperties     = $details["entries_max"];
+        $inpPortalHasContract       = $details["has_contract"];
+        $inpPortalContractStart     = date("Y-m-d",strtotime($details["contract_start"]));
+        $inpPortalContractEnd       = date("Y-m-d",strtotime($details["contract_end"]));
+        $inpPortalContractPrice     = $details["contract_price"];
+        $txtPortalNotes             = $details["notes"];
+
+// SEZIONE DATI FTP
+        $inpPortalHasFtp            = $details["ftp_enabled"];
+        $inpPortalLinkFtp           = $details["ftp_url"];
+        $inpPortalUserFtp           = $details["ftp_user"];
+        $inpPortalPswFtp            = $details["ftp_password"];
+
+//SEZIONE DATI FEED
+        $inpPortalFeedsDoc          = $details["doc_path"];
+        $inpPortalDocLink           = $details["doc_url"];
+
+
+// SEZIONE DATI CONTATTO
+        $inpPortalContactName       = $details["contact_name"];
+        $inpPortalContactEmail      = $details["contact_email"];
+        $inpPortalContactPhone      = $details["contact_phone"];
+        $inpPortalContactMobile     = $details["contact_mobile_phone"];
+        $inpPortalContactCity       = $details["contact_city"];
+        $inpPortalContactAddress    = $details["contact_address"];
+    }
+
+}
+
+
 
 ?>
 <form name="FORM_PORTAL" id="FORM_PORTAL" novalidate accept-charset="UTF-8">

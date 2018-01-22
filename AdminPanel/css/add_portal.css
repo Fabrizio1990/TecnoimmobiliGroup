@@ -5,3 +5,9 @@
 .ico_delete_feed{
     color:#FFFFFF;
 }
+
+
+.image_portal{margin:0 auto;}
+.upload_image_container .file_explorer {
+    display: none;
+}

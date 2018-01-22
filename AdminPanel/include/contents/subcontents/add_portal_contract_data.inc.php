@@ -1,3 +1,30 @@
+<!-- #################### Nome  - Sito  ######################## -->
+<div class="row">
+
+    <div class="col-md-2 col-md-offset-5">
+
+        <div class="box box-primary">
+            <div class="box-header ALIGN_CENTER">
+                <h3 class="box-title ">Logo Portale</h3>
+            </div>
+            <div class="box-body  ">
+                <img   class="img img-responsive image_portal IMAGE_DRAG "  src="<?php echo SITE_URL."/".$imgPortal ?>"/>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="upload_image_container col-md-12 col-sm-12 col-xs-12 ALIGN_CENTER">
+                        <input type="hidden" class="hidden_img_name" value="" />
+                        <button type="button" onclick="selectFile(this);" class="btn btn-primary ">carica</button>
+                        <input type="file"  name="file_explorer" class="file_explorer" accept="image/jpeg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.col-md-6 -->
+
+
+</div><!-- /.row -->
+
 
 <!-- #################### Nome  - Sito  ######################## -->
 <div class="row">
@@ -34,10 +61,10 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label>Numero annunci</label>
+            <label>Limite annunci</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-bar-chart"></i></div>
-                <input id="inp_portal_properties_count" name="inp_portal_properties_count" type="number" class="form-control" placeholder="Numero annunci"  value="<?php echo $inpPortalPropertiesCount ?>">
+                <input id="inp_portal_max_properties" name="inp_portal_max_properties" type="number" class="form-control" placeholder="Limite annunci"  value="<?php echo $inpPortalMaxProperties ?>">
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->
@@ -51,6 +78,26 @@
 
 <div class="HR"></div>
 
+
+
+<!-- #################### PERSONAL AREA LINK  ######################## -->
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Link Area riservata</label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-globe"></i></div>
+                <input id="inp_portal_personal_area_link" name="inp_portal_personal_area_link" type="text" class="form-control" placeholder="Username area riservata"  value="<?php echo $inpPortalPersonalAreaLink ?>">
+
+            </div>
+        </div><!-- /.form-group -->
+    </div><!-- /.col-md-6 -->
+
+
+    <div class="col-md-6"> </div><!-- /.col-md-6 -->
+
+</div><!-- /.row -->
 
 <!-- #################### User  - Psw  ######################## -->
 <div class="row">
@@ -82,7 +129,6 @@
 
 
 <div class="HR"></div>
-
 
 
 <!-- #################### HAS CONTRACT  ######################## -->
