@@ -15,7 +15,7 @@
                     <div class="upload_image_container col-md-12 col-sm-12 col-xs-12 ALIGN_CENTER">
                         <input type="hidden" class="hidden_img_name" value="" />
                         <button type="button" onclick="selectFile(this);" class="btn btn-primary ">carica</button>
-                        <input type="file"  name="file_explorer" class="file_explorer" accept="image/jpeg">
+                        <input type="file" id="logo_img" name="logo_img" class="file_explorer" accept="image/jpeg">
                     </div>
                 </div>
             </div>

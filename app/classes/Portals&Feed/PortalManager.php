@@ -45,56 +45,99 @@ class PortalManager extends DbManager implements IDbManager {
 
 
 
-    public function SavePortalBasicInfo($name,$site,$logo_name,$entries_max,$notes,$enabled = 1){
-        $this->currTable = "prt_portals";
-        $values = array($name,$site,$logo_name,$entries_max,$notes,$enabled);
-        $fields = array("name","site","logo_name","entries_max","notes","enabled");
-        $ret = $this->create($values,$fields,true);
-        return $this->lastInsertId;
+    public function SavePortalBasicInfo($id_portal,$name,$site,$logo_name,$entries_max,$notes,$enabled = 1,$printQuery = false){
+        // TODO QUESTA è L UNICA FUNZIONE CHE DOVREBBE RICEVERE UN EVENTUALE ID PORTALE PER CONTROLLARE SE è NECESSARIO L' UPDATE O NO
+
+        $query = "SELECT `prt_save_basic_info`($id_portal,".
+            parent::escapeString($name).",".
+            parent::escapeString($site).",".
+            parent::escapeString($logo_name).",".
+            $entries_max.",".
+            parent::escapeString($notes).",".
+            $enabled.") as retId";
+
+        $ret = parent::executeNonQuery($query,$printQuery);
+
+        return $ret[0]["retId"];
+
+
     }
 
-    public function SavePortalLoginInfo($id_portal,$link,$user,$password){
-        $this->currTable = "prt_portals";
-        $values = array($id_portal,$link,$user,$password);
-        $fields = array("id_portal","personal_area_link","login_user","login_psw");
-        $ret = $this->create($values,$fields,true);
+    public function SavePortalContractInfo($id_portal,$start,$end,$price,$enabled = true,$printQuery = false){
+
+        $query = "CALL `prt_save_contract_info`($id_portal,".
+            parent::escapeString($start).",".
+            parent::escapeString($end).",".
+            $price.",".
+            $enabled.")";
+
+        $ret = parent::executeNonQuery($query,$printQuery);
+
+
         return $ret;
+
     }
 
-    public function SavePortalFtpInfo($id_portal,$ftp_url,$ftp_user,$ftp_password,$enabled){
-        $this->currTable = "prt_portal_ftp_info";
-        $values = array($id_portal,$ftp_url,$ftp_user,$ftp_password,$enabled);
-        $fields = array("id_portal","ftp_url","ftp_user","ftp_password","enabled");
-        $ret = $this->create($values,$fields,true);
+    public function SavePortalLoginInfo($id_portal,$link,$user,$password,$enabled = 1,$printQuery = false){
+
+        $query = "CALL `prt_save_login_info`($id_portal,".
+            parent::escapeString($link).",".
+            parent::escapeString($user).",".
+            parent::escapeString($password).",".
+            $enabled.")";
+
+        $ret = parent::executeNonQuery($query,$printQuery);
+
         return $ret;
+
     }
 
-    public function SavePortalDocumentation($id_portal,$doc_path,$doc_url){
-        $this->currTable = "prt_portal_ftp_info";
-        $values = array($id_portal,$doc_path,$doc_url);
-        $fields = array("id_portal","doc_path","doc_url");
-        $ret = $this->create($values,$fields,true);
+    public function SavePortalFtpInfo($id_portal,$ftp_link,$ftp_user,$ftp_password,$enabled = 1,$printQuery = false){
+
+        $query = "CALL `prt_save_ftp_info`($id_portal,".
+            parent::escapeString($ftp_link).",".
+            parent::escapeString($ftp_user).",".
+            parent::escapeString($ftp_password).",".
+            $enabled.")";
+
+        $ret = parent::executeNonQuery($query,$printQuery);
+
         return $ret;
+
     }
 
+    public function SavePortalDocumentation($id_portal,$doc_path,$doc_url,$printQuery = true){
 
-    public function SavePortalContactInfo($id_portal,$contact_name,$contact_email,$contact_phone,$contact_mobile_phone,$contact_address,$contact_city){
-        $this->currTable = "prt_portal_ftp_info";
-        $values = array($id_portal,$contact_name,$contact_email,$contact_phone,$contact_mobile_phone,$contact_address,$contact_city);
-        $fields = array("id_portal","contact_name","contact_email","contact_phone","contact_mobile_phone","contact_address","contact_city");
-        $ret = $this->create($values,$fields,true);
+
+        $query = "CALL `prt_save_documentation`($id_portal,".
+            parent::escapeString($doc_path).",".
+            parent::escapeString($doc_url).")";
+
+        $ret = parent::executeNonQuery($query,$printQuery);
+
         return $ret;
+
     }
 
-    public function UpdatePortalBasicInfo($id_portal,$name,$site,$logo_name,$entries_max,$notes,$enabled = 1){
-        $this->currTable = "prt_portals";
 
-        $ret = "";
+    public function SavePortalContactInfo($id_portal,$contactName,$contactEmail,$contactPhone,$contactMobile,$contactAddress,$contactCity,$printQuery = false){
+
+
+        $query = "CALL `prt_save_contact_info`($id_portal,".
+            parent::escapeString($contactName).",".
+            parent::escapeString($contactEmail).",".
+            parent::escapeString($contactPhone).",".
+            parent::escapeString($contactMobile).",".
+            parent::escapeString($contactAddress).",".
+            parent::escapeString($contactCity).")";
+
+        $ret = parent::executeNonQuery($query,$printQuery);
+
         return $ret;
+
     }
 
 
-    // TODO FUNZIONI PER UPDATE
 
 
 

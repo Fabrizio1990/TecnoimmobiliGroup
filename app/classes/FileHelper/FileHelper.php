@@ -7,11 +7,11 @@
  * Date: 27/02/2017
  * Time: 13:11
  */
-class FileHelper
+class  FileHelper
 {
 
-    public function readFile($filePath,$readMode ="r"){
-        if ($this->fileExist($filePath)){
+    public static function readFile($filePath,$readMode ="r"){
+        if (FileHelper::fileExist($filePath)){
             $file = fopen($filePath, $readMode) or die(Flog::logError("Unable to open file ->".$filePath,"FileManager.php"));
             $fileContent = fread($file,filesize($filePath));
             return $fileContent;
@@ -20,8 +20,10 @@ class FileHelper
         }
     }
 
-    public function fileExist($file){
+    public static function fileExist($file){
         return file_exists($file);
     }
+
+
 
 }
