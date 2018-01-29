@@ -6,7 +6,7 @@
             <label title="è anche il nome del file">Documenti feed Locali</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-file-archive-o"></i></div>
-                <input  type="file" id="inp_portal_feeds_doc" name="inp_portal_feeds_doc" class="form-control" />
+                <input  type="file" id="inp_portal_feeds_doc" name="inp_portal_feeds_doc" accept="application/zip" class="form-control" />
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->

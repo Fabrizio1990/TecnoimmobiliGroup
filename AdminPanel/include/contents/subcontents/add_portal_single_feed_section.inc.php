@@ -73,7 +73,7 @@ $feed_notes = isset($_GET["feed_notes"])?$_GET["feed_notes"]:"";
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Note</label>
-                    <textarea class="form-control txt_portal_feed_notes" rows="3" placeholder="Note del feed"><?php echo $feed_notes ?></textarea>
+                    <textarea id="txt_notes" name="txt_notes" class="form-control txt_portal_feed_notes" rows="3" placeholder="Note del feed"><?php echo $feed_notes ?></textarea>
                 </div>
             </div>
 

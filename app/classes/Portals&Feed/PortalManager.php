@@ -106,7 +106,7 @@ class PortalManager extends DbManager implements IDbManager {
 
     }
 
-    public function SavePortalDocumentation($id_portal,$doc_path,$doc_url,$printQuery = true){
+    public function SavePortalDocumentation($id_portal,$doc_path,$doc_url,$printQuery = false){
 
 
         $query = "CALL `prt_save_documentation`($id_portal,".

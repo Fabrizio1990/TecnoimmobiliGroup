@@ -70,7 +70,7 @@
 		$optBoxVal 					= $adsData[0]["id_box"];
 		$optGardensVal 				= $adsData[0]["id_garden"];
 		$optContractsVal 			= $adsData[0]["id_contract"];
-		//$optStatusVal 				= $adsData[0]["id_"];
+		//$optStatusVal 			= $adsData[0]["id_"];
 		$optEnergyClassVal 			= $adsData[0]["id_energy_class"];
 		$optIpeUmVal 				= $adsData[0]["id_ipe_um"];
 		$optPriceLoweredVal 		= $adsData[0]["is_price_lowered"];

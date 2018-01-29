@@ -14,16 +14,17 @@ $defFeedPath = "_OTHER/FEED_XML/output_feed";
 $id_portal                  = 0;
 
 // SEZIONE DATI PORTALE
+$imgPortal                  = SITE_URL."/".$imgInfo->info["properties"]["normal"]["path"]."/img_eof/Immagine_eof.jpg";
 $inpPortalName              = "";
-$inpPortalSite              = "";
-$inpPortalPersonalAreaLink  = "";
+$inpPortalSite              = "http://";
+$inpPortalPersonalAreaLink  = "http://";
 $inpPortalUsername          = "";
 $inpPortalPassword          = "";
-$inpPortalMaxProperties     = "";
+$inpPortalMaxProperties     = 0;
 $inpPortalHasContract       = "";
 $inpPortalContractStart     = "";
 $inpPortalContractEnd       = "";
-$inpPortalContractPrice     = "";
+$inpPortalContractPrice     = 0;
 $txtPortalNotes             = "";
 
 // SEZIONE DATI FTP
@@ -47,6 +48,56 @@ $inpPortalContactAddress    = "";
 
 
 
+
+/*
+##################################################################
+######################## ONLY FOR TEST ######################
+##################################################################
+*/
+
+$imgPortal                  = SITE_URL."/".$imgInfo->info["properties"]["normal"]["path"]."/img_eof/Immagine_eof.jpg";
+$inpPortalName              = "portale di prova";
+$inpPortalSite              = "http://portalediprova.it";
+$inpPortalPersonalAreaLink  = "http://areapersonale.it";
+$inpPortalUsername          = "user a caso";
+$inpPortalPassword          = "psw1";
+$inpPortalMaxProperties     = 22;
+$inpPortalHasContract       = 1;
+$inpPortalContractStart     = "2017-07-02";
+$inpPortalContractEnd       = "2017-07-03";
+$inpPortalContractPrice     = 10;
+$txtPortalNotes             = "a caso";
+
+// SEZIONE DATI FTP
+$inpPortalHasFtp            = 1;
+$inpPortalLinkFtp           = "ftp://ftpacaso.it";
+$inpPortalUserFtp           = "userftp a caso";
+$inpPortalPswFtp            = "psw2";
+
+//SEZIONE DATI FEED
+$inpPortalFeedsDoc       = "";
+$inpPortalDocLink        = "http://documentazione.it";
+
+
+// SEZIONE DATI CONTATTO
+$inpPortalContactName       = "nome a caso";
+$inpPortalContactEmail      = "email@gmail.it";
+$inpPortalContactPhone      = "011147";
+$inpPortalContactMobile     = "321123";
+$inpPortalContactCity       = "Torino";
+$inpPortalContactAddress    = "indirizzo a caso";
+
+
+/* END TEST*/
+
+
+
+
+
+
+
+
+
 if(isset($_REQUEST["id_portal"])){
     $id_portal = $_REQUEST["id_portal"];
     $res = $prtMng->getPortalDetails($id_portal);
@@ -54,7 +105,7 @@ if(isset($_REQUEST["id_portal"])){
         $details = $res[0];
 
         // SEZIONE DATI PORTALE
-        $imgPortal                  = $imgPathMin.$details["logo_name"];
+        $imgPortal                  = SITE_URL."/".$imgPathNormal.$details["logo_name"];
         $inpPortalName              = $details["portal_name"];
         $inpPortalSite              = $details["portal_site"];
         $inpPortalPersonalAreaLink  = $details["personal_area_link"];
@@ -92,9 +143,9 @@ if(isset($_REQUEST["id_portal"])){
 
 
 ?>
-<form name="FORM_PORTAL" id="FORM_PORTAL" novalidate accept-charset="UTF-8">
-	<input type ="hidden" name="action" id="action" value="<?php echo $action ?>" />
-	<input type ="hidden" name="id_ads" id="id_ads" value="<?php echo $id_portal ?>" />
+<form name="FORM_PORTAL" id="FORM_PORTAL" name="FORM_PORTAL" novalidate accept-charset="UTF-8">
+	<input type ="hidden" name="action" id="action" value="<?php //echo $action ?>" />
+	<input type ="hidden" name="id_portal" id="id_portal" value="<?php echo $id_portal ?>" />
 
 	<div class="row">
 	<!-- FILTRO PARAMETRI -->
@@ -168,7 +219,6 @@ if(isset($_REQUEST["id_portal"])){
 			</div> <!-- FINE NAV TABS -->
 
 		</div><!-- /.col-md-12 -->
-
 
 	</div><!-- /.row-->
 </form>

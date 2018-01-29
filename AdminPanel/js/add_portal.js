@@ -1,3 +1,4 @@
+var form;
 $(document).ready(function () {
 
 
@@ -47,6 +48,68 @@ $(document).ready(function () {
         $(event.target).closest(".box").remove();
     });*/
 
+
+
+
+    form = $("#FORM_PORTAL").validate({
+        ignore: 'input[type=hidden]',
+
+        rules:
+            {
+
+                inp_portal_name             : { required: true , minlength: 2, maxlength: 100 } ,
+                inp_portal_site             : { required: true , url: true} ,
+                inp_portal_max_properties   : { number : true} ,
+                inp_portal_personal_area_link :{url: true},
+                inp_portal_contract_start : {
+                    required: function (element) {
+                        return $('#inp_portal_hasContract').bootstrapSwitch('state');
+                    },
+                    date: true
+                },
+                inp_portal_contract_end:{
+                    required : function(element){
+                        return $('#inp_portal_hasContract').bootstrapSwitch('state');
+                    },
+                    date: true
+                },
+                inp_portal_link_ftp:{
+                    required : function(element){
+                        return $('#inp_portal_hasFtp').bootstrapSwitch('state');
+                    },
+                },
+                inp_portal_user_ftp:{
+                    required : function(element){
+                        return $('#inp_portal_hasFtp').bootstrapSwitch('state');
+                    },
+                },
+                inp_portal_psw_ftp:{
+                    required : function(element){
+                        return $('#inp_portal_hasFtp').bootstrapSwitch('state');
+                    },
+                },
+                inp_portal_feeds_doc_link : {url: true},
+                inp_portal_contact_email : {email: true}
+
+            },
+
+        submitHandler: function(form) {
+
+            var img_name = removeUrlParameters(fileNameFromUrl($("#img_portal").attr("src")));
+            if(img_name == "Immagine_eof.jpg"){
+                openInfoModal(5,"Attenzione!","Devi inserire il logo del portale");
+                return;
+            }
+            savePortal(form);
+
+        },
+        invalidHandler: function(event, validator) {
+            openInfoModal(5,"Attenzione!","Alcuni campi non sono tati compilati correttamente , ricontrolla i dati e riprova");
+        }
+    });
+
+
+
 });
 
 
@@ -64,5 +127,22 @@ function toggleVisibility(elem,enabled){
         elem.show();
     else
         elem.hide();
+}
+
+function savePortal(form){
+    var page = BASE_PATH+"/AdminPanel/ajax/add_portal_savePortal.ajax.php";
+    var params = $(form).serialize();
+    params += "&logo_portal="+encodeURIComponent(removeUrlParameters(fileNameFromUrl($("#img_portal").attr("src"))));
+    console.log(params);
+
+    ajaxCall(page,params,null,portalSaved,null,"POST");
+}
+
+
+function portalSaved(resp){
+    if(resp=="1"||resp=="0" || resp.toLowerCase() =="success")
+    openInfoModal(2,"Successo","Il portale è stato Salvato con successo","Chiudi",function(){window.location.reload();});
+else
+    openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni.","Chiudi");
 }
 

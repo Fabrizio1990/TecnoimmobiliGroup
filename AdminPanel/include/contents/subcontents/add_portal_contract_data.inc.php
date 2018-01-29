@@ -8,12 +8,12 @@
                 <h3 class="box-title ">Logo Portale</h3>
             </div>
             <div class="box-body  ">
-                <img   class="img img-responsive image_portal IMAGE_DRAG "  src="<?php echo SITE_URL."/".$imgPortal ?>"/>
+                <img  id="img_portal" name="img_portal" class="img img-responsive image_portal IMAGE_DRAG "  src="<?php echo $imgPortal ?>"/>
             </div>
             <div class="box-footer">
                 <div class="row">
                     <div class="upload_image_container col-md-12 col-sm-12 col-xs-12 ALIGN_CENTER">
-                        <input type="hidden" class="hidden_img_name" value="" />
+                        <input type="hidden" id= "hidden_img_name" class="hidden_img_name" value="" />
                         <button type="button" onclick="selectFile(this);" class="btn btn-primary ">carica</button>
                         <input type="file" id="logo_img" name="logo_img" class="file_explorer" accept="image/jpeg">
                     </div>
@@ -88,7 +88,7 @@
             <label>Link Area riservata</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-globe"></i></div>
-                <input id="inp_portal_personal_area_link" name="inp_portal_personal_area_link" type="text" class="form-control" placeholder="Username area riservata"  value="<?php echo $inpPortalPersonalAreaLink ?>">
+                <input id="inp_portal_personal_area_link" name="inp_portal_personal_area_link" type="text" class="form-control" placeholder="Link area riservata"  value="<?php echo $inpPortalPersonalAreaLink ?>">
 
             </div>
         </div><!-- /.form-group -->

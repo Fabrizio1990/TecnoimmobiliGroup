@@ -1,42 +1,49 @@
 <?php
 // PAGINA DI INSERIMENTO PORTALI
-if(isset($_POST["name"],$_POST["site"],$_POST["max_properties"], $_POST["ar_link"] ,$_POST["ar_username"],$_POST["ar_password"],$_POST["hasContract"],$_POST["contract_start"],$_POST["contract_end"],$_POST["note"],$_POST["hasFtp"],$_POST["ftp_link"],$_POST["ftp_user"],$_POST["ftp_password"])){
+
+
+
+if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_max_properties"], $_POST["inp_portal_personal_area_link"] ,$_POST["inp_portal_username"],$_POST["inp_portal_password"],$_POST["inp_portal_hasContract"],$_POST["inp_portal_contract_start"],$_POST["inp_portal_contract_end"],$_POST["inp_portal_hasFtp"],$_POST["inp_portal_link_ftp"],$_POST["inp_portal_user_ftp"],$_POST["inp_portal_psw_ftp"])){
+
+
 
     include("../../config.php");
     include(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
     require_once(BASE_PATH."/app/classes/DefValues.php");
+    include(BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
+    include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
     $pMng = new PortalManager();
     $defVal = new DefValues();
 
     $id_portal          = isset($_POST["id_portal"]) ? $_POST["id_portal"] : 0;
-    $logo_name          = "";//TODO SALVA IMMAGINE E RECUPERA NOME
-    $name               = $_POST["name"];
-    $site               = $_POST["site"];
-    $maxProperties      = $_POST["max_properties"];
-    $ar_link            = $_POST["ar_link"];
-    $ar_username        = $_POST["ar_username"];
-    $ar_password        = $_POST["ar_password"];
-    $hasContract        = $_POST["hasContract"];
-    $contractStart      = $_POST["contract_start"];
-    $contractEnd        = $_POST["contract_end"];
-    $contractPrice      = $_POST["contract_price"];
-    $note               = $_POST["note"];
+    $logo_name          = urldecode($_POST["logo_portal"]);
+    $name               = $_POST["inp_portal_name"];
+    $site               = $_POST["inp_portal_site"];
+    $maxProperties      = $_POST["inp_portal_max_properties"];
+    $ar_link            = $_POST["inp_portal_personal_area_link"];
+    $ar_username        = $_POST["inp_portal_username"];
+    $ar_password        = $_POST["inp_portal_password"];
+    $hasContract        = $_POST["inp_portal_hasContract"];
+    $contractStart      = $_POST["inp_portal_contract_start"];
+    $contractEnd        = $_POST["inp_portal_contract_end"];
+    $contractPrice      = $_POST["inp_portal_contract_price"];
+    $note               = isset($_POST["txt_notes"])?$_POST["txt_notes"]:"";
 
-    $hasFtp             = $_POST["hasFtp"];
-    $ftp_link           = $_POST["ftp_link"];
-    $ftp_user           = $_POST["ftp_user"];
-    $ftp_password       = $_POST["ftp_password"];
+    $hasFtp             = $_POST["inp_portal_hasFtp"];
+    $ftp_link           = $_POST["inp_portal_link_ftp"];
+    $ftp_user           = $_POST["inp_portal_user_ftp"];
+    $ftp_password       = $_POST["inp_portal_psw_ftp"];
 
     //$documentsFile      = isset($_FILES["documents_file"])?$_FILES["documents_file"]:null;
-    $documentsUrl       = $_POST["documents_url"];
+    $documentsUrl       = $_POST["inp_portal_feeds_doc_link"];
 
-    $contactName        = isset($_POST["contact_name"])?$_POST["contact_name"]:"";
-    $contactEmail       = isset($_POST["contact_email"])?$_POST["contact_email"]:"";
-    $contactPhone       = isset($_POST["contact_phone"])?$_POST["contact_phone"]:"";
-    $contactMobile      = isset($_POST["contact_mobile"])?$_POST["contact_mobile"]:"";
-    $contactCity        = isset($_POST["contact_city"])?$_POST["contact_city"]:"";
-    $contactAddress     = isset($_POST["contact_address"])?$_POST["contact_address"]:"";
+    $contactName        = isset($_POST["inp_portal_contact_name"])?$_POST["inp_portal_contact_name"]:"";
+    $contactEmail       = isset($_POST["inp_portal_contact_email"])?$_POST["inp_portal_contact_email"]:"";
+    $contactPhone       = isset($_POST["inp_portal_contact_phone"])?$_POST["inp_portal_contact_phone"]:"";
+    $contactMobile      = isset($_POST["inp_portal_contact_mobile"])?$_POST["inp_portal_contact_mobile"]:"";
+    $contactCity        = isset($_POST["inp_portal_contact_city"])?$_POST["inp_portal_contact_city"]:"";
+    $contactAddress     = isset($_POST["inp_portal_contact_address"])?$_POST["inp_portal_contact_address"]:"";
 
 
     $retPath = $defVal->getDefaultValue("portal_public_path");
@@ -102,10 +109,10 @@ if(isset($_POST["name"],$_POST["site"],$_POST["max_properties"], $_POST["ar_link
             exit();
         }
 
-        $portalNameEncoded = str_replace(".","_",$name);
+        $portalFolderName = "portal_".$id_portal;
         // CREO LE CARTELLE DI DOC E FEED
-        $docPath = BASE_PATH."/".$portalPublicPath."/".$portalNameEncoded."/".$portalDocFolder;
-        $feedPath = BASE_PATH."/".$portalPublicPath."/".$portalNameEncoded."/".$portalFeedsFolder;
+        $docPath = BASE_PATH."/".$portalPublicPath."/".$portalFolderName."/".$portalDocFolder;
+        $feedPath = BASE_PATH."/".$portalPublicPath."/".$portalFolderName."/".$portalFeedsFolder;
         if (!file_exists($docPath)) {
             mkdir($docPath, 0777, true);
         }
@@ -115,11 +122,14 @@ if(isset($_POST["name"],$_POST["site"],$_POST["max_properties"], $_POST["ar_link
 
         //SALVO GLI EVENTUALI DOC NELLA CARTELLA
         $docFinalPath = "";
+
         if(isset($_FILES['inp_portal_feeds_doc'])){
+            echo("FILE SETTATO");
             if (!$_FILES['inp_portal_feeds_doc']['size'] == 0 && !$_FILES['inp_portal_feeds_doc']['error'] == 0) {
+                echo("FILE ESISTE REALMENTE E LO SALVEREI VA");
                 $info = pathinfo($_FILES['inp_portal_feeds_doc']['name']);
                 $ext = $info['extension']; // get the extension of the file
-                $newname = $portalNameEncoded . "_doc" . $ext;
+                $newname = "doc" . $ext;
                 $docFinalPath = $docPath . '/' . $newname;
                 move_uploaded_file($_FILES['inp_portal_feeds_doc']['tmp_name'], $docFinalPath);
             }
@@ -136,14 +146,7 @@ if(isset($_POST["name"],$_POST["site"],$_POST["max_properties"], $_POST["ar_link
         echo("Success");
 
 
-
-
-
-
-    // TODO  FATTE LE ALTRE FUNZIONI DI SALVATAGGIO, IMPLEMENTARLE E PASSARE A QUELLE DI UPDATE
-    // TODO RECUPERARE PATH IMMAGINE SALVATA
-    // TODO SALVARE FILE DI DOCUMENTAZIONE E RECUPERARE PATH
-
+        // TODO SALVARE FILE DI DOCUMENTAZIONE E RECUPERARE PATH
 
 }else{
     echo("ACCESSO NON CONSENTITO");

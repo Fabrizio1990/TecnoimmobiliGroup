@@ -22,10 +22,13 @@
         for($i=0;$i<$resultFound;$i++) {
 
             $logo_path = SITE_URL."/".$imgPaths["portals"]["min"]["path"].$res[$i]["logo_name"];
+            $id = $res[$i]["id_portal"];
+            $link = SITE_URL."/AdminPanel/add_portal.php?id_portal=".$id;
+            $link = SITE_URL."/AdminPanel/add_portal.php";
 
             $date_ins ="<input type='hidden' value='".$res[$i]["portal_date_ins"] ."' />" . Date("d-m-Y", strtotime($res[$i]["portal_date_ins"]));
             $name   = htmlentities($res[$i]["portal_name"], ENT_QUOTES);
-            $img_logo = "<img src='".$logo_path."' alt='$name' />";
+            $img_logo = "<form action='$link' method='POST'><input type='hidden' name='id_portal' value='$id' /><img onclick=\"this.parentNode.submit()\" class='POINTER' src='".$logo_path."' alt='$name' /></form>";
             $notes   = htmlentities($res[$i]["notes"], ENT_QUOTES);
             $limitEntries = $res[$i]["entries_max"];
             $currentEntries = $res[$i]["count_properties"];
