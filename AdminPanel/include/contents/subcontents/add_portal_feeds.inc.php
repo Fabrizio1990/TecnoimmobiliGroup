@@ -25,11 +25,18 @@
 
 <div id="feed_container">
 <?php
+
 if($id_portal == 0){
     include (BASE_PATH."/AdminPanel/include/contents/subcontents/add_portal_single_feed_section.inc.php");
 }
 else{
-    //TODO IN QUESTO CASO DEVE CICLARE OGNI FEED E RECUPERARE LE INFO
+    $feeds = $prtMng->readPortalFeeds($id_portal);
+    for($i = 0 ,$len = Count($feeds); $i < $len; $i++){
+        $tmpName = $feeds[$i]["feed_name"];
+        $tmpFolder = $feeds[$i]["feed_folder"];
+        $tmpNotes = $feeds[$i]["notes"];
+        include (BASE_PATH."/AdminPanel/include/contents/subcontents/add_portal_single_feed_section.inc.php");
+    }
 }
 ?>
 </div>

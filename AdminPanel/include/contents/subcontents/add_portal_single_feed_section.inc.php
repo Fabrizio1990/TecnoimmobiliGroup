@@ -1,12 +1,9 @@
-
 <?php
-
-$feed_name = isset($_GET["feed_name"])?$_GET["feed_name"]:"";
-$feed_folder = isset($_GET["feed_folder"])?$_GET["feed_folder"]:"";
-$feed_link = $feed_folder!=""?(SITE_URL."/".$feed_folder."/".$feed_name):"";
-$feed_notes = isset($_GET["feed_notes"])?$_GET["feed_notes"]:"";
+    $feed_name = isset($tmpName)?$tmpName:"";
+    $feed_folder = isset($tmpFolder)?$tmpFolder:"";
+    $feed_link = $feed_folder!=""?(SITE_URL."/".$feed_folder."/".$feed_name):"";
+    $feed_notes = isset($tmpNotes)?$tmpNotes:"";
 ?>
-
 
 <div class="box box-primary">
     <div class="box-header">
@@ -61,11 +58,9 @@ $feed_notes = isset($_GET["feed_notes"])?$_GET["feed_notes"]:"";
                 </div><!-- /.form-group -->
             </div><!-- /.col-md-6 -->
 
-
             <div class="col-md-6"> </div><!-- /.col-md-6 -->
 
         </div><!-- /.row -->
-
 
         <!-- ####################  NOTE   ######################## -->
         <div class="row">

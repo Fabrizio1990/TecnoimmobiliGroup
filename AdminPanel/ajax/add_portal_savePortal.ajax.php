@@ -7,6 +7,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
 
 
+
     include("../../config.php");
     include(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
     require_once(BASE_PATH."/app/classes/DefValues.php");
@@ -47,13 +48,25 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
 
     $retPath = $defVal->getDefaultValue("portal_public_path");
-    $portalPublicPath = $retPath[0][0];
+    $portalsPublicPath = $retPath[0][0];
 
 
     $retPath = $defVal->getDefaultValue("portal_doc_folder");
-    $portalDocFolder = $retPath[0][0];
+    $portalsDocFolder = $retPath[0][0];
     $retPath = $defVal->getDefaultValue("portal_feeds_folder");
-    $portalFeedsFolder = $retPath[0][0];
+    $portalsFeedsFolder = $retPath[0][0];
+
+    //$portalsFeedPath = $portalsPublicPath + "/" + $portalsFeedsFolder;
+
+
+    // ################# SEZIONE INFO FEED
+    $feeds = json_decode($_POST["feedsInfo"]);
+
+
+
+
+
+    // ################# FINE SEZIONE INFO FEED
 
 
     // CONTROLLO SE ESISTE GIà UN PORTALE CON IL NOME E INDIRIZZO PASSATI
@@ -111,8 +124,8 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
         $portalFolderName = "portal_".$id_portal;
         // CREO LE CARTELLE DI DOC E FEED
-        $docPath = BASE_PATH."/".$portalPublicPath."/".$portalFolderName."/".$portalDocFolder;
-        $feedPath = BASE_PATH."/".$portalPublicPath."/".$portalFolderName."/".$portalFeedsFolder;
+        $docPath = BASE_PATH."/".$portalsPublicPath."/".$portalFolderName."/".$portalsDocFolder;
+        $feedPath = BASE_PATH."/".$portalsPublicPath."/".$portalFolderName."/".$portalsFeedsFolder;
         if (!file_exists($docPath)) {
             mkdir($docPath, 0777, true);
         }
@@ -141,6 +154,22 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
             echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI DOCUMENTAZIONE DEL PORTALE");
             exit();
         }
+
+
+        // RIPULISCO E RI  SALVO LA FEED LIST
+
+        $pMng->clearFeedList($id_portal);
+
+        foreach ($feeds as $feed){
+            $ret = $pMng->addFeed($id_portal,$feed->feed_name,$feedPath,$feed->feed_notes);
+            if($ret == null || $ret ==""){
+                $pMng->rollback();
+                echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DEI FEED");
+                exit();
+            }
+        }
+
+
 
         $pMng->commit();
         echo("Success");

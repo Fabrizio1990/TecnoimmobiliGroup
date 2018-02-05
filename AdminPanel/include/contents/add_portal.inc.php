@@ -91,13 +91,6 @@ $inpPortalContactAddress    = "indirizzo a caso";
 /* END TEST*/
 
 
-
-
-
-
-
-
-
 if(isset($_REQUEST["id_portal"])){
     $id_portal = $_REQUEST["id_portal"];
     $res = $prtMng->getPortalDetails($id_portal);

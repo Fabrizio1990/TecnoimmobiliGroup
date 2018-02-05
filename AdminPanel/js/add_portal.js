@@ -129,11 +129,27 @@ function toggleVisibility(elem,enabled){
         elem.hide();
 }
 
+function getFeeds(){
+
+    var ret = new Array();
+    $(".FEED_DATA").each(function( index ) {
+        var tmp = {
+            feed_name: $(this).find(".inp_portal_feed_name").val(),
+            feed_folder: $(this).find(".inp_portal_feed_foolder").val(),
+            feed_link : $(this).find(".inp_portal_feed_link").val(),
+            feed_notes : $(this).find(".txt_portal_feed_notes").val()
+        };
+        ret.push(tmp);
+    });
+    return ret;
+}
+
 function savePortal(form){
     var page = BASE_PATH+"/AdminPanel/ajax/add_portal_savePortal.ajax.php";
     var params = $(form).serialize();
     params += "&logo_portal="+encodeURIComponent(removeUrlParameters(fileNameFromUrl($("#img_portal").attr("src"))));
-    console.log(params);
+    var feeds = getFeeds();
+    params += "&feedsInfo="+JSON.stringify(feeds);
 
     ajaxCall(page,params,null,portalSaved,null,"POST");
 }

@@ -161,6 +161,27 @@ class PortalManager extends DbManager implements IDbManager {
     }
 
 
+    public function clearFeedList($portal_id){
+        $this->currTable = "prt_feeds";
+        $this->executeQuery("Call prt_delete_feeds($portal_id)");
+        //$this->delete("id_portal = ?",array($portal_id),null,true);
+        $this->setDefTable();
+    }
+
+    public function addFeed($portal_id,$feed_name,$feed_folder,$notes){
+        $this->currTable = "prt_feeds";
+        // TODO IL VALUES "1" che è il feed file type deve essere settato da tendina
+        $ret = $this->create(array($portal_id,$feed_folder,$feed_name,"1",$notes),array("id_portal","feed_folder","feed_name","feed_type","notes"));
+        $this->setDefTable();
+        return $ret;
+    }
+
+    public function readPortalFeeds($portalID){
+        $this->currTable = "prt_feeds";
+        $ret = $this->read("id_portal =?",null,array($portalID));
+        $this->setDefTable();
+        return $ret;
+    }
 
 
     public function setDefTable(){
