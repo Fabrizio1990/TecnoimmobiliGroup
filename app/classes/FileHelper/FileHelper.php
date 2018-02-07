@@ -1,12 +1,5 @@
-
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Developer
- * Date: 27/02/2017
- * Time: 13:11
- */
 class  FileHelper
 {
 
@@ -24,6 +17,16 @@ class  FileHelper
         return file_exists($file);
     }
 
+
+    public static function writeFile($filePath, $text){
+        if (FileHelper::fileExist($filePath)){
+            $file = fopen($filePath,"a+");
+            fwrite( $file ,$text);
+            fclose($file);
+        }else{
+            Flog::logError("Trying to open file that not exist ->".$filePath,"FileManager.php");
+        }
+    }
 
 
 }

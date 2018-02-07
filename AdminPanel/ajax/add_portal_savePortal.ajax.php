@@ -161,7 +161,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
         $pMng->clearFeedList($id_portal);
 
         foreach ($feeds as $feed){
-            $ret = $pMng->addFeed($id_portal,$feed->feed_name,$feedPath,$feed->feed_notes);
+            $ret = $pMng->addFeed($id_portal,$feed->feed_name,$feedPath,$feed->feed_filter_field,$feed->feed_filter_value,$feed->feed_notes);
             if($ret == null || $ret ==""){
                 $pMng->rollback();
                 echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DEI FEED");

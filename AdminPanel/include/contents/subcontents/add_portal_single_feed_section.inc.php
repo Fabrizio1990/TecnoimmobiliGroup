@@ -2,6 +2,8 @@
     $feed_name = isset($tmpName)?$tmpName:"";
     $feed_folder = isset($tmpFolder)?$tmpFolder:"";
     $feed_link = $feed_folder!=""?(SITE_URL."/".$feed_folder."/".$feed_name):"";
+    $feed_filter_field = isset($tmpFilterField)?$tmpFilterField:"";
+    $feed_filter_value = isset($tmpFilterValue)?$tmpFilterValue:"";
     $feed_notes = isset($tmpNotes)?$tmpNotes:"";
 ?>
 
@@ -62,13 +64,42 @@
 
         </div><!-- /.row -->
 
+
+        <!-- ####################  Filter INFO   ######################## -->
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label >Campo filtro</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa  fa-link"></i></div>
+                        <input  type="text" class="form-control inp_portal_filter_field" placeholder="Filter field"  value="<?php echo $feed_filter_field?>">
+
+                    </div>
+                </div><!-- /.form-group -->
+            </div><!-- /.col-md-6 -->
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label >Valore Filtro</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa  fa-link"></i></div>
+                        <input  type="text" class="form-control inp_portal_filter_value" placeholder="Filter value"  value="<?php echo $feed_filter_value?>">
+
+                    </div>
+                </div><!-- /.form-group -->
+            </div><!-- /.col-md-6 -->
+
+        </div><!-- /.row -->
+
+
         <!-- ####################  NOTE   ######################## -->
         <div class="row">
 
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Note</label>
-                    <textarea id="txt_notes" name="txt_notes" class="form-control txt_portal_feed_notes" rows="3" placeholder="Note del feed"><?php echo $feed_notes ?></textarea>
+                    <textarea  class="form-control txt_portal_feed_notes" rows="3" placeholder="Note del feed"><?php echo $feed_notes ?></textarea>
                 </div>
             </div>
 

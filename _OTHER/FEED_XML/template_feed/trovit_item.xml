@@ -1,0 +1,31 @@
+<ad>
+    <id><![CDATA[{id}]]></id>
+    <url><![CDATA[{dettaglioUrl}]]></url>
+    <title><![CDATA[{toloAlternativo}]]></title>
+    <type><![CDATA[{tipoContratto}]]></type>
+    <content><![CDATA[{desc}]]></content>
+
+    <price><![CDATA[{prezzo}]]></price>
+    <property_type><![CDATA[{tipo}]]></property_type>
+
+    <address><![CDATA[{indirizzoBreve}]]></address>
+    <city_area><![CDATA[{zona}]]></city_area>
+    <city><![CDATA[{citta}]]></city>
+    <region><![CDATA[{provincia}]]></region>
+    <postcode><![CDATA[]]></postcode>
+    <latitude><![CDATA[{latitudine}]]></latitude>
+    <longitude><![CDATA[{longitudine}]]></longitude>
+    <agency><![CDATA[{nomeAgenzia}]]></agency>
+
+    <floor_area unit="meters"><![CDATA[{metratura}]]></floor_area>
+    <rooms><![CDATA[{stanze}]]></rooms>
+    <bathrooms><![CDATA[{bagni}]]></bathrooms>
+   
+
+    {pictures}
+  {tagImmagine1}{tagImmagine2}{tagImmagine3}{tagImmagine4}{tagImmagine5}{tagImmagine6}{tagImmagine7}{tagImmagine8}{tagImmagine9}
+  {tagImmagine10}
+  {endPictures}
+
+<date><![CDATA[{dataPubblicazione}]]></date>
+</ad>

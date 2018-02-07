@@ -137,6 +137,8 @@ function getFeeds(){
             feed_name: $(this).find(".inp_portal_feed_name").val(),
             feed_folder: $(this).find(".inp_portal_feed_foolder").val(),
             feed_link : $(this).find(".inp_portal_feed_link").val(),
+            feed_filter_field : $(this).find(".inp_portal_filter_field").val(),
+            feed_filter_value : $(this).find(".inp_portal_filter_value").val(),
             feed_notes : $(this).find(".txt_portal_feed_notes").val()
         };
         ret.push(tmp);

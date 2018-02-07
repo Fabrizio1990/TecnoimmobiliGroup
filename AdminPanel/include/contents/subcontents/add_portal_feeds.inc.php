@@ -30,11 +30,15 @@ if($id_portal == 0){
     include (BASE_PATH."/AdminPanel/include/contents/subcontents/add_portal_single_feed_section.inc.php");
 }
 else{
+    // LEGGO E STAMPO TUTTI I FEED
     $feeds = $prtMng->readPortalFeeds($id_portal);
     for($i = 0 ,$len = Count($feeds); $i < $len; $i++){
         $tmpName = $feeds[$i]["feed_name"];
         $tmpFolder = $feeds[$i]["feed_folder"];
+        $tmpFilterField = $feeds[$i]["filter_field"];
+        $tmpFilterValue = $feeds[$i]["filter_value"];
         $tmpNotes = $feeds[$i]["notes"];
+
         include (BASE_PATH."/AdminPanel/include/contents/subcontents/add_portal_single_feed_section.inc.php");
     }
 }
