@@ -77,7 +77,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                         <div class="box_type" title="<?php echo $priceTit ?>"><?php echo $price ?></div>
                         <div class="status_type"><?php echo $resSP[$i]["contract_status"] ?></div>
                     </div>
-                    <h2 class="title"><a href="single-property.html"><?php echo PropertyLinksAndTitles::getTitle($reference_code,2) ?></a></h2>
+                    <h2 class="title"><a href="single-property.html"><?php echo PropertyLinksAndTitles::getTitleFromRef($reference_code,2) ?></a></h2>
                     <div class="boxed_mini_details clearfix">
                         <span class="first" title="<?php echo $resSP[$i]["box"] ?>"><strong></strong><i class="icon-garage"></i> <?php echo $boxTxt ?></span>
                         <span class="" title="<?php echo $resSP[$i]["rooms"] ?>"><strong></strong><i class="icon-bed"></i> <?php echo $resSP[$i]["rooms_short"] ?></span>

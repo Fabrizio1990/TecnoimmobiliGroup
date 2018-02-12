@@ -15,25 +15,38 @@ class PropertyLinksAndTitles
     //##################################################################################
     // ################################# TITLES SECTION #################################
     // #################################################################################
-    public static function getTitleFromId($id){
+    public static function getTitleFromId($id,$titleType = 3){
         $mng = new PropertyManager();
         $res = $mng->readAllAds("id = ?","limit 1",array($id),null,null);
-        if(Count($res)>0)
-            return PropertyLinksAndTitles::getTitle($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"]);
-        else
+        if(Count($res)<=0)
             return false;
+
+        $res = $res[0];
+        $ret = "";
+        switch ($titleType){
+            case 1:
+                $ret = $res["tipology"]." in ".$res["contract"];
+                break;
+            case 2:
+                $ret = $res["tipology"]." in ".$res["contract"]." ".$res["town"];
+                break;
+            case 3:
+                $ret = $res["tipology"]." in ".$res["contract"]." ".$res["town"].", ".$res["street"];
+                break;
+            case 4:
+                $ret = $res["tipology"]. " " .$res["street"];
+                $ret .= $res["district"] == $res["town"] ? ", ". $res["town"]: ", ".  $res["district"] .", ". $res["town"];
+                break;
+            default:
+                $ret = $res["tipology"]." in ".$res["contract"];
+                break;
+        }
+        return $ret;
     }
 
-    public static function getTitleFromRef($ref){
-        $mng = new PropertyManager();
-        $res = $mng->readAllAds("reference_code = ?","limit 1",array($ref),null,null);
-        if(Count($res)>0)
-            return PropertyLinksAndTitles::getTitle($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"]);
-        else
-            return false;
-    }
 
-    public static function getTitle($ref,$titleType){
+
+    public static function getTitleFromRef($ref, $titleType = 3){
 
         $mng = new PropertyManager();
         $res = $mng->readAllAds("reference_code = ?","limit 1",array($ref),null,null);
@@ -63,7 +76,11 @@ class PropertyLinksAndTitles
         return $ret;
     }
 
+
+
+
     public static function getTitleNoDb($tipology,$contract,$town = null,$street = null,$district = null){
+
         if($town == null)
             return $tipology. " in ". $contract;
         else if($street == null)

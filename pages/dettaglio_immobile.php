@@ -19,7 +19,7 @@ if(Count($details)<=0 || $details[0]["id_ads_status"] != 1)
 
 $details = $details[0];
 
-$title = PropertyLinksAndTitles::getTitle($reference_code,3);
+$title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ $title = PropertyLinksAndTitles::getTitle($reference_code,3);
     <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title><?php echo PropertyLinksAndTitles::getTitle($reference_code,4). " - TecnoimmobiliGroup" ?></title>
+    <title><?php echo PropertyLinksAndTitles::getTitleFromRef($reference_code,4). " - TecnoimmobiliGroup" ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">

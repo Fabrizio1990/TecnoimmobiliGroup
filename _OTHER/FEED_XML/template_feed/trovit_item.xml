@@ -1,25 +1,25 @@
 <ad>
-    <id><![CDATA[{id}]]></id>
-    <url><![CDATA[{dettaglioUrl}]]></url>
-    <title><![CDATA[{toloAlternativo}]]></title>
-    <type><![CDATA[{tipoContratto}]]></type>
-    <content><![CDATA[{desc}]]></content>
+    <id><![CDATA[{id_property}]]></id>
+    <url><![CDATA[{link}]]></url>
+    <title><![CDATA[{title}]]></title>
+    <type><![CDATA[{contract}]]></type>
+    <content><![CDATA[{description}]]></content>
 
-    <price><![CDATA[{prezzo}]]></price>
-    <property_type><![CDATA[{tipo}]]></property_type>
+    <price><![CDATA[{price}]]></price>
+    <property_type><![CDATA[{tipology}]]></property_type>
 
-    <address><![CDATA[{indirizzoBreve}]]></address>
-    <city_area><![CDATA[{zona}]]></city_area>
-    <city><![CDATA[{citta}]]></city>
-    <region><![CDATA[{provincia}]]></region>
+    <address><![CDATA[{street}]]></address>
+    <city_area><![CDATA[{district}]]></city_area>
+    <city><![CDATA[{town}]]></city>
+    <region><![CDATA[{city}]]></region>
     <postcode><![CDATA[]]></postcode>
-    <latitude><![CDATA[{latitudine}]]></latitude>
-    <longitude><![CDATA[{longitudine}]]></longitude>
-    <agency><![CDATA[{nomeAgenzia}]]></agency>
+    <latitude><![CDATA[{latitude}]]></latitude>
+    <longitude><![CDATA[{longitude}]]></longitude>
+    <agency><![CDATA[{agencyName}]]></agency>
 
-    <floor_area unit="meters"><![CDATA[{metratura}]]></floor_area>
-    <rooms><![CDATA[{stanze}]]></rooms>
-    <bathrooms><![CDATA[{bagni}]]></bathrooms>
+    <floor_area unit="meters"><![CDATA[{surface}]]></floor_area>
+    <rooms><![CDATA[{rooms}]]></rooms>
+    <bathrooms><![CDATA[{bathrooms}]]></bathrooms>
    
 
     {pictures}
@@ -27,5 +27,5 @@
   {tagImmagine10}
   {endPictures}
 
-<date><![CDATA[{dataPubblicazione}]]></date>
+<date><![CDATA[{date_up}]]></date>
 </ad>
