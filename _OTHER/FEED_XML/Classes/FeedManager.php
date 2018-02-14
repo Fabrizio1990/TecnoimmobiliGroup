@@ -3,6 +3,7 @@ require_once ("../../config.php");
 require_once (BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
 require_once (BASE_PATH."/_OTHER/FEED_XML/Classes/FeedInfo.php");
 require_once (BASE_PATH."/app/classes/FileHelper/FileHelper.php");
+
 class FeedManager
 {
 

@@ -184,6 +184,20 @@ class PortalManager extends DbManager implements IDbManager {
         return $ret;
     }
 
+    public function setNewPropertiesLimit($portalID,$newLimit){
+        $this->setTable("prt_portals");
+        $ret = $this->update("entries_max = ?","id = ?",array($newLimit,$portalID));
+        $this->setDefTable();
+        return $ret;
+    }
+
+    public function setPortalStatus($portalID,$newStatus){
+        $this->setTable("prt_portals");
+        $ret = $this->update("enabled = ?","id = ?",array($newStatus,$portalID));
+        $this->setDefTable();
+        return $ret;
+    }
+
 
     public function setDefTable(){
         $this->currTable = self::defTable;

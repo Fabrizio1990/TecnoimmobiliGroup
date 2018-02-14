@@ -34,6 +34,8 @@ $act_portals_panel = true;
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/css/bootstrap.min.css">
+    <!-- Bootstrap Switch -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/css/bootstrap3/bootstrap-switch.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -58,7 +60,8 @@ folder instead of downloading all of them to reduce the load. -->
 
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
-
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/utils.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/portal_panel.css" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
@@ -132,6 +135,8 @@ folder instead of downloading all of them to reduce the load. -->
     </script>
     <!-- Bootstrap 3.3.6 -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/js/bootstrap-switch.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/dist/js/app.min.js"></script>
     <!-- DataTables -->
@@ -185,6 +190,8 @@ folder instead of downloading all of them to reduce the load. -->
                     $('.Tooltip').tooltip({
                         container: 'body'
                     });
+                    //genero gli switch
+                    bindSwitches();
                 },
             });
         });

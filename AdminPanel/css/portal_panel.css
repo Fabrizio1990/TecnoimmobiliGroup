@@ -1,0 +1,5 @@
+#DT_PORTALS tr td{vertical-align: middle;}
+#DT_PORTALS tr td .editMode input{width:100%;}
+.fa-edit:hover{cursor:pointer;color:#3c8dbc;}
+.fa-save:hover{cursor:pointer;color:#3c8dbc;}
+.fa-undo:hover{cursor:pointer;color:#3c8dbc;}

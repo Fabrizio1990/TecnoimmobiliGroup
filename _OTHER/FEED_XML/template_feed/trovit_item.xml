@@ -15,17 +15,16 @@
     <postcode><![CDATA[]]></postcode>
     <latitude><![CDATA[{latitude}]]></latitude>
     <longitude><![CDATA[{longitude}]]></longitude>
-    <agency><![CDATA[{agencyName}]]></agency>
+    <agency><![CDATA[{agency_name}]]></agency>
 
     <floor_area unit="meters"><![CDATA[{surface}]]></floor_area>
     <rooms><![CDATA[{rooms}]]></rooms>
     <bathrooms><![CDATA[{bathrooms}]]></bathrooms>
    
 
-    {pictures}
-  {tagImmagine1}{tagImmagine2}{tagImmagine3}{tagImmagine4}{tagImmagine5}{tagImmagine6}{tagImmagine7}{tagImmagine8}{tagImmagine9}
-  {tagImmagine10}
-  {endPictures}
+  {images_start}
+	  {images}
+  {images_end}
 
 <date><![CDATA[{date_up}]]></date>
 </ad>

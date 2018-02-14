@@ -1,19 +1,32 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: fabri
- * Date: 12/02/2018
- * Time: 13:35
- */
+header("content-type: text/xml");
 class FeedTroivt extends Feed
 {
 
-    /*public function __construct($portalId,$template,$items) {
-        parent::$portalId = $portalId;
-        parent::$template = $template;
-        parent::$items = $items;
-    }*/
+    public function getPropertyFeed($rst){
+        $finalFile = parent::getPropertyFeed($rst);
+        return $finalFile;
+    }
+
+    public function PopulateRow($row){
+        $tmpItems =  parent::PopulateRow($row);
+        //$tmpItems = str_replace("{images_start}","prova",$tmpItems);
+        return $tmpItems;
+    }
+
+    public function PopulateImages($images,$template){
+        $ret = $template;
+        $ret = str_replace("{images_start}","<pictures>",$ret);
+
+        $imagesTmp = "";
+        for($i = 0 ; $i < Count($images) ; $i++){
+            $isFeatured = $images[$i]["id_type"] == 1?"true":"false";
+            $imagesTmp .= "<picture featured='".$isFeatured."'><picture_url><![CDATA[".$images[$i]["url"]."]]></picture_url><picture_title><![CDATA[]]></picture_title></picture>";
+        }
+        $ret = str_replace("{images}",$imagesTmp,$ret);
+        $ret = str_replace("{images_end}","</pictures>",$ret);
+        return $ret;
+    }
 
 
 }
