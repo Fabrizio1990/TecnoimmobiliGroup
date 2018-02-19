@@ -22,6 +22,23 @@ $act_list_properties 	= true; // setta attivo il menu immobili
 
 $id_portal = $_REQUEST["id_portal"];
 
+
+require_once(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
+include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+
+$pMng = new PortalManager();
+$imgH = new ImagesInfo();
+
+$imgPaths = $imgH->info;
+
+
+$pDetails = $pMng->getPortalDetails($id_portal);
+$pDetails = $pDetails[0];
+
+$portal_name = $pDetails["portal_name"];
+$portal_logo = SITE_URL."/".$imgPaths["portals"]["normal"]["path"].$pDetails["logo_name"];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +47,7 @@ $id_portal = $_REQUEST["id_portal"];
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TecnoimmobiliGroup | Visualizza Immobili</title>
+    <title>TecnoimmobiliGroup | Visualizza Immobili Sul Portale <?php echo("(".$portal_name.")") ?> </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -100,16 +117,21 @@ $id_portal = $_REQUEST["id_portal"];
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small>Modifica immobili</small>
+                    <small>Modifica immobili sul portale <?php echo("(".$portal_name.")") ?> </small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Immobili</a></li>
-					<li><a href="show_properties.php"><i class="fa fa-edit"></i> Modifica immobili</a></li>
+					<li><a href="show_properties.php"><i class="fa fa-edit"></i> Modifica immobili sul portale</a></li>
                 </ol>
             </section>
 
             <!-- MAIN CONTENT -->
             <section class="content">
+                <div class="row">
+                    <div class="col-md-12 ALIGN_CENTER">
+                        <img style="width: 300px;border:1px solid lightgrey;" src="<?php echo($portal_logo) ?>" />
+                    </div>
+                </div>
 				<?php 
 				include(BASE_PATH."/AdminPanel/include/contents/show_properties_on_portal.inc.php");
 				?>
