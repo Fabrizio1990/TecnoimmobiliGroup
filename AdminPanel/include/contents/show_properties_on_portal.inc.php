@@ -191,7 +191,7 @@ $optAdsStatus 		=  $mng->makeOptions("ads_status",null,true);
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
-				<?php include(BASE_PATH . "/AdminPanel/include/widgets/property_list_widget.inc.php"); ?>
+				<?php include(BASE_PATH."/AdminPanel/include/widgets/property_list_on_portal_widget.inc.php"); ?>
 			</div>
 			<!-- /.box-body -->
 		</div>

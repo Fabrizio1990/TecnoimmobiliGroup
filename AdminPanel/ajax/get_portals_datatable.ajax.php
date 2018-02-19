@@ -11,6 +11,7 @@
 
 
 
+
 	$ret = array("aaData"=>array());//sintassi di base che si aspetta datatable , cioè un json con elemento padre aaData e i sottoelementi contengono i dati
 
 
@@ -44,8 +45,12 @@
 
             /***************************/
 
+            $propertiesLink = SITE_URL."/AdminPanel/show_properties_on_portal.php?id_portal=".$id;
 
-            $currentEntries = $res[$i]["count_properties"];
+            $currentEntries = "<div class='col-md-9 PADDING-0' >".$res[$i]["count_properties"]."</div>"."<div class='col-md-3 PADDING-0'><a href='$propertiesLink' type=\"button\" class=\"btn  btn-info btn-xs \" ><i class='fa fa-fw fa-edit' ></i></a></div>";
+
+
+
             $portal_status  = "<input type='checkbox' class='switch' " .($res[$i]["portal_enabled"]=="1"?"checked":"") .">";
             ;
 

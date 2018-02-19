@@ -1,6 +1,6 @@
 <?php
-header("content-type: text/xml");
-class FeedTroivt extends Feed
+//header("content-type: text/text;charset=utf-8");
+class FeedTrovit extends Feed
 {
 
     public function getPropertyFeed($rst){

@@ -1,5 +1,5 @@
 <?php
-header("content-type: text/text");
+header("content-type: text/text;charset=utf-8");
 
 require ("../../config.php");
 
@@ -15,7 +15,7 @@ $webSite = $_GET["id"];
 
 $feed = new FeedManager();
 
-$feed->generateFeed($webSite,false);
+$feed->generateFeed($webSite,true);
 
 
 

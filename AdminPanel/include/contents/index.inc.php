@@ -18,7 +18,7 @@
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
-				<?php include(BASE_PATH."/AdminPanel/include/widgets/propery_list_widget.inc.php"); ?>
+				<?php include(BASE_PATH . "/AdminPanel/include/widgets/property_list_widget.inc.php"); ?>
 			</div>
 			<!-- /.box-body -->
 		</div>

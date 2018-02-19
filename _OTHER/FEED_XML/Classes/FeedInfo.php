@@ -83,4 +83,8 @@ class FeedInfo extends DbManager implements IDbManager {
     public function setTable($tbName){
         $this->currTable = $tbName;
     }
+
+
 }
+
+

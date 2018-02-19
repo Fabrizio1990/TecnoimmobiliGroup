@@ -1,6 +1,6 @@
 <?php
 require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
-header("content-type: text/xml");
+//header("content-type: text/text;charset=utf-8");
 class Feed
 {
 
