@@ -22,6 +22,7 @@
     $propertyM = new PropertyManager();
     $userLogged = SessionManager::getVal("user",true);
 	$agency_id = $userLogged->id;
+	$portal_id = isset($_REQUEST["id_portal"])?$_REQUEST["id_portal"]:0;
 	$array = array("aaData"=>array());//sintassi di base che si aspetta datatable , cioè un json con elemento padre aaData e i sottoelementi contengono i dati
 
 
@@ -120,12 +121,14 @@
         array_push($params, " id_ads_status   in(1,2,4)");//ENABLED,DISABLED
     }
     //var_dump($values);
-
-    $res = $propertyM->readAllAds($params,null,$values,null);
+$isOnPortalSubQuery = array("properties_view.*","(select Count(id) from prt_portal_properties where id_portal=".$portal_id." and id_property=properties_view.id ) as isEnabledOnPortal ");
+    $res = $propertyM->readAllAds($params,null,$values,$isOnPortalSubQuery,false);
 
 	$resultFound = Count($res);
 	if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
 	    for($i=0;$i<$resultFound;$i++) {
+
+	        $property_id = $res[$i]["id"];
             $resImg = "";
             /* --- CONVERTO LE DATE TOGLIENDO L'ora (ma metto la data completa hidden perchè serve per un ordinamento corretto --*/
             $data_up = Date("d-m-Y", strtotime($res[$i]["date_up"]));
@@ -137,7 +140,7 @@
             // Dati proprietario che verranno mostrati nel title dell' immagine (tooltip bootstrap)
             $infoImg = "";
             if($userLogged->id_user_type==1 &&  $res[$i]["id_easywork"]!=null && $res[$i]["id_easywork"]!="0"){
-                $retApp = $propertyM->getAppointment($res[$i]["id"]);
+                $retApp = $propertyM->getAppointment($property_id);
                 if(count($retApp)>0){
                     $imgTit.="<h3>Dati proprietario</h3>";
                     $imgTit.="<p><i>Nome  : </i><b>".$retApp[0]["owner_name"]."</b>";
@@ -163,7 +166,7 @@
 
             $first_col = "
             <form name='GoToAds' method='POST' ACTION='".SITE_URL."/AdminPanel/add_property.php'>
-            <input type='hidden' name='id_ads' value='".$res[$i]["id"]."'/>
+            <input type='hidden' name='id_ads' value='".$property_id."'/>
             ".$infoImg."
             <img  onclick='this.parentNode.submit()' class='real_tumb POINTER Tooltip' style='width:70px;height:50px'  src=$imgPath?id=". $rand_num . "' alt='Immagine Mancante' data-toggle='tooltip' data-placement='right' data-html='true' title='".$imgTit."'/> </form>";
 
@@ -180,7 +183,7 @@
                 $ico_contract_status = "<img style=' border:0;' title='".$res[$i]["contract_status"]."' src='".SITE_URL."/".$contract_status_image_path."'>";
 
         //compongo la cella stato
-        $ads_status = '<div id="stato_annuncio'.$res[$i]["id"].'"><img class="POINTER" onclick="openAdsStatusSwitch('.$res[$i]["id"].',' . $res[$i]['id_ads_status'] . ',this)" id="ads_status_img_'.$res[$i]["id"].'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstatus.'" ><p>'.$ico_contract_status.'</p></div>';
+        $ads_status = '<div id="stato_annuncio'.$property_id.'"><img class="POINTER" onclick="openAdsStatusSwitch('.$property_id.',' . $res[$i]['id_ads_status'] . ',this)" id="ads_status_img_'.$property_id.'" style="width:24px;height:24px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strstatus.'" ><p>'.$ico_contract_status.'</p></div>';
             /* ------------   ------------ */
 
             /* ------------ RECUPERO DATI PER COLONNA RIVISTA ------------ */
@@ -191,24 +194,24 @@
             {
                 $strRivista = SITE_URL."/AdminPanel/images/icons/ico_newspaper_off.png";
             }
-            $rivista = '<input type="hidden" id="magazine_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_magazine"] .'"/><img class="POINTER" onclick="SwitchNewsStatus('.$res[$i]["id"].',this)" id="news_status_img_'.$res[$i]["id"].'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" >';
-				/* -----------   ------------ */
+            $rivista = '<input type="hidden" id="magazine_status_'.$property_id.'" value="' . $res[$i]["show_on_magazine"] .'"/><img class="POINTER" onclick="SwitchNewsStatus('.$property_id.',this)" id="news_status_img_'.$property_id.'" style="width:48px;height:48px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strRivista.'" >';
+			/* -----------   ------------ */
+            /* CHECK IF PROPERTY IS ON PORTAL */
+            /* -----------   ------------ */
 
+            $enabledOnPortal = $res[$i]["isEnabledOnPortal"];
+            if($enabledOnPortal >= "1"){
+                $strPortali = SITE_URL."/AdminPanel/images/icons/ico_portal_on.png";
+            }
+            else
+            {
+                $strPortali = SITE_URL."/AdminPanel/images/icons/ico_portal_off.png";
+            }
 
+            $portali = '<div class="hidden">'.$enabledOnPortal.'</div></div><input type="hidden" id="ads_portal_status_'.$property_id.'" value="' . $res[$i]["show_on_portal"] .'"/><img class="POINTER" onclick="switchPropertyOnPortalStatus(this,'.$portal_id.','.$property_id.')" id="portal_status_img_'.$property_id.'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
 
-
-					if($res[$i]["show_on_portal"]=="1"){
-						$strPortali = SITE_URL."/AdminPanel/images/icons/ico_portal_on.png";
-					}
-					else
-					{
-						$strPortali = SITE_URL."/AdminPanel/images/icons/ico_portal_off.png";
-					}
-
-					$portali = '<input type="hidden" id="ads_portal_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_portal"] .'"/><img class="POINTER" onclick="console.log("switch status on portal to be implement" id="portal_status_img_'.$res[$i]["id"].'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
-
-					// se sono amministratore restituisco anche i dati dei portali alla datatable
-					array_push($array["aaData"],array($first_col,$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_up_field,$ads_status,$portali));
+            // se sono amministratore restituisco anche i dati dei portali alla datatable
+            array_push($array["aaData"],array($first_col,$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_up_field,$ads_status,$portali));
 
 
 

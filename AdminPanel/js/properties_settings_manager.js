@@ -86,6 +86,9 @@ function SwitchPortalStatusAction(strRes,params){
 		GEBI(params[2]).src = img_portal_stats[params[1]]+"?"+Math.random(1,100);
 	}else
 		console.log("Lo stato della rivista per quest annuncio non è stato modificato, controlla che non sia già in quello stato ");
-	
+
 }
+
+
+
 

@@ -166,7 +166,7 @@ $id_portal = $_REQUEST["id_portal"];
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
-	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/show_properties.js"></script>
+	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/show_properties_on_portal.js"></script>
 
 	
 	
@@ -199,7 +199,7 @@ $id_portal = $_REQUEST["id_portal"];
 				"columnDefs": [
 					{ targets: "_all",className: "ALIGN_CENTER"}
 				  ],
-                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_properties_on_portal_datatable.ajax.php?id=<?php echo $id_portal ?>",
+                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_properties_on_portal_datatable.ajax.php?id_portal=<?php echo $id_portal ?>",
                 "fnDrawCallback": function( oSettings ) {
                     // serve per l' autowidht del tooltip
                     $('.Tooltip').tooltip({

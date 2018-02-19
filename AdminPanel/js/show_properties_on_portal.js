@@ -1,6 +1,16 @@
+var id_portal;
+
+
+var img_portal_stats = [
+    BASE_PATH+"/AdminPanel/images/icons/ico_portal_off.png" + "?" + rnd,
+    BASE_PATH+"/AdminPanel/images/icons/ico_portal_on.png" + "?" + rnd
+];
+
+$( document ).ready(function() {
+    id_portal = $("#id_portal").val();
+});
 
 function submitFilter(){
-	var id_portal = $("#id_portal").val;
 	var sel_agency = $("#sel_agency"),sel_category = $("#sel_category"),selTipology = $("#sel_tipology"),sel_country = $("#sel_country"),sel_region = $("#sel_region"),sel_city = $("#sel_city"),sel_town = $("#sel_town"),sel_district = $("#sel_district"),sel_ads_status = $("#sel_ads_status");
 
 	var dtRange_from 	= moment($('#sel_dateRange').data('daterangepicker').startDate._d).format('YYYY-MM-DD HH:mm:ss');
@@ -20,7 +30,19 @@ function submitFilter(){
 
 	table.ajax.url( BASE_PATH+'/AdminPanel/ajax/get_properties_on_portal_datatable.ajax.php?'+ params ).load();
 
-
 }
 
+function switchPropertyOnPortalStatus(elem,id_portal,id_property){
+    var page = BASE_PATH+"/AdminPanel/ajax/switch_property_on_portal.ajax.php";
+    var params ="id_property="+ id_property +"&id_portal="+id_portal+"&rnd=" +Math.random();
+    ajaxCall(page,params,elem,switchPropertyOnPortalStatusAction,ajax_fail,"POST")
+}
 
+function switchPropertyOnPortalStatusAction(strRes,elem){
+	console.log("RES = "+strRes);
+    if(parseInt(strRes)>= 0) {
+        GEBI(elem).src = img_portal_stats[strRes]+"?"+Math.random(1,100);
+    }else
+        console.log("E' avvenuto un errore sconosciuto");
+
+}

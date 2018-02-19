@@ -198,6 +198,29 @@ class PortalManager extends DbManager implements IDbManager {
         return $ret;
     }
 
+    public function switchPropertyOnPortalStatus($id_portal,$id_property){
+        $this->setTable("prt_portal_properties");
+        $ret = 0 ;
+
+        $fields = array("id_portal","id_property");
+        $params = array("id_portal = ?","id_property = ?");
+        $values = array($id_portal,$id_property);
+
+        $cntRet = $this->read($params,null,$values,"Count(id) as cnt");
+
+        if($cntRet[0][0] == "0"){
+            $this->create($values,$fields);
+            $ret = 1;
+
+        }else{
+            $this->delete($params,$values);
+            $ret = 0;
+        }
+        $this->setDefTable();
+        //RETURN THE NEW STATUS
+        return $ret;
+    }
+
 
     public function setDefTable(){
         $this->currTable = self::defTable;
