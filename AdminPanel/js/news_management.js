@@ -8,7 +8,7 @@ function saveNews(){
     var id_edit = $("#id_edit_news").val();
     var edit    = id_edit!=""?"&id_news="+id_edit:"";
 
-    var savePage = BASE_PATH+"/AdminPanel/ajax/news_management_save.ajax.php";
+    var savePage = SITE_URL+"/AdminPanel/ajax/news_management_save.ajax.php";
     var params = "title="+encodeURIComponent(title)+"&text="+encodeURIComponent(txt)+edit;
     ajaxCall(savePage,params,null,newsSaved,null,"POST");
 }
@@ -21,7 +21,7 @@ function newsSaved(resp){
 }
 
 function deleteNews(id){
-    var page = BASE_PATH+"/AdminPanel/ajax/news_management_delete.ajax.php";
+    var page = SITE_URL+"/AdminPanel/ajax/news_management_delete.ajax.php";
     var params = "id_news="+id;
     ajaxCall(page,params,null,newsDeleted,null,"POST");
 }

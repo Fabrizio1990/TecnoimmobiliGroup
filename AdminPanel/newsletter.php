@@ -197,7 +197,7 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
                 "columnDefs": [
                     { targets: "_all",className: "ALIGN_CENTER"}
                 ],
-                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_newsletter_list.ajax.php",
+                "sAjaxSource": SITE_URL+"/AdminPanel/ajax/get_newsletter_list.ajax.php",
                 "fnDrawCallback": function (oSettings) {
                     // ON TABLE LOAD I WILL CREATE THE SWITCHES AND BIND THE FUNCTIONS
                     bindSwitches();

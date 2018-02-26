@@ -102,12 +102,12 @@ $act_documents          = true; //setta attiva la voce accesso agenzie
 
                 <?php
                 include(BASE_PATH."/AdminPanel/include/contents/documents.inc.php");
-                //include(BASE_PATH."/AdminPanel/include/widgets/ckEditor.inc.php");
+                //include(SITE_URL."/AdminPanel/include/widgets/ckEditor.inc.php");
                 ?>
 
 
 				<?php 
-				//include(BASE_PATH."/AdminPanel/include/widgets/timeline_widget.inc.php");
+				//include(SITE_URL."/AdminPanel/include/widgets/timeline_widget.inc.php");
 				?>
 
             </section>

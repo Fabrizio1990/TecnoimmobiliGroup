@@ -36,7 +36,7 @@ $(function() {
 // get property card template and start function getMagazineProperties
 function getPropertyCards(){
 
-    load_page(BASE_PATH+"/AdminPanel/include/widgets/magazine_property_card.inc.php",null,
+    load_page(SITE_URL+"/AdminPanel/include/widgets/magazine_property_card.inc.php",null,
         function(resp){
             property_card_template = resp;
             getMagazineProperties(1);// get properties on magazine
@@ -53,7 +53,7 @@ function getMagazineProperties(enabled = 1){
     else
         container = non_magazine_properties_container;
     container.empty();
-    var url = BASE_PATH+"/AdminPanel/ajax/get_properties_custom_magazine.ajax.php";
+    var url = SITE_URL+"/AdminPanel/ajax/get_properties_custom_magazine.ajax.php";
     var params = "enabled=" + enabled;
 
     ajaxCall(url,params,new Array(container,enabled),writeMagazineView,null,"POST");
@@ -68,7 +68,7 @@ function writeMagazineView(resp,params){
         var current_card = property_card_template;
 
 
-        var img_url = BASE_PATH + "/public/images/images_properties/normal/" + jsonRes[i].img_path
+        var img_url = SITE_URL + "/public/images/images_properties/normal/" + jsonRes[i].img_path
         current_card = current_card.replace("{item_id}",jsonRes[i].id_magazine);
         current_card = current_card.replace("{tipology}",jsonRes[i].tipology);
         current_card = current_card.replace("{contract}",jsonRes[i].contract);
@@ -96,7 +96,7 @@ function writeMagazineView(resp,params){
 // Set also status and order ( if you want only change order set newStatus to 1 "enabled")
 function switchPropertyMagazineStatus(magazine_card,id,newStatus,newOrder){
     //console.log(magazine_card);
-    var url = BASE_PATH+"/AdminPanel/ajax/magazine_custom_switch_status.ajax.php";
+    var url = SITE_URL+"/AdminPanel/ajax/magazine_custom_switch_status.ajax.php";
     var callback = newStatus==1?addOnMagazine:removeFromMagazine;
     var params = "id="+id+"&status="+newStatus+"&order="+newOrder;
 
@@ -104,7 +104,7 @@ function switchPropertyMagazineStatus(magazine_card,id,newStatus,newOrder){
 }
 
 function switchPropertyMagazineOrder(magazine_card,id,newStatus,newOrder){
-    var url = BASE_PATH+"/AdminPanel/ajax/magazine_custom_switch_status.ajax.php";
+    var url = SITE_URL+"/AdminPanel/ajax/magazine_custom_switch_status.ajax.php";
     var params = "id="+id+"&status="+newStatus+"&order="+newOrder;
 
     ajaxCall(url,params,new Array(magazine_card),null,null,"POST");

@@ -116,7 +116,7 @@ $(document).ready(function () {
 });
 
 function saveProperty(form,images){
-    var page = BASE_PATH+"/AdminPanel/ajax/property_management_save.ajax.php";
+    var page = SITE_URL+"/AdminPanel/ajax/property_management_save.ajax.php";
     var params = $(form).serialize();
 
     for(i = 0,len = images.length; i < len; i++){
@@ -165,7 +165,7 @@ function initMap(defZoom = 2){
             zoom = 4;
         }
         GMap = new MyMap(true);
-        GMap.init("map",fullAddress,zoom,2,BASE_PATH+"/images/icons/map_marker.png",false);
+        GMap.init("map",fullAddress,zoom,2,SITE_URL+"/images/icons/map_marker.png",false);
 
         setTimeout(function(){
             $("#inp_latitude").val(GMap.getLatitude());

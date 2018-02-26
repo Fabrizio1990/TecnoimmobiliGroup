@@ -221,7 +221,7 @@ $portal_logo = SITE_URL."/".$imgPaths["portals"]["normal"]["path"].$pDetails["lo
 				"columnDefs": [
 					{ targets: "_all",className: "ALIGN_CENTER"}
 				  ],
-                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_properties_on_portal_datatable.ajax.php?id_portal=<?php echo $id_portal ?>",
+                "sAjaxSource": SITE_URL+"/AdminPanel/ajax/get_properties_on_portal_datatable.ajax.php?id_portal=<?php echo $id_portal ?>",
                 "fnDrawCallback": function( oSettings ) {
                     // serve per l' autowidht del tooltip
                     $('.Tooltip').tooltip({

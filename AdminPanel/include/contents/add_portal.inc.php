@@ -2,14 +2,24 @@
 require_once(BASE_PATH."/app/classes/OptionsManager.php");
 require_once(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
 require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+require_once(BASE_PATH."/app/classes/DefValues.php");
 
 $imgInfo = new ImagesInfo();
 $prtMng  = new PortalManager();
+$defVal = new DefValues();
 $imgPathMin = $imgInfo->info["portals"]["min"]["path"];
 $imgPathNormal = $imgInfo->info["portals"]["normal"]["path"];
 
+$retPath = $defVal->getDefaultValue("portal_public_path");
+$portalsPublicPath = $retPath[0][0];
+$retPath = $defVal->getDefaultValue("portal_doc_folder");
+$portalsDocFolder = $retPath[0][0];
+$retPath = $defVal->getDefaultValue("portal_feeds_folder");
+$portalsFeedsFolder = $retPath[0][0];
 
-$defFeedPath = "_OTHER/FEED_XML/output_feed";
+$portalPath = "";
+$portalDocPath = "";
+$portalFeedPath = "";
 
 $id_portal                  = 0;
 
@@ -36,6 +46,7 @@ $inpPortalPswFtp            = "";
 //SEZIONE DATI FEED
 $inpPortalFeedsDoc       = "";
 $inpPortalDocLink        = "";
+$inpPortalFolderPath     = "";
 
 
 // SEZIONE DATI CONTATTO
@@ -98,6 +109,8 @@ if(isset($_REQUEST["id_portal"])){
     if(Count($res)> 0){
         $details = $res[0];
 
+
+
         // SEZIONE DATI PORTALE
         $imgPortal                  = SITE_URL."/".$imgPathNormal.$details["logo_name"];
         $inpPortalName              = $details["portal_name"];
@@ -121,15 +134,21 @@ if(isset($_REQUEST["id_portal"])){
 //SEZIONE DATI FEED
         $inpPortalFeedsDoc          = $details["doc_path"];
         $inpPortalDocLink           = $details["doc_url"];
+        $inpPortalFolderPath        = $details["portal_folder"];
 
 
-// SEZIONE DATI CONTATTO
+        // SEZIONE DATI CONTATTO
         $inpPortalContactName       = $details["contact_name"];
         $inpPortalContactEmail      = $details["contact_email"];
         $inpPortalContactPhone      = $details["contact_phone"];
         $inpPortalContactMobile     = $details["contact_mobile_phone"];
         $inpPortalContactCity       = $details["contact_city"];
         $inpPortalContactAddress    = $details["contact_address"];
+
+        //GET VARIOUS PORTAL PATHS
+        $portalPath = $portalsPublicPath."/".$inpPortalName;
+        $portalDocPath = $portalPath."/".$portalsDocFolder;
+        $portalFeedPath = $portalPath."/".$portalsFeedsFolder;
     }
 
 }

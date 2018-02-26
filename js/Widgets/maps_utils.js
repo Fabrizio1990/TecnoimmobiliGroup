@@ -67,7 +67,7 @@ function MyMap(loaded){
 
     this.createMap = function(elId,mapTypeId,mapZoom,marker){
 
-        contentString = "<font size='2' style='font-family:verdana; width:auto;' family='verdana';height:auto; color='#003c81'><img style='border:0px; 'src='"+BASE_PATH+"/images/icons/ico_tecnoimm_map.jpg'>&nbsp;L'immobile è ubicato QUI</font><br><font style='font-family:verdana;' family='verdana' size='2' color='#000000'>" + that.address + "</font>";
+        contentString = "<font size='2' style='font-family:verdana; width:auto;' family='verdana';height:auto; color='#003c81'><img style='border:0px; 'src='"+SITE_URL+"/images/icons/ico_tecnoimm_map.jpg'>&nbsp;L'immobile è ubicato QUI</font><br><font style='font-family:verdana;' family='verdana' size='2' color='#000000'>" + that.address + "</font>";
 
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( {'address': that.address}, function(results,status) {
@@ -132,7 +132,7 @@ function createMap(address,town,country,defZoom = 2){
         zoom = 4;
     }
     GMap = new MyMap(true);
-    GMap.init("map",fullAddress,zoom,2,BASE_PATH+"/images/icons/map_marker.png",false);
+    GMap.init("map",fullAddress,zoom,2,SITE_URL+"/images/icons/map_marker.png",false);
 
     setTimeout(function(){
         $("#inp_latitude").val(GMap.getLatitude());

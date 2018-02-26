@@ -45,7 +45,7 @@
 
 
 <!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
-<?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
+<?php //include(SITE_URL."/app/include/Templates/toolbar.inc.php") ?>
 
 <!-- MODALE CONTATTACI -->
 <?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>

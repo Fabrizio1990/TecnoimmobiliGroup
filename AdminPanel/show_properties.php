@@ -190,7 +190,7 @@ $act_list_properties 	= true; // setta attivo il menu immobili
 				"columnDefs": [
 					{ targets: "_all",className: "ALIGN_CENTER"}
 				  ],
-                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_properties_datatable.ajax.php",
+                "sAjaxSource": SITE_URL+"/AdminPanel/ajax/get_properties_datatable.ajax.php",
                 "fnDrawCallback": function( oSettings ) {
                     // serve per l' autowidht del tooltip
                     $('.Tooltip').tooltip({

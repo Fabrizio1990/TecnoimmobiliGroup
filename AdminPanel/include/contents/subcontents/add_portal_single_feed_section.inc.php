@@ -1,13 +1,19 @@
 <?php
+    require_once("../config.php");
     $feed_name = isset($tmpName)?$tmpName:"";
-    $feed_folder = isset($tmpFolder)?$tmpFolder:"";
-    $feed_link = $feed_folder!=""?(SITE_URL."/".$feed_folder."/".$feed_name):"";
+    $feed_file_type_id = isset($tmp_feed_file_type_id)?$tmp_feed_file_type_id:"";
+    $feed_extension    = isset($feed_extension) ?$feed_extension:"";
+    $feed_link = ((isset($portalFeedPath))&&($portalFeedPath!=""))?SITE_URL."/".$portalFeedPath."/".$feed_name.$feed_extension:"";
     $feed_filter_field = isset($tmpFilterField)?$tmpFilterField:"";
     $feed_filter_value = isset($tmpFilterValue)?$tmpFilterValue:"";
     $feed_notes = isset($tmpNotes)?$tmpNotes:"";
+    require_once (BASE_PATH."/app/classes/OptionsManager.php");
+    $optMng = new OptionsManager();
+    $optFeedTypes   = $optMng->makeOptions("prt_feed_types",$feed_file_type_id);
+    //$extensions = $dbh->executeQuery("Select name,extension from prt_feed_types");
 ?>
 
-<div class="box box-primary">
+<div class="box box-primary FEED_BOX">
     <div class="box-header">
         <h3 class="box-title">FEED</h3>
         <div class="pull-right box-tools">
@@ -19,7 +25,7 @@
     <div class="box-body FEED_DATA">
 
 
-        <!-- ####################  NOME FEED - CARTELLA FEED   ######################## -->
+        <!-- ####################  NOME FEED - ESTENSIONE   ######################## -->
         <div class="row">
 
             <div class="col-md-6">
@@ -35,29 +41,37 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Cartella feed</label>
+                    <label>Tipo Feed</label>
                     <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-folder"></i></div>
-                        <input  type="text" class="form-control inp_portal_feed_foolder" placeholder="Cartella feed"  value="<?php echo $feed_folder?>">
-
+                        <div class="input-group-addon">
+                            <i class="fa fa-home"></i>
+                        </div>
+                        <select  class="form-control sel_feed_file_type" style="width: 100%;" data-placeholder="Seleziona il tipo di feed">
+                            <?php echo($optFeedTypes); ?>
+                        </select>
                     </div>
                 </div><!-- /.form-group -->
             </div><!-- /.col-md-6 -->
         </div><!-- /.row -->
 
 
-        <!-- ####################  LINK   ######################## -->
+        <!-- #################### LINK AL FEED ######################## -->
         <div class="row">
-
             <div class="col-md-6">
-                <div class="form-group">
-                    <label >Link al feed</label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa  fa-link"></i></div>
-                        <input  type="text" class="form-control inp_portal_feed_link" placeholder="Link feed"  value="<?php echo $feed_link?>">
+                <?php
+                if($feed_link != ""){
+                ?>
+                    <div class="form-group">
+                        <label >Link al feed</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa  fa-link"></i></div>
+                            <input  type="text" readonly class="form-control inp_portal_feed_link" placeholder="Link feed"  value="<?php echo $feed_link?>">
 
-                    </div>
-                </div><!-- /.form-group -->
+                        </div>
+                    </div><!-- /.form-group -->
+                <?php
+                }
+                ?>
             </div><!-- /.col-md-6 -->
 
             <div class="col-md-6"> </div><!-- /.col-md-6 -->

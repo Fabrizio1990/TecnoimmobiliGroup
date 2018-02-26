@@ -4,7 +4,7 @@ require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
 $parallax = false;
 
 
-//require_once(BASE_PATH."/app/classes/SessionManager.php");
+//require_once(SITE_URL."/app/classes/SessionManager.php");
 $srcPar = array();
 
 
@@ -152,7 +152,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
 <?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>
 
 <!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
-<?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
+<?php //include(SITE_URL."/app/include/Templates/toolbar.inc.php") ?>
 
 <!-- ######## TOPBAR contenente contatti e pulsante di login ########-->
 <?php include(BASE_PATH . "/app/include/Templates/topbar.inc.php") ?>
@@ -226,7 +226,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
         /*-------- INIT DATATABLE ---------*/
         var table = $('#DT_PROPERTIES').DataTable({
             "language": {
-                "url": BASE_PATH+"/AdminPanel/plugins/datatables/localizations/italian.json"
+                "url": SITE_URL+"/AdminPanel/plugins/datatables/localizations/italian.json"
             },
             "bProcessing": true,
             "bPaginate": true,
@@ -236,7 +236,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
             "info": true,
             "bLengthChange": false,
             "pageLength": 5,
-            "sAjaxSource": BASE_PATH+"/ajax/properties_list_datatable.ajax.php?<?php echo $ajaxUrlParams ?>",
+            "sAjaxSource": SITE_URL+"/ajax/properties_list_datatable.ajax.php?<?php echo $ajaxUrlParams ?>",
             "bDeferRender": true,
             "initComplete": function() {
                 //bindButtons();

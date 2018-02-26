@@ -6,7 +6,7 @@ function findPropertyByReferenceCode(){
     }else if(refVal.length < 5)
         document.getElementById("search_by_ref_error").innerHTML = "Codice riferimento troppo corto";
     else{
-        ajaxCall(BASE_PATH+"/ajax/generateUrlFromRef.ajax.php","ref="+encodeURIComponent(refVal),null,propertyFound,propertyNotFound,"POST");
+        ajaxCall(SITE_URL+"/ajax/generateUrlFromRef.ajax.php","ref="+encodeURIComponent(refVal),null,propertyFound,propertyNotFound,"POST");
     }
 
 }

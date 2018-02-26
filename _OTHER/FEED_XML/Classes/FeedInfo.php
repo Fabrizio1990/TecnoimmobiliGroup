@@ -1,4 +1,5 @@
 <?php
+require_once(BASE_PATH."/app/classes/DefValues.php");
 
 class FeedInfo extends DbManager implements IDbManager {
 
@@ -41,6 +42,15 @@ class FeedInfo extends DbManager implements IDbManager {
     }
 
 
+    public function getPortalIdFromName($portal_name){
+        $ret = "";
+        $this->currTable = "portal_details";
+        $res = $this->read("portal_name = ?",null,array($portal_name),"id_portal");
+        $this->setDefTable();
+        if(Count($res)>0)
+            $ret =$res[0]["id_portal"];
+        return $ret;
+    }
 
     public function getPortalIdFromFeed($feedName){
         $ret = "";
@@ -52,9 +62,11 @@ class FeedInfo extends DbManager implements IDbManager {
         return $ret;
     }
 
-    public function getFeedData($feedName){
+    public function getFeedData($id_portal,$feedName){
         $this->currTable = "portal_feeds_view";
-        $ret = $this->read("feed_name = ?",null,array($feedName));
+        $params = array("id_portal = ?","feed_name = ?");
+        $values = array($id_portal,$feedName);
+        $ret = $this->read($params,null,$values,null,false);
         $this->setDefTable();
         return $ret;
     }
@@ -75,6 +87,16 @@ class FeedInfo extends DbManager implements IDbManager {
         $feedData = $this->getFeedData($feedName);
     }
 
+
+    public function getFeedsFolder($portalName){
+        $defVal = new DefValues();
+        $retPath = $defVal->getDefaultValue("portal_public_path");
+        $portalsPublicPath = $retPath[0][0];
+        $retPath = $defVal->getDefaultValue("portal_feeds_folder");
+        $portalsFeedsFolder = $retPath[0][0];
+        $feedsFolder =$portalsPublicPath."/".$portalName."/".$portalsFeedsFolder;
+        return $feedsFolder;
+    }
 
     public function setDefTable(){
         $this->currTable = self::defTable;

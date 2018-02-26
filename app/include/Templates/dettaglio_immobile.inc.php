@@ -146,7 +146,7 @@ $agentMail = $agentData[0]["email"];
             <h3 class="big_title">Property Map<small>See the address of the house on the map</small></h3>
             <div class="map">
                 <div id="map"></div>
-                <?php //include BASE_PATH."/include/Widgets/maps.inc.php"; ?>
+                <?php //include SITE_URL."/include/Widgets/maps.inc.php"; ?>
                 <!--<div id="map"></div>-->
             </div>
         </div>

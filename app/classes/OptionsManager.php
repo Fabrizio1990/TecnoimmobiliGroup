@@ -231,6 +231,11 @@ class OptionsManager extends DbManager{
                 $params = array("id = ?");
                 $fields = array("id","cap as title");
                 break;
+            //PORTALI
+            case "prt_feed_types":
+                $this->currTable = "prt_feed_file_types";
+                $fields = array("id","extension");
+                break;
         }
 
         if($id_parent!= null)

@@ -1,7 +1,6 @@
 var form;
 $(document).ready(function () {
 
-
     // Save image when input file change
     $(".file_explorer").change(function(e) {
         var elem = e.target;
@@ -12,21 +11,18 @@ $(document).ready(function () {
     });
 
 
-    // CONTROLLO VISIBILITà DI CAMPI DISPONIBILI IN BASE A UN TOGGLE
+    // Check and set right fields visibility
     toggleVisibility($(".CONTRACT_DATA"),$('#inp_portal_hasContract').bootstrapSwitch('state'));
-
     toggleVisibility($(".FTP_INFO"),$('#inp_portal_hasFtp').bootstrapSwitch('state'));
 
 
+    //TOGGLE CONTRACT INFO
     $('#inp_portal_hasContract').on('switchChange.bootstrapSwitch', function (event, state) {
-
         toggleVisibility($(".CONTRACT_DATA"),state);
         // TODO reset di tutti gli input relativi se da disabilitato riabilito
 
     });
-
-
-
+    //TOGGLE FTP INFO
     $('#inp_portal_hasFtp').on('switchChange.bootstrapSwitch', function (event, state) {
 
         toggleVisibility($(".FTP_INFO"),state);
@@ -34,19 +30,59 @@ $(document).ready(function () {
 
     });
 
-
+    //BIND ADD FEED BUTTON
     $('#btn_add_feed').on('click', function () {
+       load_page(SITE_URL+"/AdminPanel/include/contents/subcontents/add_portal_single_feed_section.inc.php",null,function(page){
 
-       load_page(BASE_PATH+"/AdminPanel/include/contents/subcontents/add_portal_single_feed_section.inc.php",null,function(page){
-            $("#feed_container").append(page);
+           $("#feed_container").append(page);
+           var inserted =$("#feed_container .FEED_BOX").last();
+           //POPULATE PATH INPUT AND LINK INPUT
+           GetFeedPath(inserted);
+           GetFeedSaveLink(inserted)
+
        });
 
     });
 
+    //REFRESH FEED SAVE PATH INPUT
+    function GetFeedPath(feedSection){
+        var pathInput = $(feedSection).find(".inp_portal_feed_foolder");
+        var portalName = $("#inp_portal_name").val();
+        var feedPath = "public/portals/"+portalName;
+        pathInput.val(feedPath);
 
-    /*$('#feed_container .box-header .btn_delete_feed').on('click', function (event) {
-        $(event.target).closest(".box").remove();
+    }
+    //REFRESH FEED SAVE LINK INPUT
+    function GetFeedSaveLink(feedSection){
+        var urlInput = $(feedSection).find(".inp_portal_feed_link");
+        var portalName = $("#inp_portal_name").val();
+        var feedName = urlInput.closest(".FEED_DATA").find(".inp_portal_feed_name").val();
+        var feedUrl = SITE_URL+"/public/portals/"+portalName+"/"+feedName;
+        urlInput.val(feedUrl);
+    }
+
+
+    // ON FEED NAME KEYUP I WILL CREATE FOLDER PATH AND SITE URL OF FEED
+    $('#feed_container').on('keyup', '.inp_portal_feed_name', function(ev){
+        GetFeedSaveLink($(this).closest(".FEED_BOX"));
+    });
+
+    $("#inp_portal_name").on('keyup', function(ev){
+        $(".FEED_BOX").each(function() {
+            GetFeedPath($(this));
+            GetFeedSaveLink($(this));
+        });
+        //GetFeedPath($(this).closest(".FEED_BOX"));
+    });
+
+
+
+    //GENERATE FOLDER PATH
+    /*$(".inp_portal_feed_name").on("change",function(){
+
     });*/
+
+
 
 
 
@@ -135,19 +171,21 @@ function getFeeds(){
     $(".FEED_DATA").each(function( index ) {
         var tmp = {
             feed_name: $(this).find(".inp_portal_feed_name").val(),
-            feed_folder: $(this).find(".inp_portal_feed_foolder").val(),
+            feed_extension: $(this).find(".sel_feed_file_type").val(),
+            //feed_folder: $(this).find(".inp_portal_feed_foolder").val(),
             feed_link : $(this).find(".inp_portal_feed_link").val(),
             feed_filter_field : $(this).find(".inp_portal_filter_field").val(),
             feed_filter_value : $(this).find(".inp_portal_filter_value").val(),
             feed_notes : $(this).find(".txt_portal_feed_notes").val()
         };
+        console.log(tmp.feed_extension);
         ret.push(tmp);
     });
     return ret;
 }
 
 function savePortal(form){
-    var page = BASE_PATH+"/AdminPanel/ajax/add_portal_savePortal.ajax.php";
+    var page = SITE_URL+"/AdminPanel/ajax/add_portal_savePortal.ajax.php";
     var params = $(form).serialize();
     params += "&logo_portal="+encodeURIComponent(removeUrlParameters(fileNameFromUrl($("#img_portal").attr("src"))));
     var feeds = getFeeds();

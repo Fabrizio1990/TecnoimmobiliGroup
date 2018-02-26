@@ -8,7 +8,7 @@
  */
 require_once(BASE_PATH."/app/interfaces/IDbManager.php");
 require_once(BASE_PATH."/app/classes/DbManager.php");
-//require_once(BASE_PATH."/app/classes/NewsEntity.php");
+//require_once(SITE_URL."/app/classes/NewsEntity.php");
 class NewsManager extends DbManager implements IDbManager {
 
     const defTable  = "news";

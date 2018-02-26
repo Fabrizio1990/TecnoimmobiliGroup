@@ -3,12 +3,14 @@ require_once ("../../config.php");
 require_once (BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
 require_once (BASE_PATH."/_OTHER/FEED_XML/Classes/FeedInfo.php");
 require_once (BASE_PATH."/app/classes/FileHelper/FileHelper.php");
+require_once(BASE_PATH."/app/classes/DefValues.php");
 
 class FeedManager
 {
 
 
-    public function generateFeed($feedName, $printFeed = false){
+    public function generateFeed($portal_name , $feedName, $printFeed = false){
+        $prtMng = new PortalManager();
         $feedInfoMng = new FeedInfo();
         $feedMng = null;
         $feedFile = "";
@@ -16,14 +18,18 @@ class FeedManager
         $today =date("Y-m-d");
 
         $printed = 0;
-        $folderTemplateXML =BASE_PATH."/_OTHER/FEED_XML/template_feed";
+        $folderTemplateXML = BASE_PATH."/_OTHER/FEED_XML/template_feed";
         $feeder = null;
 
 
-
-        $portalId = $feedInfoMng->getPortalIdFromFeed($feedName);
+        //GET PORTAL ID AND FEED INFO
+        $portalId = $feedInfoMng->getPortalIdFromName($portal_name);
+        if($portalId == null){
+            echo("Non esiste nessun portale con questo nome.");
+            exit();
+        }
         //$feedExtension = $feedInfoMng->getFeedExtension();
-        $feedInfo = $feedInfoMng->getFeedData($feedName);
+        $feedInfo = $feedInfoMng->getFeedData($portalId,$feedName);
 
 
 
@@ -39,18 +45,21 @@ class FeedManager
             exit;
         }
 
+
+
         //GET QUERY FILTER INFO
         $feedFilterField = $feedInfo[0]["filter_field"];
         $feedFilterVal = $feedInfo[0]["filter_value"];
 
         //GET SAVE PATH INFO
-        $feedSavePath  = $feedInfo[0]["feed_folder"];
+        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portal_name);
         $feedName      = $feedInfo[0]["feed_name"];
         $feedExtension = $feedInfo[0]["feed_extension"];
         $fullSavePath = $feedSavePath."/".$feedName.$feedExtension;
 
-        $templateContainer = FileHelper::readFile($folderTemplateXML."/".$feedInfo[0]["template"]);
-        $templateRepeat = FileHelper::readFile($folderTemplateXML."/".$feedInfo[0]["template_items"]);
+        // GET THE TEMPLATE FOR BASE XML AND SINGLE ITEMS
+        $templateContainer = FileHelper::readFile($folderTemplateXML."/".$feedName.$feedExtension);
+        $templateRepeat = FileHelper::readFile($folderTemplateXML."/".$feedName."_item".$feedExtension);
 
 
         // GET RIGHT FEED CLASS
@@ -64,7 +73,7 @@ class FeedManager
         // GET PROPERTIES ID
         $dbH = new GenericDbHelper();
         $dbH->setTable("prt_portal_properties");
-        $pIds = $dbH->read("id_portal = ?",null,array($portalId),null);
+        $pIds = $dbH->read("id_portal = ?",null,array($portalId),null,false);
         // IF ONE OR MORE FOUND I WILL START TO CREATE PARAMS FOR A QUERY THAT WILL GET THE PROPERTIES INFO BASED ON ID
         if(Count($pIds) > 0){
             for($i = 0 ; $i<Count($pIds); $i++){
@@ -74,11 +83,16 @@ class FeedManager
             array_push($params,"id in($idList)");
 
         }
+
         // GET THE PROPERTIES INFO BASED ON FOUNDED ID's
         $dbH->setTable("properties_view");
-        array_push($params,"$feedFilterField = ?");
-        array_push($values,$feedFilterVal);
-        $rst = $dbH->read($params,null,$values,null);
+        if($feedFilterField != null && $feedFilterField !=""){
+            array_push($params,"$feedFilterField = ?");
+            array_push($values,$feedFilterVal);
+        }
+        $rst = $dbH->read($params,null,$values,null,false);
+
+
 
 
         //GET FEED
@@ -111,11 +125,18 @@ class FeedManager
     // GET DEL MANAGER GIUSTO IN BASE AL FEED RICHIESTO
     // ************************************************
     public function getManager($feedName,$portalId,$templateContainer,$templateRepeat){
+        $ret = null;
         switch($feedName){
             case "trovit":
-                return new FeedTrovit($portalId,$templateContainer,$templateRepeat);
+                $ret = new FeedTrovit($portalId,$templateContainer,$templateRepeat);
+                break;
+
+            default :
+                $ret = new Feed($portalId,$templateContainer,$templateRepeat);
                 break;
         }
+
+        return $ret;
     }
 
 }

@@ -101,7 +101,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
 
 
                     <!-- MENU GESTIONE -->
-                        <!-- AGENZIE -->
+
                     <li class="treeview <?php if($act_menu_management) echo('active')?>">
                         <a href="#">
                             <i class="fa fa-cog"></i>
@@ -110,23 +110,25 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
 							    <i class="fa fa-angle-left pull-right"></i>
 							</span>
                         </a>
+                        <!-- GESTIONE AGENZIE -->
+
                         <ul class="treeview-menu">
                             <li <?php if($act_agencies_management) echo('class="active"')?>>
-                                <a href="#">
-                                    <i class="fa fa-group"></i> Gestione Agenzie
+                                <a href="#"><i class="fa fa-group"></i> Gestione Agenzie
                                     <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
                                 </a>
-
                                 <ul class="treeview-menu">
                                     <li <?php if($act_agency_add) echo('class="active"')?>><a href="agency_add.php"><i class="fa fa-circle-o"></i> Aggiungi Agenzia</a></li>
                                     <li <?php if($act_agency_list) echo('class="active"')?>><a href="agencies_list.php"><i class="fa fa-circle-o"></i> Modifica Agenzia</a></li>
 
                                 </ul>
                             </li>
-                        </ul> <!-- GESTIONE AGENZIE -->
-                        <ul class="treeview-menu">
+
+
+                        <!-- GESTIONE PORTALI -->
+
                             <li <?php if($act_feed_management) echo('class="active"')?>>
                                 <a href="#">
                                     <i class="fa fa-group"></i> Gestione Portali
@@ -143,7 +145,8 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+
+
                     <!-- MENU GESTIONE END -->
 
                     <!-- MENU UTILITY -->

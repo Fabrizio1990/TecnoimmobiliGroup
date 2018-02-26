@@ -65,7 +65,7 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 
 
 <!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
-<?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
+<?php //include(SITE_URL."/app/include/Templates/toolbar.inc.php") ?>
 
 
 <!-- ######## TOPBAR contenente contatti e pulsante di login ########-->
@@ -102,7 +102,7 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
             <!-- ######## COLONNA A DESTRA DELLA SCHEDA DETTAGLIO ########-->
             <?php include(BASE_PATH."/app/include/Templates/dettaglio_immobile_right_panel.inc.php") ?>
             <!-- ######## IMMOBILI SIMILI ########-->
-            <?php //include(BASE_PATH."/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
+            <?php //include(SITE_URL."/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end generalwrapper -->

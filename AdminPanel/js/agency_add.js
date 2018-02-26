@@ -98,7 +98,7 @@ $(document).ready(function () {
 
 
 function saveAgency(form,img_logo){
-    var page = BASE_PATH+"/AdminPanel/ajax/agency_management_save.ajax.php";
+    var page = SITE_URL+"/AdminPanel/ajax/agency_management_save.ajax.php";
     var params = $(form).serialize();
     params += "&img_logo="+img_logo;
 

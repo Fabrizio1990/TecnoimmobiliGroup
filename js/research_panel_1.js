@@ -64,7 +64,7 @@ $(document).ready(function(e){
 
     $('#input_town').typeahead({
         ajax: {
-            url: BASE_PATH+'/ajax/townsJson.php',
+            url: SITE_URL+'/ajax/townsJson.php',
             query: $('#input_town').val() ,
             loadingClass: "loading-circle",
             triggerLength: 1
@@ -106,7 +106,7 @@ $(document).ready(function(e){
 
             var location = splitTownDistrict($("#input_town").val());
 
-            var page = BASE_PATH+"/ajax/research_set_session.ajax.php";
+            var page = SITE_URL+"/ajax/research_set_session.ajax.php";
             var params = "";
             params+="sel_contract="+$("#sel_contract").val();
             params+="&sel_category="+$("#sel_category").val();
@@ -168,7 +168,7 @@ $(document).ready(function(e){
         box                 = $('#sel_box option:selected').text();
         order               = encodeURIComponent($("#inp_h_order").length ?$("#inp_h_order").val():"date_up|asc");
 
-        var refLink =BASE_PATH+"/"+category+"/"+contract+"/"+tipology+"/"+town+"/filtri/campoOrdinamento="+order;
+        var refLink =SITE_URL+"/"+category+"/"+contract+"/"+tipology+"/"+town+"/filtri/campoOrdinamento="+order;
 
         if(district!="")  refLink+="&zona="+district;
         if(priceFrom!="")  refLink+="&prezzoMinimo="+priceFrom;

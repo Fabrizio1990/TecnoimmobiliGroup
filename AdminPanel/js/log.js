@@ -20,7 +20,7 @@ function readTextFile(file)
 
 
 function deleteFile(fileName){
-    ajaxCall(BASE_PATH+"/AdminPanel/ajax/delete_file.ajax.php","logName="+fileName,null,
+    ajaxCall(SITE_URL+"/AdminPanel/ajax/delete_file.ajax.php","logName="+fileName,null,
         function(){document.location.reload()},
         null,"POST"
     )

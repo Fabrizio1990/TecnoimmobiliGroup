@@ -44,7 +44,7 @@ function saveNewLimit(portalId,buttonReference) {
     var currentQuantityElem = $(buttonReference).closest("td").children(".valueMode").find(".currentLimit");
     console.log("PORTAL ID = "+portalId);
     console.log("quantiyt = " +quantity);
-    var page = BASE_PATH+"/AdminPanel/ajax/portal_set_limits.ajax.php"
+    var page = SITE_URL+"/AdminPanel/ajax/portal_set_limits.ajax.php"
     var params = "new_limit="+quantity+"&portal_id="+portalId;
     var additionalParams = new Array(currentQuantityElem,quantity);
     ajaxCall(page,params,additionalParams,limitSaved,null,"POST");

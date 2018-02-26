@@ -37,7 +37,7 @@ $(document).ready(function () {
 
 // DELETE DOCK
 function deleteDoc(doc_id){
-    var url = BASE_PATH+'/AdminPanel/ajax/document_delete.ajax.php';
+    var url = SITE_URL+'/AdminPanel/ajax/document_delete.ajax.php';
 
     var success = function(resp){
 
@@ -59,7 +59,7 @@ function deleteDoc(doc_id){
 
 // SAVE / EDIT DOCK
 function saveDoc(form){
-    var uploadPage = BASE_PATH+'/AdminPanel/ajax/document_save.ajax.php';
+    var uploadPage = SITE_URL+'/AdminPanel/ajax/document_save.ajax.php';
     var doc_id = document.getElementById("inp_edit_id").value;
     var title = document.getElementById("inp_title").value;
     var desc = document.getElementById("txt_description").value;

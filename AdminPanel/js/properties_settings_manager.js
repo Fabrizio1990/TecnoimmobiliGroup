@@ -1,20 +1,20 @@
 var rnd = Math.random(1,100);
 var img_ads_stats =
-	["",BASE_PATH+"/AdminPanel/images/icons/ico_ads_on.png" + "?" + rnd,
-		BASE_PATH+"/AdminPanel/images/icons/ico_ads_off.png" + "?" + rnd,
-		BASE_PATH+"/AdminPanel/images/icons/ico_ads_del.png" + "?" + rnd,
-		BASE_PATH+"/AdminPanel/images/icons/ico_ads_draft.png" + "?" + rnd
+	["",SITE_URL+"/AdminPanel/images/icons/ico_ads_on.png" + "?" + rnd,
+		SITE_URL+"/AdminPanel/images/icons/ico_ads_off.png" + "?" + rnd,
+		SITE_URL+"/AdminPanel/images/icons/ico_ads_del.png" + "?" + rnd,
+		SITE_URL+"/AdminPanel/images/icons/ico_ads_draft.png" + "?" + rnd
 	];
 
 var img_news_stats = [
-	BASE_PATH+"/AdminPanel/images/icons/ico_newspaper_off.png" + "?" + rnd,
-	BASE_PATH+"/AdminPanel/images/icons/ico_newspaper_on.png" + "?" + rnd
+	SITE_URL+"/AdminPanel/images/icons/ico_newspaper_off.png" + "?" + rnd,
+	SITE_URL+"/AdminPanel/images/icons/ico_newspaper_on.png" + "?" + rnd
 
 ];
 
 var img_portal_stats = [
-	BASE_PATH+"/AdminPanel/images/icons/ico_portal_off.png" + "?" + rnd,
-	BASE_PATH+"/AdminPanel/images/icons/ico_portal_on.png" + "?" + rnd
+	SITE_URL+"/AdminPanel/images/icons/ico_portal_off.png" + "?" + rnd,
+	SITE_URL+"/AdminPanel/images/icons/ico_portal_on.png" + "?" + rnd
 ];
 
 

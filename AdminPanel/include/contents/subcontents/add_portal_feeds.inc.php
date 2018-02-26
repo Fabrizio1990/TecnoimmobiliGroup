@@ -34,7 +34,8 @@ else{
     $feeds = $prtMng->readPortalFeeds($id_portal);
     for($i = 0 ,$len = Count($feeds); $i < $len; $i++){
         $tmpName = $feeds[$i]["feed_name"];
-        $tmpFolder = $feeds[$i]["feed_folder"];
+        $tmp_feed_file_type_id = $feeds[$i]["feed_extension_id"];
+        $tmp_feed_extension = $feeds[$i]["feed_extension"];
         $tmpFilterField = $feeds[$i]["filter_field"];
         $tmpFilterValue = $feeds[$i]["filter_value"];
         $tmpNotes = $feeds[$i]["notes"];

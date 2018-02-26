@@ -49,7 +49,7 @@ $menuSelected ="home";
         <?php include(BASE_PATH."/app/include/Templates/contact_form_modal.inc.php") ?>
 
         <!-- ########## TOOLBAR LATERALE "PER ORA NON UTILIZZATA ##########-->
-        <?php //include(BASE_PATH."/app/include/Templates/toolbar.inc.php") ?>
+        <?php //include(SITE_URL."/app/include/Templates/toolbar.inc.php") ?>
 
         <!-- ######## TOPBAR contenente contatti e pulsante di login ########-->
         <?php include(BASE_PATH."/app/include/Templates/topbar.inc.php") ?>
@@ -59,7 +59,7 @@ $menuSelected ="home";
         <?php include(BASE_PATH."/app/include/Templates/header.inc.php") ?>
 
         <!-- ######## SLIDER E RICERCA IMMOBILI ########-->
-        <?php //include(BASE_PATH."/app/include/Templates/slider_index.inc.php") ?>
+        <?php //include(SITE_URL."/app/include/Templates/slider_index.inc.php") ?>
 
         <!-- ######## RICERCA IMMOBILI ########-->
         <?php include(BASE_PATH . "/app/include/Templates/research_panel_1.inc.php") ?>

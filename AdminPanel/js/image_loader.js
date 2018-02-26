@@ -16,7 +16,7 @@ function loadImage(image_path,elem){
 
 
 function saveImage(elem,url,imgField,imgName=""){
-    url = BASE_PATH+url;
+    url = SITE_URL+url;
 
     if(imgName != undefined && imgName!= null && imgName!="")
         url+="?img_name="+imgName;

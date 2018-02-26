@@ -51,7 +51,7 @@ function bindSwitches() {
 // IN options_populate.js fixare il popolamento ricorsivo (non funziona con le select singole ma solo con le multiple
 
 function getDetails(id_newsletter) {
-    load_page(BASE_PATH + "/AdminPanel/ajax/get_newsletter_details.ajax.php?id="+id_newsletter,"request_details",function(){
+    load_page(SITE_URL + "/AdminPanel/ajax/get_newsletter_details.ajax.php?id="+id_newsletter,"request_details",function(){
         $(".select2").select2();
 
         $('.price_input').priceFormat({
@@ -170,7 +170,7 @@ function updateRequest(){
     var mq_max      = $("#mq_max").unmask();
 
 
-    var page = BASE_PATH+"/AdminPanel/ajax/request_management_save.ajax.php";
+    var page = SITE_URL+"/AdminPanel/ajax/request_management_save.ajax.php";
 
     var params = "";
 

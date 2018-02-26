@@ -1,9 +1,10 @@
 <?php
 // PAGINA DI INSERIMENTO PORTALI
+//TODO SAVE DOC FILE (SEE LINE 135)
 
 
 
-if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_max_properties"], $_POST["inp_portal_personal_area_link"] ,$_POST["inp_portal_username"],$_POST["inp_portal_password"],$_POST["inp_portal_hasContract"],$_POST["inp_portal_contract_start"],$_POST["inp_portal_contract_end"],$_POST["inp_portal_hasFtp"],$_POST["inp_portal_link_ftp"],$_POST["inp_portal_user_ftp"],$_POST["inp_portal_psw_ftp"])){
+if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_max_properties"])){
 
 
 
@@ -31,7 +32,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
     $contractPrice      = $_POST["inp_portal_contract_price"];
     $note               = isset($_POST["txt_notes"])?$_POST["txt_notes"]:"";
 
-    $hasFtp             = $_POST["inp_portal_hasFtp"];
+    $hasFtp             = isset($_POST["inp_portal_hasFtp"])?$_POST["inp_portal_hasFtp"]:false;
     $ftp_link           = $_POST["inp_portal_link_ftp"];
     $ftp_user           = $_POST["inp_portal_user_ftp"];
     $ftp_password       = $_POST["inp_portal_psw_ftp"];
@@ -49,39 +50,47 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
     $retPath = $defVal->getDefaultValue("portal_public_path");
     $portalsPublicPath = $retPath[0][0];
-
-
     $retPath = $defVal->getDefaultValue("portal_doc_folder");
     $portalsDocFolder = $retPath[0][0];
     $retPath = $defVal->getDefaultValue("portal_feeds_folder");
     $portalsFeedsFolder = $retPath[0][0];
 
-    //$portalsFeedPath = $portalsPublicPath + "/" + $portalsFeedsFolder;
+    $portalPath = $portalsPublicPath."/".$name;
+    $portalDocPath = $portalPath."/".$portalsDocFolder;
+    $portalFeedPath = $portalPath."/".$portalsFeedsFolder;
 
 
-    // ################# SEZIONE INFO FEED
+
+    //IF PORTAL FOLDER OR FEED FOLDER OR DOC FOLDER NOT EXIST NOW, I WILL CREATE IT
+    if (!file_exists(BASE_PATH."/".$portalPath)) {
+        mkdir(BASE_PATH."/".$portalPath, 0777, true);
+    }
+    if (!file_exists(BASE_PATH."/".$portalDocPath)) {
+        mkdir(BASE_PATH."/".$portalDocPath, 0777, true);
+    }
+    if (!file_exists(BASE_PATH."/".$portalFeedPath)) {
+        mkdir(BASE_PATH."/".$portalFeedPath, 0777, true);
+    }
+
+
+    // ################# GET FEED INFO
     $feeds = json_decode($_POST["feedsInfo"]);
-
-
-
-
 
     // ################# FINE SEZIONE INFO FEED
 
 
-    // CONTROLLO SE ESISTE GIà UN PORTALE CON IL NOME E INDIRIZZO PASSATI
-
+    // CHECK IF PORTAL ALREADY EXIST
     $ret = $pMng->read(array("name= ?","site = ?"),null,array($name,$site),"id");
     if(count($ret)> 0)
         $id_portal = $ret[0]["id"];
 
 
 
-
-    /* ############## SALVATAGGIO #############*/
+    /* ############## SAVE #############*/
 
         $pMng->beginTransaction();
-        //SALVO INFO BASE
+
+        //BASE INFO SAVE
         $id_portal = $pMng->SavePortalBasicInfo($id_portal,$name,$site,$logo_name,$maxProperties,$note,$enabled = 1);
         if($id_portal == null || $id_portal ==""  || strpos($id_portal,"error")!== false){
             $pMng->rollback();
@@ -89,16 +98,15 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
             exit();
         }
 
-        //SALVO INFO Del contratto
+        //CONTRACT INFO SAVE
         $ret = $pMng->SavePortalContractInfo($id_portal,$contractStart,$contractEnd,$contractPrice);
-
-
         if($ret == null || $ret =="" ){
             $pMng->rollback();
             echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI CONTRATTO DEL PORTALE");
             exit();
         }
-        //SALVO INFO DI LOGIN AL PORTALE
+
+        //PORTAL LOGIN INFO SAVE
         $ret = $pMng->SavePortalLoginInfo($id_portal,$ar_link,$ar_username,$ar_password);
         if($ret == null || $ret ==""){
             $pMng->rollback();
@@ -114,7 +122,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
                 exit();
             }
         }
-        //SALVO INFO DEL CONTATTO
+        //CONTACT INFO SAVE
         $ret = $pMng->SavePortalContactInfo($id_portal,$contactName,$contactEmail,$contactPhone,$contactMobile,$contactAddress,$contactCity);
         if($ret == null || $ret ==""){
             $pMng->rollback();
@@ -122,22 +130,11 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
             exit();
         }
 
-        $portalFolderName = "portal_".$id_portal;
-        // CREO LE CARTELLE DI DOC E FEED
-        $docPath = BASE_PATH."/".$portalsPublicPath."/".$portalFolderName."/".$portalsDocFolder;
-        $feedPath = BASE_PATH."/".$portalsPublicPath."/".$portalFolderName."/".$portalsFeedsFolder;
-        if (!file_exists($docPath)) {
-            mkdir($docPath, 0777, true);
-        }
-        if (!file_exists($feedPath)) {
-            mkdir($feedPath, 0777, true);
-        }
 
-        //SALVO GLI EVENTUALI DOC NELLA CARTELLA
+        //SAVE DOCUMENTATION
+        //TODO MODIFICARE PERCHè SEMBRA CHE A ORA NON RICEVA IL FILE
         $docFinalPath = "";
-
         if(isset($_FILES['inp_portal_feeds_doc'])){
-            echo("FILE SETTATO");
             if (!$_FILES['inp_portal_feeds_doc']['size'] == 0 && !$_FILES['inp_portal_feeds_doc']['error'] == 0) {
                 echo("FILE ESISTE REALMENTE E LO SALVEREI VA");
                 $info = pathinfo($_FILES['inp_portal_feeds_doc']['name']);
@@ -156,12 +153,10 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
         }
 
 
-        // RIPULISCO E RI  SALVO LA FEED LIST
-
+        // FEEDS SAVE
         $pMng->clearFeedList($id_portal);
-
         foreach ($feeds as $feed){
-            $ret = $pMng->addFeed($id_portal,$feed->feed_name,$feedPath,$feed->feed_filter_field,$feed->feed_filter_value,$feed->feed_notes);
+            $ret = $pMng->addFeed($id_portal,$feed->feed_name,$feed->feed_extension,$feed->feed_filter_field,$feed->feed_filter_value,$feed->feed_notes);
             if($ret == null || $ret ==""){
                 $pMng->rollback();
                 echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DEI FEED");
@@ -169,13 +164,10 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
             }
         }
 
-
-
         $pMng->commit();
+
         echo("Success");
 
-
-        // TODO SALVARE FILE DI DOCUMENTAZIONE E RECUPERARE PATH
 
 }else{
     echo("ACCESSO NON CONSENTITO");

@@ -2,7 +2,7 @@
 
 require_once (BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 require_once (BASE_PATH."/app/classes/MagazineManager.php");
-/*require_once (BASE_PATH."/app/classes/AgencyManager.php");*/
+/*require_once (SITE_URL."/app/classes/AgencyManager.php");*/
 
 $debugMode = false;
 

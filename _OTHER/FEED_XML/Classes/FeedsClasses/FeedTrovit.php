@@ -5,12 +5,12 @@ class FeedTrovit extends Feed
 
     public function getPropertyFeed($rst){
         $finalFile = parent::getPropertyFeed($rst);
+
         return $finalFile;
     }
 
     public function PopulateRow($row){
         $tmpItems =  parent::PopulateRow($row);
-        //$tmpItems = str_replace("{images_start}","prova",$tmpItems);
         return $tmpItems;
     }
 

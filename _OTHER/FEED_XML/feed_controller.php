@@ -11,11 +11,17 @@ require_once (BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
 SetInclude(BASE_PATH."/_OTHER/FEED_XML/Classes/FeedsClasses");
 
-$webSite = $_GET["id"];
+if(!isset($_GET["portal"],$_GET["feed"])){
+    echo("Accesso Non Autorizzato");
+    exit;
+}
+
+$portal = $_GET["portal"];
+$feed_name = $_GET["feed"];
 
 $feed = new FeedManager();
 
-$feed->generateFeed($webSite,true);
+$feed->generateFeed($portal,$feed_name,true);
 
 
 

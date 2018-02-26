@@ -170,8 +170,6 @@ $prefixAction = $id_portal == ""?"Inserimento" :"Modifica";
         });
 
 
-
-
         var options = {
             inverse: true,
             size: "normal",

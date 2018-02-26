@@ -18,7 +18,7 @@ function submitFilter(){
 
 	var params = "dt_from=" + encodeURIComponent(dtRange_from) + "&dt_to=" + encodeURIComponent(dtRange_to) + "&agency=" +	encodeURIComponent(agency_val) + "&category=" + encodeURIComponent(category_val) + "&tipology=" +	encodeURIComponent(tipology_val) +"&country="+encodeURIComponent(country_val)+"&region="+encodeURIComponent(region_val)+ "&city=" +	encodeURIComponent(city_val) + "&town=" + encodeURIComponent(town_val) + "&district=" +	encodeURIComponent(district_val) + "&ads_status=" +	encodeURIComponent(ads_status_val) + "&rnd=" +Math.random();
 
-	table.ajax.url( BASE_PATH+'/AdminPanel/ajax/get_properties_datatable.ajax.php?'+ params ).load();
+	table.ajax.url( SITE_URL+'/AdminPanel/ajax/get_properties_datatable.ajax.php?'+ params ).load();
 
 
 }

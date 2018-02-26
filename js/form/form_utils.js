@@ -8,7 +8,7 @@ function getOpts(elem,action,id_parent = null,header_opt_val = null,header_opt_t
         console.log(callback);*/
 
     }
-        page = BASE_PATH + "/ajax/form/get_opts.ajax.php";
+        page = SITE_URL + "/ajax/form/get_opts.ajax.php";
         params = "id_action="+action;
         //console.log("----"+id_parent);
         if(id_parent!=null){
@@ -46,7 +46,7 @@ function getVal(elem,category,action,id_parent){
 
     elem = GEBI(elem);
     if(id_parent!="%" && id_parent!="") {
-        page = BASE_PATH + "/ajax/form/get_val.ajax.php";
+        page = SITE_URL + "/ajax/form/get_val.ajax.php";
         params = "id_action=" + action + "&id_category=" + category;
         if (id_parent != null) params += "&id=" + id_parent
         callback_params = new Array(elem);
@@ -67,7 +67,7 @@ function getVal(elem,category,action,id_parent){
 function saveNewOptVal(elem,category,action,id_parent=null){
     elem = GEBI(elem);
     if(elem.value!=""){
-        page = BASE_PATH + "/ajax/form/save_opt_val.ajax.php";
+        page = SITE_URL + "/ajax/form/save_opt_val.ajax.php";
         params = "id_action="+action+"&id_category="+category+"&val="+encodeURIComponent(val);
         if(id_parent!=null) params+="&id_parent="+id_parent
         callback_params = new Array(elem,"%",header_opt);

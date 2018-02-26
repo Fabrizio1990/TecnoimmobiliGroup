@@ -102,7 +102,7 @@ function bindButtons(){
         sendMailParams += "&ccn" + encodeURIComponent("info@tecnoimmobiligroup.it");
 
         btnSendMail.prop("disabled",true);
-        load_page(BASE_PATH +"/ajax/mails/get_contact_mail_content.ajax.php?"+getMailTemplateParams,null,function(resp,params){
+        load_page(SITE_URL +"/ajax/mails/get_contact_mail_content.ajax.php?"+getMailTemplateParams,null,function(resp, params){
             params+= "&body="+encodeURIComponent(resp);
             sendMail(params);
         },sendMailParams);
@@ -112,7 +112,7 @@ function bindButtons(){
 
 
 function sendMail(params){
-    ajaxCall(BASE_PATH+"/ajax/mails/send_mail_generic.ajax.php",params,null,
+    ajaxCall(SITE_URL+"/ajax/mails/send_mail_generic.ajax.php",params,null,
         function(resp){
             if(resp > 0){
                 if(!alertBox.hasClass("HIDDEN"))

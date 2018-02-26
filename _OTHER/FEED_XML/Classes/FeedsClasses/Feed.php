@@ -1,5 +1,7 @@
 <?php
 require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
+require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+
 //header("content-type: text/text;charset=utf-8");
 class Feed
 {
@@ -16,14 +18,13 @@ class Feed
 
 
 
-
     public function getPropertyFeed($rst){
 
         $finalFile = $this->template;
         $finalItems = "";
         for($i = 0 ; $i < Count($rst) ;$i++){
 
-            $finalItems = $this->PopulateRow($rst[$i]);
+            $finalItems .= $this->PopulateRow($rst[$i]);
         }
         $finalFile = str_replace("{items}",$finalItems,$finalFile);
 
@@ -42,7 +43,6 @@ class Feed
     //######## I WILL REPLACE THIS FUNCTION IF I NEED MORE COMPLEX CONVERSIONS
     //#####################################################################
     public function PopulateRow($row){
-
         $tmpItems = $this->template_items;
 
         // GET AND CONVERT VALUES
@@ -147,13 +147,14 @@ class Feed
 
         $tmpItems = $this->PopulateImages($images,$tmpItems);
 
-
         return $tmpItems;
     }
 
 
     public function GetImages($row){
 
+        $imgH = new ImagesInfo();
+        $img_path = $imgH->info["properties"]["big"]["path"];
         $id = $row["id"];
         $dbh = new GenericDbHelper();
         $dbh->setTable("property_images");
@@ -161,7 +162,7 @@ class Feed
         $retImages = $dbh->read("id_property = ?",null, array($id),null,false);
         $dbh->setDefTable();
         for($i = 0 , $len = Count($retImages) ; $i < $len ; $i++ ){
-            $imgUrl = SITE_URL."/".$retImages[$i]["img_name"];
+            $imgUrl = SITE_URL."/".$img_path.$retImages[$i]["img_name"];
             array_push($images,array("id_type" => $retImages[$i]["id_img_type"], "url" => $imgUrl));
         }
 

@@ -2,8 +2,8 @@ var id_portal;
 
 
 var img_portal_stats = [
-    BASE_PATH+"/AdminPanel/images/icons/ico_portal_off.png" + "?" + rnd,
-    BASE_PATH+"/AdminPanel/images/icons/ico_portal_on.png" + "?" + rnd
+    SITE_URL+"/AdminPanel/images/icons/ico_portal_off.png" + "?" + rnd,
+    SITE_URL+"/AdminPanel/images/icons/ico_portal_on.png" + "?" + rnd
 ];
 
 $( document ).ready(function() {
@@ -28,12 +28,12 @@ function submitFilter(){
 
 	var params = "id_portal="+id_portal+"&dt_from=" + encodeURIComponent(dtRange_from) + "&dt_to=" + encodeURIComponent(dtRange_to) + "&agency=" +	encodeURIComponent(agency_val) + "&category=" + encodeURIComponent(category_val) + "&tipology=" +	encodeURIComponent(tipology_val) +"&country="+encodeURIComponent(country_val)+"&region="+encodeURIComponent(region_val)+ "&city=" +	encodeURIComponent(city_val) + "&town=" + encodeURIComponent(town_val) + "&district=" +	encodeURIComponent(district_val) + "&ads_status=" +	encodeURIComponent(ads_status_val) + "&rnd=" +Math.random();
 
-	table.ajax.url( BASE_PATH+'/AdminPanel/ajax/get_properties_on_portal_datatable.ajax.php?'+ params ).load();
+	table.ajax.url( SITE_URL+'/AdminPanel/ajax/get_properties_on_portal_datatable.ajax.php?'+ params ).load();
 
 }
 
 function switchPropertyOnPortalStatus(elem,id_portal,id_property){
-    var page = BASE_PATH+"/AdminPanel/ajax/switch_property_on_portal.ajax.php";
+    var page = SITE_URL+"/AdminPanel/ajax/switch_property_on_portal.ajax.php";
     var params ="id_property="+ id_property +"&id_portal="+id_portal+"&rnd=" +Math.random();
     ajaxCall(page,params,elem,switchPropertyOnPortalStatusAction,ajax_fail,"POST")
 }

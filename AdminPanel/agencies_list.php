@@ -180,7 +180,7 @@ $act_agency_list                = true;
                 "columnDefs": [
                     { targets: "_all",className: "ALIGN_CENTER"}
                 ],
-                "sAjaxSource": BASE_PATH+"/AdminPanel/ajax/get_agencies_datatable.ajax.php",
+                "sAjaxSource": SITE_URL+"/AdminPanel/ajax/get_agencies_datatable.ajax.php",
                 "fnDrawCallback": function (oSettings) {
                     // ON TABLE LOAD I WILL CREATE THE SWITCHES AND BIND THE FUNCTIONS
                     bindSwitches();

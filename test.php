@@ -48,17 +48,17 @@ foreach ($mails as $mail){
 include("app/classes/DbManager.php");*/
 
 
-//include(BASE_PATH."/app/classes/FileHelper/FileHelper.php");
+//include(SITE_URL."/app/classes/FileHelper/FileHelper.php");
 
 
 
-//require_once(BASE_PATH."/app/classes/OptionsManager.php");
+//require_once(SITE_URL."/app/classes/OptionsManager.php");
 
 
 
 //include("app/classes/UserEntity.php");
 
-//include(BASE_PATH."/app/classes/SessionManager.php");
+//include(SITE_URL."/app/classes/SessionManager.php");
 
 
 //include("app/classes/UserManager.php");
@@ -96,7 +96,7 @@ include("app/classes/DbManager.php");*/
 
 
 /*$fMng = new FileHelper();
-    $fileContent = $fMng->readFile(BASE_PATH."/app/classes/conn_par.txt");
+    $fileContent = $fMng->readFile(SITE_URL."/app/classes/conn_par.txt");
     $fileContentJson = json_decode($fileContent);
     //var_dump($fileContentJson);
     echo($fileContentJson->username);*/

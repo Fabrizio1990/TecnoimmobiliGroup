@@ -128,7 +128,7 @@ function saveGeo(){
             break;
     }
 
-        ajaxCall(page = BASE_PATH + "/ajax/form/save_opt_val.ajax.php",
+        ajaxCall(page = SITE_URL + "/ajax/form/save_opt_val.ajax.php",
             _params,
             null,
             function(){console.log("SALVATO")},// defined in UTILS.js
