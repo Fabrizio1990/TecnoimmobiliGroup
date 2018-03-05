@@ -117,7 +117,7 @@ $portal_logo = SITE_URL."/".$imgPaths["portals"]["normal"]["path"].$pDetails["lo
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small>Modifica immobili sul portale <?php echo("(".$portal_name.")") ?> </small>
+                    <small>Modifica immobili sul portale <?php echo("(<b>".$portal_name."</b>)") ?> </small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Immobili</a></li>

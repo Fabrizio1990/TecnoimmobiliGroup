@@ -1,4 +1,32 @@
+
 <?php
+/*
+ * CONVERSION CATEGORIES ID's
+1	Contratto	property_contracts
+2	Categoria	property_categories
+3	Tipologia	property_tipologies
+4	Provincia	geo_city
+5	Comune	geo_town
+6	Zona	geo_district
+7	Paese	geo_country
+8	Regione	geo_region
+9	istat	geo_town
+10	istat	geo_district
+11	Camere	property_rooms
+12	Locali	property_locals
+13	Bagni	property_bathrooms
+14	Piano	property_floors
+15	Ascensore	property_elevators
+16	Riscaldamento	property_heatings
+17	box	property_box
+18	Giardino	property_gardens
+19	Condizioni immobile	property_conditions
+20	Stato immobile	property_status
+21	Classe energetica	property_energy_class
+22	ipe_um	property_ipe_um
+*/
+
+
 require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
 require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
@@ -57,31 +85,31 @@ class Feed
         $link = $this->getPropertyLink($row);
         $title = $this->getPropertyTitle($row);
 
-        $category = $this->getConvertedValue($this->portalId,2,$row["id_category"]);
-        $tipology = $this->getConvertedValue($this->portalId,3,$row["id_tipology"]);
-        $contract = $this->getConvertedValue($this->portalId,1,$row["id_contract"]);
+        $category = $this->getConvertedValue($this->portalId,2,$row["id_category"],$row["category"]);
+        $tipology = $this->getConvertedValue($this->portalId,3,$row["id_tipology"],$row["tipology"]);
+        $contract = $this->getConvertedValue($this->portalId,1,$row["id_contract"],$row["contract"]);
 
-        $country = $this->getConvertedValue($this->portalId,7,$row["id_country"]);
-        $region = $this->getConvertedValue($this->portalId,8,$row["id_region"]);
-        $city = $this->getConvertedValue($this->portalId,4,$row["id_city"]);
-        $town = $this->getConvertedValue($this->portalId,5,$row["id_town"]);
+        $country = $this->getConvertedValue($this->portalId,7,$row["id_country"],$row["country"]);
+        $region = $this->getConvertedValue($this->portalId,8,$row["id_region"],$row["region"]);
+        $city = $this->getConvertedValue($this->portalId,4,$row["id_city"],$row["city"]);
+        $town = $this->getConvertedValue($this->portalId,5,$row["id_town"],$row["town"]);
         $istat = $this->getConvertedValue($this->portalId,9,$row["istat"]);
-        $district = $this->getConvertedValue($this->portalId,6,$row["id_district"]);
+        $district = $this->getConvertedValue($this->portalId,6,$row["id_district"],$row["district"]);
+        $cap = $this->getConvertedValue($this->portalId,10,$row["cap"]);
+        $rooms = $this->getConvertedValue($this->portalId,11,$row["id_rooms"],$row["rooms"]);
+        $locals = $this->getConvertedValue($this->portalId,12,$row["id_locals"],$row["locals"]);
+        $bathrooms = $this->getConvertedValue($this->portalId,13,$row["id_bathrooms"],$row["bathrooms"]);
+        $floor = $this->getConvertedValue($this->portalId,14,$row["id_floor"],$row["floor"]);
+        $elevator = $this->getConvertedValue($this->portalId,15,$row["id_elevator"]);
+        $heating = $this->getConvertedValue($this->portalId,16,$row["id_heating"],$row["elevator"]);
+        $box = $this->getConvertedValue($this->portalId,17,$row["id_box"],$row["box"]);
+        $garden = $this->getConvertedValue($this->portalId,18,$row["id_garden"],$row["garden"]);
 
-        $rooms = $this->getConvertedValue($this->portalId,10,$row["id_rooms"]);
-        $locals = $this->getConvertedValue($this->portalId,11,$row["id_locals"]);
-        $bathrooms = $this->getConvertedValue($this->portalId,12,$row["id_bathrooms"]);
-        $floor = $this->getConvertedValue($this->portalId,13,$row["id_floor"]);
-        $elevator = $this->getConvertedValue($this->portalId,14,$row["id_elevator"]);
-        $heating = $this->getConvertedValue($this->portalId,15,$row["id_heating"]);
-        $box = $this->getConvertedValue($this->portalId,16,$row["id_box"]);
-        $garden = $this->getConvertedValue($this->portalId,17,$row["id_garden"]);
+        $propertyConditions = $this->getConvertedValue($this->portalId,19,$row["id_property_conditions"],$row["property_conditions"]);
+        $propertyStatus = $this->getConvertedValue($this->portalId,20,$row["id_property_status"],$row["property_status"]);
 
-        $propertyConditions = $this->getConvertedValue($this->portalId,18,$row["id_property_conditions"]);
-        $propertyStatus = $this->getConvertedValue($this->portalId,19,$row["id_property_status"]);
-
-        $energyClass = $this->getConvertedValue($this->portalId,20,$row["id_energy_class"]);
-        $ipe_um = $this->getConvertedValue($this->portalId,21,$row["id_ipe_um"]);
+        $energyClass = $this->getConvertedValue($this->portalId,21,$row["id_energy_class"],$row["energy_class"]);
+        $ipe_um = $this->getConvertedValue($this->portalId,22,$row["id_ipe_um"],$row["ipe_um"]);
 
         $toReplace=array("&","è","à","ì","ù");
         $replacement=array("&amp;","e'","a'","i'","u'");
@@ -116,6 +144,7 @@ class Feed
         $tmpItems = str_replace("{town}",$town,$tmpItems);
         $tmpItems = str_replace("{istat}",$istat,$tmpItems);
         $tmpItems = str_replace("{district}",$district,$tmpItems);
+        $tmpItems = str_replace("{cap}",$cap,$tmpItems);
         $tmpItems = str_replace("{street}",$row["street"],$tmpItems);
         $tmpItems = str_replace("{street_num}",$row["street_num"],$tmpItems);
         $tmpItems = str_replace("{complete_address}",$row["street"]." ".$row["street_num"],$tmpItems);
@@ -193,13 +222,17 @@ class Feed
 
 
 
-    public  function getConvertedValue($portalId,$conversionCategory,$original){
+    public  function getConvertedValue($portalId,$conversionCategory,$originalId,$originalTxt ="",$ifNullgetTxt = true){
         $dbH = new GenericDbHelper();
 
-        $ret = $dbH->executeQuery("Select converted from prt_feed_field_conversion where category_id=$conversionCategory and original='$original' and id_portal=$portalId ");
+        $ret = $dbH->executeQuery("Select converted from prt_feed_field_conversion where category_id=$conversionCategory and original='$originalId' and id_portal=$portalId ");
 
-        if(count($ret)<1)
-            return $original;
+        if(count($ret)<1){
+            if($ifNullgetTxt && $originalTxt !="")
+                return $originalTxt;
+            else
+                return $originalId;
+        }
         else
             return $ret[0]["converted"];
     }
@@ -237,6 +270,5 @@ class Feed
 
 
 
-
-
 }
+

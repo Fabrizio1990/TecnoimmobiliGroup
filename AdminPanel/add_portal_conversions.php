@@ -2,6 +2,8 @@
 include("../config.php");
 include(BASE_PATH."/app/classes/SessionManager.php");
 include(BASE_PATH."/app/classes/UserEntity.php");
+include(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
+include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
 if(SessionManager::getVal("authenticated") != null){
     $SS_usr = SessionManager::getVal("user",true);
@@ -15,13 +17,27 @@ if(SessionManager::getVal("authenticated") != null){
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
 $act_menu_management    = true;
 $act_feed_management    = true;
-$act_portal_add         = true;
 
 $id_portal = isset($_POST["id_portal"])?$_POST["id_portal"]:"";
 if($id_portal == ""){
     header("location:".SITE_URL."/AdminPanel/portals_panel.php");
 }
 $prefixAction = $id_portal == ""?"Creazione" :"Modifica";
+
+
+
+
+
+$pMng = new PortalManager();
+$imgH = new ImagesInfo();
+$imgPaths = $imgH->info;
+
+$pDetails = $pMng->getPortalDetails($id_portal);
+$pDetails = $pDetails[0];
+
+$portal_name = $pDetails["portal_name"];
+$portal_logo = SITE_URL."/".$imgPaths["portals"]["min"]["path"].$pDetails["logo_name"];
+
 
 ?>
 
@@ -31,7 +47,7 @@ $prefixAction = $id_portal == ""?"Creazione" :"Modifica";
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TecnoimmobiliGroup | <?php echo $prefixAction?> Conversioni Feed Portale</title>
+    <title>TecnoimmobiliGroup | <?php echo $prefixAction?> Conversioni Feed Portale (<?php echo("(".$portal_name.")") ?>)</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -92,16 +108,21 @@ $prefixAction = $id_portal == ""?"Creazione" :"Modifica";
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small><?php echo $prefixAction?> Conversioni Feed Portale</small>
+                    <small><?php echo $prefixAction?> Conversioni Feed Portale <?php echo("(<b>".$portal_name.")</b>") ?></small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Portale</a></li>
-					<li><a href="#"><i class="fa fa-plus-square"></i> <?php echo $prefixAction?> Conversione Feed Portale</a></li>
+					<li><a href="#"><i class="fa fa-plus-square"></i> <?php echo $prefixAction?> Conversione Feed Portale <?php echo("(<b>".$portal_name."</b>)") ?></a></li>
                 </ol>
             </section>
 
             <!-- MAIN CONTENT -->
             <section class="content">
+                <div class="row">
+                    <div class="col-md-12 ALIGN_LEFT">
+                        <img style="border:1px solid lightgrey;" src="<?php echo($portal_logo) ?>" />
+                    </div>
+                </div>
 				<?php
 				include(BASE_PATH . "/AdminPanel/include/contents/add_portal_conversions.inc.php");
 				?>
