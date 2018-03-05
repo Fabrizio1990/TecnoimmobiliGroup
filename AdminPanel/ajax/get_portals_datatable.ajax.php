@@ -25,15 +25,18 @@
             $logo_path = SITE_URL."/".$imgPaths["portals"]["min"]["path"].$res[$i]["logo_name"];
             $id = $res[$i]["id_portal"];
             $portalName   = htmlentities($res[$i]["portal_name"], ENT_QUOTES);
-            $link = SITE_URL."/AdminPanel/add_portal.php?id_portal=".$id;
-            $link = SITE_URL."/AdminPanel/add_portal.php";
-            $editLink = "<a href='".$link."'>".$portalName."</a>";
+
+            $link_portal_management = SITE_URL."/AdminPanel/add_portal.php";
+            $link_portal_conversions = SITE_URL."/AdminPanel/add_portal_conversions.php";
+            $portalLink = "<a href='".$res[$i]['portal_site']."' target='blank'>".$portalName."</a>";;
 
             $date_ins ="<input type='hidden' value='".$res[$i]["portal_date_ins"] ."' />" . Date("d-m-Y", strtotime($res[$i]["portal_date_ins"]));
 
-            $sitePointer = "<a href='".$res[$i]['portal_site']."'>".$portalName."</a>";
 
-            $img_logo = "<form action='$link' method='POST'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><img onclick='this.parentNode.submit()' class='POINTER' src='".$logo_path."' alt='$portalName' /></form>";
+            $img_logo = "<form action='$link_portal_management' method='POST' target='_blank'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><img onclick='this.parentNode.submit()' class='POINTER' src='".$logo_path."' alt='$portalName' /></form>";
+
+            $form_feed_conversion = "<form action='$link_portal_conversions' method='POST' target='_blank'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><input type='submit' value='conversions'/></form>";
+
             $notes   = htmlentities($res[$i]["notes"], ENT_QUOTES);
 
             // MAX ENTRIES SHOW AND EDIT
@@ -54,11 +57,10 @@
             $portal_status  = "<input type='checkbox' class='switch' " .($res[$i]["portal_enabled"]=="1"?"checked":"") .">";
             ;
 
-            array_push($ret["aaData"],array($img_logo,$editLink,$notes,$limitEntriesField,$currentEntries,$portal_status,$date_ins));
+            array_push($ret["aaData"],array($img_logo,$portalLink,$form_feed_conversion.$notes,$limitEntriesField,$currentEntries,$portal_status,$date_ins));
 
         }
     }
-
 
 
 	echo(json_encode($ret));

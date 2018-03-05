@@ -75,3 +75,47 @@ body {
 .HR_BOLD{
     border-width:4px;
 }
+
+
+
+
+
+
+
+
+/* TECNOIMMOBILI BUTTONS */
+
+.btn-tecnoimm-blue {
+    width:100%;
+    background: #1a547a !important;
+    border-color: #1a547a !important;
+    color: #ffffff !important;
+}
+
+.btn-tecnoimm-blue:hover{
+    background-color:#327cad !important;
+}
+
+.btn-tecnoimm-blue:active,
+.btn-tecnoimm-blue.active {
+    background-color: #327cad \9 !important;
+}
+
+.btn-tecnoimm-red {
+    width:100%;
+    background: #eb212e !important;
+    border-color: #eb212e !important;
+    color: #ffffff !important;
+}
+
+.btn-tecnoimm-red:hover{
+    background-color:#af0813 !important;
+}
+
+.btn-tecnoimm-red:active,
+.btn-tecnoimm-red.active {
+    background-color: #af0813 \9 !important;
+}
+
+
+/* END TECNOIMMOBILI BUTTONS */
