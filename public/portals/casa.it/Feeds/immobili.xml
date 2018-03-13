@@ -1,0 +1,35 @@
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="http://xsd-schema-files.s3-website-eu-west-1.amazonaws.com/XmlRealEstate.xsd">
+  <realestateitems>
+	    <realestate action="0" agencycode="36919" reference="SV10012018RIF20" referenceID="20" contracttype="2" condition="Ottime condizioni"  heatingtype="Non specificato" housetypology="12" bathrooms="3 bagni" floor="Su più livelli" rooms="3 camere" occupationstate="Libero" realestatetype="1" size="" energyefficiencyratingid="NN" energyefficiencyvalue="0" energyefficiencyvaluenonrenewable="0.00" energyefficiencyvaluerenewable="0" energyefficiencyvaluewinter="0" energyefficiencyvaluesummer="0" iscubemeters="false" epe="0" epi="0" isquitezeroenergyestate="false" lastmodifieddt="2018-01-10 16:13:00">
+      <address city="9" street="Strada Provinciale 25" number="13" zip="17055" />
+      <description value=" Toirano (SV) – rif. 507 A mt. 750 dal centro paese, in posizione tranquilla e panoramica, villa di recente costruzione con piscina; sviluppo su tre livelli con magazzino/porticato; salotto, pranzo-cottura, tre camere e due bagni. Euro 650.000.    --- Finanziamo il 90% del valore dell'immobile tramite mutuo www.finservicepoint.it --- --- Finanziamo il 100% del valore dell'immobile tramite mutuo www.finservicepoint.it --- Per info www.tecnoimmobiligroup.it email:liguria@tecnoimmobiligroup.it telefono:019670353." />
+      <building age="-1" expenses="-1" totalfloors="-1" />
+      <price value="650000" privatenegotiation="0" max="650000" min="650000" />
+      <box type="Posto auto coperto" />
+      <garden size="0" type="Giardino privato" />
+      <configuration isaddressvisibleonsite="false" ismapvisible="true" isrealestatevisibleonmap="true" />
+      <googlemapcoordinate latitude="8.2054263" longitude="44.126781" mapzoom="13" latitudemapcenter="0" longitudemapcenter="0" />
+	  
+	  <images>
+		<advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-00_5.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-01_35.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-01_33.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-02_11.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-02_27.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-03_15.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-03_8.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-04_23.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-04_20.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-05_18.jpg" imagetype="Image" />
+	  </images>
+
+    </realestate>
+    <realestate action="0" agencycode="36919" reference="SV10012018RIF19" referenceID="19" contracttype="2" condition="Da ristrutturare"  heatingtype="Non specificato" housetypology="4" bathrooms="2 bagni" floor="Terreno" rooms="2 camere" occupationstate="Libero" realestatetype="1" size="" energyefficiencyratingid="G" energyefficiencyvalue="175" energyefficiencyvaluenonrenewable="0.00" energyefficiencyvaluerenewable="0" energyefficiencyvaluewinter="0" energyefficiencyvaluesummer="0" iscubemeters="false" epe="0" epi="0" isquitezeroenergyestate="false" lastmodifieddt="2018-01-10 16:12:58">
+      <address city="9" street="Via Aurelia" number="294" zip="17025" />
+      <description value=" Loano   (SV) - Rif. 789  “DAA-diversamente abili aiutati”  centralissima superficie di mq. 56 da personalizzare in relazione alle singole esigenze. In edificio ad angolo tra via Manzoni, via dei Gazzi e via Aurelia con solo a mt. 200 la passeggiata. Piano terreno senza barriere esposto ad ovest; possibile trasformazione anche in trilocale con due bagni a misura necessaria; inoltre superficie esterna pavimentata di proprieta'.  --- Finanziamo il 90% del valore dell'immobile tramite mutuo www.finservicepoint.it --- --- Finanziamo il 100% del valore dell'immobile tramite mutuo www.finservicepoint.it --- Per info www.tecnoimmobiligroup.it email:liguria@tecnoimmobiligroup.it telefono:019670353." />
+      <building age="-1" expenses="-1" totalfloors="-1" />
+      <price value="197000" privatenegotiation="0" max="197000" min="197000" />
+      <box type="Senza box" />
+      <garden size="0" type="Senza giardino" />
+      <configuration isaddressvisibleonsite="false" ismapvisible="true" isrealestatevisibleonmap="true" />
+      <googlemapcoordinate latitude="8.2555353" longitude="44.1258668" mapzoom="13" latitudemapcenter="0" longitudemapcenter="0" />
+	  
+	  <images>
+		<advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-12-58_7.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-12-59_50.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-12-59_9.jpg" imagetype="Image" /><advertismentimage path="http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/public/images/images_properties/big/img_2018-01-10_04-13-00_24.jpg" imagetype="Image" />
+	  </images>
+
+    </realestate>
+
+  </realestateitems>
+</container>

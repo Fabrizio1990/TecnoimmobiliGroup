@@ -75,6 +75,7 @@ class Feed
 
         // GET AND CONVERT VALUES
 
+        $agencyId   = $row["id_agency"];
         $agencyName = $row["agency_name"];
         $agencyEmail = $row["agent_email"];
         $agencyPhone = $row["agent_phone"];
@@ -99,7 +100,7 @@ class Feed
         $rooms = $this->getConvertedValue($this->portalId,11,$row["id_rooms"],$row["rooms"]);
         $locals = $this->getConvertedValue($this->portalId,12,$row["id_locals"],$row["locals"]);
         $bathrooms = $this->getConvertedValue($this->portalId,13,$row["id_bathrooms"],$row["bathrooms"]);
-        $floor = $this->getConvertedValue($this->portalId,14,$row["id_floor"],$row["floor"]);
+        $floor = $this->getConvertedValue($this->portalId,14,$row["id_floor"],$row["floorN"]);
         $elevator = $this->getConvertedValue($this->portalId,15,$row["id_elevator"]);
         $heating = $this->getConvertedValue($this->portalId,16,$row["id_heating"],$row["elevator"]);
         $box = $this->getConvertedValue($this->portalId,17,$row["id_box"],$row["box"]);
@@ -120,6 +121,7 @@ class Feed
 
 
         // POPULATE TEMPLATE REPEAT WITH VALUES
+        $tmpItems = str_replace("{id_agency}",$agencyId,$tmpItems);
         $tmpItems = str_replace("{agency_name}",$agencyName,$tmpItems);
         $tmpItems = str_replace("{agent_email}",$agencyEmail,$tmpItems);
         $tmpItems = str_replace("{agent_phone}",$agencyPhone,$tmpItems);
@@ -131,6 +133,7 @@ class Feed
         $tmpItems = str_replace("{link}",SITE_URL."/".$link,$tmpItems);
         $tmpItems = str_replace("{title}",$title,$tmpItems);
         $tmpItems = str_replace("{id_property}",$row["id"],$tmpItems);
+        $tmpItems = str_replace("{reference_code}",$row["reference_code"],$tmpItems);
 
         $tmpItems = str_replace("{category}",$category,$tmpItems);
         $tmpItems = str_replace("{tipology}",$tipology,$tmpItems);
@@ -148,10 +151,12 @@ class Feed
         $tmpItems = str_replace("{street}",$row["street"],$tmpItems);
         $tmpItems = str_replace("{street_num}",$row["street_num"],$tmpItems);
         $tmpItems = str_replace("{complete_address}",$row["street"]." ".$row["street_num"],$tmpItems);
+        $tmpItems = str_replace("{show_address}",$row["show_address"],$tmpItems);
         $tmpItems = str_replace("{longitude}",$row["longitude"],$tmpItems);
         $tmpItems = str_replace("{latitude}",$row["latitude"],$tmpItems);
 
         $tmpItems = str_replace("{price}",$row["price"],$tmpItems);
+        $tmpItems = str_replace("{negotiation_reserved}",$row["negotiation_reserved"],$tmpItems);
         $tmpItems = str_replace("{surface}",$row["mq"],$tmpItems);
         $tmpItems = str_replace("{rooms}",$rooms,$tmpItems);
         $tmpItems = str_replace("{locals}",$locals,$tmpItems);
@@ -165,7 +170,10 @@ class Feed
         $tmpItems = str_replace("{property_conditions}",$propertyConditions,$tmpItems);
         $tmpItems = str_replace("{property_status}",$propertyStatus,$tmpItems);
 
+
+
         $tmpItems = str_replace("{energy_class}",$energyClass,$tmpItems);
+        $tmpItems = str_replace("{ipe}",$row["ipe"],$tmpItems);
         $tmpItems = str_replace("{ipe_um}",$ipe_um,$tmpItems);
         $tmpItems = str_replace("{date_ins}",$row["date_ins"],$tmpItems);
         $tmpItems = str_replace("{date_up}",$row["date_up"],$tmpItems);
@@ -268,7 +276,4 @@ class Feed
 
     }
 
-
-
 }
-

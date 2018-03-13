@@ -1,0 +1,15 @@
+    <realestate action="0" agencycode="36919" reference="{reference_code}" referenceID="{id_property}" contracttype="{contract}" condition="{property_conditions}"  heatingtype="{heating}" housetypology="{tipology}" bathrooms="{bathrooms}" floor="{floor}" rooms="{rooms}" occupationstate="{property_status}" realestatetype="{category}" size="{surface}" energyefficiencyratingid="{energy_class}" energyefficiencyvalue="{ipe}" energyefficiencyvaluenonrenewable="0.00" energyefficiencyvaluerenewable="0" energyefficiencyvaluewinter="0" energyefficiencyvaluesummer="0" iscubemeters="false" epe="0" epi="0" isquitezeroenergyestate="false" lastmodifieddt="{date_up}">
+      <address city="{city}" street="{street}" number="{street_num}" zip="{cap}" />
+      <description value="{description}" />
+      <building age="-1" expenses="-1" totalfloors="-1" />
+      <price value="{price}" privatenegotiation="{negotiation_reserved}" max="{price}" min="{price}" />
+      <box type="{box}" />
+      <garden size="0" type="{garden}" />
+      <configuration isaddressvisibleonsite="{show_address_custom}" ismapvisible="true" isrealestatevisibleonmap="true" />
+      <googlemapcoordinate latitude="{latitude}" longitude="{longitude}" mapzoom="13" latitudemapcenter="0" longitudemapcenter="0" />
+	  
+	  {images_start}
+		{images}
+	  {images_end}
+
+    </realestate>

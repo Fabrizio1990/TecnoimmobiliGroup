@@ -2,7 +2,7 @@
 
 $dir = dirname(__FILE__);
 
-require_once(BASE_PATH."/app/classes/DbManager.php");
+require_once(BASE_PATH . "/app/classes/DbManager.php");
 
 class OptionsConversionManager extends DbManager{
 
@@ -37,8 +37,19 @@ class OptionsConversionManager extends DbManager{
 
 
 
-    public function saveConversion($id_portal,$table,$defVal,$convertedVal,$printQuery = false){
-        $query = "select `new_tecnoimmobili`.`prt_save_conversion`(".$id_portal.", '".$table."', '".$defVal."', '".$convertedVal."')";
+    public function portalNameToId($portalName){
+        $this->currTable = "prt_portals";
+        $ret =$this->read("name = ?",null,array($portalName),"id",false);
+        if(count($ret)>0)
+            return $ret[0]["id"];
+        else
+            return 0;
+    }
+
+
+
+    public function saveConversion($id_portal,$categoryId,$defVal,$convertedVal,$printQuery = false){
+        $query = "select `new_tecnoimmobili`.`prt_save_conversion`(".$id_portal.", '".$categoryId."', '".$defVal."', '".$convertedVal."')";
         if($printQuery)
             echo $query;
 
@@ -47,7 +58,7 @@ class OptionsConversionManager extends DbManager{
     }
 
     public function deleteConversion($id_conversion,$printQuery = false){
-        echo($id_conversion);
+
         $this->currTable = "prt_feed_field_conversion";
         $ret = $this->delete("id = ?",array($id_conversion),null,$printQuery);
         $this->setDefTable();
@@ -107,7 +118,7 @@ class OptionsConversionManager extends DbManager{
     private function categoryIdToTable($catId){
         $ret ="";
         $this->currTable = "prt_feed_conversion_categories";
-        $ret = $this->read("id = ?",null,array($catId),null,true);
+        $ret = $this->read("id = ?",null,array($catId),null,false);
 
         $this->setDefTable();
         return $ret[0];

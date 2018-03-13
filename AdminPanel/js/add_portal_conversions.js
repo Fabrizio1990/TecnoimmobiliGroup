@@ -120,7 +120,7 @@ function removeConversions(){
 
 function conversionDeleted(resp,row){
     console.log("RESP = "+ resp);
-    if(resp != "" && resp > 0 )
+    //if(resp != "" && resp > 0 )
         row.remove();
 }
 

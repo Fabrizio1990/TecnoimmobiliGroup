@@ -35,7 +35,7 @@
 
             $img_logo = "<form action='$link_portal_management' method='POST' target='_blank'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><img onclick='this.parentNode.submit()' class='POINTER' src='".$logo_path."' alt='$portalName' /></form>";
 
-            $form_feed_conversion = "<form action='$link_portal_conversions' method='POST' target='_blank'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><input type='submit' value='conversions'/></form>";
+            $form_feed_conversion = "<form action='$link_portal_conversions' method='POST' target='_blank'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><input type='submit' value='Conversioni'/></form>";
 
             $notes   = htmlentities($res[$i]["notes"], ENT_QUOTES);
 

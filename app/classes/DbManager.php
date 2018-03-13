@@ -28,6 +28,12 @@ class DbManager
             $this->conn = $conn;
     }
 
+    public function setDatabase($dbName){
+        $this->dbName = $dbName;
+        $query = "USE ".$dbName;
+        $this->conn->query($query);
+    }
+
 
 	public function openConnection()// APERTURA DELLA CONNESSIONE
     {
@@ -35,7 +41,7 @@ class DbManager
             return;
 
         try {
-            $this->conn =  new PDO("mysql:dbname=" . $this->dbName . ";host=" . $this->hostName,$this->user,$this->password);
+            $this->conn =  new PDO("mysql:dbname=" . $this->dbName . ";host=" . $this->hostName,$this->user,$this->password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $this->conn->exec("set names utf8");
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();

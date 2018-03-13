@@ -18,7 +18,8 @@ $act_tables_management      = isset($act_tables_management)?$act_tables_manageme
 // FEED
 $act_feed_management        =  isset($act_feed_management)?$act_feed_management:false;
 $act_portals_panel          =  isset($act_portals_panel)?$act_portals_panel:false;
-$act_portal_add               =  isset($act_portal_add)?$act_portal_add:false;
+$act_portal_add             =  isset($act_portal_add)?$act_portal_add:false;
+$act_portal_conversion_file =  isset($act_portal_conversion_file)?$act_portal_conversion_file:false;
 $act_feed_log               =  isset($act_feed_log)?$act_feed_log:false;
 
 //NEWS MANAGEMENT
@@ -140,6 +141,8 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 <ul class="treeview-menu">
                                     <li <?php if($act_portals_panel) echo('class="active"')?>><a href="portals_panel.php"><i class="fa fa-circle-o"></i> Pannello Portali</a></li>
                                     <li <?php if($act_portal_add) echo('class="active"')?>><a href="add_portal.php"><i class="fa fa-circle-o"></i> Aggiungi Portale</a></li>
+                                    <li <?php if($act_portal_conversion_file) echo('class="active"')?>><a href="add_portal_conversion_file.php"><i class="fa fa-circle-o"></i> Csv Conversione</a></li>
+
                                     <li <?php if($act_feed_log) echo('class="active"')?>><a href="feed_log.php"><i class="fa fa-circle-o"></i> Log Feed</a></li>
 
                                 </ul>

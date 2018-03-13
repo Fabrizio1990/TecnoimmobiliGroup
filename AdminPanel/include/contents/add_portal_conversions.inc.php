@@ -1,5 +1,5 @@
 <?php 
-require_once(BASE_PATH."/app/classes/OptionsConversionManager.php");
+require_once(BASE_PATH . "/app/classes/Portals&Feed/OptionsConversionManager.php");
 
 $cnvMng  = new OptionsConversionManager();
 
@@ -39,13 +39,20 @@ $conversions = $cnvMng->getPortalConversions($id_portal);
 
             <?php
             if(count($conversions) > 0){
+                $prevCatId = 0;
                 foreach ($conversions as $conversion){
+
                     $idConversion = $conversion["id"];
                     $catSelected = $conversion["category_id"];
                     $fieldSelected = $conversion["original"];
                     $conversionVal = $conversion["converted"];
+                    if($prevCatId > 0 && $catSelected != $prevCatId){
+                        echo("<div class='HR'></div>");
+                    }
                     include (BASE_PATH."/AdminPanel/include/contents/subcontents/add_portal_conversion_row.inc.php");
+                    $prevCatId = $catSelected;
                 }
+                echo("<div class='HR'></div>");
             }
 
             ?>

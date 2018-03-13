@@ -72,15 +72,15 @@ $(document).ready(function () {
             GetFeedPath($(this));
             GetFeedSaveLink($(this));
         });
-        //GetFeedPath($(this).closest(".FEED_BOX"));
     });
 
 
-
-    //GENERATE FOLDER PATH
-    /*$(".inp_portal_feed_name").on("change",function(){
-
-    });*/
+    //BIND FEED CREATION BUTTON
+    $('#feed_container').on('click', '.btn_feed_generator', function(event){
+        /*event.preventDefault();
+        console.log("AVRò PREVENUTO?");*/
+        //GetFeedSaveLink($(this).closest(".FEED_BOX"));
+    });
 
 
 
@@ -184,6 +184,8 @@ function getFeeds(){
     return ret;
 }
 
+
+//SAVE PORTAL FUNCTION
 function savePortal(form){
     var page = SITE_URL+"/AdminPanel/ajax/add_portal_savePortal.ajax.php";
     var params = $(form).serialize();
@@ -194,11 +196,12 @@ function savePortal(form){
     ajaxCall(page,params,null,portalSaved,null,"POST");
 }
 
-
+//ON PORTAL SAVED
 function portalSaved(resp){
     if(resp=="1"||resp=="0" || resp.toLowerCase() =="success")
     openInfoModal(2,"Successo","Il portale è stato Salvato con successo","Chiudi",function(){window.location.reload();});
 else
     openInfoModal(5,"Errore!","è avvenuto un errore durante il salvataggio delle informazioni.","Chiudi");
 }
+
 

@@ -1,9 +1,34 @@
 <?php
-    require_once("../config.php");
+
+
+function is_url_exist($url){
+        $headers=get_headers($url);
+        return stripos($headers[0],"200 OK")?true:false;
+    /*$ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_exec($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if($code == 200){
+        $status = true;
+    }else{
+        $status = false;
+    }
+    curl_close($ch);
+    return $status;*/
+    //return true;
+}
+
+    if(!defined("BASE_PATH"))
+        require_once("../../../../config.php");
+
+    $portalName = isset($inpPortalName)?$inpPortalName:"";
     $feed_name = isset($tmpName)?$tmpName:"";
     $feed_file_type_id = isset($tmp_feed_file_type_id)?$tmp_feed_file_type_id:"";
-    $feed_extension    = isset($feed_extension) ?$feed_extension:"";
+    $feed_extension    = isset($tmp_feed_extension) ?$tmp_feed_extension:"";
+    $feed_path         =((isset($portalFeedPath))&&($portalFeedPath!=""))?BASE_PATH."/".$portalFeedPath."/".$feed_name.$feed_extension:"";
     $feed_link = ((isset($portalFeedPath))&&($portalFeedPath!=""))?SITE_URL."/".$portalFeedPath."/".$feed_name.$feed_extension:"";
+    $feed_generator_link = SITE_URL."/_OTHER/FEED_XML/feed_controller.php?portal=$portalName&feed=$feed_name";
     $feed_filter_field = isset($tmpFilterField)?$tmpFilterField:"";
     $feed_filter_value = isset($tmpFilterValue)?$tmpFilterValue:"";
     $feed_notes = isset($tmpNotes)?$tmpNotes:"";
@@ -74,7 +99,8 @@
                 ?>
             </div><!-- /.col-md-6 -->
 
-            <div class="col-md-6"> </div><!-- /.col-md-6 -->
+            <div class="col-md-6">
+            </div><!-- /.col-md-6 -->
 
         </div><!-- /.row -->
 
@@ -119,5 +145,30 @@
 
         </div><!-- /.row -->
 
+        <?php
+        if($feed_link != "")
+        {
+        ?>
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <a target="_blank" href="<?php echo $feed_generator_link ?>" class="btn btn-tecnoimm-red btn_feed_generator">
+                        Genera feed
+                    </a>
+                </div>
+                <div class="col-md-4 col-md-push-4 col-xs-12">
+                    <?php
+                    if(file_exists($feed_path)){
+                    ?>
+                    <a target="_blank" href="<?php echo $feed_link ?>" class="btn btn-tecnoimm-red btn_go_to_feed">
+                        Vai al feed
+                    </a>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
     </div>
 </div>

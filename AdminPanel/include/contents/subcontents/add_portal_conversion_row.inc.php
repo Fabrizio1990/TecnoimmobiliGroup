@@ -1,7 +1,7 @@
 <?php
 if(!defined ("BASE_PATH"))
     require_once("../../../../config.php");
-require_once(BASE_PATH."/app/classes/OptionsConversionManager.php");
+require_once(BASE_PATH . "/app/classes/Portals&Feed/OptionsConversionManager.php");
 $cnvMng  = new OptionsConversionManager();
 
 

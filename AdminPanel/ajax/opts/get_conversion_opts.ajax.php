@@ -1,7 +1,7 @@
 <?php
 if(isset($_REQUEST["category"])){
     include("../../../config.php");
-    include(BASE_PATH."/app/classes/OptionsConversionManager.php");
+    include(BASE_PATH . "/app/classes/Portals&Feed/OptionsConversionManager.php");
 
     $cnvMng = new OptionsConversionManager();
 

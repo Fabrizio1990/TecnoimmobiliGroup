@@ -58,13 +58,11 @@ class FeedManager
         $fullSavePath = $feedSavePath."/".$feedName.$feedExtension;
 
         // GET THE TEMPLATE FOR BASE XML AND SINGLE ITEMS
-        $templateContainer = FileHelper::readFile($folderTemplateXML."/".$feedName.$feedExtension);
-        $templateRepeat = FileHelper::readFile($folderTemplateXML."/".$feedName."_item".$feedExtension);
-
+        $templateContainer = FileHelper::readFile($folderTemplateXML."/".$portal_name.$feedExtension);
+        $templateRepeat = FileHelper::readFile($folderTemplateXML."/".$portal_name."_item".$feedExtension);
 
         // GET RIGHT FEED CLASS
-        $feedMng = $this->getManager($feedName,$portalId,$templateContainer,$templateRepeat);
-
+        $feedMng = $this->getManager($portal_name,$portalId,$templateContainer,$templateRepeat);
 
         //GET ALL PROPRETIES TO SENT TO THIS PORTAL
         $params = array();
@@ -94,17 +92,19 @@ class FeedManager
 
 
 
-
         //GET FEED
         $feedFile = $feedMng->getPropertyFeed($rst);
 
-        //PRINT FEED
-        if($printFeed)
-            echo($feedFile);
 
         //Write file on right folder
         $this->writeFeed($fullSavePath,$feedFile);
 
+        //PRINT RESULT
+        echo("success");
+
+        //PRINT FEED
+        if($printFeed)
+            echo("<xmp>".$feedFile."</xmp>");
 
     }
 
@@ -124,18 +124,19 @@ class FeedManager
     // ************************************************
     // GET DEL MANAGER GIUSTO IN BASE AL FEED RICHIESTO
     // ************************************************
-    public function getManager($feedName,$portalId,$templateContainer,$templateRepeat){
+    public function getManager($portalName,$portalId,$templateContainer,$templateRepeat){
         $ret = null;
-        switch($feedName){
+        switch($portalName){
             case "trovit":
                 $ret = new FeedTrovit($portalId,$templateContainer,$templateRepeat);
                 break;
-
+            case "casa.it":
+                $ret = new FeedCasa_it($portalId,$templateContainer,$templateRepeat);
+                break;
             default :
                 $ret = new Feed($portalId,$templateContainer,$templateRepeat);
                 break;
         }
-
         return $ret;
     }
 
