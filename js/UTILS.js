@@ -42,7 +42,9 @@ function showHide(elem){
 //callback_params = parametri da ritornare alla funzione di callback_params
 //success = callback success
 //fail = callback fail
-function ajaxCall(page,params = null,callback_params = null,success = null,fail = null,method ="GET"){
+//method = POST,GET
+//useUrlencodedHeader = disable if you want to send formData object
+function ajaxCall(page,params = null,callback_params = null,success = null,fail = null,method ="GET",useUrlencodedHeader = true){
     var http;
     if (window.XMLHttpRequest)
         http = new XMLHttpRequest();
@@ -61,9 +63,8 @@ function ajaxCall(page,params = null,callback_params = null,success = null,fail 
             }
         }
         http.open(method, page ,true);
-        if(method=="POST"){
+        if(method=="POST" && useUrlencodedHeader){
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
         }
         http.send(params);
     }else{

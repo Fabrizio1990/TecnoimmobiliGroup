@@ -62,6 +62,7 @@ $act_portal_conversion_file         = true;
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override_select2.css" />
     <!-- modals -->
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/utils.css" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo(SITE_URL) ?>/images/icons/favicon.ico" type="image/x-icon">
@@ -158,6 +159,7 @@ $act_portal_conversion_file         = true;
     <!-- Bootstrap Switch -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/js/bootstrap-switch.min.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_portal_conversion_file.js"></script>
 
 
 
@@ -171,9 +173,6 @@ $act_portal_conversion_file         = true;
             animate: true,
         };
         $(".switch").bootstrapSwitch(options);
-
-
-
 
 
     </script>

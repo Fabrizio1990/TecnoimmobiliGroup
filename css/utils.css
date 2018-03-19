@@ -17,3 +17,25 @@ V_ALIGN_MIDDLE{
     vertical-align: middle;
 }
 
+
+
+/*LOADING AND HOVER BACKGROUNDS*/
+
+.LOADING_GIF_150{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width:150px;
+    height:150px;
+    margin:0 auto;
+}
+
+.BG_HOVER_BLACK{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width:100%;
+    height:100%;
+    background-image: url("../images/bg_repeats/bg_repeat_black.png");
+    background-repeat: repeat;
+}

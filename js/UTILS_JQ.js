@@ -15,3 +15,22 @@ function JQGEBI(obj){
     }
     return ($("#"+obj));
 }
+
+/*function JQAjaxCallFile(page,formData,success = null,fail = null,method = "POST"){
+    $.ajax({
+        url: page,
+        data: formData,
+        type: method,
+        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+        processData: false, // NEEDED, DON'T OMIT THIS
+
+        success: function(data) {
+            if(success!= null)
+                success(data);
+        },
+        error: function(data) {
+            successmessage = 'Error';
+            $("label#successmessage").text(successmessage);
+        },
+    });
+}*/
