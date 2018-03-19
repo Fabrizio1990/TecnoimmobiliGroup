@@ -33,6 +33,8 @@ $act_portal_conversion_file         = true;
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/css/bootstrap3/bootstrap-switch.min.css">
+    <!-- Bootstrap Switch -->
+    <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/css/bootstrap3/bootstrap-switch.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -153,24 +155,17 @@ $act_portal_conversion_file         = true;
 	
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_portal.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap_switch/js/bootstrap-switch.min.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
 
 
 
 	<!-- INIT COMPONENTS -->
     <script>
-        //TODO RIABILITA LA FUNZIONE DRAG DROP MA CON IL PUNTAMENTO AL LINK GIUSTO (PRENDILA DA ADD PROPERTIES)
-        $(function() {
-            INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_portal_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
-        });
-
-
         var options = {
             inverse: true,
-            size: "normal",
+            size: "mini",
             onColor: 'success',
             offColor: 'danger',
             animate: true,

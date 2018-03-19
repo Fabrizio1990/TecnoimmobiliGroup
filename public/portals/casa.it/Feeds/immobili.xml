@@ -1,12 +1,12 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="http://xsd-schema-files.s3-website-eu-west-1.amazonaws.com/XmlRealEstate.xsd">
   <realestateitems>
-	    <realestate action="0" agencycode="36919" reference="SV10012018RIF20" referenceID="20" contracttype="2" condition="Ottime condizioni"  heatingtype="Non specificato" housetypology="12" bathrooms="3 bagni" floor="Su più livelli" rooms="3 camere" occupationstate="Libero" realestatetype="1" size="" energyefficiencyratingid="NN" energyefficiencyvalue="0" energyefficiencyvaluenonrenewable="0.00" energyefficiencyvaluerenewable="0" energyefficiencyvaluewinter="0" energyefficiencyvaluesummer="0" iscubemeters="false" epe="0" epi="0" isquitezeroenergyestate="false" lastmodifieddt="2018-01-10 16:13:00">
+	    <realestate action="0" agencycode="36919" reference="SV10012018RIF20" referenceID="20" contracttype="2" condition="1"  heatingtype="2" housetypology="12" bathrooms="3 bagni" floor="11" rooms="3 camere" occupationstate="2" realestatetype="1" size="408" energyefficiencyratingid="0" energyefficiencyvalue="0" energyefficiencyvaluenonrenewable="0.00" energyefficiencyvaluerenewable="0" energyefficiencyvaluewinter="0" energyefficiencyvaluesummer="0" iscubemeters="false" epe="0" epi="0" isquitezeroenergyestate="false" lastmodifieddt="2018-01-10 16:13:00">
       <address city="9" street="Strada Provinciale 25" number="13" zip="17055" />
       <description value=" Toirano (SV) – rif. 507 A mt. 750 dal centro paese, in posizione tranquilla e panoramica, villa di recente costruzione con piscina; sviluppo su tre livelli con magazzino/porticato; salotto, pranzo-cottura, tre camere e due bagni. Euro 650.000.    --- Finanziamo il 90% del valore dell'immobile tramite mutuo www.finservicepoint.it --- --- Finanziamo il 100% del valore dell'immobile tramite mutuo www.finservicepoint.it --- Per info www.tecnoimmobiligroup.it email:liguria@tecnoimmobiligroup.it telefono:019670353." />
       <building age="-1" expenses="-1" totalfloors="-1" />
       <price value="650000" privatenegotiation="0" max="650000" min="650000" />
-      <box type="Posto auto coperto" />
-      <garden size="0" type="Giardino privato" />
+      <box type="3" />
+      <garden size="0" type="1" />
       <configuration isaddressvisibleonsite="false" ismapvisible="true" isrealestatevisibleonmap="true" />
       <googlemapcoordinate latitude="8.2054263" longitude="44.126781" mapzoom="13" latitudemapcenter="0" longitudemapcenter="0" />
 	  
@@ -15,13 +15,13 @@
 	  </images>
 
     </realestate>
-    <realestate action="0" agencycode="36919" reference="SV10012018RIF19" referenceID="19" contracttype="2" condition="Da ristrutturare"  heatingtype="Non specificato" housetypology="4" bathrooms="2 bagni" floor="Terreno" rooms="2 camere" occupationstate="Libero" realestatetype="1" size="" energyefficiencyratingid="G" energyefficiencyvalue="175" energyefficiencyvaluenonrenewable="0.00" energyefficiencyvaluerenewable="0" energyefficiencyvaluewinter="0" energyefficiencyvaluesummer="0" iscubemeters="false" epe="0" epi="0" isquitezeroenergyestate="false" lastmodifieddt="2018-01-10 16:12:58">
+    <realestate action="0" agencycode="36919" reference="SV10012018RIF19" referenceID="19" contracttype="2" condition="4"  heatingtype="3" housetypology="4" bathrooms="2 bagni" floor="0" rooms="2 camere" occupationstate="2" realestatetype="1" size="56" energyefficiencyratingid="8" energyefficiencyvalue="175" energyefficiencyvaluenonrenewable="0.00" energyefficiencyvaluerenewable="0" energyefficiencyvaluewinter="0" energyefficiencyvaluesummer="0" iscubemeters="false" epe="0" epi="0" isquitezeroenergyestate="false" lastmodifieddt="2018-01-10 16:12:58">
       <address city="9" street="Via Aurelia" number="294" zip="17025" />
       <description value=" Loano   (SV) - Rif. 789  “DAA-diversamente abili aiutati”  centralissima superficie di mq. 56 da personalizzare in relazione alle singole esigenze. In edificio ad angolo tra via Manzoni, via dei Gazzi e via Aurelia con solo a mt. 200 la passeggiata. Piano terreno senza barriere esposto ad ovest; possibile trasformazione anche in trilocale con due bagni a misura necessaria; inoltre superficie esterna pavimentata di proprieta'.  --- Finanziamo il 90% del valore dell'immobile tramite mutuo www.finservicepoint.it --- --- Finanziamo il 100% del valore dell'immobile tramite mutuo www.finservicepoint.it --- Per info www.tecnoimmobiligroup.it email:liguria@tecnoimmobiligroup.it telefono:019670353." />
       <building age="-1" expenses="-1" totalfloors="-1" />
       <price value="197000" privatenegotiation="0" max="197000" min="197000" />
-      <box type="Senza box" />
-      <garden size="0" type="Senza giardino" />
+      <box type="0" />
+      <garden size="0" type="0" />
       <configuration isaddressvisibleonsite="false" ismapvisible="true" isrealestatevisibleonmap="true" />
       <googlemapcoordinate latitude="8.2555353" longitude="44.1258668" mapzoom="13" latitudemapcenter="0" longitudemapcenter="0" />
 	  
