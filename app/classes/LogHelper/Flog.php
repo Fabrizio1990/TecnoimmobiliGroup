@@ -7,7 +7,7 @@ class Flog{
 	private static $log_file_name;
 	private static $extension = ".txt";
 
-    private static $log_expire_time = 604800; //expire time in minutes, 7 days = 7*24*60*60
+    private static $log_expire_time = 250200/*604800*/; //expire time in minutes, 7 days = 7*24*60*60
 	
 	
 	public static function logError($text,$log_file_name ="log",$output = false){
