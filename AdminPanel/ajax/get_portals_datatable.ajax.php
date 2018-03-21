@@ -8,7 +8,9 @@
     $prtMng = new PortalManager();
     $imgH = new ImagesInfo();
     $imgPaths = $imgH->info;
-
+    $feedGenerationBaseLink = SITE_URL."/_OTHER/FEED_XML/feed_controller.php";
+    //FEED GENERATION LINK EXAMPLE
+    //localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/_OTHER/FEED_XML/feed_controller.php?portal=trovit&feed=trovit
 
 
 
@@ -28,14 +30,27 @@
 
             $link_portal_management = SITE_URL."/AdminPanel/add_portal.php";
             $link_portal_conversions = SITE_URL."/AdminPanel/add_portal_conversions.php";
-            $portalLink = "<a href='".$res[$i]['portal_site']."' target='blank'>".$portalName."</a>";;
+            $portalLink = "<a href='".$res[$i]['portal_site']."' target='blank'>".$portalName."</a>";
+            $feedGenerationFullLink =$feedGenerationBaseLink ."?portal=trovit&feed=trovit";
 
             $date_ins ="<input type='hidden' value='".$res[$i]["portal_date_ins"] ."' />" . Date("d-m-Y", strtotime($res[$i]["portal_date_ins"]));
 
 
             $img_logo = "<form action='$link_portal_management' method='POST' target='_blank'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><img onclick='this.parentNode.submit()' class='POINTER' src='".$logo_path."' alt='$portalName' /></form>";
 
-            $form_feed_conversion = "<form action='$link_portal_conversions' method='POST' target='_blank'><input type='hidden' name='id_portal' class='id_portal' value='$id' /><input type='submit' value='Conversioni'/></form>";
+            $form_feed_conversion = "
+<div class='row'>
+    <div class='col-md-12'>
+        <form action='$link_portal_conversions' method='POST' target='_blank'>
+            <input type='hidden' name='id_portal' class='id_portal' value='$id' />
+            <input class='btn btn-xs btn-tecnoimm-blue' type='submit' value='Conversioni'/>
+        </form>
+    </div>
+    <div class='col-md-12 alignleft'>
+        <a href='".$feedGenerationFullLink."' target='_blank' class=' MARGIN_TOP_10 btn btn-xs btn-tecnoimm-red' type='button'> Genera Feed<a/>
+    </div>
+    </div>
+</div>";
 
             $notes   = htmlentities($res[$i]["notes"], ENT_QUOTES);
 

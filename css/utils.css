@@ -4,18 +4,30 @@
 .DISPL_BLOCK{display:block;}
 .OPACITY-0{opacity:0;}
 .PADDING-0{padding:0!important;}
-.COLOR_RED{
-    color:#eb212e!important;
-}
-.BG_COLOR_RED{
-    background-color: #eb212e;
-}
-.POINTER:hover{
-    cursor:pointer;
-}
-V_ALIGN_MIDDLE{
-    vertical-align: middle;
-}
+
+/*MARGIN*/
+.MARGIN_5{margin: 5px;}
+.MARGIN_TOP_5{margin-top: 5px;}
+.MARGIN_RIGHT_5{margin-right: 5px;}
+.MARGIN_BOTTOM_5{margin-bottom: 5px;}
+.MARGIN_LEFT_5{margin-left: 5px;}
+.MARGIN_10{margin: 10px;}
+.MARGIN_TOP_10{margin-top: 10px;}
+.MARGIN_RIGHT_10{margin-right: 10px;}
+.MARGIN_BOTTOM_10{margin-bottom: 10px;}
+.MARGIN_LEFT_10{margin-left: 10px;}
+
+
+/*WIDTH*/
+.WIDTH_100{width:100px;}
+
+
+.COLOR_RED{color:#eb212e!important;}
+.BG_COLOR_RED{background-color: #eb212e;}
+
+.POINTER:hover{cursor:pointer;}
+
+V_ALIGN_MIDDLE{vertical-align: middle;}
 
 
 

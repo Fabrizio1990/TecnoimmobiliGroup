@@ -58,14 +58,7 @@ $inpPortalContactCity       = "";
 $inpPortalContactAddress    = "";
 
 
-
-
-/*
-##################################################################
-######################## ONLY FOR TEST ######################
-##################################################################
-*/
-
+//region TEST PARAMETERS
 /*
 $imgPortal                  = SITE_URL."/".$imgInfo->info["properties"]["normal"]["path"]."/img_eof/Immagine_eof.jpg";
 $inpPortalName              = "portale di prova";
@@ -98,9 +91,7 @@ $inpPortalContactPhone      = "011147";
 $inpPortalContactMobile     = "321123";
 $inpPortalContactCity       = "Torino";
 $inpPortalContactAddress    = "indirizzo a caso";*/
-
-
-/* END TEST*/
+//endregion
 
 
 if(isset($_REQUEST["id_portal"])){

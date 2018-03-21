@@ -18,7 +18,7 @@
                     <tr>
                         <th>Logo</th>
                         <th>Portale</th>
-                        <th>Note</th>
+                        <th>Azioni</th>
                         <th>Limite Annunci</th>
                         <th>annunci attivi</th>
                         <th>Online</th>
@@ -33,7 +33,7 @@
                     <tr>
                         <th>Logo</th>
                         <th>Portale</th>
-                        <th>Note</th>
+                        <th>Azioni</th>
                         <th>Limite Annunci</th>
                         <th>annunci attivi</th>
                         <th>Online</th>

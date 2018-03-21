@@ -153,7 +153,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- Plugin per recupero e salvataggio options -->
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/portals_panel.js"></script>
-
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/feed_generation.js"></script>
 
 
 	<!-- DataTable Init -->

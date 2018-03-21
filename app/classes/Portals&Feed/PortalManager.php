@@ -46,6 +46,7 @@ class PortalManager extends DbManager implements IDbManager {
 
 
 
+    //region SAVE FUNCTIONS
     public function SavePortalBasicInfo($id_portal,$name,$site,$logo_name,$entries_max,$notes,$enabled = 1,$printQuery = false){
 
         $query = "SELECT `prt_save_basic_info`($id_portal,".
@@ -137,48 +138,6 @@ class PortalManager extends DbManager implements IDbManager {
 
     }
 
-    public function getPortalList(){
-
-        $this->currTable = "portals_view";
-        $portals = $this->read();
-        $this->setDefTable();
-
-        return $portals;
-
-    }
-
-    public function getPortalDetails($idPortal){
-        $this->currTable = "portal_details";
-        $portals = $this->read("id_portal = ?",null,array($idPortal));
-        $this->setDefTable();
-
-        return $portals;
-    }
-
-
-    public function clearFeedList($portal_id){
-
-        $this->executeQuery("Call prt_delete_feeds($portal_id)");
-    }
-
-    public function addFeed($portal_id,$feed_name,$feed_extension,$filter_field,$filter_value,$notes){
-        $this->currTable = "prt_feeds";
-        // TODO IL VALUES "1" che è il feed file type deve essere settato da tendina
-        $ret = $this->create(array($portal_id,$feed_name,$feed_extension,$filter_field,$filter_value,$notes),array("id_portal","feed_name","feed_file_type_id","filter_field","filter_value","notes"),false);
-        $this->setDefTable();
-        return $ret;
-    }
-
-
-
-
-    public function readPortalFeeds($portalID){
-        $this->currTable = "portal_feeds_view";
-        $ret = $this->read("id_portal =?",null,array($portalID));
-        $this->setDefTable();
-        return $ret;
-    }
-
     public function setNewPropertiesLimit($portalID,$newLimit){
         $this->setTable("prt_portals");
         $ret = $this->update("entries_max = ?","id = ?",array($newLimit,$portalID));
@@ -186,12 +145,6 @@ class PortalManager extends DbManager implements IDbManager {
         return $ret;
     }
 
-    public function setPortalStatus($portalID,$newStatus){
-        $this->setTable("prt_portals");
-        $ret = $this->update("enabled = ?","id = ?",array($newStatus,$portalID));
-        $this->setDefTable();
-        return $ret;
-    }
 
     public function switchPropertyOnPortalStatus($id_portal,$id_property){
         $this->setTable("prt_portal_properties");
@@ -216,13 +169,70 @@ class PortalManager extends DbManager implements IDbManager {
         return $ret;
     }
 
+    public function addFeed($portal_id,$feed_name,$feed_extension,$filter_field,$filter_value,$notes){
+        $this->currTable = "prt_feeds";
+        // TODO IL VALUES "1" che è il feed file type deve essere settato da tendina
+        $ret = $this->create(array($portal_id,$feed_name,$feed_extension,$filter_field,$filter_value,$notes),array("id_portal","feed_name","feed_file_type_id","filter_field","filter_value","notes"),false);
+        $this->setDefTable();
+        return $ret;
+    }
+    //endregion
+
+    //region GET DATA FUNCTIONS
+    public function getPortalList(){
+        $this->currTable = "portals_view";
+        $portals = $this->read();
+        $this->setDefTable();
+        return $portals;
+    }
+
+    public function getPortalDetails($idPortal){
+        $this->currTable = "portal_details";
+        $portals = $this->read("id_portal = ?",null,array($idPortal));
+        $this->setDefTable();
+        return $portals;
+    }
+
+    public function getPortalIdByName($portalName){
+        $ret = 0;
+        $this->currTable = "prt_portals";
+        $res = $this->read("name = ?",null,array($portalName),"id");
+        if(count($res)>0)
+            $ret = $res[0]["id"];
+        $this->setDefTable();
+        //if no portal found i will return 0
+        return $ret;
+    }
+
+    public function clearFeedList($portal_id){
+        $this->executeQuery("Call prt_delete_feeds($portal_id)");
+    }
+
+    public function readPortalFeeds($portalID){
+        $params = "";
+        if(is_array($portalID))
+            $params = implode(",",$portalID);
+        else
+            $params = $portalID;
+        $this->currTable = "portal_feeds_view";
+        $ret = $this->read("id_portal in($params)",null,null,null,false);
+        $this->setDefTable();
+        return $ret;
+    }
+
+
+    public function setPortalStatus($portalID,$newStatus){
+        $this->setTable("prt_portals");
+        $ret = $this->update("enabled = ?","id = ?",array($newStatus,$portalID));
+        $this->setDefTable();
+        return $ret;
+    }
+
 
     public function getPortalFolder($portalName){
         $defVal = new DefValues();
         $retPath = $defVal->getDefaultValue("portal_public_path");
         $portalsPublicPath = $retPath[0][0];
-
-
         return $portalsPublicPath;
     }
 
@@ -245,6 +255,9 @@ class PortalManager extends DbManager implements IDbManager {
         $docsFolder =$portalsPublicPath."/".$portalName."/".$portalsDocFolder;
         return $docsFolder;
     }
+    //endregion
+
+
 
 
     public function setDefTable(){
