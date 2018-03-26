@@ -208,7 +208,7 @@ class PortalManager extends DbManager implements IDbManager {
         $this->executeQuery("Call prt_delete_feeds($portal_id)");
     }
 
-    public function readPortalFeeds($portalID){
+    public function getPortalFeeds($portalID){
         $params = "";
         if(is_array($portalID))
             $params = implode(",",$portalID);

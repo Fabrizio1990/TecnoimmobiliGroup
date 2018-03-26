@@ -103,7 +103,6 @@ folder instead of downloading all of them to reduce the load. -->
 
             <!-- MAIN CONTENT -->
             <section class="content">
-
                 <?php include(BASE_PATH."/AdminPanel/include/widgets/portal_list_widget.inc.php"); ?>
 
             </section>
@@ -143,7 +142,7 @@ folder instead of downloading all of them to reduce the load. -->
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
-    
+
 
     <!-- ----CUSTOM JS ------ -->
 	
@@ -154,6 +153,7 @@ folder instead of downloading all of them to reduce the load. -->
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/portals_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/feed_generation.js"></script>
+
 
 
 	<!-- DataTable Init -->

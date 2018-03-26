@@ -5,10 +5,19 @@
                 <h3 class="box-title">Lista Portali</h3>
                 <!-- pulsanti riduci e chiudi -->
                 <div class="pull-right box-tools">
-                    <button type="button" class="btn btn-secondary btn-sm pull-right" data-widget="remove"><i class="fa fa-times"></i>
+                    <button type="button" class="btn btn-secondary btn-sm pull-right" data-widget="remove" data-toggle="tooltip" title="Chiudi">
+                        <i class="fa fa-times"></i>
                     </button>
+                    <button type="button" class="btn btn-secondary btn-sm "  data-toggle="tooltip" id="btn_feed_generation" title="Genera tutti i feed" style="margin-right: 5px;">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+
                     <button type="button" class="btn btn-secondary btn-sm " data-widget="collapse" data-toggle="tooltip" title="Riduci / Ingrandisci" style="margin-right: 5px;">
-                        <i class="fa fa-minus"></i></button>
+                        <i class="fa fa-minus"></i>
+                    </button>
+
+
+
                 </div>
             </div>
             <!-- /.box-header -->
@@ -46,3 +55,4 @@
         </div>
     </div>
 </div>
+

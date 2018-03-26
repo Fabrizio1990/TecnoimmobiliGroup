@@ -70,6 +70,7 @@ function ajaxCall(page,params = null,callback_params = null,success = null,fail 
     }else{
         console.log("ajax non disponibile");
     }
+    return http;
 }
 
 function ajax_fail(par1){
