@@ -60,6 +60,7 @@ folder instead of downloading all of them to reduce the load. -->
 
 	<!-- ----CUSTOM CSS ------ -->
 	<link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/utils.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/AdminPanel/css/portal_panel.css" />
 
