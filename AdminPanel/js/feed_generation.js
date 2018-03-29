@@ -70,6 +70,11 @@ function generateFeedRecursive(index = 0){
     //SE L' INDICE SUPERA LA DIMENSIONE DELL' ARRAY DEI FEED HO FINITO
     if(index >= currendFeedList.length){
         OnAllFeedsGenerated();
+    }else if(currendFeedList[index].enabled == 0){//SE il portale non è abilitato passo al prossimo feed
+        console.log("SONO QUI "+currendFeedList[index].enabled);
+        var nextIdx = index +1;
+        generateFeedRecursive(nextIdx);
+        return;
     }else{//ALTRIMENTI GENERO IL PROSSIMO FEED
         var page = SITE_URL+"/_OTHER/FEED_XML/feed_controller.php";
         var params ="portal="+currendFeedList[index].portal_name +"&feed="+currendFeedList[index].feed_name;
