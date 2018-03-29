@@ -47,11 +47,8 @@
             <input class='btn btn-xs btn-tecnoimm-blue' type='submit' value='Conversioni'/>
         </form>
     </div>
-    <div class='col-md-6 alignleft'>
-        <a href='".$feedGenerationFullLink."' target='_blank' class=' MARGIN_TOP_10 btn btn-xs btn-tecnoimm-red' type='button'> Genera Feed<a/>
-    </div>
-    <div class='col-md-6 alignleft'>
-        <a href='".$feedGenerationFullLink."' target='_blank' class=' MARGIN_TOP_10 btn btn-xs btn-tecnoimm-red' type='button'> Vai A Feed<a/>
+    <div class='col-md-12'>
+        <a href='javascript:generatePortalFeeds(". $id .")' target='_blank' class=' MARGIN_TOP_10 btn btn-xs btn-tecnoimm-red' type='button'> Genera i Feed<a/>
     </div>
 </div>";
 

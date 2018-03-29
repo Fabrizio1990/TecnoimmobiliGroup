@@ -4,15 +4,17 @@
 
 var feeds;
 var feedsLen = 0;
+
+
+var currendFeedList;
 var isGenerating = false;
 
 $(document).ready(function(){
     getAllFeeds();
 
 
-    $("#btn_feed_generation").bind("click",generateAllFeeds);
+    $("#btn_feed_generation").bind("click",setupAllFeedGeneration);
 
-    //generateAllFeeds();
     //PRE CARICO LA MODALE DI GENERAZIONE PORTALI
     openInfoModal(1,"Generazione Feed","","Chiudi",null,true);
 });
@@ -29,10 +31,16 @@ function getAllFeeds(){
     },null,"POST");
 }
 
+function setupAllFeedGeneration(){
+    currendFeedList = feeds;
+    generateAllFeeds();
+}
+
 //GENERAZIONE DI TUTTI I FEEDS
 function generateAllFeeds(){
+
     //SE I FEED NON SONO STATI ANCORA CARICATI RITORNO UN ERRORE ED ESCO DALLA FUNZIONE
-    if(feeds == ""){
+    if(currendFeedList == ""){
         openInfoModal(5,"Errore Feed","E' avvenuto un errore nella generazione dei feed, attendi '1 minuto' che i dati vengano recuperati e riprova.<br>Se il problema persiste contatta il webmaster");
         return;
     }
@@ -59,40 +67,53 @@ function OnAllFeedsGenerated(){
 }
 
 function generateFeedRecursive(index = 0){
-
-
-    if(index >= feedsLen){
+    //SE L' INDICE SUPERA LA DIMENSIONE DELL' ARRAY DEI FEED HO FINITO
+    if(index >= currendFeedList.length){
         OnAllFeedsGenerated();
-    }else{
-
+    }else{//ALTRIMENTI GENERO IL PROSSIMO FEED
         var page = SITE_URL+"/_OTHER/FEED_XML/feed_controller.php";
-        var params ="portal="+feeds[index].portal_name +"&feed="+feeds[index].feed_name;
+        var params ="portal="+currendFeedList[index].portal_name +"&feed="+currendFeedList[index].feed_name;
         //APPEND DELLA RIGA RELATIVA AL FEED NELLA MODALE
         appendPortalGenerationInfo(index);
-
-        console.log("HO FATTO l' APPEND");
-        console.log("GENERO FEED " +feeds[index].portal_name);
-
-        return ajaxCall(page,params,index,OnFeedRecursiveGenerated,OnGenerationFailed,"POST")
+        ajaxCall(page,params,index,OnFeedRecursiveGenerated,OnGenerationFailed,"POST")
     }
-
 }
 
-function OnFeedRecursiveGenerated(resp,idx){
-    console.log("DONE idx = "+idx);
-    setGenerationInfoDone(idx);
-    var nextIdx = idx+1;
+
+function OnFeedRecursiveGenerated(resp,feedIndex){
+    setGenerationInfoDone(feedIndex);
+    var nextIdx = feedIndex+1;
     generateFeedRecursive(nextIdx);
 }
 
 function  OnGenerationFailed(resp) {
 
-    console.log("FAIIIIL");
+    alert("FAIIIIL");
+}
+
+
+//GENERAZIONE DEI FEED DI UN SINGOLO PORTALE
+function generatePortalFeeds(portalId){
+    //SETTO LA LISTA DEI FEED APPARTENENTI AL PORTALE NELL ARRAY GLOBALE
+    currendFeedList = getPortalFeedsList(portalId);
+    generateAllFeeds();
+}
+
+
+// RITORNA LA LISTA DEI FEED LEGATI A UN PORTALE
+function getPortalFeedsList(portalId){
+    var ret = new Array();
+    for(var i = 0 ; i < feedsLen; i++){
+        if(feeds[i].id_portal == portalId){
+            ret.push(feeds[i]);
+        }
+    }
+    return ret;
 }
 
 function appendPortalGenerationInfo(feedIdx){
     var generationID = getGenerationID(feedIdx);
-    $("#myModalInfo .modal-body").append("<div class='row'><div class='col-md-3'>"+feeds[feedIdx].portal_name+"</div><div class='col-md-3'>"+feeds[feedIdx].feed_name+feeds[feedIdx].feed_extension+"</div><div class='col-md-6' id='"+generationID+"'>Generazione...</div></div>");
+    $("#myModalInfo .modal-body").append("<div class='row'><div class='col-md-3'>"+currendFeedList[feedIdx].portal_name+"</div><div class='col-md-3'>"+currendFeedList[feedIdx].feed_name+currendFeedList[feedIdx].feed_extension+"</div><div class='col-md-6' id='"+generationID+"'>Generazione...</div></div>");
 }
 
 function setGenerationInfoDone(feedIdx){
@@ -103,19 +124,5 @@ function setGenerationInfoDone(feedIdx){
 }
 
 function getGenerationID(feedIdx){
-    console.log(feedIdx);
-    return "generation_status_"+feeds[feedIdx].id_portal+"_"+feeds[feedIdx].id;
-}
-
-
-
-
-function generateFeed(portalName,feedName){
-    if(feeds == ""){
-        openInfoModal(5,"Errore Feed","E' avvenuto un errore nella generazione dei feed, attendi '1 minuto' che i dati vengano recuperati e riprova.<br>Se il problema persiste contatta il webmaster");
-    }
-}
-
-function OnFeedGenerated(){
-
+    return "generation_status_"+currendFeedList[feedIdx].id_portal+"_"+currendFeedList[feedIdx].id;
 }

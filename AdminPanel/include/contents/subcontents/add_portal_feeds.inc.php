@@ -31,7 +31,7 @@ if($id_portal == 0){
 }
 else{
     // LEGGO E STAMPO TUTTI I FEED
-    $feeds = $prtMng->readPortalFeeds($id_portal);
+    $feeds = $prtMng->getPortalFeeds($id_portal);
     for($i = 0 ,$len = Count($feeds); $i < $len; $i++){
         $tmpName = $feeds[$i]["feed_name"];
         $tmp_feed_file_type_id = $feeds[$i]["feed_extension_id"];

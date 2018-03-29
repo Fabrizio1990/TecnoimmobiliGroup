@@ -1,5 +1,5 @@
 <?php 
-// CLASSE PER LA GESTIONE DB DELLE PROPERTIES (IMMOBILI)
+// CLASSE PER LA GESTIONE DEI PORTALI
 require_once(BASE_PATH."/app/interfaces/IDbManager.php");
 require_once(BASE_PATH."/app/classes/DbManager.php");
 require_once(BASE_PATH."/app/classes/DefValues.php");
