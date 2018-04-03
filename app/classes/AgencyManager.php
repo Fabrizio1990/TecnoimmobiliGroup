@@ -66,6 +66,24 @@ class AgencyManager extends DbManager implements IDbManager
     }
 
 
+    public function saveAgenciesPortalLimit($idPortal,$maxLimits,$printQuery = false){
+        $agList = $this->getAgenciesData(array("id_status = 1","id_portal_status = 1"));
+        $propertiesXAgency = 0;
+        $missings = 0;
+        if($maxLimits > 0 ){
+            $propertiesXAgency = floor($maxLimits / count($agList));
+            $missings = $maxLimits - ($propertiesXAgency * count($agList));
+        }
+        foreach ($agList as $agency){
+            $limit = $agency["id"] == 1?$propertiesXAgency + $missings: $propertiesXAgency;
+            $query = "call prt_save_agency_limits(".$idPortal.",".$agency["id"].",".$limit.")";
+            parent::executeNonQuery($query,$printQuery);
+
+        }
+        return 1;
+    }
+
+
     public function getAgenciesData($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = false){
         $this->currTable = "agencies_list";
         $ret = $this->read($params,$extra_params,$values ,$fields,$printQuery);

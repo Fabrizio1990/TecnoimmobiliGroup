@@ -214,7 +214,7 @@ if(isset($_REQUEST["id_portal"])){
                         <?php
                         require("subcontents/add_portal_contacts.inc.php");
                         ?>
-                    </div><!-- #######################FINE TAB FEEDS ############################## -->
+                    </div><!-- #######################FINE TAB CONTACTS ############################## -->
 
 
 

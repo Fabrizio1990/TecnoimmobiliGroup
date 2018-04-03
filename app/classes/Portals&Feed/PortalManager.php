@@ -73,11 +73,11 @@ class PortalManager extends DbManager implements IDbManager {
             $enabled.")";
 
         $ret = parent::executeNonQuery($query,$printQuery);
-
-
         return $ret;
-
     }
+
+
+
 
     public function SavePortalLoginInfo($id_portal,$link,$user,$password,$enabled = 1,$printQuery = false){
 

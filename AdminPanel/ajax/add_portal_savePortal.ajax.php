@@ -11,12 +11,18 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
     include("../../config.php");
     include(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
+    include(BASE_PATH."/app/classes/AgencyManager.php");
     require_once(BASE_PATH."/app/classes/DefValues.php");
     include(BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
     include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
     $pMng = new PortalManager();
+    $agMng = new AgencyManager($pMng->conn);
     $defVal = new DefValues();
+
+
+
+
 
     $id_portal          = isset($_POST["id_portal"]) ? $_POST["id_portal"] : 0;
     $logo_name          = urldecode($_POST["logo_portal"]);
@@ -98,6 +104,16 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
             exit();
         }
 
+        //AGENCY LIMITS SAVE
+
+        $ret = $agMng->saveAgenciesPortalLimit($id_portal, $maxProperties,false);
+
+        if($ret == null || $ret =="" ) {
+            $pMng->rollback();
+            echo("ERRORE NEL SALVATAGGIO DI INFORMAZIONI RELATIVE AI LIMITI DEGLI ANNUNCI INVIABILI PER OGNI AGENZIA");
+            exit();
+        }
+
         //CONTRACT INFO SAVE
         $ret = $pMng->SavePortalContractInfo($id_portal,$contractStart,$contractEnd,$contractPrice);
         if($ret == null || $ret =="" ){
@@ -105,6 +121,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
             echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI CONTRATTO DEL PORTALE");
             exit();
         }
+
 
         //PORTAL LOGIN INFO SAVE
         $ret = $pMng->SavePortalLoginInfo($id_portal,$ar_link,$ar_username,$ar_password);
