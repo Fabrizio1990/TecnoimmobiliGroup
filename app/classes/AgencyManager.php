@@ -66,19 +66,31 @@ class AgencyManager extends DbManager implements IDbManager
     }
 
 
-    public function saveAgenciesPortalLimit($idPortal,$maxLimits,$printQuery = false){
-        $agList = $this->getAgenciesData(array("id_status = 1","id_portal_status = 1"));
+    public function saveAgenciesPortalLimit($portalID,$maxLimits,$printQuery = false){
+        $agList = $this->getAgenciesData();
+        $notAllowed = $this->read(array("id_status <> 1 or id_portal_status <> 1"));
+        $notAllowedCnt = count($notAllowed);
         $propertiesXAgency = 0;
         $missings = 0;
         if($maxLimits > 0 ){
-            $propertiesXAgency = floor($maxLimits / count($agList));
-            $missings = $maxLimits - ($propertiesXAgency * count($agList));
+            $propertiesXAgency = floor($maxLimits / (count($agList)-$notAllowedCnt));
+            $missings = $maxLimits - ($propertiesXAgency * (count($agList)-$notAllowedCnt));
+
         }
         foreach ($agList as $agency){
-            $limit = $agency["id"] == 1?$propertiesXAgency + $missings: $propertiesXAgency;
-            $query = "call prt_save_agency_limits(".$idPortal.",".$agency["id"].",".$limit.")";
-            parent::executeNonQuery($query,$printQuery);
+            $agencyID = $agency["id"];
 
+            //se agenzia disabilitata diabilito il record su prt_portal_agencies_info
+            if($agency["id_status"] != "1" || $agency["id_portal_status"] != "1"){
+                $this->currTable= "prt_portal_agencies_info";
+                $this->update("enabled = 0,max_properties_on = 0",array("id_portal = ?","id_agency= ?"),array($portalID,$agencyID),null,true);
+                $this->setDefTable();
+            //altrimenti chiamo la SP che aggiunge il record o ne fa l' update
+            }else{
+                $limit = $agency["id"] == 1?$propertiesXAgency + $missings: $propertiesXAgency;
+                $query = "call prt_save_agency_limits(".$portalID.",".$agency["id"].",".$limit.")";
+                parent::executeNonQuery($query,$printQuery);
+            }
         }
         return 1;
     }

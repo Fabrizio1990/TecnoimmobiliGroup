@@ -61,7 +61,21 @@ class PortalManager extends DbManager implements IDbManager {
 
         return $ret[0]["retId"];
 
+    }
 
+    public function calcAgsLimitsAllPortals(){
+        $portalList = $this->getPortalList();
+        foreach ($portalList as $portal)
+            $this->calcAgLimits($portal["id_portal"]);
+    }
+
+    public function calcAgLimits($portalID){
+        require_once (BASE_PATH."/app/classes/AgencyManager.php");
+        $agMng = new AgencyManager();
+        $portalInfo = $this->getPortalDetails($portalID);
+        $maxEntries = $portalInfo[0]["entries_max"];
+        $ret = $agMng->saveAgenciesPortalLimit($portalID,$maxEntries);
+        return $ret;
     }
 
     public function SavePortalContractInfo($id_portal,$start,$end,$price,$enabled = true,$printQuery = false){
@@ -75,7 +89,6 @@ class PortalManager extends DbManager implements IDbManager {
         $ret = parent::executeNonQuery($query,$printQuery);
         return $ret;
     }
-
 
 
 
@@ -256,6 +269,9 @@ class PortalManager extends DbManager implements IDbManager {
         return $docsFolder;
     }
     //endregion
+
+
+
 
 
 

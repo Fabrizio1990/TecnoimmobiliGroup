@@ -61,10 +61,12 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
         }else{//if all params are ok i can proceed to Insert/Update
             include("../../config.php");
             include(BASE_PATH."/app/classes/AgencyManager.php");
+            include(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
             include(BASE_PATH."/app/classes/UserManager.php");
             include(BASE_PATH."/app/classes/Utils.php");
 
             $agMng = new AgencyManager();
+            $pMng = new PortalManager($agMng->conn);
 
 
 
@@ -81,6 +83,13 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
                     echo("errore - Aggiornamento dell' agenzia fallito");
                     exit;
                 }
+
+                //portal limits update
+                if($sel_portal_status != 1 || $sel_status != 1 ){
+                    //PORTAL LIMITS RE ASSIGNMENT
+                    $portalList = $pMng->calcAgsLimitsAllPortals();
+                }
+
                 // AGENT UPDATE
                 $ret = insertOrUpdateAgent();
                 if( $ret!="0" && ($ret == null || $ret =="" || strpos($ret,"error"))){
@@ -97,6 +106,7 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
                 // AGENCY CRATE
                 $values = array($inp_logo,$inp_banner,$inp_name,$txt_description,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$inp_competence_area,$inp_longitude,$inp_latitude,$inp_pIva,$inp_CF,$inp_REA,$inp_business_register,$sel_status,$sel_sub_status,$sel_portal_status);
 
+                //AGENCY SAVE
                 $id_agency = $agMng->saveAgency($values);
                 if( $id_agency == null ||
                     $id_agency =="" ||
@@ -105,6 +115,9 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
                     echo "errore nel salvataggio dell' agenzia";
                     exit;
                 }
+
+                //PORTAL LIMITS RE ASSIGNMENT
+                $portalList = $pMng->calcAgsLimitsAllPortals();
 
                 // USER CREATE
                 $ret = insertOrUpdateAgent();
