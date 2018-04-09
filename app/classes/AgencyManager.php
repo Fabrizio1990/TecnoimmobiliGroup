@@ -111,6 +111,21 @@ class AgencyManager extends DbManager implements IDbManager
         return $ret;
     }
 
+
+    public function getAgencyProperties($id_agency,$adsStatus = 0 ){
+        $this->currTable = "properties_view";
+        $params =array("id_agency = ?");
+        $values = array($id_agency);
+        if($adsStatus != 0){
+            array_push($params,"id_ads_status = ?");
+            array_push($values,$adsStatus);
+        }
+        $ret = $this->read($params,null,$values,null,false);
+
+        return $ret;
+
+    }
+
     public function updateStatus($idAgency,$status){
         require_once(BASE_PATH."/app/classes/UserManager.php");
         $usrMng = new UserManager();
