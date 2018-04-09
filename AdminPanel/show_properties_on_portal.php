@@ -16,9 +16,10 @@ if(SessionManager::getVal("authenticated") != null){
 if(!isset($_REQUEST["id_portal"]))
     header('Location: ' . SITE_URL."/AdminPanel/portals_panel.php");
 
+
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
-$act_menu_propery		= true; // setta attivo il link modifica immobili
-$act_list_properties 	= true; // setta attivo il menu immobili
+$act_menu_management = true;
+$act_feed_management = true;
 
 $id_portal = $_REQUEST["id_portal"];
 

@@ -248,27 +248,31 @@ class DbManager
         return $ret;
     }
 
-    protected function executeSp($spName,$params,$values){
+    protected function executeSp($spName,$params,$values,$printQuery = false){
         $ret = false;
         //$this->openConnection();
-        $params         = $this->getParams($params);// convert $params array to useful string
 
-        $query = "CALL $spName($params)";
-        /*if(DEBUG_MODE)*/
-        //echo("<br>".$query."<br>");
+
+        $query = "CALL $spName(";
+        foreach ($params as $param)
+            $query.=$param.",";
+        $query = rtrim($query,",");
+        $query.= ");";
 
         $sth = $this->conn->prepare($query);
 
         $ret = $sth->execute($values);
-        //$sth->debugDumpParams();
-
+        if($printQuery){
+            echo "<br>".$query;
+            $sth->debugDumpParams();
+        }
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
         if($errorInfo[0] != 0){
             Flog::logError($errorInfo[2],"DBManager.php");
             return $ret;
         }
-
+        $ret = $sth->fetchAll();
         //$this->closeConnection();
         return $ret;
     }

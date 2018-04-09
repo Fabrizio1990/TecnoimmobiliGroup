@@ -12,14 +12,14 @@ if(SessionManager::getVal("authenticated") != null){
     header("location:login.php");
 }
 if(isset($_POST["id_property"],$_POST["id_portal"])){
-    include(BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
+    include(BASE_PATH."/app/classes/Portals&Feed/PropertiesOnPortal.php");
 
     $id_property    = $_POST["id_property"];
     $id_portal      = $_POST["id_portal"];
 
-    $pMng  = new PortalManager();
+    $popMng  = new PropertiesOnPortal();
 
-    $ret = $pMng->switchPropertyOnPortalStatus($id_portal,$id_property);
+    $ret = $popMng->switchPropertyOnPortalStatus($id_portal,$id_property);
 
     //RESTITUISCO IN NUOVO STATO  (1 - 0)
     echo($ret);
