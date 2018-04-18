@@ -1,7 +1,7 @@
 <?php
 $parallax = false;
-$menuSelected ="finanziaria";
-$subMenuSelected = "perizieBancarie";
+$menuSelected ="studioTecnico";
+$subMenuSelected = "perizieLegali";
 ?>
 
 <!DOCTYPE html>

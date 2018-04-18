@@ -83,7 +83,7 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="<?php echo SITE_URL."/index.html" ?>">Home</a></li>
                 <li>Dettaglio immobile</li>
             </ul>
             <h2><?php echo $title ?></h2>

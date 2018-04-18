@@ -1,7 +1,7 @@
 <?php
 $parallax = false;
-$menuSelected ="finanziaria";
-$subMenuSelected = "perizieBancarie";
+$menuSelected ="mediazioneCivile";
+$subMenuSelected = "assistenzaLegale";
 ?>
 
 <!DOCTYPE html>
@@ -9,10 +9,10 @@ $subMenuSelected = "perizieBancarie";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
+    <meta name="description" content="TecnoimmobiliGroup,Case in vendita,Case in affitto,Aste immobiliari, Assistenza legale, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>Perizie Bancarie</title>
+    <title>Assistenza legale</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -68,9 +68,9 @@ $subMenuSelected = "perizieBancarie";
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li>Finanziaria</li>
+                <li>Mediazione civile</li>
             </ul>
-            <h2>Valutazioni e perizie</h2>
+            <h2>Assistenza legale</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 

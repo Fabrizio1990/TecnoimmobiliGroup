@@ -176,7 +176,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
 
         <div class="col-lg-12">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="<?php echo SITE_URL."/index.html" ?>">Home</a></li>
                 <li>Lista immobili</li>
             </ul>
             <h2><span id="results_found">X</span><?php echo " risultati per: $resultString " ?></h2>

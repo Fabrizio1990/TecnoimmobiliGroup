@@ -1,6 +1,6 @@
 function goToAuction(){
     var page = SITE_URL+"/ajax/research_set_session.ajax.php";
-    var params = "sel_contract=2&sel_category=1";
+    var params = "sel_contract=7&sel_category=1";
     ajaxCall(page,params,null,researchSet,researchNotSet,"POST");
 }
 
