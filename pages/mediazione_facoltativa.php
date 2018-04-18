@@ -9,7 +9,7 @@ $subMenuSelected = "mediazioneFacoltativa";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
+    <meta name="description" content="TecnoimmobiliGroup, Case e appartamenti, Case vendita,Case in affitto, Aste immobiliari, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
     <title>Mediazione facoltativa</title>

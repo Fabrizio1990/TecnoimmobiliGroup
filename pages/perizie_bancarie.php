@@ -9,7 +9,7 @@ $subMenuSelected = "perizieBancarie";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
+    <meta name="description" content="TecnoimmobiliGroup, Case e appartamenti, Case vendita,Case in affitto, Aste immobiliari, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
     <title>Perizie Bancarie</title>
@@ -70,7 +70,7 @@ $subMenuSelected = "perizieBancarie";
                 <li><a href="index.html">Home</a></li>
                 <li>Finanziaria</li>
             </ul>
-            <h2>Valutazioni e perizie</h2>
+            <h2>Perizie bancarie</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 

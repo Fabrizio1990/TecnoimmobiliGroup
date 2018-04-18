@@ -27,7 +27,7 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
+    <meta name="description" content="TecnoimmobiliGroup, Case in vendita,Case in affitto,Aste immobiliari, Dettaglio Immobile, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
     <title><?php echo PropertyLinksAndTitles::getTitleFromRef($reference_code,4). " - TecnoimmobiliGroup" ?></title>
