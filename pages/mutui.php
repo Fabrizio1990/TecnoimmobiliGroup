@@ -1,6 +1,7 @@
 <?php
 $parallax = false;
-$menuSelected ="aste_immobiliari";
+$menuSelected ="finanziaria";
+$subMenuSelected = "mutui";
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ $menuSelected ="aste_immobiliari";
     <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>Aste Immobiliari</title>
+    <title>Mutui</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -67,9 +68,9 @@ $menuSelected ="aste_immobiliari";
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li>Aste immobiliari</li>
+                <li>Finanziaria</li>
             </ul>
-            <h2>Che cosa sono le Aste immobiliari</h2>
+            <h2>Mutui</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -79,7 +80,8 @@ $menuSelected ="aste_immobiliari";
 
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
-            <?php include(BASE_PATH . "/app/include/Templates/aste_immobiliari.inc.php"); ?>
+        <form name="mortgage" method="post" action=""><br /><br />
+            <div style="width:180px;text-align:center;"><div style="border:1px solid #000;align:center;text-align:center;"><div style="font-size:12px;line-height:20px;font-family: arial; font-weight:bold;background:#eeeeee;padding: 3px 1px;"><a href="https://www.calcoloratamutuo.com/" style="color:#000000;font-size:14px;text-decoration:none;line-height:16px;" >Calcolo Rata Mutuo</a></div><table width=99% style="align:center;color:#333333;"><tr><br/><td align="right">Importo:</td><td align="left"><input type="text" name="m_loan" value="250000" size=5>€</td></tr><tr><td align="right">Tasso:</td><td align="left"><input type="text" name="m_rate" value="4.5" size=5>%</td></tr><tr><td align="right">Durata:</td><td align="left"><input type="text" name="m_year" value="20" size=5>anni</td></tr><tr align="center"><td colspan=2><br/><input type="button" value="Calcola mutuo" onclick="cal_mortgageamm(this.form);"></td></tr><tr align="center"><td colspan=2><div id="mortgagesummaryamm"></div></td></tr></table><script src="http://mut.jcdn.it/mutuow/3.php"></script></div></div></form>
 
     </div><!-- end container -->
 </section><!-- end generalwrapper -->

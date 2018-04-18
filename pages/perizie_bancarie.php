@@ -1,6 +1,7 @@
 <?php
 $parallax = false;
-$menuSelected ="aste_immobiliari";
+$menuSelected ="finanziaria";
+$subMenuSelected = "perizie";
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ $menuSelected ="aste_immobiliari";
     <meta name="description" content=""><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>Aste Immobiliari</title>
+    <title>Perizie Bancarie</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -67,9 +68,9 @@ $menuSelected ="aste_immobiliari";
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li>Aste immobiliari</li>
+                <li>Finanziaria</li>
             </ul>
-            <h2>Che cosa sono le Aste immobiliari</h2>
+            <h2>Valutazioni e perizie</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -79,7 +80,8 @@ $menuSelected ="aste_immobiliari";
 
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
-            <?php include(BASE_PATH . "/app/include/Templates/aste_immobiliari.inc.php"); ?>
+
+        --> METTI QUI PAGINA
 
     </div><!-- end container -->
 </section><!-- end generalwrapper -->

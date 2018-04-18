@@ -4,8 +4,8 @@ if(!isset($menuSelected))
     $menuSelected ="home";
 
 function checkSelected($menuName,$activeCommand = "active"){
-    global $menuSelected;
-    if($menuSelected == $menuName)
+    global $menuSelected ,$subMenuSelected, $subMenu2Selected;
+    if($menuSelected == $menuName || $subMenuSelected == $menuName || $subMenu2Selected == $menuName)
         echo "active";
 }
 ?>
@@ -30,10 +30,10 @@ function checkSelected($menuName,$activeCommand = "active"){
 
 
                 <!-- standard drop down -->
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("finanziaria") ?>">FINANZIARIA<b class="caret"></b></a>
+                <li class="dropdown <?php checkSelected("finanziaria") ?>"><a href="#" data-toggle="dropdown" class="dropdown-toggle ">FINANZIARIA<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="testimonials.html">Mutui</a></li>
-                        <li><a href="faqs.html">Perizie bancarie</a></li>
+                        <li class="<?php checkSelected("mutui") ?>"><a href="<?php echo SITE_URL."/mutui.html" ?>" >Mutui</a></li>
+                        <li class="<?php checkSelected("perizie") ?>"><a href="<?php echo SITE_URL."/perizie_bancarie.html" ?>" >Perizie bancarie</a></li>
                     </ul><!-- end dropdown-menu -->
                 </li><!-- end standard drop down -->
 
@@ -41,16 +41,16 @@ function checkSelected($menuName,$activeCommand = "active"){
                 <!-- standard drop down -->
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("studio_tecnico") ?>">STUDIO TECNICO<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="testimonials.html">Perizie legali</a></li>
+                        <li><a href="<?php echo SITE_URL."/perizie_legali.html" ?>">Perizie legali</a></li>
                         <li class="dropdown-submenu">
                             <a href="#">Progettazione</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Catasto</a></li>
-                                <li><a href="#">Direzione lavori</a></li>
-                                <li><a href="#">Pratiche risparmio energetico</a></li>
-                                <li><a href="#">Servizi a privati e imprese</a></li>
-                                <li><a href="#">Visure e ricerche</a></li>
-                                <li><a href="#">Consulenze varie</a></li>
+                                <li><a href="<?php echo SITE_URL."/catasto.html" ?>">Catasto</a></li>
+                                <li><a href="<?php echo SITE_URL."/direzione_lavori.html" ?>">Direzione lavori</a></li>
+                                <li><a href="<?php echo SITE_URL."/pratiche_risparmio.html" ?>">Pratiche risparmio energetico</a></li>
+                                <li><a href="<?php echo SITE_URL."/servizi.html" ?>">Servizi a privati e imprese</a></li>
+                                <li><a href="<?php echo SITE_URL."/visure.html" ?>">Visure e ricerche</a></li>
+                                <li><a href="<?php echo SITE_URL."/consulenze.html" ?>">Consulenze varie</a></li>
                             </ul>
                         </li>
                     </ul><!-- end dropdown-menu -->
@@ -60,11 +60,11 @@ function checkSelected($menuName,$activeCommand = "active"){
                 <!-- standard drop down -->
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("mediazione_civile") ?>">MEDIAZIONE CIVILE<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="testimonials.html">Mediazione obbligatoria</a></li>
-                        <li><a href="testimonials.html">Mediazione facoltativa</a></li>
-                        <li><a href="testimonials.html">Vantaggi della mediazione</a></li>
-                        <li><a href="testimonials.html">Vantaggi fiscali</a></li>
-                        <li><a href="testimonials.html">Assistenza legale</a></li>
+                        <li><a href="<?php echo SITE_URL."/mediazione_obbligatoria.html" ?>">Mediazione obbligatoria</a></li>
+                        <li><a href="<?php echo SITE_URL."/mediazione_facoltativa.html" ?>">Mediazione facoltativa</a></li>
+                        <li><a href="<?php echo SITE_URL."/mediazione_vantaggi.html" ?>">Vantaggi della mediazione</a></li>
+                        <li><a href="<?php echo SITE_URL."/vantaggi_fiscali.html" ?>">Vantaggi fiscali</a></li>
+                        <li><a href="<?php echo SITE_URL."/assistenza_legale.html" ?>">Assistenza legale</a></li>
                     </ul><!-- end dropdown-menu -->
                 </li><!-- end standard drop down -->
 
@@ -73,16 +73,16 @@ function checkSelected($menuName,$activeCommand = "active"){
                 <!-- standard drop down -->
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("gruppo") ?>">IL GRUPPO<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="testimonials.html">Chi siamo</a></li>
-                        <li><a href="testimonials.html">Dove Siamo</a></li>
-                        <li><a href="testimonials.html">Contatti</a></li>
-                        <li><a href="testimonials.html">Lavora con noi</a></li>
+                        <li><a href="<?php echo SITE_URL."/chi_siamo.html" ?>">Chi siamo</a></li>
+                        <li><a href="<?php echo SITE_URL."/dove_siamo.html" ?>">Dove Siamo</a></li>
+                        <li><a href="<?php echo SITE_URL."/contatti.html" ?>">Contatti</a></li>
+                        <li><a href="<?php echo SITE_URL."/lavora_con_noi.html" ?>">Lavora con noi</a></li>
                     </ul><!-- end dropdown-menu -->
                 </li><!-- end standard drop down -->
 
 
                 <li class="dropdown fhmm-fw <?php checkSelected("partner") ?>">
-                    <a href="<?php echo SITE_URL ?>"> PARTNER</a>
+                    <a href="<?php echo SITE_URL."/partner.html" ?>"> PARTNER</a>
                 </li>
 
 

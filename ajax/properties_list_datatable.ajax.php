@@ -5,7 +5,7 @@ include(BASE_PATH."/app/classes/PropertyManager.php");
 include(BASE_PATH."/app/classes/Utils.php");
 include(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 include(BASE_PATH."/app/classes/GenericDbHelper.php");
-
+include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
 function bindParamsValues($param,$value){
     global $params,$values;
@@ -39,6 +39,7 @@ $category   = isset($_GET["category"])?$_GET["category"]:"";
 $tipology   = isset($_GET["tipology"])?$_GET["tipology"]:"";
 if($tipology =="Qualsiasi") $tipology = "";
 $town       = isset($_GET["town"])?$_GET["town"]:"";
+if($town =="Qualsiasi") $town = "";
 $conditions = isset($_GET["conditions"])?$_GET["conditions"]:"";
 $garden     = isset($_GET["garden"])?$_GET["garden"]:"";
 $elevator   = isset($_GET["elevator"])?$_GET["elevator"]:"";
@@ -111,8 +112,14 @@ if ($res & $resultFound>0 && $resultFound!="" && $resultFound!=null){;
         $price =  $res[$i]["negotiation_reserved"]?"Tratt. Riservata":"&euro; ".Utils::formatPrice($res[$i]["price"]);
 
         /*  IMAGES */
-        $imgPathNormal = $propertyM->getImagesPath("title = ?","limit 1", array("normal"),"path",false)[0]["path"];
-        $imgPathBig = $propertyM->getImagesPath("title = ?","limit 1", array("big"),"path",false)[0]["path"];
+        //RECUPERA PATH IMMAGINI
+
+        $imgInfo = new ImagesInfo($propertyM->conn);
+        $imgPaths = $imgInfo->info;
+
+
+        $imgPathNormal = $imgPaths["properties"]["normal"]["path"];
+        $imgPathBig = $imgPaths["properties"]["big"]["path"];;
 
         $imgNormal = SITE_URL."/".$imgPathNormal."/".$imgEof;
         $imgBig = SITE_URL."/".$imgPathBig."/".$imgEof;

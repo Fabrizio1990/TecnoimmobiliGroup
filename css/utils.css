@@ -4,6 +4,10 @@
 .DISPL_BLOCK{display:block;}
 .OPACITY-0{opacity:0;}
 .PADDING-0{padding:0!important;}
+h1,h2,h3{font-weight: bold}
+
+/* TEXT FORMAT */
+.JUSTIFIED{text-align: justify;}
 
 /*MARGIN*/
 .MARGIN_5{margin: 5px;}
@@ -16,6 +20,11 @@
 .MARGIN_RIGHT_10{margin-right: 10px;}
 .MARGIN_BOTTOM_10{margin-bottom: 10px;}
 .MARGIN_LEFT_10{margin-left: 10px;}
+.MARGIN_20{margin: 20px;}
+.MARGIN_TOP_20{margin-top: 20px;}
+.MARGIN_RIGHT_20{margin-right: 20px;}
+.MARGIN_BOTTOM_20{margin-bottom: 20px;}
+.MARGIN_LEFT_20{margin-left: 20px;}
 
 
 /*WIDTH*/
@@ -28,6 +37,8 @@
 .POINTER:hover{cursor:pointer;}
 
 V_ALIGN_MIDDLE{vertical-align: middle;}
+
+
 
 
 

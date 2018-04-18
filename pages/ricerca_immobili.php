@@ -69,7 +69,12 @@ $ajaxUrlParams = rtrim($ajaxUrlParams,"&");
 //echo($ajaxUrlParams);
 
 // STRINGA RISULTATI TROVATI
-$resultString = $_GET["tipology"]." in ".$_GET["contract"] ." ".$_GET["town"];
+$resultString = "";
+$resultString.= strtolower($_GET["tipology"])!="qualsiasi"?$_GET["tipology"]:"";
+$resultString.= strtolower($_GET["contract"])!="qualsiasi"?(" in ".$_GET["contract"]):"";
+$resultString.= strtolower($_GET["town"])!="qualsiasi"?(" ".$_GET["town"]):"";
+// se asta rimuovo "IN"
+$resultString = str_replace("in Asta Immobiliare"," Asta Immobiliare",$resultString);
 if( $district!="")$resultString.= " : ".$district;
 
 
