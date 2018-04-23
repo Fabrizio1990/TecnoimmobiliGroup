@@ -19,7 +19,7 @@
                         <div class="widget clearfix">
                             <div class="title"><h3><i class="fa fa-globe" ></i>I nostri portali</h3><hr></div>
                             <ul class="list">
-                                <li><a title="Finservice Point" href="http://www.finservicepoint.it/">Finservices</a></li>
+                                <li><a title="Finservice Point" href="http://www.finservicepoint.it/">Finservice</a></li>
                                 <li><a title="Intermedia 2000" href="http://www.intermedia2000.it/">Intermedia 2000</a></li>
                                 <li><a title="Case a torino" href="http://www.case-torino.it/">Case-torino</a></li>
                                 <li><a title="Case in piemonte" href="http://www.case-piemonte.it/">Case-piemonte</a></li>

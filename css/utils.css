@@ -3,7 +3,7 @@
 .DISPL_INLINE{display:inline;}
 .DISPL_BLOCK{display:block;}
 .OPACITY-0{opacity:0;}
-.PADDING-0{padding:0!important;}
+
 h1,h2,h3{font-weight: bold}
 
 /* TEXT FORMAT */
@@ -25,8 +25,19 @@ h1,h2,h3{font-weight: bold}
 .MARGIN_RIGHT_20{margin-right: 20px;}
 .MARGIN_BOTTOM_20{margin-bottom: 20px;}
 .MARGIN_LEFT_20{margin-left: 20px;}
+.MARGIN_30{margin: 30px;}
+.MARGIN_TOP_30{margin-top: 30px;}
+.MARGIN_RIGHT_30{margin-right: 30px;}
+.MARGIN_BOTTOM_30{margin-bottom: 30px;}
+.MARGIN_LEFT_30{margin-left: 30px;}
 
 
+/*PADDING*/
+.PADDING-0{padding:0!important;}
+.PADDING-5{padding:5px!important;}
+.PADDING-10{padding:10px!important;}
+.PADDING-20{padding:20px!important;}
+.PADDING-30{padding:30px!important;}
 /*WIDTH*/
 .WIDTH_100{width:100px;}
 

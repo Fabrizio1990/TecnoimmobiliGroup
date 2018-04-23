@@ -69,7 +69,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
 <!-- Style CSS -->
 <link href="<?php echo(SITE_URL) ?>/css/research_panel_1.css" rel="stylesheet">
 
-<section id="one-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL."/images/ParallaxBg/02_parallax.jpg" ?>');" <data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+<section id="one-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL."/images/ParallaxBg/02_parallax.jpg" ?>');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
     <div class="row research_container">
 
         <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 clearfix"></div>

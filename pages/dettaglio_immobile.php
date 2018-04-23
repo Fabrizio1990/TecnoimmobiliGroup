@@ -98,9 +98,9 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
     <div class="container">
         <div class="row">
             <!-- ######## SCHEDA DETTAGLIO ########-->
-            <?php include(BASE_PATH."/app/include/Templates/dettaglio_immobile.inc.php") ?>
+            <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile.inc.php") ?>
             <!-- ######## COLONNA A DESTRA DELLA SCHEDA DETTAGLIO ########-->
-            <?php include(BASE_PATH."/app/include/Templates/dettaglio_immobile_right_panel.inc.php") ?>
+            <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile_right_panel.inc.php") ?>
             <!-- ######## IMMOBILI SIMILI ########-->
             <?php //include(SITE_URL."/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
         </div><!-- end row -->

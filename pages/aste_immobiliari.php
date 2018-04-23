@@ -79,7 +79,7 @@ $menuSelected ="aste_immobiliari";
 
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
-            <?php include(BASE_PATH . "/app/include/Templates/aste_immobiliari.inc.php"); ?>
+            <?php include(BASE_PATH . "/app/include/pages_content/aste_immobiliari.inc.php"); ?>
 
     </div><!-- end container -->
 </section><!-- end generalwrapper -->

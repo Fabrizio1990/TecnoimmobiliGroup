@@ -1,8 +1,7 @@
 <?php
-$parallax = false;
+$parallax = true;
 $menuSelected ="studioTecnico";
-$subMenuSelected = "progettazione";
-$subMenu2Selected = "catasto";
+$subMenuSelected = "serviziTecnici";
 ?>
 
 <!DOCTYPE html>
@@ -10,10 +9,10 @@ $subMenu2Selected = "catasto";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TecnoimmobiliGroup,Case in vendita,Case in affitto,Aste immobiliari, Catasto, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
+    <meta name="description" content="TecnoimmobiliGroup, Case e appartamenti, Case vendita,Case in affitto, Aste immobiliari, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>Catasto</title>
+    <title>Servizi tecnici professionali</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -61,7 +60,7 @@ $subMenu2Selected = "catasto";
 <?php include(BASE_PATH."/app/include/Templates/header.inc.php") ?>
 
 
-<section class="post-wrapper-top dm-shadow clearfix">
+<section  class="post-wrapper-top">
     <div class="container">
         <div class="post-wrapper-top-shadow">
             <span class="s1"></span>
@@ -70,9 +69,8 @@ $subMenu2Selected = "catasto";
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li>Studio tecnico</li>
-                <li>Progettazione</li>
             </ul>
-            <h2>Catasto</h2>
+            <h2>Servizi tecnici professionali</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -80,14 +78,14 @@ $subMenu2Selected = "catasto";
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
+<section id="one-parallax" class="parallax" style="background-image: url('http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+<!--<section class="generalwrapper dm-shadow clearfix">-->
     <div class="container">
-
-        --> METTI QUI PAGINA
-
+        <?php
+            include(BASE_PATH."/app/include/pages_content/servizi_tecnici.inc.php");
+        ?>
     </div><!-- end container -->
 </section><!-- end generalwrapper -->
-
 <!-- ######## FOOTER ########-->
 <?php include(BASE_PATH."/app/include/Templates/footer.inc.php") ?>
 

@@ -1,10 +1,10 @@
 <?php
-require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+require_once(BASE_PATH . "/app/classes/ImageHelper/ImagesInfo.php");
 
 $imgInfo = new ImagesInfo();
 
 if(!isset($propertyM)){
-    require_once(BASE_PATH."/app/classes/PropertyManager.php");
+    require_once(BASE_PATH . "/app/classes/PropertyManager.php");
 
     $propertyM = new PropertyManager();
     $details = $propertyM->readAllAds("reference_code = ?","limit 1",array($reference_code),null,false);
@@ -151,7 +151,7 @@ $agentMail = $agentData[0]["email"];
             </div>
         </div>
     </div><!-- end property_wrapper -->
-    <?php include (BASE_PATH."/app/include/Templates/dettaglio_immobile_contact_form.inc.php") ?>
+    <?php include(BASE_PATH . "/app/include/Templates/dettaglio_immobile_contact_form.inc.php") ?>
 
-        <?php include(BASE_PATH."/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
+        <?php include(BASE_PATH . "/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
 </div><!-- end content -->

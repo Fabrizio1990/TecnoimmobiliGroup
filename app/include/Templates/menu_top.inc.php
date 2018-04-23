@@ -42,17 +42,7 @@ function checkSelected($menuName,$activeCommand = "active"){
                 <li class="dropdown <?php checkSelected("studioTecnico") ?>"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("studio_tecnico") ?>">STUDIO TECNICO<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="<?php checkSelected("perizieLegali") ?>"><a href="<?php echo SITE_URL."/perizie_legali.html" ?>">Perizie legali</a></li>
-                        <li class="dropdown-submenu <?php checkSelected("progettazione")?>">
-                            <a href="#">Progettazione</a>
-                            <ul class="dropdown-menu">
-                                <li class="<?php checkSelected("catasto") ?>"><a href="<?php echo SITE_URL."/catasto.html" ?>">Catasto</a></li>
-                                <li class="<?php checkSelected("direzioneLavori") ?>"><a href="<?php echo SITE_URL."/direzione_lavori.html" ?>">Direzione lavori</a></li>
-                                <li class="<?php checkSelected("praticheRisparmioEnergetico") ?>"><a href="<?php echo SITE_URL."/pratiche_risparmio_energetico.html" ?>">Pratiche risparmio energetico</a></li>
-                                <li class="<?php checkSelected("servizi") ?>"><a href="<?php echo SITE_URL."/servizi.html" ?>">Servizi a privati e imprese</a></li>
-                                <li class="<?php checkSelected("visure") ?>"><a href="<?php echo SITE_URL."/visure.html" ?>">Visure e ricerche</a></li>
-                                <li class="<?php checkSelected("consulenze") ?>"><a href="<?php echo SITE_URL."/consulenze.html" ?>">Consulenze varie</a></li>
-                            </ul>
-                        </li>
+                        <li class="<?php checkSelected("serviziTecnici") ?>"><a href="<?php echo SITE_URL."/servizi_tecnici.html" ?>">Servizi tecnici</a></li>
                     </ul><!-- end dropdown-menu -->
                 </li><!-- end standard drop down -->
 
@@ -91,3 +81,4 @@ function checkSelected($menuName,$activeCommand = "active"){
         </div><!-- end #navbar-collapse-1 -->
     </div><!-- end dm_container -->
 </nav><!-- end navbar navbar-default fhmm -->
+
