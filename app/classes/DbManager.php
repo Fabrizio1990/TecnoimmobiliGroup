@@ -16,8 +16,11 @@ class DbManager
 
     public $tableName ="" ; // verrà valorizzato per poi utilizzare una qualsiasi funzionalità di questa classe. come il count
 
-    function __construct($conn = null) {
-        $config = parse_ini_file(BASE_PATH."/app/classes/Configs/dbConfig.ini");
+    function __construct($conn = null,$configFilePath = null) {
+        if($configFilePath == null)
+            $configFilePath = BASE_PATH."/app/classes/Configs/dbConfig.ini";
+        
+        $config = parse_ini_file($configFilePath);
         $this->hostName = MyCrypter::myDecrypt($config['hostname']);
         $this->dbName = MyCrypter::myDecrypt($config['dbName']);
         $this->user = MyCrypter::myDecrypt($config['username']);
@@ -131,6 +134,7 @@ class DbManager
 
         $ret = $sth->execute($values);
         if($printQuery){
+            $this->debugQuery($query,$values);
             $sth->debugDumpParams();
             //Flog::logInfo($query,"QueryInfo.php");
         }
@@ -171,9 +175,8 @@ class DbManager
 
         $sth->execute($values);
         if($printQuery){
+            $this->debugQuery($query,$values);
             $sth->debugDumpParams();
-            var_dump($values);
-            //Flog::logInfo($query,"QueryInfo.php");
         }
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
@@ -203,6 +206,7 @@ class DbManager
         /*echo $query;
         var_dump($values);*/
         if($printQuery){
+            $this->debugQuery($query,$values);
             $sth->debugDumpParams();
             //Flog::logInfo($query,"QueryInfo.php");
         }
@@ -232,6 +236,7 @@ class DbManager
         $ret = $sth->execute($values);
         //$sth->debugDumpParams();
         if($printQuery){
+            $this->debugQuery($query,$values);
             $sth->debugDumpParams();
             //Flog::logInfo($query,"QueryInfo.php");
         }
@@ -263,8 +268,8 @@ class DbManager
 
         $ret = $sth->execute($values);
         if($printQuery){
-            echo "<br>".$query;
-            $sth->debugDumpParams();
+            $this->debugQuery($query,$values);
+            //$sth->debugDumpParams();
         }
         // CONTROLLO SE CI SONO ERRORI
         $errorInfo = $sth->errorInfo();
@@ -325,6 +330,20 @@ class DbManager
         }
         return $ret;
     }
+
+    protected function debugQuery($query,$values){
+
+        $dividedQuery = explode("?",$query);
+        $finalQuery = "";
+        for($i = 0; $i < count($dividedQuery) -1;$i++){
+            $finalQuery .=$dividedQuery[$i]."'".$values[$i]."' ";
+        }
+        echo("<br>");
+        echo($finalQuery);
+        echo("<br>");echo("<br>");
+
+    }
+
 
 
     function __destruct() {

@@ -58,7 +58,7 @@ $orderGet      = isset($_GET["order"])?explode("|",$_GET["order"]):"";
 $orderKey = isset($orderGet[0]) ?$orderGet[0]:"";
 $orderDir = isset($orderGet[1]) ?$orderGet[1]:"";
 
-
+//echo("TOWN = ".$town." - district = ".$district);
 if($contract!="")bindParamsValues("id_contract = ?",$contract);
 if($category!="")bindParamsValues("id_category = ?",$category);
 if($tipology!="")bindParamsValues("id_tipology = ?",$tipology);
@@ -83,11 +83,6 @@ if($orderKey!=""){
         array_push($extra_params,"order by ".$orderKey. " ".$orderDir);
     }
 }
-/*
-var_dump($params);
-var_dump($values);*/
-
-
 
 $res = $propertyM->readAllAds($params,$extra_params,$values,null,false);
 

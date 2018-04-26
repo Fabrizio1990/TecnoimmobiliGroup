@@ -188,7 +188,7 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
 
 
 <!-- ######## LIST PROPERTIES ########-->
-<?php include(BASE_PATH . "/app/include/Templates/research_properties_list.inc.php") ?>
+<?php include(BASE_PATH . "/app/include/pages_content/research_properties_list.inc.php") ?>
 
 
 <!-- ######## LAST SEARCHED PROPERTIES ########-->

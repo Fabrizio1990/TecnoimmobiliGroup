@@ -4,7 +4,7 @@ require_once(BASE_PATH."/app/interfaces/IDbManager.php");
 require_once(BASE_PATH."/app/classes/DbManager.php");
 require_once(BASE_PATH."/app/classes/DefValues.php");
 
-class PortalManager extends DbManager implements IDbManager {
+class FeedManagement extends DbManager implements IDbManager {
 
     const defTable  = "prt_feeds";
     private $currTable;
