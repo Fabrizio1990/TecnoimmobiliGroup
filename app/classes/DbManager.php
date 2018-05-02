@@ -19,7 +19,7 @@ class DbManager
     function __construct($conn = null,$configFilePath = null) {
         if($configFilePath == null)
             $configFilePath = BASE_PATH."/app/classes/Configs/dbConfig.ini";
-        
+
         $config = parse_ini_file($configFilePath);
         $this->hostName = MyCrypter::myDecrypt($config['hostname']);
         $this->dbName = MyCrypter::myDecrypt($config['dbName']);

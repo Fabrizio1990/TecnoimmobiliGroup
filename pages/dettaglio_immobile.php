@@ -1,4 +1,7 @@
 <?php
+
+$parallax = true;
+
 if(!isset($_GET["rif"]))
     header("location:index.html");
 
@@ -94,17 +97,22 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
-        <div class="row">
-            <!-- ######## SCHEDA DETTAGLIO ########-->
-            <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile.inc.php") ?>
-            <!-- ######## COLONNA A DESTRA DELLA SCHEDA DETTAGLIO ########-->
-            <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile_right_panel.inc.php") ?>
-            <!-- ######## IMMOBILI SIMILI ########-->
-            <?php //include(SITE_URL."/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
-        </div><!-- end row -->
-    </div><!-- end container -->
+<section id="one-parallax" class="parallax" style="background-image: url('http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container">
+                <div class="row ">
+                    <!-- ######## SCHEDA DETTAGLIO ########-->
+                    <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile.inc.php") ?>
+                    <!-- ######## COLONNA A DESTRA DELLA SCHEDA DETTAGLIO ########-->
+                    <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile_right_panel.inc.php") ?>
+                    <!-- ######## IMMOBILI SIMILI ########-->
+                    <?php //include(SITE_URL."/app/include/Templates/dettaglio_immobile_similar_properties.inc.php") ?>
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end overlay1 -->
+    </div><!-- end threewrapper -->
+
 </section><!-- end generalwrapper -->
 
 <!-- ######## FOOTER ########-->
@@ -126,6 +134,7 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 <script src="<?php echo SITE_URL . "/js/Widgets/maps_utils.js" ?>" ></script>
 <script src="<?php echo SITE_URL . "/js/dettaglio_immobile.js" ?>" ></script>
 <script src="<?php echo SITE_URL . "/js/contact_form.js" ?>"></script>
+<script src="<?php echo SITE_URL . "/js/generic_contact_form.js"?>"></script>
 
 
 
