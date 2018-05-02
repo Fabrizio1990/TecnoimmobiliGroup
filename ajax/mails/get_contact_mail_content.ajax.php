@@ -14,10 +14,11 @@ if(isset($_REQUEST["reference_code"],$_REQUEST["sender_name"],$_REQUEST["sender_
 
     include(BASE_PATH . "/app/classes/PropertyManager.php");
     include(BASE_PATH . "/app/classes/PropertyLinksAndTitles.php");
+    require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
     $pMng = new PropertyManager();
-    $img_path = $pMng->getImagesPath("title='min'");
-    $img_path = $img_path[0]["path"];
+    $imgInfo = new ImagesInfo();
+    $img_path = $imgInfo->info["properties"]["min"]["path"];
 
     $res = $pMng->readAllAds("reference_code = ?","limit 1",array($ref_code),null,false);
     $link = SITE_URL ."/". PropertyLinksAndTitles::getDetailLinkFromId($res[0]["id"]);

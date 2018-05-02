@@ -57,16 +57,19 @@ h1,h2,h3{font-weight: bold}
 
 
 /*FONT COLORS*/
-.COLOR_RED{color:#eb212e!important;}
 .COLOR_BLUE{color:#1a547a!important;}
+.COLOR_RED{color:#eb212e!important;}
 .COLOR_BLACK{color:#000000!important;}
+.COLOR_WITHE{color:#FFFFFF!important}
+.COLOR_GREY{color:#F2F2F2!important}
 
 
 
 /*BACKGROUND COLORS*/
-.BG_COLOR_RED{background-color: #eb212e;}
-.BG_COLOR_GREY{background-color: #F2F2F2;}
-.BG_COLOR_WITHE{background-color: #FFFFFF;}
+.BG_COLOR_BLUE{background-color:#1a547a!important;}
+.BG_COLOR_RED{background-color: #eb212e!important;}
+.BG_COLOR_WITHE{background-color: #FFFFFF!important;}
+.BG_COLOR_GREY{background-color: #F2F2F2!important;}
 
 /*BORDERS */
 .LIGHT-GREY-BORDER{border:1px solid #F0F0F0;

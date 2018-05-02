@@ -41,6 +41,8 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
     <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
+    <!-- Jquery validate  override css-->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
     <!-- DETTAGLIO CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/dettaglio_immobile.css" rel="stylesheet">
 
@@ -62,6 +64,8 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
     <link rel="apple-touch-icon" sizes="72x72" href="<?php echo(SITE_URL) ?>/images/icons/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="<?php echo(SITE_URL) ?>/images/icons/apple-touch-icon-114x114.png">
     <link rel="apple-touch-icon" sizes="144x144" href="<?php echo(SITE_URL) ?>/images/icons/apple-touch-icon-144x144.png">
+    <!-- modals -->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/css/modals.css" />
 
 </head>
 <body>
@@ -126,12 +130,19 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 <script src="<?php echo SITE_URL . "/libs/frontend/jQueryParallax/js/jquery.parallax.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/jQueryFitvids/js/jquery.fitvids.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/jQueryUnveiEffects/js/jquery.unveilEffects.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/libs/frontend/Others/retina-1.1.0.js" ?>"></script>
+<!--<script src="<?php //echo SITE_URL . "/libs/frontend/Others/retina-1.1.0.js" ?>"></script>-->
 <script src="<?php echo SITE_URL . "/libs/frontend/Others/fhmm.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
+<!-- Jquery validate -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+<!-- Jquery validate additional methods -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_additional_methods.js"></script>
+<!-- Jquery validate IT localization -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/Widgets/maps_utils.js" ?>" ></script>
+<script src="<?php echo SITE_URL . "/js/MODALS.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/dettaglio_immobile.js" ?>" ></script>
 <script src="<?php echo SITE_URL . "/js/contact_form.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/generic_contact_form.js"?>"></script>

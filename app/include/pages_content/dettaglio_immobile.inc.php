@@ -35,9 +35,13 @@ for($i = 0 ; $i < Count($images) ; $i++){
 
 // DATI AGENTE
 $agentData = $propertyM->getAgentData($id_property);
+$agencyName = $agentData[0]["agency_name"];
+$agentName = $agentData[0]["name"];
+$agentLastname = $agentData[0]["lastname"];
 $agentTel = $agentData[0]["phone"];
 $agentMobile = $agentData[0]["mobile_phone"];
 $agentMail = $agentData[0]["email"];
+
 
 
 /*DETTAGLI IMMOBILE*/

@@ -92,13 +92,17 @@ function bindButtons(){
             showAlert("Numero di telefono non valido!");
             return
         }
+        if(!$("#frm_contact_personal_data_agreement").is(':checked') ){
+            showAlert("Devi accettare il trattamento dei dati");
+            return
+        }
 
         getMailTemplateParams = "reference_code="+refCode+"&sender_name="+encodeURIComponent(name)+"&sender_mail="+encodeURIComponent(fromEmail)+"&sender_phone="+encodeURIComponent(phone)+"&sender_message="+encodeURIComponent(message);
 
 
 
         sendMailParams = "to=" + encodeURIComponent(toEmail);
-        sendMailParams+= "&object="+ encodeURIComponent(object);
+        sendMailParams+= "&object=Richiesta informazioni TecnoimmobiliGroup";
         sendMailParams += "&ccn" + encodeURIComponent("info@tecnoimmobiligroup.it");
 
         btnSendMail.prop("disabled",true);
@@ -123,7 +127,7 @@ function sendMail(params){
                     btnSendMail.addClass("HIDDEN");
                     btnCloseContactForm.removeClass("HIDDEN");
                 }else{
-                    btnSendMail.prop("disabled",true);
+                    btnSendMail.prop("disabled",false);
                 }
             }
         },

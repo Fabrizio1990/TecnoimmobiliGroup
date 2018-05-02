@@ -1,0 +1,10 @@
+#generic_contact_form_container .contact_form_logo_tecnoimm{
+    width:32px;
+}
+#generic_contact_form_container textarea{
+    height: 100px;
+}
+
+#generic_contact_form_container .user_data_management_agreement label{
+    font-size: .7em;
+}
