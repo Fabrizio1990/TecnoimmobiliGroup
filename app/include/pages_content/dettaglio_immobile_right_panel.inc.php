@@ -5,4 +5,6 @@
 
     <?php include(BASE_PATH . "/app/include/Widgets/generic_contact_form.widget.php") ?>
 
+    <?php include(BASE_PATH . "/app/include/Widgets/mortage_calculator.widget.php") ?>
+
 </div><!-- end sidebar -->

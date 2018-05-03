@@ -143,16 +143,23 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/Widgets/maps_utils.js" ?>" ></script>
 <script src="<?php echo SITE_URL . "/js/MODALS.js" ?>"></script>
+<!-- jQuery Knob -->
+<script src="<?php echo SITE_URL . "/AdminPanel/plugins/knob/jquery.knob.js"?>"></script>
+<!-- Sparkline -->
+<script src="<?php echo SITE_URL . "/AdminPanel/plugins/sparkline/jquery.sparkline.min.js"?>"></script>
+
 <script src="<?php echo SITE_URL . "/js/dettaglio_immobile.js" ?>" ></script>
 <script src="<?php echo SITE_URL . "/js/contact_form.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/generic_contact_form.js"?>"></script>
-
+<script src="<?php echo SITE_URL . "/js/mortage_calculator.js"?>"></script>
 
 
 <!-- FlexSlider JavaScript
 ================================================== -->
 <script src="<?php echo SITE_URL."/libs/frontend/jQueryFlexSlider/js/jquery.flexslider.js" ?>"></script>
 <script>
+
+
     $(window).load(function() {
         $('#carousel').flexslider({
             animation: "slide",
@@ -182,6 +189,78 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
         var country = "<?php echo $details["country"]?>";
         createMap(address,town,country,18);
     }
+
+
+    var mortageCalculator;
+    $(function () {
+
+        /*MORTAGE CALCULATOR*/
+        mortageCalculator = new MortageCalculator();
+        setTimeout(function(){mortageCalculator.calculate(99000,15,1);},1000);
+
+        /* jQueryKnob */
+
+        $(".knob").knob({
+            /*change : function (value) {
+             console.log("change : " + value);
+             },*/
+             release : function (value) {
+                 mortageCalculator.calculate(99000,value,1);
+             console.log("release : " + value);
+             },
+            /*cancel : function () {
+             console.log("cancel : " + this.value);
+             },*/
+            draw: function () {
+
+                // "tron" case
+                if (this.$.data('skin') == 'tron') {
+
+                    var a = this.angle(this.cv)  // Angle
+                        , sa = this.startAngle          // Previous start angle
+                        , sat = this.startAngle         // Start angle
+                        , ea                            // Previous end angle
+                        , eat = sat + a                 // End angle
+                        , r = true;
+
+                    this.g.lineWidth = this.lineWidth;
+
+                    this.o.cursor
+                    && (sat = eat - 0.3)
+                    && (eat = eat + 0.3);
+
+                    if (this.o.displayPrevious) {
+                        ea = this.startAngle + this.angle(this.value);
+                        this.o.cursor
+                        && (sa = ea - 0.3)
+                        && (ea = ea + 0.3);
+                        this.g.beginPath();
+                        this.g.strokeStyle = this.previousColor;
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+                        this.g.stroke();
+                    }
+
+                    this.g.beginPath();
+                    this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+                    this.g.stroke();
+
+                    this.g.lineWidth = 2;
+                    this.g.beginPath();
+                    this.g.strokeStyle = this.o.fgColor;
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                    this.g.stroke();
+
+                    return false;
+                }
+            }
+        });
+    });
+    /* END JQUERY KNOB */
+
+
+
+
 </script>
 
 <script async defer

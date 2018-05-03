@@ -2,23 +2,18 @@
  * Created by fabri on 29/04/2018.
  */
 
-var MortageCalculator = function (_txtPriceAmount,_txtPeriodAmount,_selYears) {
+var MortageCalculator = function () {
 
     //var = privata , this = pubblica
 
     var isReady = false;
 
-    this.txtPriceAmonut = _txtPriceAmount;
-    this.txtPeriodAmount  = _txtPeriodAmount;
-    this.selYears         = _selYears;
 
     var fixedRate = 0;
     var variableRate = 0;
 
-    var balance = 0;
-    var rate = 0;
-    var term = 0;
-    var period = 0;
+
+    var period = 12;
 
     this.getTaxes = function (){
         var page = SITE_URL+"/ajax/get_taxes_finservice.ajax.php";
@@ -36,32 +31,22 @@ var MortageCalculator = function (_txtPriceAmount,_txtPeriodAmount,_selYears) {
     }
 
     //TaxType => 1 = fisso, 2 = variabile
-    this.calculate = function(taxType = 1 ){
-        /*console.log("---- INIZIO CALCOLO ------");*/
-        //TASSO
-        var taxChosen = taxType == 1?fixedRate:variableRate;
-        //Importo
-        balance = this.txtPriceAmonut.value;
-        //NUMERO ANNI
-        term =  this.selYears.value;
-        //RATE ANNUE
-        period = this.txtPeriodAmount.value;
+    this.calculate = function(price,years,taxType){
+        if(!isReady)
+            return "Errore";
 
-        /*console.log("term = "+taxChosen);
-        console.log("balance = "+balance);
-        console.log("rate = "+rate);
-        console.log("period = "+period);*/
+        var taxChosen = (taxType == 1)?variableRate:fixedRate;
 
 
-        var N = term * period;
+
+        var N = years * period;
         var I = (taxChosen / 100) / period;
         var v = Math.pow((1 + I), N);
         var t = (I * v) / (v - 1);
-        var result = balance * t;
+        var result = price * t;
 
-
-        /*console.log(result);
-        console.log("---- FINE CALCOLO ------");*/
+        console.log(result);
+        /*console.log("---- FINE CALCOLO ------");*/
         return result;
     }
 

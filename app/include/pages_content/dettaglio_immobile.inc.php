@@ -36,6 +36,7 @@ for($i = 0 ; $i < Count($images) ; $i++){
 // DATI AGENTE
 $agentData = $propertyM->getAgentData($id_property);
 $agencyName = $agentData[0]["agency_name"];
+$agencyAddress = $agentData[0]["agency_street"].", ".$agentData[0]["agency_street_num"];
 $agentName = $agentData[0]["name"];
 $agentLastname = $agentData[0]["lastname"];
 $agentTel = $agentData[0]["phone"];
@@ -49,6 +50,7 @@ $referenceCode = $details["reference_code"];
 $street = $details["street"];
 $streetNum = $details["street_num"];
 $price = $details["price"];
+$mortagePrice = $price;
 $contract = $details["contract"];
 $tipology = $details["tipology"];
 $locals = $details["locals"];

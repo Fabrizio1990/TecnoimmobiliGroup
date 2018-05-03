@@ -37,7 +37,7 @@
             <input type="text" name="frm_contact_phone" id="frm_contact_phone" class="form-control" placeholder="Telefono">
             <input type="hidden" name="frm_contact_ref_code" id="frm_contact_ref_code" value="<?php echo $reference_code ?>">
             <input type="hidden" name="frm_contact_property_link" id="frm_contact_property_link" value="<?php echo Utils::getCurrentUrl();?>">
-            <textarea class="form-control" name="frm_contact_body" id="frm_contact_body" rows="6" placeholder="Testo ....">Richiedo maggiori informazioni sull'immobile con:&#13;&#10;riferimento = <?php echo $reference_code?>&#13;&#10;link = <?php echo Utils::getCurrentUrl();?></textarea>
+            <textarea class="form-control" name="frm_contact_body" id="frm_contact_body" rows="6" placeholder="Testo ...."></textarea>
 
             <label>
                 <input name="frm_contact_personal_data_agreement" id="frm_contact_personal_data_agreement" type="checkbox">

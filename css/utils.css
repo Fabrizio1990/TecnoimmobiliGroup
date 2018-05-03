@@ -47,6 +47,9 @@ h1,h2,h3{font-weight: bold}
 .FONT_LATO {font-family: 'Lato', Arial, Helvetica, sans-serif;}
 
 /*FONT SIZES*/
+.FONT_15{font-size: 15px !important;}
+.FONT_16{font-size: 16px !important;}
+.FONT_17{font-size: 17px !important;}
 .FONT_18{font-size: 18px !important;}
 .FONT_20{font-size: 20px !important;}
 .FONT_22{font-size: 22px !important;}

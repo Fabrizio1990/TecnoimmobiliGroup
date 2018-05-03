@@ -2,6 +2,7 @@
 <?php
 $referenceCode = isset($referenceCode)?$referenceCode:"Assente";
 $agencyName = isset($agencyName)?$agencyName:"Tecnoimmobili Group Service";
+$agencyAddress = isset($agencyAddress)?$agencyAddress:"Corso duca degli abruzzi, 42";
 $agentName = isset($agentName,$agentLastname)?($agentName." ".$agentLastname):"Tommaso Restaino";
 $agentMobile = isset($agentMobile) ? $agentMobile : "3496251482";
 $agentTel = isset($agentTel) ? $agentTel : "0115183879";
@@ -14,12 +15,17 @@ $agentMail = isset($agentMail) ? $agentMail : "info@tecnoimmobiligroup.it";
 
         <div class="col-md-12 no-lateral-padding">
 
-            <img class="contact_form_logo_tecnoimm" src="<?php echo SITE_URL ?>/public/images/images_agencies_icons/min/deflogo_round.png" alt="TecnoimmobiliGroup Logo" title="<?php echo $agencyName ?>" />
+            <img class="contact_form_logo_tecnoimm" src="<?php echo SITE_URL ?>/images/Logos/Logo_200x32.png" alt="TecnoimmobiliGroup Logo" title="<?php echo $agencyName ?>" />
+            <br>
+            <br>
             <p>
                 <b>Agenzia:</b><br>
-                <?php echo $agencyName ?>
+                <?php echo $agencyName ?><br>
+                <b>Indirizzo:</b><br>
+                <?php echo $agencyAddress ?><br>
                 <b>Agente:</b><br>
                 <?php echo $agentName ?>
+
             </p>
 
         </div>
@@ -30,14 +36,14 @@ $agentMail = isset($agentMail) ? $agentMail : "info@tecnoimmobiligroup.it";
             <p >Riferimento imm : <b id="GCF_ref_code"><?php echo $referenceCode ?></b></p>
         </div>
 
-        <div class="col-md-6 no-lateral-padding clearfix ">
+        <div class="col-md-12 no-lateral-padding clearfix ">
             <button id="btn_show_phone" class="form-control btn btn-tecnoimm-blue" onclick="showPhone()"><i class="fa fa-phone COLOR_RED"> </i> <?php echo $agentTelShort?></button>
         </div>
-        <div id="phone_number_container" class="DISPL_NONE col-md-12 BG_COLOR_BLUE FONT_18 FONT_BOLD ALIGN_LEFT PADDING-10 BORDER_ROUND_5 ">
-            <i class="fa fa-phone COLOR_RED"> <a href="tel:<?php echo $agentTel?>" class="FONT_18 FONT_BOLD COLOR_WITHE FONT_LATO" ><?php echo $agentTel?></a></i>
+        <div id="phone_number_container" class="DISPL_NONE col-md-12 FONT_18 FONT_BOLD ALIGN_LEFT PADDING-10 BORDER_ROUND_5 ">
+            <i class="fa fa-phone COLOR_RED"> <a href="tel:<?php echo $agentTel?>" class="FONT_16 FONT_BOLD  FONT_LATO" ><?php echo $agentTel?></a></i>
             <br>
             <br>
-            <i class="fa fa-phone COLOR_RED"> <a href="tel:<?php echo $agentMobile?>" class="FONT_18 FONT_BOLD COLOR_WITHE FONT_LATO" ><?php echo $agentMobile?></a></i>
+            <i class="fa fa-phone COLOR_RED"> <a href="tel:<?php echo $agentMobile?>" class="FONT_16 FONT_BOLD  FONT_LATO" ><?php echo $agentMobile?></a></i>
         </div>
     </div>
     <!-- INIZIO FORM -->
@@ -63,8 +69,7 @@ $agentMail = isset($agentMail) ? $agentMail : "info@tecnoimmobiligroup.it";
             </div>
 
             <div class="col-md-12 no-lateral-padding">
-                <textarea name="inp_GCF_message" id="inp_GCF_message" class="form-control" placeholder="Scrivi qui il tuo messaggio">Richiedo maggiori informazioni sull'immobile con:&#13;&#10;riferimento = <?php echo $reference_code?>&#13;&#10;link = <?php echo Utils::getCurrentUrl();?>
-                </textarea>
+                <textarea name="inp_GCF_message" id="inp_GCF_message" class="form-control" placeholder="Scrivi qui il tuo messaggio"></textarea>
             </div>
             <div class="col-md-12 no-lateral-padding user_data_management_agreement">
                 <label>
