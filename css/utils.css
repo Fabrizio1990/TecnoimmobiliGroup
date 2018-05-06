@@ -42,6 +42,10 @@ h1,h2,h3{font-weight: bold}
 /*WIDTH*/
 .WIDTH_100{width:100px;}
 
+/*TEXXT ALIGNMENT*/
+.TXT_ALIGN_CENTER{text-align: center;}
+.TXT_ALIGN_RIGHT{text-align: right;}
+.TXT_ALIGN_LEFT{text-align: left;}
 
 /*FONT FAMILY*/
 .FONT_LATO {font-family: 'Lato', Arial, Helvetica, sans-serif;}

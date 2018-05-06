@@ -74,16 +74,18 @@ $subMenuSelected = "mutui";
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-        </div>
-    </div>
+
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
-        <form name="mortgage" method="post" action=""><br /><br />
-            <div style="width:180px;text-align:center;"><div style="border:1px solid #000;align:center;text-align:center;"><div style="font-size:12px;line-height:20px;font-family: arial; font-weight:bold;background:#eeeeee;padding: 3px 1px;"><a href="https://www.calcoloratamutuo.com/" style="color:#000000;font-size:14px;text-decoration:none;line-height:16px;" >Calcolo Rata Mutuo</a></div><table width=99% style="align:center;color:#333333;"><tr><br/><td align="right">Importo:</td><td align="left"><input type="text" name="m_loan" value="250000" size=5>€</td></tr><tr><td align="right">Tasso:</td><td align="left"><input type="text" name="m_rate" value="4.5" size=5>%</td></tr><tr><td align="right">Durata:</td><td align="left"><input type="text" name="m_year" value="20" size=5>anni</td></tr><tr align="center"><td colspan=2><br/><input type="button" value="Calcola mutuo" onclick="cal_mortgageamm(this.form);"></td></tr><tr align="center"><td colspan=2><div id="mortgagesummaryamm"></div></td></tr></table><script src="http://mut.jcdn.it/mutuow/3.php"></script></div></div></form>
+<section id="one-parallax" class="parallax" style="background-image: url('http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container">
+                <?php include(BASE_PATH . "/app/include/pages_content/mutui.inc.php") ?>
 
-    </div><!-- end container -->
+            </div><!-- end container -->
+        </div>
+    </div>
 </section><!-- end generalwrapper -->
 
 <!-- ######## FOOTER ########-->
@@ -101,12 +103,14 @@ $subMenuSelected = "mutui";
 <script src="<?php echo SITE_URL . "/libs/frontend/Others/fhmm.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
+<!-- jQuery Knob -->
+<script src="<?php echo SITE_URL . "/AdminPanel/plugins/knob/jquery.knob.js"?>"></script>
+<!-- Sparkline -->
+<script src="<?php echo SITE_URL . "/AdminPanel/plugins/sparkline/jquery.sparkline.min.js"?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/aste_immobiliari.js" ?>"></script>
 
-
-
-
+<script src="<?php echo SITE_URL . "/js/mortage_calculator.js"?>"></script>
+<script src="<?php echo SITE_URL . "/js/mutui.js"?>"></script>
 
 </body>
 </html>

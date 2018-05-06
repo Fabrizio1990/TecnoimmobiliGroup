@@ -1,25 +1,6 @@
+var mortageCalculator = null;
 
 $(function () {
-    //CAROUSEL
-    $('#carousel').flexslider({
-        animation: "slide",
-        controlNav: false,
-        directionNav: false,
-        animationLoop: true,
-        slideshow: true,
-        itemWidth: 122,
-        itemMargin: 0,
-        asNavFor: '#slider'
-    });
-
-    $('#slider').flexslider({
-        animation: "fade",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: true,
-        sync: "#carousel"
-    });
-
 
     /*MORTAGE CALCULATOR INIT*/
     mortageCalculator = new MortageCalculator();
@@ -43,11 +24,11 @@ $(function () {
     $(".knob").knob({
         change : function (value) {
             calculateMortage();
-         },
+        },
         /*release : function (value) {
-            //calculateMortage()
-            console.log("release : " + value);
-        },*/
+         //calculateMortage()
+         console.log("release : " + value);
+         },*/
         /*cancel : function () {
          console.log("cancel : " + this.value);
          },*/
@@ -102,7 +83,6 @@ $(function () {
 
 
 function calculateMortage() {
-
     var price = $("#inp_mortageWidget_priceAmount").val();
     var years = $("#inp_mortageWidget_years").val();
     var taxType = $("input[type='radio'][name='inp_mortageWidget_rateType']:checked").val();

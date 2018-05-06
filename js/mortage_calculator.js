@@ -22,11 +22,8 @@ var MortageCalculator = function () {
 
     var OnTaxesReturn = function(res){
         var ret = JSON.parse(res);
-        console.log(ret);
         fixedRate = ret[0];
         variableRate = ret[1];
-        console.log("fixed = "+fixedRate);
-        console.log("variableRate = "+variableRate);
         isReady = true;
     }
 
@@ -44,8 +41,6 @@ var MortageCalculator = function () {
         var v = Math.pow((1 + I), N);
         var t = (I * v) / (v - 1);
         var result = price * t;
-
-        console.log(result);
         /*console.log("---- FINE CALCOLO ------");*/
         return result;
     }
