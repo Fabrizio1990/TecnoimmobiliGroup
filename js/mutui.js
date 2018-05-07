@@ -25,10 +25,10 @@ $(function () {
         change : function (value) {
             calculateMortage();
         },
-        /*release : function (value) {
-         //calculateMortage()
+        release : function (value) {
+         calculateMortage()
          console.log("release : " + value);
-         },*/
+         },
         /*cancel : function () {
          console.log("cancel : " + this.value);
          },*/

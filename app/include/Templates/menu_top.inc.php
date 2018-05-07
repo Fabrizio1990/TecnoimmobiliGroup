@@ -48,19 +48,6 @@ function checkSelected($menuName,$activeCommand = "active"){
 
 
                 <!-- standard drop down -->
-                <li class="dropdown <?php checkSelected("mediazioneCivile") ?>"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("mediazione_civile") ?>">MEDIAZIONE CIVILE<b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="<?php checkSelected("mediazioneObbligatoria") ?>"><a href="<?php echo SITE_URL."/mediazione_obbligatoria.html" ?>">Mediazione obbligatoria</a></li>
-                        <li class="<?php checkSelected("mediazioneFacoltativa") ?>"><a href="<?php echo SITE_URL."/mediazione_facoltativa.html" ?>">Mediazione facoltativa</a></li>
-                        <li class="<?php checkSelected("mediazioneVantaggi") ?>"><a href="<?php echo SITE_URL."/mediazione_vantaggi.html" ?>">Vantaggi della mediazione</a></li>
-                        <li class="<?php checkSelected("vantaggiFiscali") ?>"><a href="<?php echo SITE_URL."/vantaggi_fiscali.html" ?>">Vantaggi fiscali</a></li>
-                        <li class="<?php checkSelected("assistenzaLegale") ?>"><a href="<?php echo SITE_URL."/assistenza_legale.html" ?>">Assistenza legale</a></li>
-                    </ul><!-- end dropdown-menu -->
-                </li><!-- end standard drop down -->
-
-
-
-                <!-- standard drop down -->
                 <li class="dropdown <?php checkSelected("gruppo") ?>"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("gruppo") ?>">IL GRUPPO<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="<?php checkSelected("chiSiamo") ?>"><a href="<?php echo SITE_URL."/chi_siamo.html" ?>">Chi siamo</a></li>
@@ -70,6 +57,9 @@ function checkSelected($menuName,$activeCommand = "active"){
                     </ul><!-- end dropdown-menu -->
                 </li><!-- end standard drop down -->
 
+                <li class="dropdown fhmm-fw <?php checkSelected("partner") ?>">
+                    <a href="<?php echo SITE_URL."/mediazione_civile.html" ?>"> MEDIAZIONE CIVILE</a>
+                </li>
 
                 <li class="dropdown fhmm-fw <?php checkSelected("partner") ?>">
                     <a href="<?php echo SITE_URL."/partner.html" ?>"> PARTNER</a>

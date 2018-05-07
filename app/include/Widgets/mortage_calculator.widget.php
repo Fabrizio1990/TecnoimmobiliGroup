@@ -5,8 +5,9 @@
 <div class="widget clearfix ALIGN_LEFT LIGHT-GREY-BORDER PADDING-20 BG_COLOR_WITHE" id="mortage_calculator_widget">
 
 
-    <div class="row MARGIN_0">
-        <h3 class="TXT_ALIGN_CENTER">Calcola il Mutuo</h3>
+    <div class="row MARGIN_0 TXT_ALIGN_CENTER">
+        <a href="http://www.finservicepoint.it/" target="_blank"><img src="<?php echo SITE_URL."/images/Logos/logo_finservice_188x45.png"?>" /></a>
+        <h3 class="TXT_ALIGN_CENTER MARGIN_TOP_10">Calcola il Mutuo</h3>
 
         <div class="col-md-12 no-lateral-padding col TXT_ALIGN_CENTER">
 

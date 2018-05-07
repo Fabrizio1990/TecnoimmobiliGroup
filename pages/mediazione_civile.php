@@ -1,7 +1,6 @@
 <?php
 $parallax = false;
 $menuSelected ="mediazioneCivile";
-$subMenuSelected = "mediazioneVantaggi";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +11,7 @@ $subMenuSelected = "mediazioneVantaggi";
     <meta name="description" content="TecnoimmobiliGroup, Case e appartamenti, Case vendita,Case in affitto, Aste immobiliari, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>Vantaggi della mediazione</title>
+    <title>Mediazione Civile</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -21,7 +20,7 @@ $subMenuSelected = "mediazioneVantaggi";
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
     <!-- DETTAGLIO CSS -->
-    <link href="<?php echo(SITE_URL) ?>/css/dettaglio_immobile.css" rel="stylesheet">
+    <link href="<?php echo(SITE_URL) ?>/css/mediazione_civile.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -70,7 +69,6 @@ $subMenuSelected = "mediazioneVantaggi";
                 <li><a href="index.html">Home</a></li>
                 <li>Mediazione civile</li>
             </ul>
-            <h2>Vantaggi della mediazione</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -78,12 +76,15 @@ $subMenuSelected = "mediazioneVantaggi";
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
+<section id="one-parallax" class="parallax" style="background-image: url('http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container" id="mediazione_civile_container">
+                <?php include(BASE_PATH . "/app/include/pages_content/mediazione_civile.inc.php") ?>
 
-        --> METTI QUI PAGINA
-
-    </div><!-- end container -->
+            </div><!-- end container -->
+        </div>
+    </div>
 </section><!-- end generalwrapper -->
 
 <!-- ######## FOOTER ########-->
@@ -102,7 +103,6 @@ $subMenuSelected = "mediazioneVantaggi";
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/aste_immobiliari.js" ?>"></script>
 
 
 

@@ -21,7 +21,7 @@ $subMenuSelected = "mutui";
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
     <!-- DETTAGLIO CSS -->
-    <link href="<?php echo(SITE_URL) ?>/css/dettaglio_immobile.css" rel="stylesheet">
+    <link href="<?php echo(SITE_URL) ?>/css/mutui.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
