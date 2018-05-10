@@ -22,6 +22,13 @@
     }else{
         $url.="index.php";
     }
+
+    //CHECK IF INCLUDE URL EXIST , ELSE I WILL LOAD 404 PAGE
+    if(!file_exists($url)){
+
+        $url = BASE_PATH."/pages/404.php";
+    }
+
     include($url);
 
  ?>

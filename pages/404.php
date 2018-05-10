@@ -19,7 +19,7 @@
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
     <!-- DETTAGLIO CSS -->
-    <link href="<?php echo(SITE_URL) ?>/css/dettaglio_immobile.css" rel="stylesheet">
+    <link href="<?php echo(SITE_URL) ?>/css/404.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -76,23 +76,26 @@
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
-        <div class="row">
+<section id="one-parallax" class="parallax" style="background-image: url('http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container ">
+                <div class="row">
+                    <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+                        <div class="error404 text-center">
+                            <h2>
+                                <span>404</span>
+                            </h2>
+                            <h3>La pagina ricercata non è stata trovata</h3>
+                            <a class="btn btn-tecnoimm-red" href="<?php echo BASE_PATH ?>">Torna alla Home</a>
+                        </div><br><br><br>
+                    </div><!-- end content -->
 
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div>
+    </div>
 
-            <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-                <div class="error404 text-center">
-                    <h2>
-                        <span>404</span>
-                    </h2>
-                    <h3>La pagina ricercata non è stata trovata</h3>
-                    <a class="btn btn-primary" href="<?php echo BASE_PATH ?>">Torna alla Home</a>
-                </div><br><br><br>
-            </div><!-- end content -->
-
-        </div><!-- end row -->
-    </div><!-- end container -->
 </section><!-- end generalwrapper -->
 
 <!-- ######## FOOTER ########-->

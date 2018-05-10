@@ -32,7 +32,7 @@
                         	<div class="title"><h3><i class="fa fa-home"></i> SU DI NOI</h3><hr></div>
                             	<p>Tecnoimmobili Group Service® è una realtà capace di sorprendere i propri Clienti che affidano ad essa l'incarico di vendere o comprare casa.
                                     L'esperienza decennale dei propri consulenti e partners rende il servizio sicuro e affidabile ...</p>
-                            <a href="<?php echo SITE_URL."/chi_siamo.html"?>" class="btn btn-primary btn-sm"><i class="fa fa-info"></i> read more</a>
+                            <a href="<?php echo SITE_URL."/chi_siamo.html"?>" class="btn btn-tecnoimm-red btn-sm"><i class="fa fa-info"></i> Chi siamo</a>
                         </div>
                     </div><!-- end col-lg-3 -->
 
@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                   <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
                                 </div>
-                                <button type="submit" class="btn btn-primary">SUBSCRIBE</button>
+                                <button type="submit" class="btn btn-tecnoimm-red">SUBSCRIBE</button>
                               </form>
                         </div>
                     </div><!-- end col-lg-4 -->

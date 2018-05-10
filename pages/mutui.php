@@ -80,9 +80,8 @@ $subMenuSelected = "mutui";
 <section id="one-parallax" class="parallax" style="background-image: url('http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
     <div class="threewrapper">
         <div class="overlay1 dm-shadow">
-            <div class="container">
+            <div class="container ">
                 <?php include(BASE_PATH . "/app/include/pages_content/mutui.inc.php") ?>
-
             </div><!-- end container -->
         </div>
     </div>

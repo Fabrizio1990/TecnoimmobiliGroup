@@ -927,7 +927,7 @@
 
 	.footer1 {
 		padding:30px;
-		background:#212121;
+		background:#1a5479;
 		position: relative;
 	}
 		
@@ -935,14 +935,15 @@
 	.footer1,
 	.footer1 p,
 	.footer1 a {
-		color:#656565;
+		color:#FFFF;
 	}
 
 	.footer1 .btn {
 		margin-top:-10px;
 		color:#ffffff !important;
 	}
-	
+
+
 	.copyright .social {
 		margin: 0;
 		padding: 10px 0;
@@ -950,10 +951,10 @@
 
 	.copyright .social span a,
 	.footer1 .title h3 {
-		color:#ffffff !important;
+		color:#FFFF !important;
 	}
 	.copyright .social span {
-		background-color: #333333;
+		background-color: #1a5479;
 	}
 	
 	.footer1 .widget .title h3 {
@@ -965,28 +966,31 @@
 	
 	.footer1 .widget .title hr {
 		margin:0 0 10px;
-		border-bottom: 2px solid #303030 !important;
-		border-top: 1px solid #000000 !important;
+		border-bottom: 2px solid #eb212e !important;
+		border-top: 1px solid #eb212e !important;
 	}
 	
 	.copyright small {
-		padding:15px 0 0 !important;	
+		padding:15px 0 0 !important;
+		color : #1a5479;
 	}
 	
 	.copyright {
 		border-top:1px solid #313131;
-		background:#010101;
+		background:#FFFFFF;
 	}	
 
 	.footer1 .form-control {
-		background-color: #333333;
+		background-color: #FFFF;
 		border: 1px solid #3a3a3a;
+		height:31px;
 	}
 
 	.footer1 .widget h3 i {
 		font-size: 16px;
 		padding-top:0;
 		padding-right: 5px;
+		color: #eb212e;
 	}
 
 /*	################################################################
@@ -1541,9 +1545,10 @@
 	}
 	
 	.error404 h3 {
+		color: #1a547a;
 		margin-top:0;
 		font-size: 30px;
-		opacity: 0.2;
+		opacity: 0.7;
 		padding-top:0;
 		text-align: center;
 	}
@@ -2180,7 +2185,9 @@ pagination > .active > a, .pagination > .active > span,
 	/* TECNOIMMOBILI BUTTONS */
 
 	.btn-tecnoimm-blue {
-		width:100%;
+		/*width:100%;*/
+		border: none !important;
+		-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;
 		background: #1a547a !important;
 		border-color: #1a547a !important;
 		color: #ffffff !important;
@@ -2196,10 +2203,14 @@ pagination > .active > a, .pagination > .active > span,
 	}
 
 	.btn-tecnoimm-red {
-		width:100%;
+		/*width:100%;*/
+		border: none !important;
+		-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;
 		background: #eb212e !important;
 		border-color: #eb212e !important;
 		color: #ffffff !important;
+
+
 	}
 
 	.btn-tecnoimm-red:hover{

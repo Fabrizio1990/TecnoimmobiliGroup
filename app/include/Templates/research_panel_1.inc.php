@@ -167,7 +167,7 @@ $optBox              = $optMng->makeOptions("ads_box",$optBoxVal,null,"Non speci
                                             <input type="text" name="mqTo" id="mqTo" class="form-control" placeholder="a" value="<?php echo $inpMqToVal ?>">
                                         </div>
 
-                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                             <div class="form-group">
                                                 <label for="btn_search" class="lbl_tecnoimmobili_blue">&nbsp;</label>
                                                 <button type="submit" class="btn btn-tecnoimm-red" id="btn_search"><i class="fa fa-search"></i> Avvia Ricerca</button>

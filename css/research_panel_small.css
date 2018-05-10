@@ -19,6 +19,8 @@
 .research_container #search_details {display: none;}
 .research_container #search_placeHolder{display:none;}
 
+.research_container #btn_search{width:100%;}
+
 .navbar.navbar-default.fhmm.affix-top{
     z-index: 11;
 }

@@ -75,6 +75,10 @@ $menuSelected ="home";
         <!-- ######## LAST SEARCHED PROPERTIES ########-->
         <?php include(BASE_PATH."/app/include/Templates/last_research.inc.php") ?>
 
+
+        <!-- ######## LAST SEARCHED PROPERTIES ########-->
+        <?php include(BASE_PATH."/app/include/Templates/localPartners.inc.php") ?>
+
         <!-- ######## FOOTER ########-->
         <?php include(BASE_PATH."/app/include/Templates/footer.inc.php") ?>
   
