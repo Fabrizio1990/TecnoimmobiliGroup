@@ -1,3 +1,6 @@
+#404 redirect
+ErrorDocument 404 http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/404.html
+
 RewriteEngine On
 
 # <RICERCA IMMOBILI>
@@ -14,6 +17,8 @@ RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/filtri/([^/]+)$ index.php?page=rice
 # DETTAGLIO IMMOBILE
 RewriteRule ^([^/]+)/RIF-([^/]+)$ index.php?page=dettaglio_immobile&rif=$2&title=$1
 
+# DETTAGLIO AGENZIE
+RewriteRule agenzie/([^/]+)$ index.php?page=dettaglio_agenzia&agency_name=$1
 
 # PAGINE GENERICHE + PARAMETRI
 RewriteRule ^([^/]*)\.html$ index.php?page=$1

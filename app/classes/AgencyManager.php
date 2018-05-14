@@ -83,7 +83,7 @@ class AgencyManager extends DbManager implements IDbManager
             //se agenzia disabilitata diabilito il record su prt_portal_agencies_info
             if($agency["id_status"] != "1" || $agency["id_portal_status"] != "1"){
                 $this->currTable= "prt_portal_agencies_info";
-                $this->update("enabled = 0,max_properties_on = 0",array("id_portal = ?","id_agency= ?"),array($portalID,$agencyID),null,true);
+                $this->update("enabled = 0,max_properties_on = 0",array("id_portal = ?","id_agency= ?"),array($portalID,$agencyID),null,false);
                 $this->setDefTable();
             //altrimenti chiamo la SP che aggiunge il record o ne fa l' update
             }else{
@@ -120,7 +120,7 @@ class AgencyManager extends DbManager implements IDbManager
             array_push($params,"id_ads_status = ?");
             array_push($values,$adsStatus);
         }
-        $ret = $this->read($params,null,$values,null,false);
+        $ret = $this->read($params,"order by date_up desc",$values,null,false);
 
         return $ret;
 

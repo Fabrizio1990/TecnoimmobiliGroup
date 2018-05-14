@@ -50,6 +50,7 @@ function checkSelected($menuName,$activeCommand = "active"){
                 <!-- standard drop down -->
                 <li class="dropdown <?php checkSelected("gruppo") ?>"><a href="#" data-toggle="dropdown" class="dropdown-toggle <?php checkSelected("gruppo") ?>">IL GRUPPO<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
+                        <li class="<?php checkSelected("agenzie") ?>"><a href="<?php echo SITE_URL."/agenzie.html" ?>">Agenzie</a></li>
                         <li class="<?php checkSelected("chiSiamo") ?>"><a href="<?php echo SITE_URL."/chi_siamo.html" ?>">Chi siamo</a></li>
                         <li class="<?php checkSelected("doveSiamo") ?>"><a href="<?php echo SITE_URL."/dove_siamo.html" ?>">Dove Siamo</a></li>
                         <li class="<?php checkSelected("contatti") ?>"><a href="<?php echo SITE_URL."/contatti.html" ?>">Contatti</a></li>

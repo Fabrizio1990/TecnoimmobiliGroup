@@ -87,7 +87,7 @@
                                 <span>404</span>
                             </h2>
                             <h3>La pagina ricercata non è stata trovata</h3>
-                            <a class="btn btn-tecnoimm-red" href="<?php echo BASE_PATH ?>">Torna alla Home</a>
+                            <a class="btn btn-tecnoimm-red" href="<?php echo SITE_URL ?>">Torna alla Home</a>
                         </div><br><br><br>
                     </div><!-- end content -->
 

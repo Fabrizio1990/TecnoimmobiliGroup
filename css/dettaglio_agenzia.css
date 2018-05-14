@@ -1,0 +1,6 @@
+#agency_detail_containers .boxed_mini_details span{
+    width:auto;
+}
+#agency_detail_containers .agent_boxes .img-thumbnail {
+    width:100%;
+}

@@ -1,7 +1,7 @@
 <?php
 $parallax = false;
 $menuSelected ="gruppo";
-$subMenuSelected = "chiSiamo";
+$subMenuSelected = "agenzie";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ $subMenuSelected = "chiSiamo";
     <meta name="description" content="TecnoimmobiliGroup,Case in vendita,Case in affitto,Aste immobiliari, Torino, Aosta, Ciriè, Liguria"><!-- TODO AGGIUNGI META KEYS -->
     <meta name="author" content="Fabrizio Coppolecchia">
 
-    <title>Chi siamo</title>
+    <title>Le Agenzie</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo(SITE_URL) ?>/libs/frontend/bootstrap/css/bootstrap_3_0.css" rel="stylesheet">
@@ -20,6 +20,8 @@ $subMenuSelected = "chiSiamo";
     <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
+    <!-- DETTAGLIO CSS -->
+    <link href="<?php echo(SITE_URL) ?>/css/agenzie.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -68,7 +70,7 @@ $subMenuSelected = "chiSiamo";
                 <li><a href="index.html">Home</a></li>
                 <li>Il gruppo</li>
             </ul>
-            <h2>Chi siamo</h2>
+            <h2>Le agenzie</h2>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -76,13 +78,17 @@ $subMenuSelected = "chiSiamo";
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
 
-        --> METTI QUI PAGINA
-
-    </div><!-- end container -->
+<section id="one-parallax" class="parallax" style="background-image: url('http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container ">
+                <?php include BASE_PATH."/app/include/pages_content/agenzie.inc.php"; ?>
+            </div><!-- end container -->
+        </div>
+    </div>
 </section><!-- end generalwrapper -->
+
 
 <!-- ######## FOOTER ########-->
 <?php include(BASE_PATH."/app/include/Templates/footer.inc.php") ?>
