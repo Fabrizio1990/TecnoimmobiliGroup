@@ -23,7 +23,7 @@ class UserManager extends DbManager implements IDbManager
 
     public function create($values = null,$fields = null,$printQuery = false)
     {
-        $def_fields = array("id_agency","id_user_type","name","lastname","email","email_personal","password","phone","mobile_phone","fax","skype","address","p_iva","fiscal_code","rea","id_status");
+        $def_fields = array("id_agency","id_user_type","is_main_agent","name","lastname","email","email_personal","password","phone","mobile_phone","fax","skype","address","p_iva","fiscal_code","rea","id_status");
         $fields     = $fields == null ? $def_fields : $fields;
         $ret = parent::create($this->currTable,$fields,$values,$printQuery);
         return $ret;
@@ -58,7 +58,7 @@ class UserManager extends DbManager implements IDbManager
     }
 
     public function updateUser($values,$params = null,$extraParams = null,$fields=null,$printQuery = false){
-            $def_fields = array("id_agency = ?","name = ?","lastname = ?","email = ?","email_personal = ?","phone = ?","mobile_phone = ?","fax = ?","skype = ?","address = ?","p_iva = ?","fiscal_code = ?","rea = ?","id_status = ?");
+            $def_fields = array("id_agency = ?","is_main_agent = 1","name = ?","lastname = ?","email = ?","email_personal = ?","phone = ?","mobile_phone = ?","fax = ?","skype = ?","address = ?","p_iva = ?","fiscal_code = ?","rea = ?","id_status = ?");
             $fields = $fields == null ? $def_fields : $fields;
             $ret = $this->update($fields,$params,$values,$extraParams,$printQuery);
             return $ret;

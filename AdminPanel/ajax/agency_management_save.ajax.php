@@ -103,7 +103,7 @@ if(isset($_POST["inp_agency_banner"],$_POST["inp_agency_name"],$_POST["inp_agenc
             // ----------------  INSERT ----------------------
             // -----------------------------------------------
             }else{
-                // AGENCY CRATE
+                // AGENCY CREATE
                 $values = array($inp_logo,$inp_banner,$inp_name,$txt_description,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$inp_competence_area,$inp_longitude,$inp_latitude,$inp_pIva,$inp_CF,$inp_REA,$inp_business_register,$sel_status,$sel_sub_status,$sel_portal_status);
 
                 //AGENCY SAVE
@@ -148,7 +148,7 @@ function insertOrUpdateAgent(){
         $strPsw = Utils::randomString(8);
         $sha1Psw = Utils::stringToSha1($strPsw);
 
-        $agentValues = array($id_agency,2,$inp_agent_name, $inp_agent_lastname, $inp_agent_email, $inp_agent_private_email, $sha1Psw , $inp_agent_phone, $inp_agent_mobile_phone, $inp_agent_fax, $inp_agent_skype, $inp_agent_address, $inp_agent_pIva, $inp_agent_CF, $inp_agent_REA, $sel_agent_id_status);
+        $agentValues = array($id_agency,2,1,$inp_agent_name, $inp_agent_lastname, $inp_agent_email, $inp_agent_private_email, $sha1Psw , $inp_agent_phone, $inp_agent_mobile_phone, $inp_agent_fax, $inp_agent_skype, $inp_agent_address, $inp_agent_pIva, $inp_agent_CF, $inp_agent_REA, $sel_agent_id_status);
         $ret = $usrMng->createUser($agentValues);
 
         //SE UPDATE DEVO INVIARE LA MAIL CON LE CREDENZIALI

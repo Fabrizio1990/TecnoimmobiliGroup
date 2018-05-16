@@ -66,18 +66,40 @@ $menuSelected ="home";
 
 
         <!-- ######## Popular properties ########-->
-        <?php include(BASE_PATH."/app/include/Templates/popular_properties_bar.inc.php") ?>
+        <section id="three-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL."/images/ParallaxBg/02_parallax.jpg" ?>');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+            <div class="threewrapper">
+                <div class="overlay1 dm-shadow">
+                    <div class="container">
+                        <?php include(BASE_PATH."/app/include/Templates/popular_properties_bar.inc.php") ?>
+                    </div><!-- end container -->
+                </div><!-- end overlay1 -->
+            </div><!-- end threewrapper -->
+        </section><!-- end parallax -->
 
         <!-- ######## SERVIZI ########-->
-        <?php include(BASE_PATH."/app/include/Templates/services_bar.inc.php") ?>
-
+        <section class="generalwrapper dm-shadow clearfix">
+            <div class="container">
+                <?php include(BASE_PATH."/app/include/Templates/services_bar.inc.php") ?>
+            </div>
+        </section>
 
         <!-- ######## LAST SEARCHED PROPERTIES ########-->
-        <?php include(BASE_PATH."/app/include/Templates/last_research.inc.php") ?>
+        <section id="three-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL."/images/ParallaxBg/02_parallax.jpg" ?>');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+            <div class="threewrapper">
+                <div class="overlay1 dm-shadow">
+                    <div class="container">
+                        <?php include(BASE_PATH."/app/include/Templates/last_research.inc.php") ?>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
-        <!-- ######## LAST SEARCHED PROPERTIES ########-->
-        <?php include(BASE_PATH."/app/include/Templates/localPartners.inc.php") ?>
+        <!-- ######## LOCAL PARTNERS ########-->
+        <section class="generalwrapper dm-shadow clearfix">
+            <div class="container" id="localPartners">
+                <?php include(BASE_PATH."/app/include/Templates/localPartners.inc.php") ?>
+            </div>
+        </section>
 
         <!-- ######## FOOTER ########-->
         <?php include(BASE_PATH."/app/include/Templates/footer.inc.php") ?>

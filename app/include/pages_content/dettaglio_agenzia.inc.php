@@ -7,19 +7,18 @@ $imgInfo = new ImagesInfo();
 $logoPath = $imgInfo->info["agencies_logo"]["normal"]["path"];
 $propertiesImgPath = SITE_URL."/".$imgInfo->info["properties"]["normal"]["path"];
 
+$numPropertiesToShow = 6;
 $agencyId = $agencyDetails[0]["id"];
-//AgencyDetails IS SET ON PARENT PAGE
-$agents = $agMng->getOperators("id_agency = $agencyId");
-$mainAgent = $agents[0];
+
 
 //GET ALL DETAILS AND STORE IT INTO VARIABLES
 $logoUrl = SITE_URL."/".$logoPath.$agencyDetails[0]["logo_round_path"];
 $agencyName = $agencyDetails[0]["name"];
-$agencyMail = $mainAgent["email"];
-$agencyPhone = $mainAgent["phone"];
-$agencyMobile = $mainAgent["mobile_phone"];
-$agencyFax = $mainAgent["fax"];
-$agencySkype = $mainAgent["skype"];
+$agencyMail = $agencyDetails[0]["agent_email"];
+$agencyPhone = $agencyDetails[0]["agent_phone"];
+$agencyMobile = $agencyDetails[0]["agent_mobile_phone"];
+$agencyFax = $agencyDetails[0]["agent_fax"];
+$agencySkype = $agencyDetails[0]["agent_skype"];
 $agencySite = SITE_URL."/agenzie/$agencyName";
 $agencyDescription = $agencyDetails[0]["description"];
 
@@ -56,21 +55,21 @@ $agencyProperties = $agMng->getAgencyProperties($agencyId,1);
                         <hr>
 
                         <div class="col-lg-12">
-                            <p><?php echo $agencyDescription ?></p>
+                            <p class="JUSTIFIED"><?php echo $agencyDescription ?></p>
                         </div>
                     </div><!-- end agencies_widget -->
                 </div><!-- agents_widget -->
             </div><!-- end col-lg-7 -->
 
             <div class="col-lg-5 col-md-5 col-sm-12">
-                <h3 class="big_title">Cottatta L'agenzia<small>Hai domande? contattaci!</small></h3>
+                <h3 class="big_title">Cottatta L'agenzia<small>Hai domande? contattaci !</small></h3>
                 <form action="#" id="agent_form">
                     <input type="text" class="form-control" placeholder="Nome">
                     <input type="text" class="form-control" placeholder="Email">
                     <input type="text" class="form-control" placeholder="Telefono">
                     <input type="text" class="form-control" placeholder="Oggetto">
                     <textarea class="form-control" rows="5" placeholder="Messaggio..."></textarea>
-                    <button class="btn btn-tecnoimm-blue">Invia messaggio</button>
+                    <button  class="btn btn-tecnoimm-blue FLOAT_RIGHT">Invia messaggio</button>
                 </form><!-- end search form -->
 
             </div><!-- end col-lg-6 -->
@@ -83,7 +82,10 @@ $agencyProperties = $agMng->getAgencyProperties($agencyId,1);
         <h3 class="big_title">Immobili recenti<small>Guarda gli immobili più recenti trattati</small></h3>
         <div class="row">
             <?php
-                for($i = 0,$len = count($agencyProperties); $i<6; $i++){
+            $cnt = count($agencyProperties);
+            $numPropertiesToShow = $cnt > $numPropertiesToShow ? $numPropertiesToShow:$cnt;
+
+                for($i = 0; $i<$numPropertiesToShow; $i++){
                     $id = $agencyProperties[$i]["id"];
                     $propertyLink = SITE_URL."/".PropertyLinksAndTitles::getDetailLinkFromId($id);
                     $img = $propertiesImgPath."/".$agencyProperties[$i]["img_name"];

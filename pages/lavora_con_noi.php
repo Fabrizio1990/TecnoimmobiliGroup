@@ -1,5 +1,4 @@
 <?php
-$parallax = false;
 $menuSelected ="gruppo";
 $subMenuSelected = "lavoraConNoi";
 ?>

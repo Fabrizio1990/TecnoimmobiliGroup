@@ -1,5 +1,8 @@
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
+<section id="one-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL?>/images/ParallaxBg/06_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container ">
+
             <?php
 
             $order = isset($_GET["campoOrdinamento"])?urldecode($_GET["campoOrdinamento"]):"date_up|desc";
@@ -71,5 +74,8 @@
             </div><!-- end sidebar -->
 
         </div><!-- end row -->
-    </div><!-- end container -->
+         >
+        </div><!-- end container -->
+    </div>
+    </div>
 </section><!-- end generalwrapper -->

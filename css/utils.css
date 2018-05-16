@@ -2,6 +2,10 @@
 .DISPL_NONE{display:none;}
 .DISPL_INLINE{display:inline;}
 .DISPL_BLOCK{display:block;}
+.FLOAT_LEFT{float:left;}
+.CLEAR_LEFT{clear:left;}
+.FLOAT_RIGHT{float:right;}
+.CLEAR_RIGHT{clear:right;}
 .OPACITY-0{opacity:0;}
 
 h1,h2,h3{font-weight: bold}

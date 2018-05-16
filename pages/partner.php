@@ -1,5 +1,4 @@
 <?php
-$parallax = false;
 $menuSelected ="partner";
 ?>
 

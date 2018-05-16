@@ -238,6 +238,7 @@ class OptionsManager extends DbManager{
                 break;
         }
 
+
         if($id_parent!= null)
             $ret = $this->read($params,$extra_params,$id_parent,$fields,$printQuery);
         else

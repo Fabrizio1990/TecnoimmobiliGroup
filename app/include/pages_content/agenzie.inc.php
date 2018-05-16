@@ -15,16 +15,15 @@ $agencies = $agMng->getAgenciesData();
 foreach ($agencies as $agency) {
 
     $agencyId = $agency["id"];
-    $agents = $agMng->getOperators("id_agency = $agencyId");
-    $mainAgent = $agents[0];
 
     $agencyName = $agency["name"];
     $logoUrl = $logoPath.$agency["logo_round_path"];
-    $phone  = $mainAgent["phone"];
-    $mobilePhone = $mainAgent["mobile_phone"];
-    $email = $mainAgent["email"];
+    $phone  = $agency["agent_phone"];
+    $mobilePhone = $agency["agent_mobile_phone"];
+    $email = $agency["agent_email"];
     $description = $agency["description"];
     $detailsLink = SITE_URL."/agenzie/".$agencyName;
+    $address = $agency["street"].",".$agency["street_num"]." (".$agency["city_short"].")";
 
     ?>
     <div class="boxes agencies_widget">
@@ -46,6 +45,7 @@ foreach ($agencies as $agency) {
             <span><i class="fa fa-envelope"></i> <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></span>
             <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $phone ?>"><?php echo $phone ?></a></span>
             <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $mobilePhone ?>"><?php echo $mobilePhone ?></a></span>
+            <span><i class="fa fa-map-marker"></i> <a href="https://maps.google.com/maps?q=<?php echo $address ?>" target="_blank"><?php echo $address ?></a></span>
             <!--<span><i class="fa fa-link"></i> <a href="#">www.sitename.com</a></span>-->
 
         </div><!-- end agencies_meta -->
