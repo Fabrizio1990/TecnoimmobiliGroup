@@ -22,7 +22,8 @@ foreach ($agencies as $agency) {
     $mobilePhone = $agency["agent_mobile_phone"];
     $email = $agency["agent_email"];
     $description = $agency["description"];
-    $detailsLink = SITE_URL."/agenzie/".$agencyName;
+    $detailsLink = SITE_URL."/agenzie/".urlencode($agencyName);
+    $proertiesLink = SITE_URL."/agenzia=".urlencode($agencyName)."/filtri/campoOrdinamento=date_up asc";
     $address = $agency["street"].",".$agency["street_num"]." (".$agency["city_short"].")";
 
     ?>
@@ -36,7 +37,7 @@ foreach ($agencies as $agency) {
             <div class="agencies_desc">
                 <h3 class="title"><?php echo $agencyName?></h3>
                 <p><?php echo $description?></p>
-                <a href="<?php echo $detailsLink?>" class="btn btn-tecnoimm-red btn-sm">Dettagli agenzia</a> <a href="list-view.html" class="btn btn-tecnoimm-blue btn-sm">Immobili trattati</a>
+                <a href="<?php echo $detailsLink?>" class="btn btn-tecnoimm-red btn-sm">Dettagli agenzia</a> <a href="<?php echo $proertiesLink?>" class="btn btn-tecnoimm-blue btn-sm">Immobili trattati</a>
 
             </div><!-- agencies_desc -->
         </div>

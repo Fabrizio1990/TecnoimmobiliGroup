@@ -6,6 +6,8 @@ include(BASE_PATH."/app/classes/Utils.php");
 include(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 include(BASE_PATH."/app/classes/GenericDbHelper.php");
 include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+require_once BASE_PATH."/app/classes/AgencyManager.php";
+
 
 function bindParamsValues($param,$value){
     global $params,$values;
@@ -32,7 +34,16 @@ $array_res = array("aaData"=>array());
 
 $dbH = new GenericDbHelper();
 
-
+$agencyName = "";
+$id_agency ="";
+if(isset($_GET["agency"])){
+    $agMng = new AgencyManager();
+    $agencyName = urldecode($_GET["agency"]);
+    //GET ALL AGENCY DATA
+    $agencyDetails = $agMng->getAgenciesData("name = ?",null,array($agencyName),null,false);
+    if(count($agencyDetails) > 0)
+        $id_agency = $agencyDetails[0]["id"];
+}
 
 $contract   = isset($_GET["contract"])?$_GET["contract"]:"";
 $category   = isset($_GET["category"])?$_GET["category"]:"";
@@ -59,6 +70,7 @@ $orderKey = isset($orderGet[0]) ?$orderGet[0]:"";
 $orderDir = isset($orderGet[1]) ?$orderGet[1]:"";
 
 //echo("TOWN = ".$town." - district = ".$district);
+if($id_agency > 0 && $id_agency != null)bindParamsValues("id_agency = ?",$id_agency);
 if($contract!="")bindParamsValues("id_contract = ?",$contract);
 if($category!="")bindParamsValues("id_category = ?",$category);
 if($tipology!="")bindParamsValues("id_tipology = ?",$tipology);
@@ -77,7 +89,7 @@ if($box!="")bindParamsValues("id_box = ?",$box);
 
 /* CONTROLLO SE E' STATO SETTATO L' ORDINAMENTO E SE IL CAMPO DA ORDINARE ESISTE, SE ESISTE ORDINO, ALTRIMENTI NO*/
 if($orderKey!=""){
-    $query = "CALL `new_tecnoimmobili`.`CheckColumnExist`('properties_view', '".$orderKey."')";
+    //$query = "CALL `new_tecnoimmobili`.`CheckColumnExist`('properties_view', '".$orderKey."')";
     $orderParExist = $dbH->executeQuery("CALL `new_tecnoimmobili`.`CheckColumnExist`('properties_view', '".$orderKey."')");
     if(intval($orderParExist[0][0]) > 0){
         array_push($extra_params,"order by ".$orderKey. " ".$orderDir);

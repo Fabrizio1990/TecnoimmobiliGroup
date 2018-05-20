@@ -21,7 +21,7 @@ if(!$res || count($res)<1)
 }
 
 
-
+$agencyName = isset($_REQUEST["agenzia"])?$_REQUEST["agenzia"]:"";
 
 $contract = CheckAndConvertParams("contract","property_contracts","id","title");
 $category = CheckAndConvertParams("category","property_categories","id","title");
@@ -33,10 +33,11 @@ $conditions = CheckAndConvertParams("condizioni","property_conditions","id","tit
 $garden = CheckAndConvertParams("giardino","property_gardens","id","title");
 $elevator = CheckAndConvertParams("ascensore","property_elevators","id","title");
 $box = CheckAndConvertParams("postoAuto","property_box","id","title");
-if(!$contract || !$category || !$tipology || !$town ){
+
+if($agencyName == "" &&(!$contract || !$category || !$tipology || !$town)){
      header("location: ".SITE_URL."/404.html");
 }
-
+if($agencyName!="")$srcPar["agency"]=$agencyName;
 if($category!="")$srcPar["category"]=$category;
 if($contract!="")$srcPar["contract"]=$contract;
 if($tipology!="")$srcPar["tipology"]=$tipology;
@@ -70,11 +71,15 @@ $ajaxUrlParams = rtrim($ajaxUrlParams,"&");
 
 // STRINGA RISULTATI TROVATI
 $resultString = "";
-$resultString.= strtolower($_GET["tipology"])!="qualsiasi"?$_GET["tipology"]:"";
-$resultString.= strtolower($_GET["contract"])!="qualsiasi"?(" in ".$_GET["contract"]):"";
-$resultString.= strtolower($_GET["town"])!="qualsiasi"?(" ".$_GET["town"]):"";
-// se asta rimuovo "IN"
-$resultString = str_replace("in Asta Immobiliare"," Asta Immobiliare",$resultString);
+if(isset($_GET["tipology"]))
+    $resultString.= strtolower($_GET["tipology"])!="qualsiasi"?$_GET["tipology"]:"";
+if(isset($_GET["contract"]))
+    $resultString.= strtolower($_GET["contract"])!="qualsiasi"?(" in ".$_GET["contract"]):"";
+if(isset($_GET["contract"])){
+    $resultString.= strtolower($_GET["town"])!="qualsiasi"?(" ".$_GET["town"]):"";
+    // se asta rimuovo "IN"
+    $resultString = str_replace("in Asta Immobiliare"," Asta Immobiliare",$resultString);
+}
 if( $district!="")$resultString.= " : ".$district;
 
 
@@ -188,8 +193,12 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
 
 
 <!-- ######## LIST PROPERTIES ########-->
+<section class="post-wrapper-top dm-shadow clearfix" style="background-color:#fff;">
+    <div class="container">
 <?php include(BASE_PATH . "/app/include/pages_content/research_properties_list.inc.php") ?>
-
+            </div><!-- end container -->
+ 
+</section><!-- end generalwrapper -->
 
 <!-- ######## LAST SEARCHED PROPERTIES ########-->
 <?php include(BASE_PATH."/app/include/Templates/last_research.inc.php") ?>
