@@ -102,9 +102,9 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 </section><!-- end post-wrapper-top -->
 
 <section id="one-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL?>/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
-                <div class="threewrapper">
-                    <div class="overlay1 dm-shadow">
-                        <div class="container">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container">
                 <div class="row ">
                     <!-- ######## SCHEDA DETTAGLIO ########-->
                     <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile.inc.php") ?>
@@ -116,7 +116,6 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
             </div><!-- end container -->
         </div><!-- end overlay1 -->
     </div><!-- end threewrapper -->
-
 </section><!-- end generalwrapper -->
 
 <!-- ######## FOOTER ########-->

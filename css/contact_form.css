@@ -1,0 +1,11 @@
+.CONTACT_FORM  .img-thumbnail {
+    width: 100%;
+}
+
+.CONTACT_FORM  .green_number{
+     color:green;
+ }
+
+.CONTACT_FORM .green_number a{
+    color:green;
+}

@@ -24,58 +24,13 @@ $agencyDescription = $agencyDetails[0]["description"];
 
 //GET ALL AGENCY PROPERTIES
 $agencyProperties = $agMng->getAgencyProperties($agencyId,1);
+
+
 ?>
 
 <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-    <div class="agent_boxes boxes clearfix">
-        <div class="agent_details clearfix">
-            <div class="col-lg-7 col-md-7 col-sm-12">
-                <div class="agents_widget">
-                    <h3 class="big_title"><?php echo $agencyName ?><small>Propietà trattate attualmente : <b><?php echo count($agencyProperties)?></b></small> </h3>
-                    <div class="agencies_widget row">
-                        <div class="col-lg-5 clearfix">
-                            <img class="img-thumbnail img-responsive" src="<?php echo $logoUrl ?>" alt="<?php echo $agencyName?> Logo">
-                        </div><!-- end col-lg-5 -->
-                        <div class="col-lg-7 clearfix">
-                            <div class="agencies_meta clearfix">
-                                <span><i class="fa fa-envelope"></i> <a href="mailto:<?php echo $agencyMail?>"><?php echo $agencyMail?></a></span>
-                                <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $agencyPhone?>"><?php echo $agencyPhone?></a> </span>
-                                <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $agencyMobile?>"><?php echo $agencyMobile?></a> </span>
-                                <span><i class="fa fa-print"></i><a href="tel:<?php echo $agencyFax?>"> <?php echo $agencyFax?></a></span>
-                                <span><i class="fa fa-skype"></i> <a href="skype:<?php echo $agencySkype?>"><?php echo $agencySkype?></a></span>
-                                <span><i class="fa fa-facebook-square"></i> <a href="https://www.facebook.com/tecnoimmobiligroup">Pagina Facebook</a></span>
-                                <span><i class="fa fa-twitter-square"></i> <a href="https://twitter.com/tecnoimmobili">Pagina Twitter</a></span>
-                                <span><i class="fa fa-linkedin-square"></i> <a href="https://www.linkedin.com/in/tecnoimmobiligroup/detail/recent-activity/">Pagina Linkedin</a></span>
-                            </div><!-- end agencies_meta -->
 
-                        </div><!-- end col-lg-7 -->
-
-                        <div class="clearfix"></div>
-
-                        <hr>
-
-                        <div class="col-lg-12">
-                            <p class="JUSTIFIED"><?php echo $agencyDescription ?></p>
-                        </div>
-                    </div><!-- end agencies_widget -->
-                </div><!-- agents_widget -->
-            </div><!-- end col-lg-7 -->
-
-            <div class="col-lg-5 col-md-5 col-sm-12">
-                <h3 class="big_title">Cottatta L'agenzia<small>Hai domande? contattaci !</small></h3>
-                <form action="#" id="agent_form">
-                    <input type="text" class="form-control" placeholder="Nome">
-                    <input type="text" class="form-control" placeholder="Email">
-                    <input type="text" class="form-control" placeholder="Telefono">
-                    <input type="text" class="form-control" placeholder="Oggetto">
-                    <textarea class="form-control" rows="5" placeholder="Messaggio..."></textarea>
-                    <button  class="btn btn-tecnoimm-blue FLOAT_RIGHT">Invia messaggio</button>
-                </form><!-- end search form -->
-
-            </div><!-- end col-lg-6 -->
-        </div><!-- end agent_details -->
-    </div><!-- end agent_boxes -->
-
+<?php include (BASE_PATH."/app/include/Widgets/contact_form.inc.php");?>
 
     <!-- ############## SEZIONE IMMOBILI RECENTI #############-->
     <div class="property_wrapper boxes clearfix">

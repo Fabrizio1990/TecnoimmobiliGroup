@@ -80,6 +80,10 @@ if(isset($_GET["contract"])){
     // se asta rimuovo "IN"
     $resultString = str_replace("in Asta Immobiliare"," Asta Immobiliare",$resultString);
 }
+
+if(isset($_GET["agenzia"]))
+    $resultString .= $agencyName;
+
 if( $district!="")$resultString.= " : ".$district;
 
 
@@ -184,7 +188,9 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
                 <li><a href="<?php echo SITE_URL."/index.html" ?>">Home</a></li>
                 <li>Lista immobili</li>
             </ul>
-            <h2><span id="results_found">X</span><?php echo " risultati per: $resultString " ?></h2>
+            <h2>
+                <span id="results_found">X</span><?php echo " risultati per: $resultString " ?>
+            </h2>
         </div>
     </div>
 </section><!-- end post-wrapper-top -->
@@ -196,8 +202,8 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
 <section class="post-wrapper-top dm-shadow clearfix" style="background-color:#fff;">
     <div class="container">
 <?php include(BASE_PATH . "/app/include/pages_content/research_properties_list.inc.php") ?>
-            </div><!-- end container -->
- 
+    </div><!-- end container -->
+
 </section><!-- end generalwrapper -->
 
 <!-- ######## LAST SEARCHED PROPERTIES ########-->

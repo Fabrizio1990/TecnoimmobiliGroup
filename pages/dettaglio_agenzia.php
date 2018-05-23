@@ -1,4 +1,5 @@
 <?php
+
 $parallax = false;
 $menuSelected ="gruppo";
 $subMenuSelected = "agenzie";
@@ -38,6 +39,8 @@ if(!isset($_GET["agency_name"])){
     <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
+    <!-- Jquery validate  override css-->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
     <!-- DETTAGLIO CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/dettaglio_agenzia.css" rel="stylesheet">
 
@@ -123,8 +126,14 @@ if(!isset($_GET["agency_name"])){
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
-
-
+<!-- Jquery validate -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+<!-- Jquery validate additional methods -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_additional_methods.js"></script>
+<!-- Jquery validate IT localization -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
+<script src="<?php echo SITE_URL . "/js/contact_form.js"?>"></script>
+<script src="<?php echo SITE_URL . "/js/dettaglio_agenzia.js"?>"></script>
 
 
 

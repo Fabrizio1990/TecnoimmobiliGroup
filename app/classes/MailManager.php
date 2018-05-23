@@ -99,14 +99,20 @@ class MailManager extends DbManager implements IDbManager {
 
     }
 
-    public function getEmailTemplete($id){
+    public function getEmailTemplete($id,$printQuery = false){
         $this->currTable = "mail_templates";
-
-        $ret = $this->read("id = ?",null,array($id) ,array("object","body","altbody","ishtml","attachment_path"),false);
-
+        $ret = $this->read("id = ?",null,array($id) ,array("object","body","altbody","ishtml","attachment_path"),$printQuery);
         $this->setDefTable();
         return $ret;
     }
+
+    public function getEmailTempleteByTitle($name,$printQuery = false){
+        $this->currTable = "mail_templates";
+        $ret = $this->read("nameId = ?",null,array(urldecode($name)) ,array("object","body","altbody","ishtml","attachment_path"),$printQuery);
+        $this->setDefTable();
+        return $ret;
+    }
+
 
     public function getDefaultSenderData(){
         return array("email"=>"info@tecnoimmobiligroup.it","name"=>"TecnoImmobiliGroup services");

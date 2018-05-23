@@ -1,4 +1,4 @@
-<link href="<?php echo(SITE_URL) ?>/css/generic_contact_form.css" rel="stylesheet">
+<link href="<?php echo(SITE_URL) ?>/css/contact_form_lateral_mini.css" rel="stylesheet">
 <?php
 $referenceCode = isset($referenceCode)?$referenceCode:"Assente";
 $agencyName = isset($agencyName)?$agencyName:"Tecnoimmobili Group Service";
@@ -75,7 +75,6 @@ $agentMail = isset($agentMail) ? $agentMail : "info@tecnoimmobiligroup.it";
                 <label>
                     <input name="check_GCF_personal_data" type="checkbox">
                     Acconsento al trattamento dei miei dati personali da parte di TecnoimmobiliGroup Service
-
                 </label>
             </div>
 

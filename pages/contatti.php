@@ -76,12 +76,14 @@ $subMenuSelected = "contatti";
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
-
-        --> METTI QUI PAGINA
-
-    </div><!-- end container -->
+<section id="one-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL?>/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container">
+        <?php include BASE_PATH . "/app/include/Widgets/contact_form.inc.php";?>
+            </div><!-- end container -->
+        </div><!-- end overlay1 -->
+    </div><!-- end threewrapper -->
 </section><!-- end generalwrapper -->
 
 <!-- ######## FOOTER ########-->
@@ -100,6 +102,14 @@ $subMenuSelected = "contatti";
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
+<!-- Jquery validate -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
+<!-- Jquery validate additional methods -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_additional_methods.js"></script>
+<!-- Jquery validate IT localization -->
+<script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
+<script src="<?php echo SITE_URL . "/js/mail_templates.js"?>"></script>
+<script src="<?php echo SITE_URL . "/js/contact_form.js"?>"></script>
 
 
 

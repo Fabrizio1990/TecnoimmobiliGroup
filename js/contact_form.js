@@ -1,166 +1,45 @@
-var alertBox;
-var successBox;
-var btnSendMail;
-var btnCloseContactForm;
-var isModal = true;
+//UTILITY OBJECT , THIS CONTAIN ALL EMAIL INFO
+var mailInfoObj = function(_fromMail,_fromName,_toMail,_cc,_ccn,_object  = "",_body = "",_isHtml = true){
+    this.fromMail = _fromMail;
+    this.fromName = _fromName;
+    this.toMail = _toMail;
+    this.cc =_cc;
+    this.ccn =_ccn;
+    this.object =_object;
+    this.body = _body;
+    this.isHtml =_isHtml;
+};
 
-$(function () {
-    isModal = $("#property_contact_form").hasClass("modal");
-    alertBox = $("#property_contact_form .contact_form_missing_fields");
-    successBox = $("#property_contact_form .contact_form_sent");
-    btnSendMail =   $("#property_contact_form #c_f_send_message");
-    btnCloseContactForm = $("#property_contact_form #c_f_close");
-    bindButtons();
-});
+//GET TEMPLATE, REPLACE PLACEHOLDERS WITH OVERRIDE PARAMS AND SEND MAIL
+function SendTemplateMail(templateName,templateOverrideParams,mailInfo,callBack = null,paramsDelimiter = "|",valueDelimiter = "=>") {
+    //PARAM USED TO GET TEMPLATE
+    var templateParams = "templateName="+templateName+"&params="+templateOverrideParams+"&paramsDelimiter="+paramsDelimiter+"&valueDelimiter="+valueDelimiter;
+    //PARAMS USED TO SEND MAIL (THIS STRING WILL BE COMPLETED WITH BODY AND OBJ AFTER TEMPLATE IS RECIVED
+    var emailParams = "from="+mailInfo.fromName+"&fromName="+mailInfo.fromName+"&to="+mailInfo.toMail+"&cc="+mailInfo.cc+"&ccn="+mailInfo.ccn;
 
-
-
-function initContactFormModal(){
-    if(!alertBox.hasClass("HIDDEN"))
-        alertBox.addClass("HIDDEN");
-    if(!successBox.hasClass("HIDDEN"))
-        successBox.addClass("HIDDEN");
-
-    console.log("QUI");
-    if(!btnCloseContactForm.hasClass("HIDDEN")){
-        console.log("nascondo il pulsante chiudi");
-        btnCloseContactForm.addClass("HIDDEN");
-    }
-    if(btnSendMail.hasClass("HIDDEN"))
-        btnSendMail.removeClass("HIDDEN");
-    btnSendMail.prop("disabled",false);
-}
-
-function bindButtons(){
-
-    if(isModal){
-        btnCloseContactForm.bind("click",function(){
-            $("#property_contact_form").modal('toggle');
-        })
-
-
-        $(".contact-modal-toggle").bind("click",function(event) {
-            event.preventDefault();
-            if($("#property_contact_form").hasClass("in"))
-                return;
-
-            initContactFormModal();
-
-            var agentInfoBox = $(this).parent().next();
-            var email = agentInfoBox.children(".cntct_email_info").val();
-            var phone = agentInfoBox.children(".cntct_telephone_info").val() ;
-            var mobile = agentInfoBox.children(".cntct_mobile_info").val();
-            var refCode = agentInfoBox.children(".cntct_ref_code").val();
-
-            showContactForm(email,phone,mobile,refCode);
-        });
-    }
-
-
-    btnSendMail.bind("click",function() {
-        var name,fromEmail,toEmail,phone,object,message,body,refCode;
-        var getMailTemplateParams, sendMailParams;
-
-
-
-
-        if(!alertBox.hasClass("HIDDEN"))
-            alertBox.addClass("HIDDEN");
-        if(!successBox.hasClass("HIDDEN"))
-            successBox.addClass("HIDDEN");
-
-
-        name = $("#property_contact_form #frm_contact_name").val();
-        fromEmail = $("#property_contact_form #frm_contact_email").val();
-        toEmail   = $("#property_contact_form #contact_email").text();
-        toEmail = "webmaster@tecnoimmobiligroup.it";// OVERRIDE MAIL PER TEST
-        phone = $("#property_contact_form #frm_contact_phone").val();
-        object = $("#property_contact_form #frm_contact_object").val();
-        message = $("#property_contact_form #frm_contact_body").val();
-        refCode = $("#property_contact_form #frm_contact_ref_code").val();
-
-        if(name=="" || fromEmail == "" || phone == "" || object == "" || message == ""){
-            showAlert();
-            //alertBox.removeClass("HIDDEN");
-            return;
+    //LOAD TEMPLATE
+    load_page(SITE_URL +"/ajax/mails/get_mail_template.ajax.php?"+templateParams,null,    function(resp, params){ //PARAMS IS emailParams
+        console.log(resp);
+        if(resp.includes("Errore")){
+            alert("Errore nel recupero del template della mail");
         }
-        if(!validateEmail(fromEmail)){
-            showAlert("La mail inserita non è valida!");
-            return
-        }
-        if(!validateTelephone(phone)){
-            showAlert("Numero di telefono non valido!");
-            return
-        }
-        if(!$("#frm_contact_personal_data_agreement").is(':checked') ){
-            showAlert("Devi accettare il trattamento dei dati");
-            return
-        }
-
-        getMailTemplateParams = "reference_code="+refCode+"&sender_name="+encodeURIComponent(name)+"&sender_mail="+encodeURIComponent(fromEmail)+"&sender_phone="+encodeURIComponent(phone)+"&sender_message="+encodeURIComponent(message);
-
-
-
-        sendMailParams = "to=" + encodeURIComponent(toEmail);
-        sendMailParams+= "&object=Richiesta informazioni TecnoimmobiliGroup";
-        sendMailParams += "&ccn" + encodeURIComponent("info@tecnoimmobiligroup.it");
-
-        btnSendMail.prop("disabled",true);
-        load_page(SITE_URL +"/ajax/mails/get_contact_mail_content.ajax.php?"+getMailTemplateParams,null,function(resp, params){
-            params+= "&body="+encodeURIComponent(resp);
-            sendMail(params);
-        },sendMailParams);
-
-    });
-}
-
-
-function sendMail(params){
-    ajaxCall(SITE_URL+"/ajax/mails/send_mail_generic.ajax.php",params,null,
-        function(resp){
-            if(resp > 0){
-                if(!alertBox.hasClass("HIDDEN"))
-                    alertBox.addClass("HIDDEN");
-                successBox.removeClass("HIDDEN");
-
-                if(isModal){
-                    btnSendMail.addClass("HIDDEN");
-                    btnCloseContactForm.removeClass("HIDDEN");
-                }else{
-                    btnSendMail.prop("disabled",false);
-                }
-            }
-        },
-        null,"POST"
-    )
-}
-
-function showContactForm(email,phone,mobile,refCode){
-    $("#property_contact_form #contact_email").text(email);
-    $("#property_contact_form #contact_phone").text(phone);
-    $("#property_contact_form #contact_mobile_phone").text(mobile);
-
-
-    $("#property_contact_form #frm_contact_ref_code").val(refCode);
-    $("#property_contact_form #frm_contact_name").val('');
-    $("#property_contact_form #frm_contact_email").val('');
-    $("#property_contact_form #frm_contact_phone").val('');
-    $("#property_contact_form #frm_contact_object").val('');
-    $("#property_contact_form #frm_contact_body").val('');
-
-    $("#property_contact_form").modal('show');
+        //RET IS A JSON {obj:"oggetto",body="corpo"}
+        var additionalInfo = JSON.parse(resp);
+        var mailBody = encodeURIComponent(additionalInfo.body);
+        var mailObj = encodeURIComponent(additionalInfo.obj);
+        //PARAMS CONTAINS EMAILPARAMS AND I WILL ADD BODY AND OBJECT BEFORE SEND MAIL
+        params+= "&body="+mailBody+"&altBody="+mailBody+"&object="+mailObj;
+        //SEND MAIL
+        ajaxCall(SITE_URL+"/ajax/mails/send_mail_generic.ajax.php",params,null,
+            callBack,
+            null,"POST"
+        )
+    },emailParams);
+    //LAST EMAILPARAMS WAS SENT ON CALLBACK AND RECIVED AS PARAMS
 
 }
 
 
-function showAlert(text = null){
-    if(text == null)
-        text = "Attenzione, compila tutti i campi per inviare la richiesta!";
-
-    $("#property_contact_form  .contact_form_missing_fields a").text(text);
-    if(alertBox.hasClass("HIDDEN"))
-        alertBox.removeClass("HIDDEN");
-}
 
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

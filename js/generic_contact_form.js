@@ -30,25 +30,34 @@ function GFCGetMailData(){
     var fromEmail = encodeURIComponent($("#inp_GCF_email").val());
     var toEmail = encodeURIComponent($("#inp_GCF_toEmail_hidden").val());
     var phone = encodeURIComponent($("#inp_GCF_phone").val());
+    var obj = "Richiesta informazioni TecnoimmobiliGroup";
+    obj = $("#inp_GCF_mail_obj").length > 0 ? $("#inp_GCF_mail_obj").val() :obj;
     var message = encodeURIComponent($("#inp_GCF_message").val());
+
 
     //RECUPERO DATI DEL DESTINATARIO
     var sendMailParams = "to=" + toEmail;
-    sendMailParams+= "&object=Richiesta informazioni TecnoimmobiliGroup";
+    sendMailParams+= "&object="+obj;
     sendMailParams += "&ccn" + encodeURIComponent("info@tecnoimmobiligroup.it");
 
 
     var getMailTemplateParams = "reference_code="+refCode+"&sender_name="+encodeURIComponent(senderName)+"&sender_mail="+encodeURIComponent(fromEmail)+"&sender_phone="+encodeURIComponent(phone)+"&sender_message="+encodeURIComponent(message);
 
     //RECUPERO IL TEMPLATE DELLA MAIL
-    load_page(SITE_URL +"/ajax/mails/get_contact_mail_content.ajax.php?"+getMailTemplateParams,null,function(resp, params){
-        params+= "&body="+encodeURIComponent(resp);
-        GCFSendMail(params);
-    },sendMailParams);
+    load_page(
+        SITE_URL +"/ajax/mails/get_contact_mail_content.ajax.php?"+getMailTemplateParams,
+        null,
+        function(resp, params){
+            params+= "&body="+encodeURIComponent(resp);
+            GCFSendMail(params);
+        },
+        sendMailParams);
+
 }
 
 //INVIO MAIL
 function GCFSendMail(params){
+    console.log(params);
     ajaxCall(SITE_URL+"/ajax/mails/send_mail_generic.ajax.php",params,null,
         GFCMailSent,
         null,"POST"
