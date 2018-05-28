@@ -32,6 +32,16 @@ class Utils {
         return $result;
     }
 
+    static function restoreJsonString($value){
+
+        $escapers = array("\\\\", "\\/", "\\\"", "\\n", "\\r", "\\t", "\\f", "\\b");
+        $replacements = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");
+        $result = str_replace($escapers, $replacements, $value);
+
+        $result = htmlentities($result, ENT_QUOTES);
+        return $result;
+    }
+
     static function stringToSha1($string){
         return sha1($string);
     }

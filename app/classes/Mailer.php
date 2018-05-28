@@ -3,13 +3,15 @@ require_once (BASE_PATH."/libs/backend/PHPMailer/PHPMailerAutoload.php");
 require_once(BASE_PATH."/app/classes/DbManager.php");
 require_once(BASE_PATH."/app/classes/LogHelper/Flog.php");
 require_once(BASE_PATH."/app/classes/MyCrypter/MyCrypter.php");
-
 class Mailer
 {
     //SMTPDebug enables SMTP debug information (for testing)
     // 0 = none
     // 1 = errors and messages
     // 2 = messages onlyx
+
+    private $TEST_MODE = true;
+
     private $mailer         = null;
     private $SMTPDebug      = 3;
     private $isSMTP         = false;
@@ -64,6 +66,14 @@ class Mailer
 
     //mail sender
     public function sendMail($recipients, $cc, $ccn, $object, $body, $altBody, $attachmentPaths = "", $isHtml = false, $fromEmail = "", $fromName = ""){
+
+        //CHECK TEST MODE
+        if($this->TEST_MODE){
+            $recipients = "webmaster@tecnoimmobiligroup.it";
+            $cc         = "";
+            $ccn        = "";
+        }
+
         if($fromEmail!=""){
             $this->mailer->setFrom($fromEmail,$fromName);
             $this->mailer->addReplyTo($fromEmail,$fromName);

@@ -30,7 +30,7 @@ $agencyProperties = $agMng->getAgencyProperties($agencyId,1);
 
 <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
 
-<?php include (BASE_PATH."/app/include/Widgets/contact_form.inc.php");?>
+<?php include(BASE_PATH . "/app/include/pages_content/dettaglio_agenzia_contact_form.php");?>
 
     <!-- ############## SEZIONE IMMOBILI RECENTI #############-->
     <div class="property_wrapper boxes clearfix">

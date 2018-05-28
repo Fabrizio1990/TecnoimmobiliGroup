@@ -15,18 +15,19 @@ function SendTemplateMail(templateName,templateOverrideParams,mailInfo,callBack 
     //PARAM USED TO GET TEMPLATE
     var templateParams = "templateName="+templateName+"&params="+templateOverrideParams+"&paramsDelimiter="+paramsDelimiter+"&valueDelimiter="+valueDelimiter;
     //PARAMS USED TO SEND MAIL (THIS STRING WILL BE COMPLETED WITH BODY AND OBJ AFTER TEMPLATE IS RECIVED
-    var emailParams = "from="+mailInfo.fromName+"&fromName="+mailInfo.fromName+"&to="+mailInfo.toMail+"&cc="+mailInfo.cc+"&ccn="+mailInfo.ccn;
+    var emailParams = "from="+mailInfo.fromMail+"&fromName="+mailInfo.fromName+"&to="+mailInfo.toMail+"&cc="+mailInfo.cc+"&ccn="+mailInfo.ccn;
+
 
     //LOAD TEMPLATE
     load_page(SITE_URL +"/ajax/mails/get_mail_template.ajax.php?"+templateParams,null,    function(resp, params){ //PARAMS IS emailParams
-        console.log(resp);
         if(resp.includes("Errore")){
             alert("Errore nel recupero del template della mail");
         }
         //RET IS A JSON {obj:"oggetto",body="corpo"}
         var additionalInfo = JSON.parse(resp);
-        var mailBody = encodeURIComponent(additionalInfo.body);
-        var mailObj = encodeURIComponent(additionalInfo.obj);
+        //NO NEED TO ENCODING BECOUSE PAGE ALREADY RETURN URLENCODED JSON
+        var mailBody = additionalInfo.body;
+        var mailObj = additionalInfo.obj;
         //PARAMS CONTAINS EMAILPARAMS AND I WILL ADD BODY AND OBJECT BEFORE SEND MAIL
         params+= "&body="+mailBody+"&altBody="+mailBody+"&object="+mailObj;
         //SEND MAIL

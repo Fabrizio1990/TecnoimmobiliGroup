@@ -38,16 +38,17 @@ if(isset($_REQUEST["templateId"]) || isset($_REQUEST["templateName"])){
         exit();
     }
 
-
     $splitParams = explode($paramsDelimiter,$additionalParams);
-    for($i = 0 ; $i < count($splitParams) ; $i++){
-        $splitParams[$i] = explode($valueDelimiter,$splitParams[$i]);
 
+    for($i = 0 ; $i < count($splitParams) ; $i++){
+
+        $splitParams[$i] = explode($valueDelimiter,$splitParams[$i]);
+        //echo($splitParams[$i][0] + "=>"+$splitParams[$i][1]);
         $mailBody = str_replace("{".$splitParams[$i][0]."}",$splitParams[$i][1],$mailBody);
         $mailAltBody = str_replace("{".$splitParams[$i][0]."}",$splitParams[$i][1],$mailAltBody);
     }
 
-    echo(json_encode(array("obj"=>Utils::escapeJsonString($mailObj),"body"=>Utils::escapeJsonString($mailBody))));
+    echo(json_encode(array("obj"=>urlencode($mailObj),"body"=>urlencode($mailBody))));
 
 }else{
 

@@ -108,6 +108,7 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
                 <div class="row ">
                     <!-- ######## SCHEDA DETTAGLIO ########-->
                     <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile.inc.php") ?>
+                    
                     <!-- ######## COLONNA A DESTRA DELLA SCHEDA DETTAGLIO ########-->
                     <?php include(BASE_PATH . "/app/include/pages_content/dettaglio_immobile_right_panel.inc.php") ?>
                     <!-- ######## IMMOBILI SIMILI ########-->
@@ -146,10 +147,9 @@ $title = PropertyLinksAndTitles::getTitleFromRef($reference_code,3);
 <script src="<?php echo SITE_URL . "/AdminPanel/plugins/knob/jquery.knob.js"?>"></script>
 <!-- Sparkline -->
 <script src="<?php echo SITE_URL . "/AdminPanel/plugins/sparkline/jquery.sparkline.min.js"?>"></script>
-
-<script src="<?php echo SITE_URL . "/js/dettaglio_immobile.js" ?>" ></script>
 <script src="<?php echo SITE_URL . "/js/contact_form.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/generic_contact_form.js"?>"></script>
+<script src="<?php echo SITE_URL . "/js/contact_form_lateral_mini.js" ?>"></script>
+<script src="<?php echo SITE_URL . "/js/dettaglio_immobile.js" ?>" ></script>
 <script src="<?php echo SITE_URL . "/js/mortage_calculator.js"?>"></script>
 
 

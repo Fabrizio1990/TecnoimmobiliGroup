@@ -1,6 +1,8 @@
 <?php
 require_once ("../../config.php");
 include(BASE_PATH . "/app/classes/MailManager.php");
+require_once BASE_PATH . "/app/classes/Utils.php";
+
 
 if(isset($_POST["to"],$_POST["object"],$_POST["body"])){
     $mailMng = new MailManager();
@@ -10,7 +12,7 @@ if(isset($_POST["to"],$_POST["object"],$_POST["body"])){
     $to         = $_POST["to"];
     $cc         = isset($_POST["cc"])?urldecode($_POST["cc"]):null;
     $ccn        = isset($_POST["ccn"])?urldecode($_POST["ccn"]):null;
-    $obj        = $_POST["object"];
+    $obj        = urldecode($_POST["object"]);
     $body       = urldecode($_POST["body"]);
     $altBody    = isset($_POST["altBody"])?urldecode($_POST["altBody"]):"";
     $isHtml     = isset($_POST["isHtml"])?$_POST["isHtml"]:1;

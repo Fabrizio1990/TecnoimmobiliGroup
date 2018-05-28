@@ -48,38 +48,50 @@ $agentMail = isset($agentMail) ? $agentMail : "info@tecnoimmobiligroup.it";
     </div>
     <!-- INIZIO FORM -->
     <div class="row MARGIN_0 MARGIN_TOP_20">
-        <form name="FORM_GENERIC_CONTACT" id="FORM_GENERIC_CONTACT" novalidate accept-charset="UTF-8">
-            <input type="hidden" id="inp_GCF_toEmail_hidden" value="<?php echo $agentMail ?>" />
+        <form name="CONTACT_FORM_LATERAL" id="CONTACT_FORM_LATERAL" novalidate accept-charset="UTF-8">
+            <input type="hidden" id="inp_CF_L_recipient" name="inp_CF_L_recipient" value="<?php echo $agentMail ?>" />
+            <input type="hidden" name="inp_CF_L_tecnoimmobili_logo" id="inp_CF_L_tecnoimmobili_logo" value="<?php echo SITE_URL.'/public/images/images_logos/tecnoimmobilili_logo_ext.png' ?>">
+            <input type="hidden" name="inp_CF_L_property_mainImage" id="inp_CF_L_property_mainImage" value="<?php echo $coverImgLink?>">
+            <input type="hidden" name="inp_CF_L_property_tipology" id="inp_CF_L_property_tipology" value="<?php echo $tipology?>">
+            <input type="hidden" name="inp_CF_L_property_contract" id="inp_CF_L_property_contract" value="<?php echo $contract?>">
+            <input type="hidden" name="inp_CF_L_property_town" id="inp_CF_L_property_town" value="<?php echo $town ?>">
+            <input type="hidden" name="inp_CF_L_property_price" id="inp_CF_L_property_price" value="<?php echo $price?>">
+            <input type="hidden" name="inp_CF_L_property_refCode" id="inp_CF_L_property_refCode" value="<?php echo $referenceCode?>">
+
+
             <div class="col-md-12 no-lateral-padding">
                 <h3>Invia un messaggio</h3>
             </div>
-            <div id="GFC_MAIL_SENT_RESPONSE" class="alert alert-success HIDDEN">
+            <div id="CF_L_err_validation_box" class="alert alert-danger  HIDDEN">
+                <a href="#" class="alert-link">Attenzione, compila tutti i campi per inviare la richiesta.</a>
+            </div>
+            <div id="CF_L_success_box" class="alert alert-success HIDDEN">
                 <a href="#" class="alert-link">Mail Inviata</a>
             </div>
             <div class="col-md-12 no-lateral-padding">
-                <input name="inp_GCF_name" id="inp_GCF_name" type="text" class="form-control" placeholder="Nome">
+                <input name="inp_CF_L_name" id="inp_CF_L_name" type="text" class="form-control" placeholder="Nome">
             </div>
 
             <div class="col-md-12 no-lateral-padding">
-                <input name="inp_GCF_phone" id="inp_GCF_phone" type="text" class="form-control" placeholder="Telefono">
+                <input name="inp_CF_L_email" id="inp_CF_L_email" type="text" class="form-control" placeholder="Email">
             </div>
 
             <div class="col-md-12 no-lateral-padding">
-                <input name="inp_GCF_email" id="inp_GCF_email" type="text" class="form-control" placeholder="Email">
+                <input name="inp_CF_L_phone" id="inp_CF_L_phone" type="text" class="form-control" placeholder="Telefono">
             </div>
 
             <div class="col-md-12 no-lateral-padding">
-                <textarea name="inp_GCF_message" id="inp_GCF_message" class="form-control" placeholder="Scrivi qui il tuo messaggio"></textarea>
+                <textarea name="inp_CF_L_message" id="inp_CF_L_message" class="form-control" placeholder="Scrivi qui il tuo messaggio"></textarea>
             </div>
             <div class="col-md-12 no-lateral-padding user_data_management_agreement">
                 <label>
-                    <input name="check_GCF_personal_data" type="checkbox">
+                    <input id="check_CF_L_personal_data" name="check_CF_L_personal_data" type="checkbox">
                     Acconsento al trattamento dei miei dati personali da parte di TecnoimmobiliGroup Service
                 </label>
             </div>
 
             <div class="col-md-12 no-lateral-padding">
-                <input id="btn_GFC_send_mail" type="submit" class="form-control btn-tecnoimm-red" value="Invia Mail" />
+                <input id="btn_CF_L_send_mail" name="btn_CF_L_send_mail" type="submit" class="form-control btn-tecnoimm-red" value="Invia Mail" />
             </div>
         </form>
     </div>

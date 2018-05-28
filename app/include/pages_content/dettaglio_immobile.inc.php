@@ -27,6 +27,7 @@ $imgPathBig = SITE_URL."/".$IMG_INFO["properties"]["big"]['path'];
 // GENERO GLI ELEMENTI CON LE IMMAGINI QUI IN UN SOLO CICLO SIA PER LE MINUATURE CHE PER QUELLE GRANDI
 $listImgNormal = "";
 $listImgMin = "";
+$coverImgLink = $imgPathBig.$images[0]["img_name"];
 for($i = 0 ; $i < Count($images) ; $i++){
     $listImgNormal.= "<li><img class='img-thumbnail' src='".$imgPathBig.$images[$i]["img_name"]."' alt=''></li>";
     $listImgMin.= "<li><img class='img-thumbnail' src='".$imgPathMin.$images[$i]["img_name"]."' alt=''></li>";
@@ -47,6 +48,7 @@ $agentMail = $agentData[0]["email"];
 
 /*DETTAGLI IMMOBILE*/
 $referenceCode = $details["reference_code"];
+$town = $details["town"];
 $street = $details["street"];
 $streetNum = $details["street_num"];
 $price = $details["price"];

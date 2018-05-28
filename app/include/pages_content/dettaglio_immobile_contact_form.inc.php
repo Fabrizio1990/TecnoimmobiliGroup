@@ -4,10 +4,10 @@
             <small>Non preoccuparti! Siamo qui per aiutarti.</small>
         </h3>
 
-        <div class="alert alert-danger contact_form_missing_fields HIDDEN">
+        <div id="CF_err_validation_box" class="alert alert-danger  HIDDEN">
             <a href="#" class="alert-link">Attenzione, compila tutti i campi per inviare la richiesta.</a>
         </div>
-        <div class="alert alert-success contact_form_sent HIDDEN">
+        <div id="CF_success_box" class="alert alert-success  HIDDEN">
             <a href="#" class="alert-link">Richiesta inviata con successo</a>
         </div>
     </div>
@@ -31,21 +31,28 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <form id="contact" class="row" action="" name="contactform" method="post">
-            <input type="text" name="frm_contact_name" id="frm_contact_name" class="form-control" placeholder="Nome">
-            <input type="text" name="frm_contact_email" id="frm_contact_email" class="form-control" placeholder="Email">
-            <input type="text" name="frm_contact_phone" id="frm_contact_phone" class="form-control" placeholder="Telefono">
-            <input type="hidden" name="frm_contact_ref_code" id="frm_contact_ref_code" value="<?php echo $reference_code ?>">
+        <form id="CONTACT_FORM" class="row" action="" name="CONTACT_FORM" method="post" novalidate>
+            <input type="hidden" name="inp_CF_tecnoimmobili_logo" id="inp_CF_tecnoimmobili_logo" value="<?php echo SITE_URL.'/public/images/images_logos/tecnoimmobilili_logo_ext.png' ?>">
+            <input type="hidden" name="inp_CF_property_mainImage" id="inp_CF_property_mainImage" value="<?php echo $coverImgLink?>">
+            <input type="hidden" name="inp_CF_property_tipology" id="inp_CF_property_tipology" value="<?php echo $tipology?>">
+            <input type="hidden" name="inp_CF_property_contract" id="inp_CF_property_contract" value="<?php echo $contract?>">
+            <input type="hidden" name="inp_CF_property_town" id="inp_CF_property_town" value="<?php echo $town ?>">
+            <input type="hidden" name="inp_CF_property_price" id="inp_CF_property_price" value="<?php echo $price?>">
+            <input type="hidden" name="inp_CF_property_refCode" id="inp_CF_property_refCode" value="<?php echo $referenceCode?>">
+
+            <input type="text" name="inp_CF_name" id="inp_CF_name" class="form-control" placeholder="Nome">
+            <input type="text" name="inp_CF_email" id="inp_CF_email" class="form-control" placeholder="Email">
+            <input type="text" name="inp_CF_phone" id="inp_CF_phone" class="form-control" placeholder="Telefono">
+
             <input type="hidden" name="frm_contact_property_link" id="frm_contact_property_link" value="<?php echo Utils::getCurrentUrl();?>">
-            <textarea class="form-control" name="frm_contact_body" id="frm_contact_body" rows="6" placeholder="Testo ...."></textarea>
+            <textarea class="form-control" name="inp_CF_message" id="inp_CF_message" rows="6" placeholder="Testo ...."></textarea>
 
-            <label>
-                <input name="frm_contact_personal_data_agreement" id="frm_contact_personal_data_agreement" type="checkbox">
+<label>
+                <input name="check_CF_personal_data" id="check_CF_personal_data" type="checkbox">
                 Acconsento al trattamento dei miei dati personali da parte di TecnoimmobiliGroup Service
+</label>
 
-            </label>
-
-            <button type="button" id="c_f_send_message" class="btn btn-tecnoimm-red" >Invia messaggio</button>
+            <input type="submit" id="btn_CF_send_mail" class="btn btn-tecnoimm-red"  value="Invia messaggio">
 
         </form>
     </div>

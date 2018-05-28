@@ -1,14 +1,14 @@
 <?php
-$category = $details["id_category"];
-$contract = $details["id_contract"];
-$town     = $details["id_town"];
+$sp_category = $details["id_category"];
+$sp_contract = $details["id_contract"];
+$sp_town     = $details["id_town"];
 
 
 
 $params = array("id_contract = ?","id_category = ?","id_town = ?","reference_code != ?","id_ads_status = 1","id_contract_status not in(2,4)");
-$values = array($contract,$category,$town,$reference_code);
+$values = array($sp_contract,$sp_category,$sp_town,$reference_code);
 
-$resSP = $propertyM->readAllAds($params,array("ORDER BY FIELD(id_contract,".$contract.") desc","limit 3"),$values,null,false);
+$resSP = $propertyM->readAllAds($params,array("ORDER BY FIELD(id_contract,".$sp_contract.") desc","limit 3"),$values,null,false);
 
 
 

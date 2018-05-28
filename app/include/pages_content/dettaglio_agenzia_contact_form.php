@@ -1,6 +1,6 @@
 <link href="<?php echo(SITE_URL) ?>/css/contact_form.css" rel="stylesheet">
 <?php
-require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+require_once(BASE_PATH . "/app/classes/ImageHelper/ImagesInfo.php");
 $imgInfo = isset($imgInfo)?$imgInfo:new ImagesInfo();
 $logoPath = isset($logoPath)?$logoPath:$imgInfo->info["agencies_logo"]["normal"]["path"];
 
@@ -71,9 +71,14 @@ $mailObj = isset($mailObj)?$mailObj:"Richiesta Generica di contatto da pagina de
 
             <div class="col-lg-5 col-md-5 col-sm-12">
                 <h3 class="big_title">Cottatta L'agenzia<small>Hai domande? contattaci !</small></h3>
+                <div id="CF_err_validation_box" class="alert alert-danger  HIDDEN">
+                    <a href="#" class="alert-link">Attenzione, compila tutti i campi per inviare la richiesta.</a>
+                </div>
+                <div id="CF_success_box" class="alert alert-success  HIDDEN">
+                    <a href="#" class="alert-link">Richiesta inviata con successo</a>
+                </div>
                 <form name="CONTACT_FORM" id="CONTACT_FORM" novalidate accept-charset="UTF-8">
-
-
+                    <input type="hidden" name="inp_CF_tecnoimmobili_logo" id="inp_CF_tecnoimmobili_logo" value="<?php echo SITE_URL.'/public/images/images_logos/tecnoimmobilili_logo_ext.png' ?>">
                     <input type="hidden" id="inp_CF_toEmail_hidden" value="<?php echo $agencyMail ?>" />
                     <div class="col-md-12 no-lateral-padding">
                         <h3>Invia un messaggio</h3>
@@ -86,11 +91,11 @@ $mailObj = isset($mailObj)?$mailObj:"Richiesta Generica di contatto da pagina de
                     </div>
 
                     <div class="col-md-12 no-lateral-padding">
-                        <input name="inp_CF_phone" id="inp_CF_phone" type="text" class="form-control" placeholder="Telefono">
+                        <input name="inp_CF_email" id="inp_CF_email" type="text" class="form-control" placeholder="Email">
                     </div>
 
                     <div class="col-md-12 no-lateral-padding">
-                        <input name="inp_CF_email" id="inp_CF_email" type="text" class="form-control" placeholder="Email">
+                        <input name="inp_CF_phone" id="inp_CF_phone" type="text" class="form-control" placeholder="Telefono">
                     </div>
 
                     <div class="col-md-12 no-lateral-padding">
