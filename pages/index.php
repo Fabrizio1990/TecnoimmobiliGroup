@@ -121,6 +121,8 @@ $menuSelected ="home";
         <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery.validate.min.js"></script>
         <!-- Jquery validate -->
         <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_selectpicker_override.js"></script>
+        <!-- Jquery validate additional methods -->
+        <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_additional_methods.js"></script>
         <!-- Jquery validate IT localization -->
         <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
 
@@ -129,6 +131,7 @@ $menuSelected ="home";
         <script src="<?php echo SITE_URL."/AdminPanel/js/options_populate.js" ?>"></script>
         <script src="<?php echo SITE_URL."/js/research_panel_1.js" ?>"></script>
         <script src="<?php echo SITE_URL. "/js/contact_form.js" ?>"></script>
+        <script src="<?php echo SITE_URL. "/js/contact_modal.js" ?>"></script>
 
 
         <!-- FlexSlider JavaScript

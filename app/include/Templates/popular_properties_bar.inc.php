@@ -49,6 +49,15 @@
             $imgBig = SITE_URL."/".$imgPathBig.$properties[$i]["img_name"];
         }
 
+        //CONTACT FORM INFO
+        $tipology = $properties[$i]["tipology"];
+        $contract = $properties[$i]["contract"];
+        $town = $properties[$i]["town"];
+        $price = $properties[$i]["price"];
+        $referenceCode = $properties[$i]["reference_code"];
+        $contract = $properties[$i]["contract"];
+
+
 
         if($i%$elemXRow == 0){
             if($i!=0) echo("</div>");
@@ -70,11 +79,17 @@
                     <span class='WhiteSquare' title='Contattaci'>
                         <a class='contact-modal-toggle' href='#'><i class='fa fa-envelope-o'></i></a>
                     </span>
-                    <div class='hiddenInfo'>
-                        <input type='hidden' class='cntct_email_info' value='<?php echo $agentMail?>' />
-                        <input type='hidden' class='cntct_telephone_info' value='<?php echo $agentTel?>' />
-                        <input type='hidden' class='cntct_mobile_info' value='<?php echo $agentMobile?>' />
-                        <input type='hidden' class='cntct_ref_code' value='<?php echo $properties[$i]["reference_code"]?>' />
+                    <div class='CF_M_hiddenInfo'>
+                        <input type='hidden' class='inp_CF_M_ag_email_info' value='<?php echo $agentMail?>' />
+                        <input type='hidden' class='inp_CF_M_ag_telephone_info' value='<?php echo $agentTel?>' />
+                        <input type='hidden' class='inp_CF_M_ag_mobile_info' value='<?php echo $agentMobile?>' />
+                        <input type="hidden" name="inp_CF_M_tecnoimmobili_logo" value="<?php echo SITE_URL.'/public/images/images_logos/tecnoimmobilili_logo_ext.png' ?>">
+                        <input type="hidden" class="inp_CF_M_property_mainImage" value="<?php echo $imgBig?>">
+                        <input type="hidden" class="inp_CF_M_property_tipology" value="<?php echo $tipology?>">
+                        <input type="hidden" class="inp_CF_M_property_contract"  value="<?php echo $contract?>">
+                        <input type="hidden" class="inp_CF_M_property_town"  value="<?php echo $town ?>">
+                        <input type="hidden" class="inp_CF_M_property_price"  value="<?php echo $price?>">
+                        <input type="hidden" class="inp_CF_M_property_refCode"  value="<?php echo $referenceCode?>">
                     </div>
                 </div>
                 <div class="box_type"><?php echo $price ?></div>
