@@ -1,0 +1,15 @@
+.header_img{ min-height: 300px;background: url('../images/ParallaxBg/05_parallax.jpg');}
+.tab-content{background-color: #FFFFFF;}
+.content_section .container{margin-top:20px;padding-bottom: 20px;}
+.content_section .container ul{list-style-image: url('../images/flag_red.jpg');}
+.content_section .container .info_box{background-color: #efefefef; padding:10px;}
+/*.content_section .container .box_info_card{
+    border:1px solid #eb212e;
+    background-color: rgba(26, 84, 122,.5);
+    padding:20px;
+}
+.content_section .container .box_info_card p{
+    margin-bottom: 5px;
+    color: #000;
+}*/
+.content_section .container .panel{margin-bottom: 0px;}

@@ -270,8 +270,16 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                     </div><!-- image -->
                     <div class="agent_desc">
                         <h3 class="title"><?php echo $resAg[$i]["name"] ?></h3>
-                        <p><span><i class="fa fa-envelope"></i> <?php echo $resAg[$i]["email"] ?></span></p>
-                        <p><span><i class="fa fa-phone-square"></i> <?php echo $resAg[$i]["phone"] ?></span></p>
+                        <div class="col-md-12 col-sm-12 col-xs-12 MARGIN_TOP_20">
+                            <p>
+                                <span><i class="fa fa-envelope"></i> <?php echo $resAg[$i]["email"] ?></span>
+                            </p>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>
+                                <span><i class="fa fa-phone-square"></i> <?php echo $resAg[$i]["phone"] ?></span>
+                            </p>
+                        </div>
                     </div><!-- agento desc -->
                 </div>
                 <?php

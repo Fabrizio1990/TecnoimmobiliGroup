@@ -189,6 +189,8 @@ function getFeeds(){
 function savePortal(form){
     var page = SITE_URL+"/AdminPanel/ajax/add_portal_savePortal.ajax.php";
     var params = $(form).serialize();
+    params+= "&hasContract="+$('#inp_portal_hasContract').bootstrapSwitch('state');
+
     params += "&logo_portal="+encodeURIComponent(removeUrlParameters(fileNameFromUrl($("#img_portal").attr("src"))));
     var feeds = getFeeds();
     params += "&feedsInfo="+JSON.stringify(feeds);

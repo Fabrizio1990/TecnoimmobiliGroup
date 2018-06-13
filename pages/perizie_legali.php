@@ -81,7 +81,7 @@ $subMenuSelected = "perizieLegali";
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
 
-        --> METTI QUI PAGINA
+        <?php include(BASE_PATH."/app/include/pages_content/perzie_legali.inc.php") ?>
 
     </div><!-- end container -->
 </section><!-- end generalwrapper -->
@@ -102,7 +102,6 @@ $subMenuSelected = "perizieLegali";
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/aste_immobiliari.js" ?>"></script>
 
 
 

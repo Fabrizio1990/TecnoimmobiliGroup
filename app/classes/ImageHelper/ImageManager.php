@@ -33,8 +33,9 @@ class ImageManager {
 			return imagecreatefromstring($image);
 		else if(strtolower($this->ext) == "jpg" || $this->ext == "jpeg")
 			return imagecreatefromjpeg($image);
-        else if(strtolower($this->ext) == "png" || $this->ext == "PNG")
+        else if(strtolower($this->ext) == "png" || $this->ext == "PNG"){
             return imagecreatefrompng($image);
+        }
 	    else if(strtolower($this->ext) == "gif")
 			return imagecreatefromgif($image);
 		else 
@@ -48,6 +49,11 @@ class ImageManager {
                 $curr_image_width = ImageSX($this->currImage);
                 $curr_image_height = ImageSY($this->currImage);
 				$this->tmpImg = imagecreatetruecolor($width,$height);
+				if($this->ext =="png"){
+                    imagesavealpha($this->tmpImg, true);
+                    $color = imagecolorallocatealpha($this->tmpImg, 0, 0, 0, 127);
+                    imagefill($this->tmpImg, 0, 0, $color);
+                }
 				imagecopyresampled($this->tmpImg,$this->currImage,0,0,0,0,$width,$height,$curr_image_width,$curr_image_height);
 			}
         }
@@ -97,8 +103,9 @@ class ImageManager {
         $savePath = $path.$name.".".$this->ext;
 		if($this->ext == "jpg" || $this->ext == "jpeg")
 			$ret = imagejpeg($this->tmpImg,$savePath,$quality);
-        else if($this->ext == "png")//png ha un range di quality minore di 10 volte
-            $ret = imagepng($this->tmpImg,$savePath,$quality/10);
+        else if($this->ext == "png") {//png ha un range di quality minore di 10 volte
+            $ret = imagepng($this->tmpImg, $savePath, $quality / 10);
+        }
 		else if($this->ext == "gif")
 			$ret = imagegif($this->tmpImg,$savePath,$quality);
 

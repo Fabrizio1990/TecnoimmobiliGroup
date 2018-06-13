@@ -15,7 +15,7 @@
                     <div class="upload_image_container col-md-12 col-sm-12 col-xs-12 ALIGN_CENTER">
                         <input type="hidden" id= "hidden_img_name" class="hidden_img_name" value="" />
                         <button type="button" onclick="selectFile(this);" class="btn btn-primary ">carica</button>
-                        <input type="file" id="logo_img" name="logo_img" class="file_explorer" accept="image/jpeg">
+                        <input type="file" id="logo_img" name="logo_img" class="file_explorer" accept="image/jpeg,image/png">
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
             <label>Inizio contratto</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-calendar-times-o"></i></div>
-                <input id="inp_portal_contract_start" name="inp_portal_contract_start" type="date" class="form-control" placeholder="Inizio contratto"  value="<?php echo $inpPortalContractStart ?>">
+                <input id="inp_portal_contract_start" name="inp_portal_contract_start" type="date" class="form-control" placeholder="Inizio contratto"  value="<?php if($inpPortalHasContract) echo $inpPortalContractStart ?>">
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->
@@ -169,7 +169,7 @@
             <label>Fine contratto</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-calendar-times-o"></i></div>
-                <input id="inp_portal_contract_end" name="inp_portal_contract_end" type="date" class="form-control" placeholder="Fine contratto"  value="<?php echo $inpPortalContractEnd ?>">
+                <input id="inp_portal_contract_end" name="inp_portal_contract_end" type="date" class="form-control" placeholder="Fine contratto"  value="<?php if($inpPortalHasContract)echo $inpPortalContractEnd ?>">
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->

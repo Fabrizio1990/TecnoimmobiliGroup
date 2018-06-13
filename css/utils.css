@@ -7,6 +7,7 @@
 .FLOAT_RIGHT{float:right;}
 .CLEAR_RIGHT{clear:right;}
 .OPACITY-0{opacity:0;}
+.HR{border-bottom: 1px solid #F2F2F2;}
 
 h1,h2,h3{font-weight: bold}
 
@@ -14,6 +15,7 @@ h1,h2,h3{font-weight: bold}
 .JUSTIFIED{text-align: justify;}
 
 /*MARGIN*/
+.MARGIN_0_AUTO{margin: 0 auto;}
 .MARGIN_0{margin: 0px;}
 .MARGIN_5{margin: 5px;}
 .MARGIN_TOP_5{margin-top: 5px;}

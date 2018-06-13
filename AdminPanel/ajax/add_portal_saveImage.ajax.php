@@ -9,10 +9,6 @@
 
 
 
-
-
-
-
         $res ="0";
         $new_img_name = "";
         //if name is already sent i use its name , if not i create a name
@@ -23,8 +19,6 @@
             $new_img_name = "img_".$date."_".rand(0,50);
         }
 
-        //if aste i will apply different watermark
-        $watermark = isset($_GET["aste"])?"watermark_aste":"watermark";
 
         $image 		= file_get_contents('php://input');
         $imageName 	= $_SERVER['HTTP_X_FILENAME'];

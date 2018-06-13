@@ -1,0 +1,13 @@
+.col_partner_container{
+
+}
+.partner_image{
+    border:1px solid #CCCCCC;
+    padding: 20px;
+}
+.partner_image:hover{
+    border:1px solid #1a547a;
+}
+.partner_link{
+
+}

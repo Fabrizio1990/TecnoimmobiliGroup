@@ -24,6 +24,8 @@ $subMenuSelected = "contatti";
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic' rel='stylesheet' type='text/css'>
+    <!-- Jquery validate  override css-->
+    <link rel="stylesheet" type="text/css" href="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/css/jquery_validate_override.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,7 +82,7 @@ $subMenuSelected = "contatti";
     <div class="threewrapper">
         <div class="overlay1 dm-shadow">
             <div class="container">
-        <?php include BASE_PATH . "/app/include/Widgets/agency_contact_form.inc.php";?>
+        <?php include BASE_PATH . "/app/include/pages_content/contatti.inc.php";?>
             </div><!-- end container -->
         </div><!-- end overlay1 -->
     </div><!-- end threewrapper -->
@@ -110,7 +112,7 @@ $subMenuSelected = "contatti";
 <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
 <script src="<?php echo SITE_URL . "/js/mail_templates.js"?>"></script>
 <script src="<?php echo SITE_URL . "/js/contact_form.js"?>"></script>
-
+<script src="<?php echo SITE_URL . "/js/contatti.js"?>"></script>
 
 
 

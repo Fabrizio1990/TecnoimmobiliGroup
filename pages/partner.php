@@ -19,7 +19,7 @@ $menuSelected ="partner";
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
     <!-- DETTAGLIO CSS -->
-    <link href="<?php echo(SITE_URL) ?>/css/dettaglio_immobile.css" rel="stylesheet">
+    <link href="<?php echo(SITE_URL) ?>/css/partner.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -75,12 +75,16 @@ $menuSelected ="partner";
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
-    <div class="container">
+<section id="one-parallax" class="parallax" style="background-image: url('<?php echo SITE_URL?>/images/ParallaxBg/02_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <div class="threewrapper">
+        <div class="overlay1 dm-shadow">
+            <div class="container ">
 
-        --> METTI QUI PAGINA
+        <?php include(BASE_PATH."/app/include/pages_content/partner.inc.php") ?>
 
-    </div><!-- end container -->
+            </div><!-- end container -->
+        </div>
+    </div>
 </section><!-- end generalwrapper -->
 
 <!-- ######## FOOTER ########-->
@@ -99,7 +103,6 @@ $menuSelected ="partner";
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/aste_immobiliari.js" ?>"></script>
 
 
 

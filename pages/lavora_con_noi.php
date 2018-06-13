@@ -19,8 +19,7 @@ $subMenuSelected = "lavoraConNoi";
     <link href="<?php echo(SITE_URL) ?>/css/style.css" rel="stylesheet">
     <!-- utils CSS -->
     <link href="<?php echo(SITE_URL) ?>/css/utils.css" rel="stylesheet">
-    <!-- DETTAGLIO CSS -->
-    <link href="<?php echo(SITE_URL) ?>/css/dettaglio_immobile.css" rel="stylesheet">
+    <link href="<?php echo(SITE_URL) ?>/css/lavora_con_noi.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -77,10 +76,15 @@ $subMenuSelected = "lavoraConNoi";
     </div>
 </section><!-- end post-wrapper-top -->
 
-<section class="generalwrapper dm-shadow clearfix">
+
+<section class="generalwrapper dm-shadow clearfix PADDING-0 content_section">
+
+    <div class="col-md-12 PADDING-0 header_img">
+        <!--<img class="img-responsive" style="width:100%" src="images/ParallaxBg/05_parallax.jpg" />-->
+    </div>
     <div class="container">
 
-        --> METTI QUI PAGINA
+        <?php include (BASE_PATH."/app/include/pages_content/lavora_con_noi.inc.php") ?>
 
     </div><!-- end container -->
 </section><!-- end generalwrapper -->
@@ -101,7 +105,6 @@ $subMenuSelected = "lavoraConNoi";
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
-<script src="<?php echo SITE_URL . "/js/aste_immobiliari.js" ?>"></script>
 
 
 

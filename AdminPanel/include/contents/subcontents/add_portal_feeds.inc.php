@@ -49,9 +49,10 @@ else{
 
 <div class="row">
 
-    <div class="col-md-6">
-       <input type="button" id="btn_add_feed" class="btn btn-primary btn-tecnoimm-blue" value="Aggiungi Feed" />
-    </div><!-- /.col-md-6 -->
+    <div class="col-md-4">  </div>
+    <div class="col-md-4">
+        <input type="button" id="btn_add_feed" class="btn btn-primary btn-tecnoimm-blue" value="Aggiungi Feed" />
+    </div><!-- /.col-md-4 -->
+    <div class="col-md-4">  </div>
 
-    <div class="col-md-6">  </div>
 </div><!-- /.row -->

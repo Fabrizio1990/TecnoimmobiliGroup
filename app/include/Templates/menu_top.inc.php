@@ -58,7 +58,7 @@ function checkSelected($menuName,$activeCommand = "active"){
                     </ul><!-- end dropdown-menu -->
                 </li><!-- end standard drop down -->
 
-                <li class="dropdown fhmm-fw <?php checkSelected("partner") ?>">
+                <li class="dropdown fhmm-fw <?php checkSelected("mediazione_civile") ?>">
                     <a href="<?php echo SITE_URL."/mediazione_civile.html" ?>"> MEDIAZIONE CIVILE</a>
                 </li>
 

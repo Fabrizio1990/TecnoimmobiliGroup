@@ -11,6 +11,7 @@
 .last_reseach_container .tab-content{border-top: 3px solid #eb212e;}
 
 .agents_widget .boxes .title {
+    padding-top: 20px ;
     margin-top: 0 !important;
     height: 78px;
 }

@@ -203,12 +203,14 @@ function CheckAndConvertParams($getParamName,$table,$fieldNeeded,$fieldUsed){
     <div class="container">
 <?php include(BASE_PATH . "/app/include/pages_content/research_properties_list.inc.php") ?>
     </div><!-- end container -->
-
 </section><!-- end generalwrapper -->
 
 <!-- ######## LAST SEARCHED PROPERTIES ########-->
+<section class="post-wrapper-top dm-shadow clearfix" style="background-color:#fff;">
+    <div class="container">
 <?php include(BASE_PATH."/app/include/Templates/last_research.inc.php") ?>
-
+    </div><!-- end container -->
+</section><!-- end generalwrapper -->
 <!-- ######## FOOTER ########-->
 <?php include(BASE_PATH."/app/include/Templates/footer.inc.php") ?>
 

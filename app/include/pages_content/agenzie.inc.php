@@ -28,12 +28,12 @@ foreach ($agencies as $agency) {
 
     ?>
     <div class="boxes agencies_widget">
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-3 col-sm-3">
             <div class="image">
                 <img class="img-responsive img-thumbnail" src="<?php echo $logoUrl ?>" alt="<?php echo $agencyName?> Logo">
             </div><!-- end agencies img -->
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9 col-md-9 col-sm-9">
             <div class="agencies_desc">
                 <h3 class="title"><?php echo $agencyName?></h3>
                 <p><?php echo $description?></p>
@@ -43,10 +43,18 @@ foreach ($agencies as $agency) {
         </div>
         <div class="clearfix"></div>
         <div class="agencies_meta">
-            <span><i class="fa fa-envelope"></i> <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></span>
-            <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $phone ?>"><?php echo $phone ?></a></span>
-            <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $mobilePhone ?>"><?php echo $mobilePhone ?></a></span>
+            <div class="col-md-2 col-sm-7 no-lateral-padding">
+                <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $phone ?>"><?php echo $phone ?></a></span>
+            </div>
+            <div class="col-md-2 col-sm-5 no-lateral-padding">
+                <span><i class="fa fa-phone-square"></i> <a href="tel:<?php echo $mobilePhone ?>"><?php echo $mobilePhone ?></a></span>
+            </div>
+            <div class="col-md-5 col-sm-7 no-lateral-padding">
+                <span><i class="fa fa-envelope"></i> <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></span>
+            </div>
+            <div class="col-md-3 col-sm-5 no-lateral-padding">
             <span><i class="fa fa-map-marker"></i> <a href="https://maps.google.com/maps?q=<?php echo $address ?>" target="_blank"><?php echo $address ?></a></span>
+            </div>
             <!--<span><i class="fa fa-link"></i> <a href="#">www.sitename.com</a></span>-->
 
         </div><!-- end agencies_meta -->

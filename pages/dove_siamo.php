@@ -79,7 +79,7 @@ $subMenuSelected = "doveSiamo";
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
 
-        --> METTI QUI PAGINA
+        <?php include(BASE_PATH."/app/include/pages_content/dove_siamo.inc.php") ?>
 
     </div><!-- end container -->
 </section><!-- end generalwrapper -->
@@ -100,9 +100,31 @@ $subMenuSelected = "doveSiamo";
 <script src="<?php echo SITE_URL . "/libs/frontend/bootstrapSelect/js/bootstrap-select.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/libs/frontend/fancyBox/jquery.fancybox.pack.js" ?>"></script>
 <script src="<?php echo SITE_URL . "/js/application.js" ?>"></script>
+<script src="<?php echo SITE_URL . "/js/Widgets/maps_utils.js" ?>" ></script>
 
+<script>
+    function initMap(){
+        var address = "";
+        var town = "Roma";
+        var country = "Italia";
+        var map = createMap(address,town,country,5.5 , 0, false);
 
+        map.addMarker("Corso duca degli abruzzi 42, torino","<a target='_blank' href='"+SITE_URL+"/agenzie/Tecnoimmobili+Group+Service'>Vai a agenzia</a>");
+        map.addMarker("Corso nazioni unite 112, ciriè","<a target='_blank' href='"+SITE_URL+"/agenzie/Tecnoimmobili+Group+Service+%28ciriè%29'>Vai a agenzia</a>");
+        map.addMarker("corso roma 170, Loano","<a target='_blank' href='"+SITE_URL+"/agenzie/Tecnoimmobili+Group+Service+%28Loano%29'>Vai a agenzia</a>");
+        map.addMarker("Via Chambery 48 Aosta","<a target='_blank' href='"+SITE_URL+"/agenzie/Tecnoimmobili+Group+Service+%28Aosta%29'>Vai a agenzia</a>");
+        map.addMarker("Piazza Astengo 4 Settimo torinese","<a target='_blank' href='"+SITE_URL+"/agenzie/Tecnoimmobili+Group+Service+%28Settimo+Torinese%29'>Vai a agenzia</a>");
+        map.addMarker("Via Del Teatro 22 caselle","<a target='_blank' href='"+SITE_URL+"/agenzie/Tecnoimmobili+Group+Service+%28Caselle%29'>Vai a agenzia</a>");
+        map.addMarker("Via Salvatore Gigli 34 Manduria","<a target='_blank' href='"+SITE_URL+"/agenzie/Tecnoimmobili+Group+Service+%28Manduria%29'>Vai a agenzia</a>");
+        //map.refresh();
+        //map.setMarker();
+    }
 
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvZ4NUmjF7SgprOVDTqd7ToL8jq7Z1ynE&callback=initMap">
+</script>
 
 
 </body>

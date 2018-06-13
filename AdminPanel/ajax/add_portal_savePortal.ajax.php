@@ -32,7 +32,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
     $ar_link            = $_POST["inp_portal_personal_area_link"];
     $ar_username        = $_POST["inp_portal_username"];
     $ar_password        = $_POST["inp_portal_password"];
-    $hasContract        = $_POST["inp_portal_hasContract"];
+    $hasContract        = isset($_POST["inp_portal_hasContract"])?$_POST["inp_portal_hasContract"]:0;
     $contractStart      = $_POST["inp_portal_contract_start"];
     $contractEnd        = $_POST["inp_portal_contract_end"];
     $contractPrice      = $_POST["inp_portal_contract_price"];
@@ -115,11 +115,14 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
         }
 
         //CONTRACT INFO SAVE
-        $ret = $pMng->SavePortalContractInfo($id_portal,$contractStart,$contractEnd,$contractPrice);
-        if($ret == null || $ret =="" ){
-            $pMng->rollback();
-            echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI CONTRATTO DEL PORTALE");
-            exit();
+
+        if($_REQUEST["hasContract"] == "true"){
+            $ret = $pMng->SavePortalContractInfo($id_portal,$contractStart,$contractEnd,$contractPrice);
+            if($ret == null || $ret =="" ){
+                $pMng->rollback();
+                echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI CONTRATTO DEL PORTALE");
+                exit();
+            }
         }
 
 

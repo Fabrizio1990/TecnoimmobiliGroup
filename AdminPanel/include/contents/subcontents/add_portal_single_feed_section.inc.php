@@ -137,12 +137,8 @@
         {
         ?>
             <div class="row">
+
                 <div class="col-md-4 col-xs-12">
-                    <a target="_blank" href="<?php echo $feed_generator_link ?>" class="btn btn-tecnoimm-red btn_feed_generator">
-                        Genera feed
-                    </a>
-                </div>
-                <div class="col-md-4 col-md-push-4 col-xs-12">
                     <?php
                     if(file_exists($feed_path)){
                     ?>
@@ -152,6 +148,12 @@
                     <?php
                     }
                     ?>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <a target="_blank" href="<?php echo $feed_generator_link ?>" class="btn btn-tecnoimm-red btn_feed_generator">
+                        Genera feed
+                    </a>
                 </div>
             </div>
         <?php
