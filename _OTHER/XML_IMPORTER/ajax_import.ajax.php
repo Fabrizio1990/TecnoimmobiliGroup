@@ -50,6 +50,7 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     print '<b style=\'color:red\'>DOMDocument::schemaValidate() Generated Errors!</b>';
     libxml_display_errors();
 }else{
+
     echo "<b style='color:green'>Xml valido</b><br>";
     //exit();
     include("../../config.php");
@@ -70,6 +71,8 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     //exit();
     foreach ($xml->getElementsByTagName('property') as $property)
     {
+
+
 
         $id_easyWork            = $property->getAttribute("id_ew");
         //$id_agency             = $property->getElementsByTagName('agency_id')->item(0)->nodeValue;
@@ -219,7 +222,6 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
 
 
     echo("<br>Finito <br>");
-
     // FINE CALCOLO TEMPO DI ESECUZIONE
     $time_end = microtime(true);
     $time = $time_end - $time_start;

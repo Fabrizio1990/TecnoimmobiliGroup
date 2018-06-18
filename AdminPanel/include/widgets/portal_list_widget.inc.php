@@ -8,7 +8,11 @@
                     <button type="button" class="btn btn-secondary btn-sm pull-right" data-widget="remove" data-toggle="tooltip" title="Chiudi">
                         <i class="fa fa-times"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary btn-sm "  data-toggle="tooltip" id="btn_feed_generation" title="Genera tutti i feed" style="margin-right: 5px;">
+
+                    <button type="button" class="btn btn-secondary btn-sm"  data-toggle="tooltip" id="btn_add_feed" title="Aggiungi portale" style="margin-right: 5px;">
+                        <i class="fa fa-plus-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm"  data-toggle="tooltip" id="btn_feed_generation" title="Genera tutti i feed" style="margin-right: 5px;">
                         <i class="fa fa-refresh"></i>
                     </button>
 

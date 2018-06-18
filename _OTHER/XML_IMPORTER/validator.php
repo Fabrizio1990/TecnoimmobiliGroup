@@ -1,4 +1,10 @@
-<?php include("../../config.php")?>
+<?php
+include("../../config.php");
+include(BASE_PATH."/app/classes/SessionManager.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +79,6 @@
 <section class="generalwrapper dm-shadow clearfix">
     <div class="container">
         <div class="row">
-
             <div style="display: none;" id="import_response" class="alert alert-warning">
                 <p class="alert-link"></p>
             </div>
@@ -81,7 +86,10 @@
             <label for="inp_url">Url Xml</label>
             <input type="text" id="inp_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php"/>
 
+            <button class="btn btn-tecnoimm-blue" onclick="checkXml()">Controlla Xml</button>
             <button class="btn btn-tecnoimm-blue" onclick="startImport()">Inizia import</button>
+
+
             <!--<h4>Stato Importazione</h4>
             <div class="progress progress-striped active">
                 <div data-effect="slide-left" class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
@@ -113,25 +121,50 @@
 <script>
 
 
+    function checkXml(){
+        var xmlUrl =$("#inp_url").val();
+        var responseTextContainer = $("#import_response p");
 
+        $.ajax({
+            method : 'POST',
+            url : "check_xml.ajax.php",
+            data :{"xmlUrl":xmlUrl},
+            datatype : 'text/html',
+            beforeSend: function( xrh ) {
+                console.log("sending");
+                $("#import_response").show();
+                responseTextContainer.html("Parsing Data...");
+
+            },
+            success : function(data){
+                responseTextContainer.html(data);
+                console.log(data);
+
+            },
+            error : function(xhr, ajaxOptions, thrownError){
+                console.log(xhr.status);
+                console.log(thrownError);
+            }
+        })
+    }
 
 
 
     function startImport(){
        var xmlUrl =$("#inp_url").val();
        var responseTextContainer = $("#import_response p");
-       console.log(responseTextContainer);
-       $.ajax({
+
+        $.ajax({
            method : 'POST',
            url : "ajax_import.ajax.php",
            data :{"xmlUrl":xmlUrl},
            datatype : 'text/html',
            beforeSend: function( xrh ) {
-               console.log("sending");
-               $("#import_response").show();
-               responseTextContainer.html("Parsing Data...");
-               $(window).on("beforeunload", function() {
-                   return "Import in corso, sei sicuro di voler uscire?";//TANTO QUALSIASI COSA SCRIVO NON VIENE MOSTRATA, MA SEMBRA L' UNICO METODO PER MOSTRARE UN ALERT
+                console.log("sending");
+                $("#import_response").show();
+                responseTextContainer.html("Parsing Data...");
+                $(window).on("beforeunload", function() {
+                return "Import in corso, sei sicuro di voler uscire?";//TANTO QUALSIASI COSA SCRIVO NON VIENE MOSTRATA, MA SEMBRA L' UNICO METODO PER MOSTRARE UN ALERT
                });
            },
            success : function(data){
@@ -143,6 +176,7 @@
            error : function(xhr, ajaxOptions, thrownError){
                console.log(xhr.status);
                console.log(thrownError);
+               $("#btn_stop_import").hide();
                $(window).off("beforeunload");
            },
            progress : function(e){

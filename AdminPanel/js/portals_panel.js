@@ -1,3 +1,13 @@
+$(document).ready(function(){
+
+    $("#btn_add_feed").bind("click",function(){document.location = SITE_URL+"/AdminPanel/add_portal.php"});
+
+    //PRE CARICO LA MODALE DI GENERAZIONE PORTALI
+    openInfoModal(1,"Generazione Feed","","Chiudi",null,true);
+});
+
+
+
 function bindSwitches() {
     var options = {
         inverse: true,
