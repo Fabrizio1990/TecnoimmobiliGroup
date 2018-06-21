@@ -1,6 +1,15 @@
 var form;
 $(document).ready(function () {
 
+    // PRICE FORMAT
+    $('#inp_portal_contract_price').priceFormat({
+        prefix: '',
+        centsLimit: 2,
+        thousandsSeparator: '.',
+        centsSeparator:","
+    });
+
+
     // Save image when input file change
     $(".file_explorer").change(function(e) {
         var elem = e.target;
@@ -189,6 +198,10 @@ function getFeeds(){
 function savePortal(form){
     var page = SITE_URL+"/AdminPanel/ajax/add_portal_savePortal.ajax.php";
     var params = $(form).serialize();
+
+    //OVERRIDE PRICE FIELD WITH UNMASKED VALUE (NO PRICE FORMAT)
+    params += "&inp_portal_contract_price="+$('#inp_portal_contract_price').unmask();
+
     params+= "&hasContract="+$('#inp_portal_hasContract').bootstrapSwitch('state');
 
     params += "&logo_portal="+encodeURIComponent(removeUrlParameters(fileNameFromUrl($("#img_portal").attr("src"))));

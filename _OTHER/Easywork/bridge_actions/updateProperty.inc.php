@@ -38,7 +38,8 @@ echo("--->".$_POST["ads_status"]."<br>");
 echo("--->".$_POST["contract_status"]."<br>");
 echo("--->".$_POST["negotiation"]."<br>");
 echo("--->".$_POST["price_lowered"]."<br>");
-echo("--->".$_POST["prestige"]."<br>");*/
+echo("--->".$_POST["prestige"]."<br>");
+*/
 
 
 
@@ -60,13 +61,16 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
 
     $id_easywork                = $_POST["id_easywork"];
     $id_agency                  = $_POST["id_agency"];
+
     $contract                  = getConvertedField($ewConvH->TextToId("property_contracts",$_REQUEST["contract"]),"contract");
     $contract_status            = getConvertedField($ewConvH->TextToId("property_contract_status",$_POST["contract_status"]),"contract_status");
     $country                    = getConvertedField($ewConvH->TextToId("geo_country",$_POST["country"]),"country");
     $region                     = 0;
     $city                       = getConvertedField($ewConvH->TextToId("geo_city",$_POST["city"],"title_short"),"city");
     $town                       = getConvertedField($ewConvH->TextToId("geo_town",$_POST["town"]),"town");
-    $district                   = getConvertedField($ewConvH->TextToId("geo_district",$_POST["district"]),"district");
+    $district                   = $ewConvH->GetDistrictId($city,$town,$_POST["district"]);
+    if($district =="")
+        printMessage("ERR_MISSING_REQUEST_PARAMS");
     $address                    = $_POST["address"];if($debugMode)echo("Address -> ".$address."<br>");
     $street_num                 = $_POST["street_num"];
     $show_street_num            = $_POST["show_street_num"];
@@ -89,6 +93,7 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
     $gardens                    = getConvertedField($ewConvH->TextToId("property_gardens",$_POST["gardens"],"title_short"),"gardens");
     $conditions                 = getConvertedField($ewConvH->TextToId("property_conditions",$_POST["conditions"],"title_short"),"conditions");
     $property_status            = getConvertedField($ewConvH->TextToId("property_status",$_POST["property_status"],"title_short"),"property_status");
+
     $ads_status                 = getConvertedField($ewConvH->TextToId("property_ads_status",$_POST["ads_status"]),"ads_status");
     $prestige                   = $_POST["prestige"];if($debugMode)echo("prestige -> ".$prestige."<br>");
     $price_lowered              = $_POST["price_lowered"];
@@ -190,15 +195,3 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
 
 }
 
-
-
-function getConvertedField($conversionRet,$fieldName){
-    global  $debugMode;
-    if($conversionRet ==""){
-        printMessage("ERR_INVALID_CONVERSION_R",$fieldName." ".$conversionRet,true);
-        exit();
-    }else{
-        if($debugMode)echo($fieldName." -> ".$conversionRet."<br>");
-    }
-    return $conversionRet;
-}

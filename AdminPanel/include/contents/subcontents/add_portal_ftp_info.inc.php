@@ -58,7 +58,7 @@
             <label>Password Ftp</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-feed"></i></div>
-                <input id="inp_portal_psw_ftp" name="inp_portal_psw_ftp" type="password" class="form-control" placeholder="Password Ftp"  value="<?php echo $inpPortalPswFtp ?>">
+                <input id="inp_portal_psw_ftp" name="inp_portal_psw_ftp" type="text" class="form-control" placeholder="Password Ftp"  value="<?php echo $inpPortalPswFtp ?>">
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->

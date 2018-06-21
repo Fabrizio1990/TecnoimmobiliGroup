@@ -39,14 +39,24 @@ class EasyWorkConversionsHelper extends DbManager implements IDbManager {
     }
 
 
-    public function TextToId($field,$text,$compareField = "title"){
-        $this->currTable = $field;
+    public function TextToId($table,$text,$compareField = "title",$printQuery = false){
+        $this->currTable = $table;
         $ret ="";
-        $idRet = $this->read("$compareField=?",null,array($text),"id",false);
+        $idRet = $this->read("$compareField=?",null,array($text),"id",$printQuery);
         if(Count($idRet)>0)
             $ret = $idRet[0]["id"];
         /*lse
             echo "--->field =".$compareField."<---- ----->table = ".$field."<----- ---->text =".$text;*/
+        $this->setDefTable();
+        return $ret;
+    }
+
+    public function GetDistrictId($city,$town,$district){
+        $this->currTable = "geographic_view";
+        $ret ="";
+        $idRet = $this->read(array("id_provincia=?","id_comune=?","zona=?"),null,array($city,$town,$district),"id_zona",false);
+        if(Count($idRet)>0)
+            $ret = $idRet[0]["id_zona"];
         $this->setDefTable();
         return $ret;
     }

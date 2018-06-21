@@ -59,10 +59,10 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label>Provincia</label>
+            <label>Comune</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
-                <input id="inp_portal_contact_city" name="inp_portal_contact_city" type="text" class="form-control" placeholder="Provincia contatto"  value="<?php echo $inpPortalContactCity ?>">
+                <input id="inp_portal_contact_city" name="inp_portal_contact_city" type="text" class="form-control" placeholder="Comune contatto"  value="<?php echo $inpPortalContactCity ?>">
 
             </div>
         </div><!-- /.form-group -->

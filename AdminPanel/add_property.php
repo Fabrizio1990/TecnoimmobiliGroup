@@ -148,10 +148,11 @@ $act_menu_propery       = true; // setta attivo il menu immobili
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/Widgets/maps_utils.js" ></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_property.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/JQueryFormatCurrency/jquery.priceformat.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_property.js"></script>
 
 
     <script async defer

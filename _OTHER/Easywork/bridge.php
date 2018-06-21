@@ -14,13 +14,20 @@ if(isset($_REQUEST['operation'])){
             include('bridge_actions/getAgencyData.inc.php');
             break;
         case "insert":
+            //echo("INSERT PROPERTY PROCEDURE");
             $pMng = new PropertyManager();
             if(isset($_POST["id_easywork"])){
+                //echo("| id recived = ".$_POST["id_easywork"]);
                 $property = $pMng->read("id_easywork = ?",null,array($_POST["id_easywork"]),"id",false);
+                //echo("| property exist = ".count($property)>0);
                 if(count($property)>0){
+                    //echo("update");
                     $id_property = $property[0]["id"];
+                    //echo("| property id = ".$id_property);
                     include('bridge_actions/updateProperty.inc.php');
+                    //echo("| AFTER INCLUDE");
                 }else{
+                    //echo("insert");
                     include('bridge_actions/saveProperty.inc.php');
                 }
             }else{

@@ -14,6 +14,7 @@ define("ERR_EMPTY_PARAMS","Errore: Alcuni parametri obbligatori sono stati invia
 define("ERR_INVALID_CONVERSION_R","Errore: il campo '$placeHolder' non è stato convertito correttamente");
 define("ERR_MISSING_REGION","Errore: non è stato possibile risalire alla Regione di appartenenza");
 define("ERR_MISSING_CATEGORY","Errore: non è stato possibile risalire alla categoria di appartenenza");
+define("ERR_MISSING_DISTRICT","Errore: non è stato possibile risalire alla zona di appartenenza");
 
 // DA PAGINA saveproperty.inc.php
 define("SUCCESS_PROPERTY_SAVED","Immobile salvato con successo sul sito");

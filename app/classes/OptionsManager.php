@@ -158,7 +158,7 @@ class OptionsManager extends DbManager{
 
             // ---------------- AGENZIE -------------------
             case "agencies_list":
-                $params = array("status = 1");
+                $params = array("id_status = 1");
                 $fields = array("id","name");
                 $extra_params = "order by name asc";
                 $this->currTable = "agencies";

@@ -6,7 +6,7 @@
             <label>Prezzo</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa  fa-eur"></i></div>
-                <input id="inp_price" name="inp_price" type="number" class="form-control" placeholder="Inserisci il prezzo"  value="<?php echo $InpPriceVal ?>">
+                <input id="inp_price" name="inp_price" type="text" class="form-control" placeholder="Inserisci il prezzo"  value="<?php echo $InpPriceVal ?>">
 
             </div>
         </div><!-- /.form-group -->

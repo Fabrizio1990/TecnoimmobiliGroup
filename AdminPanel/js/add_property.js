@@ -9,6 +9,12 @@ function selectFile(elem){
 }
 $(document).ready(function () {
 
+    // PRICE FORMAT
+    $('#inp_price').priceFormat({
+        prefix: '',
+        centsLimit: 0,
+        thousandsSeparator:'.',
+    });
 
     // Save image when input file change
     $(".file_explorer").change(function(e) {
@@ -89,7 +95,7 @@ $(document).ready(function () {
             /*--- INPUT ---*/
             /* DESCRIPTION */
             inp_surface             : { required: true , number: true },
-            inp_price               : { required: true , number: true },
+            inp_price               : { required: true },
             inp_ipe                 : { required: true , number: true },
             txt_description         : { required: true , minlength: 50/*, maxlength: 500*/ },
             /* LOCATION */
@@ -118,6 +124,8 @@ $(document).ready(function () {
 function saveProperty(form,images){
     var page = SITE_URL+"/AdminPanel/ajax/property_management_save.ajax.php";
     var params = $(form).serialize();
+    //OVERRIDE PRICE PARAMS TO UNMASK CURRENCY FORMAT
+    params+="&inp_price="+$('#inp_price').unmask();
 
     for(i = 0,len = images.length; i < len; i++){
         params += "&img_" + (i+1) + "=" + encodeURIComponent(images[i]);

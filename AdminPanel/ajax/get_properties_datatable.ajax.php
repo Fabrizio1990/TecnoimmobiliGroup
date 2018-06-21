@@ -2,10 +2,11 @@
 <?php
     //TODO IMPOSTARE PATH IMMAGINE PICCOLA ,recuperare campi veri e non id , immagini non ancora presenti, prenderle dall' altro sito e molte altre cose da finire
 	header('Content-type: text/json; charset=utf-8');
-	include("../../config.php");
-    include(BASE_PATH."/app/classes/UserManager.php");
-    include(BASE_PATH."/app/classes/PropertyManager.php");
-    include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+    require_once("../../config.php");
+    require_once(BASE_PATH."/app/classes/UserManager.php");
+    require_once(BASE_PATH."/app/classes/PropertyManager.php");
+    require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+    require_once(BASE_PATH."/app/classes/Utils.php");
 
 
     $imgH = new ImagesInfo();
@@ -210,11 +211,11 @@
 					$portali = '<input type="hidden" id="ads_portal_status_'.$res[$i]["id"].'" value="' . $res[$i]["show_on_portal"] .'"/><img class="POINTER" onclick="SwitchPortalStatus('.$res[$i]["id"].',this)" id="portal_status_img_'.$res[$i]["id"].'" style="width:40px;height:40px;border:0px;margin-top:3px;" title="clicca per modificare" src="'.$strPortali.'" ></a>';
 
 					// se sono amministratore restituisco anche i dati dei portali alla datatable
-					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$ads_status,$rivista,$portali));
+					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],"&euro; ".Utils::formatPrice($res[$i]["price"]),$data_ins_field,$data_up_field,$ads_status,$rivista,$portali));
 
 				 }else{
 					// se non sono amministratore non restituisco i dati dei portali
-					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],$res[$i]["price"],$data_ins_field,$data_up_field,$ads_status,$rivista));
+					array_push($array["aaData"],array($first_col,$res[$i]["city"],$res[$i]["town"],$res[$i]["district"],$res[$i]["category"],$res[$i]["tipology"],"&euro; ".Utils::formatPrice($res[$i]["price"]),$data_ins_field,$data_up_field,$ads_status,$rivista));
 				}
 
 		}

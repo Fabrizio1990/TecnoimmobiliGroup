@@ -1,5 +1,4 @@
 <?php
-
 require_once (BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 require_once (BASE_PATH."/app/classes/MagazineManager.php");
 /*require_once (SITE_URL."/app/classes/AgencyManager.php");*/
@@ -68,7 +67,9 @@ if(isset($_POST["id_agency"],$_POST["id_easywork"],$_POST["category"],$_POST["ti
     $region                     = 0;
     $city                       = getConvertedField($ewConvH->TextToId("geo_city",$_POST["city"],"title_short"),"city");
     $town                       = getConvertedField($ewConvH->TextToId("geo_town",$_POST["town"]),"town");
-    $district                   = getConvertedField($ewConvH->TextToId("geo_district",$_POST["district"]),"district");
+    $district                   = $ewConvH->GetDistrictId($city,$town,$_POST["district"]);
+    if($district =="")
+        printMessage("ERR_MISSING_REQUEST_PARAMS");
     $address                    = $_POST["address"];if($debugMode)echo("Address -> ".$address."<br>");
     $street_num                 = $_POST["street_num"];
     $show_street_num            = $_POST["show_street_num"];

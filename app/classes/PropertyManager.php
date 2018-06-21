@@ -2,6 +2,9 @@
 // CLASSE PER LA GESTIONE DB DELLE PROPERTIES (IMMOBILI)
 require_once(BASE_PATH."/app/interfaces/IDbManager.php");
 require_once(BASE_PATH."/app/classes/DbManager.php");
+require_once (BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+
+
 
 class PropertyManager extends DbManager implements IDbManager {
 
@@ -215,13 +218,12 @@ class PropertyManager extends DbManager implements IDbManager {
 
 
     public function deletePropertyImagesFromFolder($id_property){
-        $retMin = $this->executeQuery("select path from property_images_size where title='min'");
-        $retNormal = $this->executeQuery("select path from property_images_size where title='normal'");
-        $retBig = $this->executeQuery("select path from property_images_size where title='big'");
+        $imgH = new ImagesInfo();
 
-        $pathMin    = BASE_PATH."/".$retMin[0]["path"];
-        $pathNormal = BASE_PATH."/".$retNormal[0]["path"];
-        $pathBig    = BASE_PATH."/".$retBig[0]["path"];
+        $pathMin    = BASE_PATH."/".$imgH->info["properties"]["min"]["path"];
+        $pathNormal = BASE_PATH."/".$imgH->info["properties"]["normal"]["path"];
+        $pathBig    = BASE_PATH."/".$imgH->info["properties"]["big"]["path"];
+        $pathExtra  = BASE_PATH."/".$imgH->info["properties"]["extra"]["path"];
 
         $images = $this->getImages("id_property = ?",null,array($id_property));
         for($i = 0,$len = count($images); $i < $len;$i++){
@@ -231,6 +233,8 @@ class PropertyManager extends DbManager implements IDbManager {
                 unlink($pathNormal.$images[$i]["img_name"]);
             if(file_exists($pathBig.$images[$i]["img_name"]))
                 unlink($pathBig.$images[$i]["img_name"]);
+            if(file_exists($pathExtra.$images[$i]["img_name"]))
+                unlink($pathExtra.$images[$i]["img_name"]);
         }
 
     }

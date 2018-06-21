@@ -155,10 +155,11 @@ $prefixAction = $id_portal == ""?"Inserimento" :"Modifica";
 	
 	<script src="<?php echo(SITE_URL) ?>/AdminPanel/js/admin_panel.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_portal.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/image_loader.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/MODALS.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/libs/frontend/JQueryFormatCurrency/jquery.priceformat.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/add_portal.js"></script>
 
 
 
@@ -167,6 +168,7 @@ $prefixAction = $id_portal == ""?"Inserimento" :"Modifica";
         //TODO RIABILITA LA FUNZIONE DRAG DROP MA CON IL PUNTAMENTO AL LINK GIUSTO (PRENDILA DA ADD PROPERTIES)
         $(function() {
             INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_portal_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
+
         });
 
 

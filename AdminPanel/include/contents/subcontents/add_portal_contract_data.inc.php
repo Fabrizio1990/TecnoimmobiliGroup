@@ -119,7 +119,7 @@
             <label>Password Area riservata</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-                <input id="inp_portal_password" name="inp_portal_password" type="password" class="form-control" placeholder="Password area riservata"  value="<?php echo $inpPortalPassword ?>">
+                <input id="inp_portal_password" name="inp_portal_password" type="text" class="form-control" placeholder="Password area riservata"  value="<?php echo $inpPortalPassword ?>">
 
             </div>
         </div><!-- /.form-group -->
