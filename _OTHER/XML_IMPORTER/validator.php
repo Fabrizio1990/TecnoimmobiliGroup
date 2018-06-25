@@ -1,7 +1,15 @@
 <?php
 include("../../config.php");
 include(BASE_PATH."/app/classes/SessionManager.php");
+include(BASE_PATH."/app/classes/UserEntity.php");
 
+if(SessionManager::getVal("authenticated") != null){
+    $SS_usr = SessionManager::getVal("user",true);
+    $agency_id 		= $SS_usr->id;
+    $tipo_utente 	= $SS_usr->id_user_type;
+}else{
+    header("location:".SITE_URL."/AdminPanel/login.php");
+}
 
 ?>
 
@@ -84,7 +92,7 @@ include(BASE_PATH."/app/classes/SessionManager.php");
             </div>
 
             <label for="inp_url">Url Xml</label>
-            <input type="text" id="inp_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php"/>
+            <input type="text" id="inp_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php?limit=10&order=id desc"/>
 
             <button class="btn btn-tecnoimm-blue" onclick="checkXml()">Controlla Xml</button>
             <button class="btn btn-tecnoimm-blue" onclick="startImport()">Inizia import</button>

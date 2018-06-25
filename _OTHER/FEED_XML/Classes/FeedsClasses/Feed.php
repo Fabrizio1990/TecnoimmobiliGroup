@@ -102,7 +102,7 @@ class Feed
         $bathrooms = $this->getConvertedValue($this->portalId,13,$row["id_bathrooms"],$row["bathrooms"]);
         $floor = $this->getConvertedValue($this->portalId,14,$row["id_floor"],$row["floorN"]);
         $elevator = $this->getConvertedValue($this->portalId,15,$row["id_elevator"]);
-        $heating = $this->getConvertedValue($this->portalId,16,$row["id_heating"],$row["elevator"]);
+        $heating = $this->getConvertedValue($this->portalId,16,$row["id_heating"],$row["heating"]);
         $box = $this->getConvertedValue($this->portalId,17,$row["id_box"],$row["box"]);
         $garden = $this->getConvertedValue($this->portalId,18,$row["id_garden"],$row["garden"]);
 
@@ -182,7 +182,7 @@ class Feed
 
         $images = $this->GetImages($row);
 
-        $tmpItems = $this->PopulateImages($images,$tmpItems);
+        $tmpItems = $this->PopulateImages($images,$row,$tmpItems);
 
         return $tmpItems;
     }
@@ -209,8 +209,9 @@ class Feed
 
     // #####################################################################
     //######## I WILL REPLACE THIS FUNCTION TO MATCH DIFFERENT IMAGES TAGS AND PATTERNS
+    //ROW IS USED IN CASE I NEED OTHER PROPERTY INFO (DATA INS FOR EXAMPLE)
     //#####################################################################
-    public function PopulateImages($images,$template){
+    public function PopulateImages($images,$row,$template){
         $ret = $template;
         $ret = str_replace("{images_start}","<images>",$ret);
 

@@ -67,7 +67,7 @@ if(SessionManager::getVal("authenticated")!= null) header("Location:index.php");
 									<p>Inserisci email e password per accedere:</p>
 								</div>
 								<div class="form-top-right">
-									<img src="<?php echo SITE_URL.'/public/images/images_logos/tecnoimmobili_logo_min.jpg'?>" />
+                                    <a href="<?php echo SITE_URL ?>"><img src="<?php echo SITE_URL.'/public/images/images_logos/tecnoimmobili_logo_min.jpg'?>" /></a>
 									<!--<i class="fa fa-lock"></i>-->
 								</div>
 							</div>

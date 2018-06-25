@@ -1,0 +1,38 @@
+<immobile>
+	<CodiceNazione>IT</CodiceNazione>
+	<CodiceComune>{istat}</CodiceComune>
+	<CodiceQuartiere>{district}</CodiceQuartiere>
+	<Indirizzo>{street}</Indirizzo>
+	<Civico>{street_num}</Civico>
+	<Cap>{cap}</Cap>
+	<PubblicaIndirizzo>{show_address_custom}</PubblicaIndirizzo>
+	<Latitudine>{latitude}</Latitudine>
+	<Longitudine>{longitude}</Longitudine>
+	<Contratto>{contract}</Contratto>
+	<Categoria>{id_category}</Categoria>
+	<IDTipologia>{tipology}</IDTipologia>
+	<NrLocali>{locals}</NrLocali>
+	<NrCamereLetto>{rooms}</NrCamereLetto>
+	<Prezzo>{price}</Prezzo>
+	<TrattativaRiservata>{negotiation_reserved}</TrattativaRiservata>
+	<MQSuperficie>{surface}</MQSuperficie>
+	<Riferimento>{reference_code}</Riferimento>
+	<Asta>{auction}</Asta>
+	<DataInserimento>{date_ins}</DataInserimento>
+	<DataModifica>{date_up}</DataModifica>
+	<Descrizioni>{description}</Descrizioni>
+
+	{infoResidenziale}
+	{infoCommerciale}
+	{infoVacanze}
+
+	<immagini>
+		{images}
+	</immagini>
+	<Portali>
+		<Portale IDPortale="1"></Portale>
+	</Portali>
+
+	{infoTerreno}
+
+</immobile>

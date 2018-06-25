@@ -1,7 +1,9 @@
 <html>
     <head></head>
     <body>
-
+        <a href="<?php echo SITE_URL."/_OTHER/FEED_XML/downloadFiles/convertitore.xlsx"?>" >Download Template</a>
+        <br>
+        <a href="<?php echo SITE_URL."/_OTHER/FEED_XML/downloadFiles/Procedura creazione Feed.docx"?>" >Download Guida</a>
         <form action="" method="post" enctype="multipart/form-data">
 
             <div class="form-group">

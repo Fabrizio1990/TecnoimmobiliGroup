@@ -54,13 +54,13 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     echo "<b style='color:green'>Xml valido</b><br>";
     //exit();
     include("../../config.php");
-    include(BASE_PATH."/app/classes/PropertyManager.php");
-    include(BASE_PATH."/app/classes/SessionManager.php");
-    include(BASE_PATH."/app/classes/UserEntity.php");
-    include(BASE_PATH."/app/classes/MagazineManager.php");
-    include(BASE_PATH."/app/classes/GenericDbHelper.php");
-    include(BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
-    include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+    require_once(BASE_PATH."/app/classes/PropertyManager.php");
+    require_once(BASE_PATH."/app/classes/SessionManager.php");
+    require_once(BASE_PATH."/app/classes/UserEntity.php");
+    require_once(BASE_PATH."/app/classes/MagazineManager.php");
+    require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
+    require_once(BASE_PATH."/app/classes/ImageHelper/ImageManager.php");
+    require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 
     $imgH = new ImagesInfo();
     $mng    = new PropertyManager();

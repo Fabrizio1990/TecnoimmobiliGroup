@@ -14,7 +14,7 @@ class FeedTrovit extends Feed
         return $tmpItems;
     }
 
-    public function PopulateImages($images,$template){
+    public function PopulateImages($images,$row,$template){
         $ret = $template;
         $ret = str_replace("{images_start}","<pictures>",$ret);
 
