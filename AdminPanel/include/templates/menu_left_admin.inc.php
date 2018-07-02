@@ -176,7 +176,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
 
                             <li <?php if($act_newsletter) echo('class="active"')?>>
                                 <a href="newsletter.php"><i class="fa fa-newspaper-o"></i>
-                                    Newsletter
+                                    Richieste / Newsletter
                                 </a>
                             </li>
 

@@ -92,10 +92,18 @@ if(SessionManager::getVal("authenticated") != null){
             </div>
 
             <label for="inp_url">Url Xml</label>
-            <input type="text" id="inp_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php?limit=10&order=id desc"/>
+            <input type="text" id="inp_propertiesImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php?limit=10&order=id desc"/>
 
-            <button class="btn btn-tecnoimm-blue" onclick="checkXml()">Controlla Xml</button>
-            <button class="btn btn-tecnoimm-blue" onclick="startImport()">Inizia import</button>
+            <button class="btn btn-tecnoimm-blue" onclick="checkXml($(this).prev().val())">Controlla Xml</button>
+            <button class="btn btn-tecnoimm-blue" onclick="startPropertiesImport()">Inizia import</button>
+
+            <br>
+            <br>
+            <label for="inp_url">Url Xml</label>
+            <input type="text" id="inp_requestsImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_richieste.php?limit=10&order=id_utente desc"/>
+
+
+            <button class="btn btn-tecnoimm-blue" onclick="startRequestImport()">Inizia import</button>
 
 
             <!--<h4>Stato Importazione</h4>
@@ -129,8 +137,8 @@ if(SessionManager::getVal("authenticated") != null){
 <script>
 
 
-    function checkXml(){
-        var xmlUrl =$("#inp_url").val();
+    function checkXml(xmlUrl){
+        //var xmlUrl =$("#inp_url").val();
         var responseTextContainer = $("#import_response p");
 
         $.ajax({
@@ -158,13 +166,12 @@ if(SessionManager::getVal("authenticated") != null){
 
 
 
-    function startImport(){
-       var xmlUrl =$("#inp_url").val();
+    function startPropertiesImport(){
+       var xmlUrl =$("#inp_propertiesImport_url").val();
        var responseTextContainer = $("#import_response p");
-
         $.ajax({
            method : 'POST',
-           url : "ajax_import.ajax.php",
+           url : "properties_import.ajax.php",
            data :{"xmlUrl":xmlUrl},
            datatype : 'text/html',
            beforeSend: function( xrh ) {
@@ -206,6 +213,56 @@ if(SessionManager::getVal("authenticated") != null){
            })
 
        })
+    }
+
+
+    function startRequestImport(){
+        var xmlUrl =$("#inp_requestsImport_url").val();
+        var responseTextContainer = $("#import_response p");
+        $.ajax({
+            method : 'POST',
+            url : "requests_import.ajax.php",
+            data :{"xmlUrl":xmlUrl},
+            datatype : 'text/html',
+            beforeSend: function( xrh ) {
+                console.log("sending");
+                $("#import_response").show();
+                responseTextContainer.html("Parsing Data...");
+                $(window).on("beforeunload", function() {
+                    return "Import in corso, sei sicuro di voler uscire?";//TANTO QUALSIASI COSA SCRIVO NON VIENE MOSTRATA, MA SEMBRA L' UNICO METODO PER MOSTRARE UN ALERT
+                });
+            },
+            success : function(data){
+                responseTextContainer.html(data);
+                console.log(data);
+                $(window).off("beforeunload");
+
+            },
+            error : function(xhr, ajaxOptions, thrownError){
+                console.log(xhr.status);
+                console.log(thrownError);
+                $("#btn_stop_import").hide();
+                $(window).off("beforeunload");
+            },
+            progress : function(e){
+                console.log("progress call");
+                if(e.lengthComputable) {
+                    var pct = (e.loaded / e.total) * 100;
+                    console.log(pct);
+                }else{
+                    console.log("lenght is not computable")
+                }
+            },
+            uploadProgress :(function(e) {
+                // tracking uploading
+                console.log("uploadProgress call");
+                if (e.lengthComputable) {
+                    var percentage = Math.round((e.loaded * 100) / e.total);
+                    console.log(percentage);
+                }
+            })
+
+        })
     }
 
 </script>

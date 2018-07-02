@@ -12,7 +12,7 @@
         exit();
     }
     include(BASE_PATH."/app/include/statistic_start.inc.php");
-
+    
     $url="pages/";
     if(isset($_GET["page"])) {
 		if(isset($_GET["folder"])){
