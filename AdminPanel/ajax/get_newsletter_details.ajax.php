@@ -24,7 +24,7 @@ for($i = 0 ,$len = count($req); $i<$len ; $i++){
     // CONTRATTO
     $id_ew = $req[$i]["id_easywork"];
     $status = $req[$i]["enabled"];
-
+    $notes = $req[$i]["notes"];
     $optContracts = $optMng->makeOptions("ads_contracts",$rqMng->readPreferences($id,1)[0]["val"]);
     $categories    = $rqMng->readPreferences($id,2);
     $arrCategories = getValuesArrayFromRs($categories);
@@ -273,14 +273,9 @@ for($i = 0 ,$len = count($req); $i<$len ; $i++){
     </div>
     <div class="row">
 
-        <div class="col-md-6">
-
-        </div><!-- /.col-md-6 -->
-
-
-        <div class="col-md-6">
-
-        </div><!-- /.col-md-6 -->
+        <div class="col-md-12">
+            <textarea id="txt_notes" style="width:100%" rows="8"><?php echo $notes?></textarea>
+        </div>
 
     </div>
 

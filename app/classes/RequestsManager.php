@@ -38,7 +38,7 @@ class RequestManager extends DbManager implements IDbManager {
     }
 
     // SAVE AND UPDATE REQUEST BY MYSQL FUNCTION
-    public function saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$enabled,$id_request = "NULL",$printQuery = false){
+    public function saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$notes,$enabled,$id_request = "NULL",$printQuery = false){
       
         $query = "SELECT `new_tecnoimmobili`.`save_request`($id_request,
         $id_easywork,".
@@ -57,8 +57,9 @@ class RequestManager extends DbManager implements IDbManager {
         parent::escapeString($price_max).",".
         parent::escapeString($mq_min).",".
         parent::escapeString($mq_max).",".
+        parent::escapeString($notes).",".
         $enabled.") as saved";
-
+       
         $ret = parent::executeNonQuery($query,$printQuery);
 
        
@@ -75,7 +76,7 @@ class RequestManager extends DbManager implements IDbManager {
             $params = "id = ?";
 
         $ret = $this->read($params,null,$values);
-
+        $this->setDefTable();
         return $ret;
     }
 
@@ -102,6 +103,11 @@ class RequestManager extends DbManager implements IDbManager {
 
     public function updateStatus($id_request,$status){
         $res = $this->update("enabled = ?","id = ? ",array($status,$id_request),null,false);
+        return $res;
+    }
+
+    public function updateNewsletterStatus($id_request,$status){
+        $res = $this->update("enabled_newsletter = ?","id = ? ",array($status,$id_request),null,false);
         return $res;
     }
 

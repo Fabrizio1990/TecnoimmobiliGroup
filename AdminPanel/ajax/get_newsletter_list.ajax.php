@@ -25,9 +25,10 @@ if ($resultFound>0 && $resultFound!="" && $resultFound!=null){
 
 
         $date_ins = $res[$i]["date_ins"];
-        $status   = "<input type='checkbox' class='switch' " .($res[$i]["enabled"]=="1"?"checked":"") .">";
+        $newsletterStatus   = "<input type='checkbox' class='switch newsletter_status' " .($res[$i]["enabled_newsletter"]=="1"?"checked":"") .">";
+        $status   = "<input type='checkbox' class='switch request_status' " .($res[$i]["enabled"]=="1"?"checked":"") .">";
 
-        array_push($array["aaData"],array($id_inp.$email,$name,$lastname,$telephone,$details,$status,$date_ins));
+        array_push($array["aaData"],array($id_inp.$email,$name,$lastname,$telephone,$details,$newsletterStatus,$status,$date_ins));
     }
 }
 

@@ -25,10 +25,11 @@ if(isset($_POST["id_request"],$_POST["email"],$_POST["name"],$_POST["lastname"],
     $price_max      = isset($_POST["price_max"])?$_POST["price_max"]:"";
     $mq_min         = isset($_POST["mq_min"])?$_POST["mq_min"]:0;
     $mq_max         = isset($_POST["mq_max"])?$_POST["mq_max"]:"";
+    $notes          = isset($_POST["notes"])?urldecode($_POST["notes"]):"";
     $enabled        = isset($_POST["enabled"])?$_POST["enabled"]:1;
 
 
-    $res = $rqMng->saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$enabled,$id_request);
+    $res = $rqMng->saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$notes,$enabled,$id_request);
 
     echo($res[0][0]);// ritorna l' id della richiesta aggiunta o modificata
 

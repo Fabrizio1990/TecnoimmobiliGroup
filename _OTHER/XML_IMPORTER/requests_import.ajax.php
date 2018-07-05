@@ -77,7 +77,7 @@ foreach ($xml->getElementsByTagName('request') as $request)
     //echo("<br>");
     for($i = 0 ; $i < count($tmp_tipologiesArray);$i++){
         //echo("CONVERTO TIPOLOGIA =>".$tmp_tipologiesArray[$i]."<br>");
-        $categorization = getCategorization($tmp_tipologiesArray[$i]);
+        $categorization = getCategorization($id_tecnoimm,$tmp_tipologiesArray[$i]);
         //echo("TIPOLOGIA CONVERTITA = ".$categorization["tipology"]."<br>");
 
         $categories .= (strpos($categories, $categorization["category"]) !== false)?"":($categorization["category"].",");
@@ -190,9 +190,11 @@ function getContract($contractTxt){
     return $ret;
 }
 
-function getCategorization($tipologyTxt){
+function getCategorization($idRequest,$tipologyTxt){
     global $dbh;
     $ret = "";
+    $tipologyTxt = getRealTypology($tipologyTxt);
+
     $query = "Select id,id_category from property_tipologies where title =".$dbh->escapeString($tipologyTxt);
     //echo($query."<br>");
     $res = $dbh->executeQuery($query);
@@ -200,7 +202,7 @@ function getCategorization($tipologyTxt){
         $ret["tipology"] = $res[0]["id"];
         $ret["category"] = $res[0]["id_category"];
     }else{
-        echo("ERRORE  , LA TIPOLOGIA ".$tipologyTxt." NON E STATE RICONOSCIUTa  NEL DATABASE <br>");
+        echo("ERRORE Req ID = ".$idRequest.", LA TIPOLOGIA ".$tipologyTxt." NON E STATE RICONOSCIUTa  NEL DATABASE <br>");
     }
     return $ret;
 }
@@ -242,5 +244,59 @@ function GetTown($refCity){
     if(count($res)>0){
         $ret = $res[0]["id_city"];
     }
+    return $ret;
+}
+
+
+
+function getRealTypology($tipologyTxt){
+
+    $ret = $tipologyTxt;
+    switch($tipologyTxt){
+        case "Bilocale":
+        case "Casa":
+        case "APPART IN VILLA":
+        case "Appartamento mansardato":
+            $ret = "Appartamento";
+            break;
+        case "Casa semindipendente":
+        case "Casa semi-in":
+        case "CASA SEMINDIPENDENTE":
+            $ret = "Casa semi-indipendente";
+            break;
+        case "Casa a schiera":
+        case "Villa a schiera":
+        case "Villetta a s":
+        case "Villetta":
+        case "Appartamento in villa schiera":
+            $ret = "Villetta a schiera";
+            break;
+        case "Rustico":
+        case "Rusti":
+        case "Rustico/Casa":
+        case "TETTOIA":
+            $ret = "Rustico/Casale";
+            break;
+        case "Casa Bifamigliare":
+        case "Villa bifamiliare":
+        case "Bifamiliare":
+            $ret = "Casa Bi/Trifamiliare";
+            break;
+        case "Appartamento in palazzina":
+            $ret = "Appartamento";
+            break;
+        case "BOX CAMPER":
+            $ret = "Garage/Box auto";
+            break;
+        case "TERRENO EDIF. PIU` DEPOSITO":
+            $ret ="Terreno edificabile";
+            break;
+        case "Locale":
+            $ret = "Locale commerciale";
+            break;
+       
+    }
+    
+
     return $ret;
 }

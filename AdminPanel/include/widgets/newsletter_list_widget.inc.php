@@ -7,7 +7,8 @@
 			<th>Cognome</th>
 			<th>Telefono</th>
 			<th>Dettagli</th>
-			<th>Stato</th>
+			<th>Stato Newsletter</th>
+			<th>Stato Richiesta</th>
 			<th>Data Iscrizione</th>
 		</tr>
 	</thead>
@@ -21,7 +22,8 @@
 			<th>Cognome</th>
 			<th>Telefono</th>
 			<th>Dettagli</th>
-			<th>Stato</th>
+			<th>Stato Newsletter</th>
+			<th>Stato Richiesta</th>
 			<th>Data Iscrizione</th>
 		</tr>
 	</tfoot>
