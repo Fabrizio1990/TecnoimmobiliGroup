@@ -34,7 +34,7 @@ $act_documents              = isset($act_documents)?$act_documents:false;
 $act_agency_add             = isset($act_agency_add)?$act_agency_add:false;
 $act_agency_list            = isset($act_agency_list)?$act_agency_list:false;
 $act_e_commerce             = isset($act_e_commerce)?$act_e_commerce:false;
-$act_newsletter             = isset($act_newsletter)?$act_newsletter:false;
+$act_requests                = isset($act_requests)?$act_requests:false;
 $act_statistics             = isset($act_statistics)?$act_statistics:false;
 $act_statistics             = isset($act_statistics)?$act_statistics:false;
 $act_show_logs              = isset($act_show_logs)?$act_show_logs:false;
@@ -174,8 +174,8 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
                                 </a>
                             </li>
 
-                            <li <?php if($act_newsletter) echo('class="active"')?>>
-                                <a href="newsletter.php"><i class="fa fa-newspaper-o"></i>
+                            <li <?php if($act_requests) echo('class="active"')?>>
+                                <a href="requests.php"><i class="fa fa-newspaper-o"></i>
                                     Richieste / Newsletter
                                 </a>
                             </li>

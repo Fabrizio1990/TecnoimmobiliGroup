@@ -40,7 +40,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <?php include(BASE_PATH."/AdminPanel/include/widgets/newsletter_list_widget.inc.php"); ?>
+                <?php include(BASE_PATH . "/AdminPanel/include/widgets/requests_list_widget.inc.php"); ?>
             </div>
 
             <!-- /.box-body -->

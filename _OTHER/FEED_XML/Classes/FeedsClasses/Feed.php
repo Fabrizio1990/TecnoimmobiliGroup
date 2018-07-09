@@ -51,11 +51,10 @@ class Feed
         $finalFile = $this->template;
         $finalItems = "";
         for($i = 0 ; $i < Count($rst) ;$i++){
-
             $finalItems .= $this->PopulateRow($rst[$i]);
         }
         $finalFile = str_replace("{items}",$finalItems,$finalFile);
-
+        $finalFile = str_replace("{feed_creation_date}",date("Y-m-d H:i:s"),$finalFile);
 
         return $finalFile;
 
@@ -112,11 +111,9 @@ class Feed
         $energyClass = $this->getConvertedValue($this->portalId,21,$row["id_energy_class"],$row["energy_class"]);
         $ipe_um = $this->getConvertedValue($this->portalId,22,$row["id_ipe_um"],$row["ipe_um"]);
 
-        $toReplace=array("&","è","à","ì","ù");
-        $replacement=array("&amp;","e'","a'","i'","u'");
-        $description=str_replace($toReplace,$replacement,$row["desc_it"]);
+
+        $description = $this->getFormattedDescription($row["desc_it"]);
         $description.=" Per info www.tecnoimmobiligroup.it email:$agencyEmail telefono:$agencyPhone.";
-        $description=str_replace("&amp;#39;","'",$description);
 
 
 
@@ -257,6 +254,15 @@ class Feed
 
     }
 
+
+    public function getFormattedDescription($description){
+
+        $toReplace=array("&","è","à","ì","ù");
+        $replacement=array("&amp;","e'","a'","i'","u'");
+        $ret=str_replace($toReplace,$replacement,$description);
+        $ret=str_replace("&amp;#39;","'",$ret);
+        return $ret;
+    }
 
     public function replaceValues($values,$replacements,$inputValue){
 

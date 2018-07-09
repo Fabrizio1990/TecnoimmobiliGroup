@@ -136,6 +136,9 @@ class FeedManager
             case "immobiliare.it":
                 $ret = new FeedImmobiliare_it($portalId,$templateContainer,$templateRepeat);
                 break;
+            case "idealista":
+                $ret = new FeedIdealista($portalId,$templateContainer,$templateRepeat);
+                break;
             default :
                 $ret = new Feed($portalId,$templateContainer,$templateRepeat);
                 break;

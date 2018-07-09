@@ -15,7 +15,7 @@ if(SessionManager::getVal("authenticated") != null){
 
 // SETTGGIO VARIABILI PER VISUALIZZAZIONE PAGINA ATTIVA SUL MENU
 $act_menu_utility                   = true; // setta attivo il menu Utility
-$act_newsletter		                = true; // setta attivo il link Newsletter
+$act_requests		                = true; // setta attivo il link Newsletter
 
 ?>
 
@@ -25,7 +25,7 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TecnoimmobiliGroup  | Newsletter</title>
+    <title>TecnoimmobiliGroup  | Richieste</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -92,11 +92,11 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
             <section class="content-header">
                 <h1>
                     Amministrazione
-                    <small>Gestione Agenzie</small>
+                    <small>Gestione Richieste</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-cog"></i> Utility</a></li>
-                    <li><a href="#"><i class="fa fa-group"></i> Newsletter</a></li>
+                    <li><a href="#"><i class="fa fa-group"></i> Richieste</a></li>
                 </ol>
             </section>
 
@@ -104,7 +104,7 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
             <section class="content">
 
                 <?php
-                include(BASE_PATH."/AdminPanel/include/contents/newsletter.inc.php");
+                include(BASE_PATH . "/AdminPanel/include/contents/requests.inc.php");
                 ?>
 
 
@@ -163,7 +163,7 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
     <script src="<?php echo(SITE_URL) ?>/js/form/form_utils.js"></script>
     <script src="<?php echo(SITE_URL) ?>/js/ionSlider_utils.js"></script>
     <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/options_populate.js"></script>
-    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/newsletter.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/js/requests.js"></script>
 
 
     <!-- INIT COMPONENTS -->
@@ -197,7 +197,7 @@ $act_newsletter		                = true; // setta attivo il link Newsletter
                 "columnDefs": [
                     { targets: "_all",className: "ALIGN_CENTER"}
                 ],
-                "sAjaxSource": SITE_URL+"/AdminPanel/ajax/get_newsletter_list.ajax.php",
+                "sAjaxSource": SITE_URL+"/AdminPanel/ajax/get_requests_list.ajax.php",
                 "fnDrawCallback": function (oSettings) {
                     // ON TABLE LOAD I WILL CREATE THE SWITCHES AND BIND THE FUNCTIONS
                     bindSwitches();

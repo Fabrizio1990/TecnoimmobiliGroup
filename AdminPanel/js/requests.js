@@ -1,14 +1,14 @@
 function switchRequestStatus(idRequest,status,switchElem){
-    console.log("R "+idRequest);
-    console.log("S "+status);
+    /*console.log("R "+idRequest);
+    console.log("S "+status);*/
     var page = "../AdminPanel/ajax/switch_requests_settings.ajax.php";
     var params = "idRequest="+idRequest+"&request_status="+status;
     ajaxCall(page,params,Array(status,switchElem),requestStatusSwitched,ajax_fail,"POST");
 }
 
 function switchNewslettertStatus(idRequest,status,switchElem){
-    console.log("R "+idRequest);
-    console.log("S "+status);
+    /*console.log("R "+idRequest);
+    console.log("S "+status);*/
     var page = "../AdminPanel/ajax/switch_requests_settings.ajax.php";
     var params = "idRequest="+idRequest+"&newsletter_status="+status;
     ajaxCall(page,params,switchElem,newsletterStatusSwitched,ajax_fail,"POST");
@@ -94,7 +94,7 @@ function bindSwitches() {
 // IN options_populate.js fixare il popolamento ricorsivo (non funziona con le select singole ma solo con le multiple
 
 function getDetails(id_newsletter) {
-    load_page(SITE_URL + "/AdminPanel/ajax/get_newsletter_details.ajax.php?id="+id_newsletter,"request_details",function(){
+    load_page(SITE_URL + "/AdminPanel/ajax/get_request_details.ajax.php?id="+id_newsletter,"request_details",function(){
         $(".select2").select2();
 
         $('.price_input').priceFormat({

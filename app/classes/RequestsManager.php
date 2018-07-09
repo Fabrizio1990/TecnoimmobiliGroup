@@ -59,7 +59,8 @@ class RequestManager extends DbManager implements IDbManager {
         parent::escapeString($mq_max).",".
         parent::escapeString($notes).",".
         $enabled.") as saved";
-       
+
+      
         $ret = parent::executeNonQuery($query,$printQuery);
 
        

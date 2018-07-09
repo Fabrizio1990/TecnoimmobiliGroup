@@ -23,7 +23,7 @@ if(isset($_FILES["conversionCSV"])){
         $rowValues = explode($fieldDelimiter, $lines[$i]);
 
         //IF CONVERTED VALUE == NF I WILL SKIP THIS CONVERSION
-        $convertedVal   = $rowValues[4];
+        $convertedVal   = isset($rowValues[4])?$rowValues[4]:"";
         if($convertedVal=="NF" || $convertedVal == "")
             continue;
 

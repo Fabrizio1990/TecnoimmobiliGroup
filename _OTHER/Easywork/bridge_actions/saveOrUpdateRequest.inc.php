@@ -32,6 +32,7 @@ if(isset($_POST["id_easywork"],$_POST["name"],$_POST["lastname"],$_POST["email"]
     $notes          = isset($_POST["notes"])?$_POST["notes"]:"";
     $enabled        = isset($_POST["status"])?$_POST["status"]:1;
 
+    
     // CONTRACTS CONVERSION
     $tmp = explode(",", $contracts);
     $tmp2 = "";
@@ -126,7 +127,7 @@ if(isset($_POST["id_easywork"],$_POST["name"],$_POST["lastname"],$_POST["email"]
     $categories = $tmp2;
 
 
-    $ret = $rqMng ->saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$enabled,$notes,$requestId,false);
+    $ret = $rqMng ->saveRequest($id_easywork,$name,$lastname,$email,$telephone,$contracts,$categories,$tipologies,$regions,$cities,$towns,$districts,$price_min,$price_max,$mq_min,$mq_max,$notes,$enabled,$requestId,false);
 
     if(count($ret)>0){
         if($requestId == "NULL")

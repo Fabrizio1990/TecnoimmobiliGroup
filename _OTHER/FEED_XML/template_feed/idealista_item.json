@@ -1,0 +1,42 @@
+{
+  "propertyCode": "{id_property}",
+  "propertyReference": "{reference_code}",
+  "propertyOperation": {
+    "operationType": "{contract}",
+    "operationPrice": {price}
+  },
+  "propertyAddress": {
+    "addressVisibility": "street",
+    "addressStreetName": "{street}",
+    "addressStreetNumber": "{street_num}",
+    "addressFloor": "{floor}",
+    "addressPostalCode": "{cap}",
+    "addressTown": "{town}",
+    "addressCountry": "Italy",
+    "addressCoordinatesPrecision": "moved",
+    "addressCoordinatesLatitude": {latitude_custom},
+    "addressCoordinatesLongitude": {longitude_custom}
+  },
+  "propertyFeatures": {
+    "featuresType": "{tipology}",
+    "featuresAreaConstructed": {surface},
+    "featuresAreaUsable": {surface},
+    "featuresBathroomNumber": {bathrooms},
+    "featuresBedroomNumber": {rooms},
+    "featuresHeating": {heating},
+    "featuresEnergyCertificateRating": "{energy_class}",
+    "featuresEnergyCertificatePerformance": {ipe},
+    "featuresGarden": {garden},
+    "featuresRooms": {locals}
+  },
+  "propertyDescriptions": [
+    {
+      "descriptionLanguage": "italian",
+      "descriptionText": "{description_custom}"
+    }
+      ],
+
+    {images_start}
+    {images}
+    {images_end}
+}
