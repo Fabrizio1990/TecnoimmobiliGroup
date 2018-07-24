@@ -34,7 +34,7 @@ $conversionVal = isset($conversionVal)?$conversionVal:"";
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            <input type="text" name="inp_converted_value[]" class="form-control inp_converted_value" value="<?php echo $conversionVal ?>"/>
+            <input type="text" name="inp_converted_value" class="form-control inp_converted_value" value="<?php echo $conversionVal ?>"/>
         </div>
     </div>
     <div class="col-md-3 ALIGN_CENTER">

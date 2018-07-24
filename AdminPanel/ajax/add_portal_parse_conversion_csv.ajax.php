@@ -7,6 +7,7 @@ if(isset($_FILES["conversionCSV"])){
 
     $convMng = new OptionsConversionManager();
 
+
     $csv = file_get_contents($_FILES['conversionCSV']['tmp_name']);
     $fieldDelimiter = $_POST["fieldDelimiter"];
     $useHeader = $_POST["useHeader"];

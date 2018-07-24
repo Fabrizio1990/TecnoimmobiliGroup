@@ -41,7 +41,6 @@ $xmlUrl = isset($_POST["xmlUrl"])?$_POST["xmlUrl"]:$defUrl;
 
 $xml = new DOMDocument();
 $xml->load($xmlUrl);
-var_dump($xml);
 if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     print '<b style=\'color:red\'>DOMDocument::schemaValidate() Generated Errors!</b>';
     libxml_display_errors();

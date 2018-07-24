@@ -1,4 +1,5 @@
 <?php
+set_time_limit(0);
 require_once ("../../config.php");
 require_once (BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
 require_once (BASE_PATH."/_OTHER/FEED_XML/Classes/FeedInfo.php");
@@ -31,20 +32,31 @@ class FeedManager
         //$feedExtension = $feedInfoMng->getFeedExtension();
         $feedInfo = $feedInfoMng->getFeedData($portalId,$feedName);
 
+        //GET SAVE PATH INFO
+        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portal_name);
+        $feedName      = $feedInfo[0]["feed_name"];
+        $feedExtension = $feedInfo[0]["feed_extension"];
+        $fullSavePath = $feedSavePath."/".$feedName.$feedExtension;
 
 
-
+        //CHECK IF FEED EXIST ON PORTAL
         if(Count($feedInfo) <=0){
             header("content-type: text/text");
             echo("Siamo spiacenti ma non esiste nessun feed con questo nome.");
-            exit;
-        }
-        if($feedInfo[0]["enabled"] == 0 ){
-            header("content-type: text/text;charset=utf-8");
-            echo("Siamo spiacenti Questo feed è stato disabilitato.");
+
             exit;
         }
 
+
+
+
+        if($feedInfo[0]["enabled"] == 0 ){
+            header("content-type: text/text;charset=utf-8");
+            echo("Siamo spiacenti Questo feed è stato disabilitato.");
+            //REMOVE PREVIOUS GENERATED FEED
+            if (file_exists($fullSavePath)) unlink($fullSavePath);
+            exit;
+        }
 
 
         //GET QUERY FILTER INFO

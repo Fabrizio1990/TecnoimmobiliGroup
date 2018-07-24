@@ -185,6 +185,13 @@ class PortalManager extends DbManager implements IDbManager {
         return $portals;
     }
 
+    public function getPortalDetailsByName($portalName){
+        $this->currTable = "portal_details";
+        $portals = $this->read("name = ?",null,array($portalName));
+        $this->setDefTable();
+        return $portals;
+    }
+
     public function getPortalIdByName($portalName){
         $ret = 0;
         $this->currTable = "prt_portals";

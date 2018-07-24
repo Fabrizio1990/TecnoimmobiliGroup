@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 
     //BIND SINGLE DELETE CONVERSION BUTTON
-    $('.CONVERSION_BOX').on('click',".delete_conversion", function () {
+    /*$('.CONVERSION_BOX').on('click',".delete_conversion", function () {
         var btnPressed   = $(this);
         var parentRow    = btnPressed.closest(".row");
         removeConversion(parentRow);
@@ -37,15 +37,11 @@ $(document).ready(function () {
         var convertedVal = parentRow.find(".inp_converted_value").val();
         var conversionIdField = parentRow.find(".id_conversion");
         saveConversion(id_portal,table,defVal,convertedVal,conversionIdField);
-    });
+    });*/
 
 
 
-    // ONCHANGE (table select) i will get the field select options
-    $(".CONVERSION_BOX").on("change",".sel_category",function(ev){
-        console.log("CHANGE");
-        getTableValues($(this));
-    });
+
 
 });
 

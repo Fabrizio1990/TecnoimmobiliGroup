@@ -57,6 +57,8 @@ $portal_logo = SITE_URL."/".$imgPaths["portals"]["min"]["path"].$pDetails["logo_
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- DATATABLES -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css" />
 
 	<!-- Select2 -->
     <link rel="stylesheet" href="<?php echo(SITE_URL) ?>/AdminPanel/plugins/select2/select2.min.css">
@@ -163,7 +165,10 @@ $portal_logo = SITE_URL."/".$imgPaths["portals"]["min"]["path"].$pDetails["logo_
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/jquery_validate_select2_override.js"></script>
     <!-- Jquery validate IT localization -->
     <script src="<?php echo(SITE_URL) ?>/libs/frontend/jQueryValidate/js/localization/messages_it.js"></script>
-
+    <!-- DataTables -->
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/jquery.dataTables_new.min.js"></script>
+    <script src="<?php echo(SITE_URL) ?>/AdminPanel/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
 
 
 
@@ -179,26 +184,67 @@ $portal_logo = SITE_URL."/".$imgPaths["portals"]["min"]["path"].$pDetails["logo_
 
 	<!-- INIT COMPONENTS -->
     <script>
-        //TODO RIABILITA LA FUNZIONE DRAG DROP MA CON IL PUNTAMENTO AL LINK GIUSTO (PRENDILA DA ADD PROPERTIES)
+
+
+
         $(function() {
-            INIT_DRAG_DROP_LISTENER("<?php echo SITE_URL."/AdminPanel/ajax/add_portal_saveImage.ajax.php" ?>" ,"IMAGE_DRAG");
+            console.log("INIT DATATABLE");
+            /*-------- INIT DATATABLE ---------*/
+            table = $('#DT_CONVERSIONS').DataTable({
+                "language": {
+                    "url": "plugins/datatables/localizations/italian.json"
+                },
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "bDeferRender": true,
+                "lengthMenu": [5, 10, 15],
+                "pageLength": 5,
+                "order": [
+                    [0, "desc"]
+                ],
+                "columnDefs": [
+                    {targets: "_all", className: "ALIGN_LEFT"}
+                ],
+
+                "sAjaxSource": SITE_URL + "/AdminPanel/ajax/get_conversions_datatable.ajax.php?portal_id=<?php echo $id_portal ?>",
+                "fnDrawCallback": function( oSettings ) {
+                    //BIND SAVE CONVERSIONS BUTTON
+                    //BIND SINGLE DELETE CONVERSION BUTTON
+                    $('.CONVERSION_BOX').on('click',".delete_conversion", function () {
+                        var btnPressed   = $(this);
+                        var parentRow    = btnPressed.closest(".row");
+                        removeConversion(parentRow);
+                    });
+
+
+                    //BIND SINGLE SAVE CONVERSION BUTTON
+                    $('.CONVERSION_BOX').on('click',".save_conversion", function () {
+                        var btnPressed   = $(this);
+                        var parentRow    = btnPressed.closest(".row");
+                        var id_portal    = $("#id_portal").val();
+                        var table        = parentRow.find(".sel_category").val();
+                        var defVal       = parentRow.find(".sel_default_value").val();
+                        var convertedVal = parentRow.find(".inp_converted_value").val();
+                        var conversionIdField = parentRow.find(".id_conversion");
+                        saveConversion(id_portal,table,defVal,convertedVal,conversionIdField);
+                    });
+
+                    // ONCHANGE (table select) i will get the field select options
+                    $(".CONVERSION_BOX").on("change",".sel_category",function(ev){
+                        console.log("CHANGE");
+                        getTableValues($(this));
+                    });
+                },
+
+            });
         });
 
-
-        var options = {
-            inverse: true,
-            size: "normal",
-            onColor: 'success',
-            offColor: 'danger',
-            animate: true,
-        };
-        $(".switch").bootstrapSwitch(options);
-
-
-
-
-
     </script>
+
 </body>
 
 </html>

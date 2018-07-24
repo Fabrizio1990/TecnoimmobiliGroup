@@ -1,13 +1,3 @@
-<?php 
-require_once(BASE_PATH . "/app/classes/Portals&Feed/OptionsConversionManager.php");
-
-$cnvMng  = new OptionsConversionManager();
-
-$conversions = $cnvMng->getPortalConversions($id_portal);
-
-
-
-?>
 <div class="box box-primary CONVERSION_BOX">
     <div class="box-header">
         <h3 class="box-title">CONVERSIONI</h3>
@@ -34,11 +24,33 @@ $conversions = $cnvMng->getPortalConversions($id_portal);
         </div>
 
 
+        <table id="DT_CONVERSIONS" class="table table-bordered table-hover display responsive no-wrap" width="100%">
+            <thead>
+            <tr>
+                <th>Tabella</th>
+                <th>Valore originale</th>
+                <th>Valore convertito</th>
+                <th>Azioni</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- il corpo della tabella viene scritto dalla funzione javascript al fondo della pagina -->
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Tabella</th>
+                <th>Valore originale</th>
+                <th>Valore convertito</th>
+                <th>Azioni</th>
+            </tr>
+            </tfoot>
+        </table>
+
         <form id="form_conversions" name="form_conversions" action="POST">
             <input type="hidden" name="id_portal" id="id_portal" value="<?php echo $id_portal?>" />
 
             <?php
-            if(count($conversions) > 0){
+            /*if(count($conversions) > 0){
                 $prevCatId = 0;
                 foreach ($conversions as $conversion){
 
@@ -53,7 +65,7 @@ $conversions = $cnvMng->getPortalConversions($id_portal);
                     $prevCatId = $catSelected;
                 }
                 echo("<div class='HR'></div>");
-            }
+            }*/
 
             ?>
 

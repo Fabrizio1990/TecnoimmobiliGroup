@@ -92,8 +92,28 @@ class OptionsConversionManager extends DbManager{
     }
 
     public function getConversionFieldOpts($categoryId,$idSelected = ""){
-        $options = "";
+    $options = "";
 
+    $table = $this->categoryIdToTable($categoryId);
+    $table = $table["reference_table"];
+    $this->currTable = $table;
+    $fieldToSearch = $this->getConversionFieldFromTable($table);
+
+    $res = $this->read(null,array("order by ".$fieldToSearch[1]),null,$fieldToSearch,false);
+    foreach ($res as $item){
+        $value = $item[0];
+        $selected = $idSelected == $value ?" Selected ":"";
+        $options.="<option $selected value='".$item[0]."'>". $item[1] ."</option>";
+    }
+
+    $this->setDefTable();
+    return $options;
+}
+
+//GET OPTIONS BY ARRAY (TO CHACHE THEM)
+    public function getConversionFieldArray($categoryId){
+        $options = "";
+        $arrayRes = array();
         $table = $this->categoryIdToTable($categoryId);
         $table = $table["reference_table"];
         $this->currTable = $table;
@@ -102,12 +122,22 @@ class OptionsConversionManager extends DbManager{
         $res = $this->read(null,array("order by ".$fieldToSearch[1]),null,$fieldToSearch,false);
         foreach ($res as $item){
             $value = $item[0];
-            $selected = $idSelected == $value ?" Selected ":"";
-            $options.="<option $selected value='".$item[0]."'>". $item[1] ."</option>";
+            array_push($arrayRes,array("val"=>$value,"text"=>$item[1]));
         }
 
         $this->setDefTable();
         return $options;
+    }
+
+    //CONVERT OPTIONS ARRAY TO OPTIONS STRING
+    public function arrayToOpts($arrayOpts,$selectedOpt = null){
+        $options = "";
+        foreach ($arrayOpts as $item) {
+            $selected ="";
+            if($selectedOpt == $item["val"])
+                $selected = "selected";
+            $options.="<option $selected value='".$item["val"]."'>". $item["text"] ."</option>";
+        }
     }
 
         // GET ALL CONVERSION CATEGORY LIST AND PUT INTO ARRAY USED FROM OTHER PART OF THIS CLASS
