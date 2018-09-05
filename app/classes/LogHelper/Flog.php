@@ -8,26 +8,35 @@ class Flog{
 	private static $extension = ".txt";
 
     private static $log_expire_time = 250200/*604800*/; //expire time in minutes, 7 days = 7*24*60*60
-	
-	
-	public static function logError($text,$log_file_name ="log",$output = false){
+    
+    private static $htmlCharsToReplace = array("<br>");
+	private static $htmlCharsReplacements = array("\r\n");
+	public static function logError($text,$log_file_name ="log_errors",$output = false,$replacehtmlChars = true){
 
         //check if other logs are olther than $log_expire_time if true they will deleted
         self::deleteOlderLog(self::$log_path);
 		$date  = Date("Y-m-d h:i:s");
+        $tmp_text = $text;
+        if($replacehtmlChars)
+            $tmp_text = str_replace(self::$htmlCharsToReplace,self::$htmlCharsReplacements,$text);
 
-
-		$fullText =$date." <--> ". $text . " <--> " . self::getBacktrace() ;
+		$fullText ="#################### ".$date." ####################"." \r\n ". $tmp_text . self::getBacktrace() ;
 		self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
 		self::writeFile($fullText);
         if($output)echo($text);
 	}
 
-	public static function logInfo($text,$log_file_name ="log",$output = false){
+	public static function logInfo($text,$log_file_name ="log_info",$output = false,$replacehtmlChars = true){
         $date  = Date("Y-m-d h:i:s");
-        $fullText =$date." <--> ". $text ;
+        $tmp_text = $text;
+        if($replacehtmlChars)
+            $tmp_text = str_replace(self::$htmlCharsToReplace,self::$htmlCharsReplacements,$text);
+
+        $fullText ="############ ".$date." ############"." \r\n ". $tmp_text ;
         self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
         self::writeFile($fullText);
+        echo("log text = ".$text);
+        echo("log file = ".$log_file_name);
         if($output)echo($text);
     }
 	

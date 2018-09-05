@@ -36,6 +36,8 @@ if(SessionManager::getVal("authenticated") != null){
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic' rel='stylesheet' type='text/css'>
 
+    <script src="<?php echo(SITE_URL) ?>/js/UTILS.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -92,7 +94,7 @@ if(SessionManager::getVal("authenticated") != null){
             </div>
 
             <label for="inp_url">Url Xml</label>
-            <input type="text" id="inp_propertiesImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php?limit=10&order=id desc"/>
+            <input type="text" id="inp_propertiesImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php?limit=10&order=id asc"/>
 
             <button class="btn btn-tecnoimm-blue" onclick="checkXml($(this).prev().val())">Controlla Xml</button>
             <button class="btn btn-tecnoimm-blue" onclick="startPropertiesImport()">Inizia import</button>
@@ -100,7 +102,7 @@ if(SessionManager::getVal("authenticated") != null){
             <br>
             <br>
             <label for="inp_url">Url Xml</label>
-            <input type="text" id="inp_requestsImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_richieste.php?limit=10&order=id_utente desc"/>
+            <input type="text" id="inp_requestsImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_richieste.php?limit=10&order=id_utente asc"/>
 
 
             <button class="btn btn-tecnoimm-blue" onclick="startRequestImport()">Inizia import</button>
@@ -175,15 +177,18 @@ if(SessionManager::getVal("authenticated") != null){
            data :{"xmlUrl":xmlUrl},
            datatype : 'text/html',
            beforeSend: function( xrh ) {
+                
                 console.log("sending");
                 $("#import_response").show();
                 responseTextContainer.html("Parsing Data...");
                 $(window).on("beforeunload", function() {
-                return "Import in corso, sei sicuro di voler uscire?";//TANTO QUALSIASI COSA SCRIVO NON VIENE MOSTRATA, MA SEMBRA L' UNICO METODO PER MOSTRARE UN ALERT
+                    return "Import in corso, sei sicuro di voler uscire?";//TANTO QUALSIASI COSA SCRIVO NON VIENE MOSTRATA, MA SEMBRA L' UNICO METODO PER MOSTRARE UN ALERT
                });
            },
            success : function(data){
+               
                responseTextContainer.html(data);
+               LogInfoToFile(data,"log_info_importer");
                console.log(data);
                $(window).off("beforeunload");
 

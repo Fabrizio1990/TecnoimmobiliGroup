@@ -81,7 +81,7 @@ if(isset($_POST["sel_category"],$_POST["sel_tipology"],$_POST["inp_surface"],$_P
 
                 $values = array($sel_contracts,$sel_negotiation_status,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$sel_show_street_num,$inp_latitude,$inp_longitude,$sel_category,$sel_tipology,$inp_surface,$inp_price,$sel_negotiation,$sel_locals,$sel_rooms,$sel_bathrooms,$sel_floors,$sel_elevators,$sel_heatings,$sel_box,$sel_gardens,$sel_conditions,$sel_property_status,$sel_ads_status,$sel_prestige,$sel_price_lowered,$inp_video_url,$id_description,$sel_energy_class,$sel_ipe_um,$inp_ipe,$currTs,$id_ads);
                 // UPDATE IMMOBILE
-                $ret = $mng->updateAds($values,"id = ?");
+                $ret = $mng->updateProperty($values,"id = ?");
                 if($ret != "0"  &&  $ret != "1"){
                     echo("errore - Aggiornamento dell' immobile fallito");
                     exit;

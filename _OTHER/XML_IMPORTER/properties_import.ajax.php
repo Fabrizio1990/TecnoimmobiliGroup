@@ -75,6 +75,7 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
 
 
         $id_easyWork            = $property->getAttribute("id_ew");
+        $id_tecnoimm            = $property->getAttribute("id");
         //$id_agency             = $property->getElementsByTagName('agency_id')->item(0)->nodeValue;
         $p_iva                  = $property->getElementsByTagName('agency_p_iva')->item(0)->nodeValue;
         $id_agency              = findAgency($p_iva);   // troverò l' agenzia tramite la partita iva
@@ -202,20 +203,35 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
         $appointment_note = $property->getElementsByTagName('appointment_note')->item(0)->nodeValue;
 
 
-        $id = saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,"",$id_energy_class,$id_ipe_um,$ipe, $images,$description,$id_agency,$views);
 
-        if($id != "errore nel salvataggio dell' immobile con id EW= ".$id_easyWork."<br>") {
-            // Saving Appointment
-            if ($id_easyWork != null) {
-                $resAppointment = $mng->saveAppointment($id, $owner_name, "", $owner_tel_home, $owner_tel_office, $owner_mobile, $owner_address, $owner_town, $occupant_name, "", $occupant_tel, $appointment_date, $appointment_start_date, $appointment_end_date, $appointment_agent, $appointment_channel, $appointment_conditions, $appointment_renwable, $appointment_note);
-                if ($resAppointment == "" || $resAppointment == null) {
-                    echo("errore - Salvataggio Appuntamento dell immobile con id EW = ".$id_easyWork."<br>");
-                    return;
+        //CHECK IF PROPERTY IS ALREADY IMPORTED USING OLD SITE ID
+        $alreadyImportedCheck = $mng->importedPropertyExist($id_tecnoimm);
+        $alreadyImported = $alreadyImportedCheck["cnt"] > 0?true:false;
+        //echo("<br> id -> $id_tecnoimm esiste già ?   ---->".($alreadyImported?"SI":"NO")."<br>");
+
+        //IF NOT ALREADY IMPORTED I WILL SAVE THE PROPERTY
+        if(!$alreadyImported){
+            $id = saveProperty($id_easyWork,$id_tecnoimm,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,"",$id_energy_class,$id_ipe_um,$ipe, $images,$description,$id_agency,$views);
+       
+            //IF NOT ALREADY IMPORTED I WILL SAVE APPONTMENT
+            if($id != "errore nel salvataggio dell' immobile con id EW= ".$id_easyWork."<br>") {
+                // Saving Appointment
+                if ($id_easyWork != null) {
+                    $resAppointment = $mng->saveAppointment($id, $owner_name, "", $owner_tel_home, $owner_tel_office, $owner_mobile, $owner_address, $owner_town, $occupant_name, "", $occupant_tel, $appointment_date, $appointment_start_date, $appointment_end_date, $appointment_agent, $appointment_channel, $appointment_conditions, $appointment_renwable, $appointment_note);
+                    if ($resAppointment == "" || $resAppointment == null) {
+                        echo("errore - Salvataggio Appuntamento dell immobile con id EW = ".$id_easyWork."<br>");
+                        return;
+                    }
                 }
             }
         }else{
-            echo $id;
+            //IF ALREADY IMPORTED I WILL TAKE THE PROPERTY ID 
+            //TODO MAKE UPDATE PROPERTY
+            echo("<br>ATTENZIONE !!! Immobile con id $id_tecnoimm già esistente<br>");
+            $id = $alreadyImportedCheck["id"];
         }
+        
+        echo $id;
 
     }
 
@@ -267,14 +283,16 @@ function getAgentFromAgency($id_agency){
 
 
 
-function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,$id_description,$id_energy_class,$id_ipe_um,$ipe ,$images,$txt_description,$id_agency,$views = 0)
+
+
+function saveProperty($id_easyWork,$id_tecnoimm,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,$id_description,$id_energy_class,$id_ipe_um,$ipe ,$images,$txt_description,$id_agency,$views = 0)
 {
     global $mng, $mgzMng;
 
     $id_easyWork = $id_easyWork == 0?null:$id_easyWork;
 
-    $values = array($id_easyWork,$id_contract, $id_contract_status, $id_country, $id_region, $id_city, $id_town, $id_district, $street, $streetNum, $show_address, $latitude, $longitude, $id_category, $id_tipology, $mq, $price, $neg_reserved, $id_locals, $id_rooms, $id_bathrooms, $id_floor, $id_elevator, $id_heating, $id_box, $id_garden, $id_property_conditions, $id_property_status, $id_ads_status, $prestige, $price_lowered, $video_url, $id_description, $id_energy_class, $id_ipe_um, $ipe,$views, date("Y-m-d H:i:s"));
-    $fields = array("id_easywork","id_contract","id_contract_status","id_country","id_region","id_city","id_town","id_district","street","street_num","show_address","longitude","latitude","id_category","id_tipology","mq","price","negotiation_reserved","id_locals","id_rooms","id_bathrooms","id_floor","id_elevator","id_heating","id_box","id_garden","id_property_conditions","id_property_status","id_ads_status","is_prestige","is_price_lowered","video_url","id_description","id_energy_class","id_ipe_um","ipe","views","date_up");
+    $values = array($id_easyWork,$id_tecnoimm,$id_contract, $id_contract_status, $id_country, $id_region, $id_city, $id_town, $id_district, $street, $streetNum, $show_address, $latitude, $longitude, $id_category, $id_tipology, $mq, $price, $neg_reserved, $id_locals, $id_rooms, $id_bathrooms, $id_floor, $id_elevator, $id_heating, $id_box, $id_garden, $id_property_conditions, $id_property_status, $id_ads_status, $prestige, $price_lowered, $video_url, $id_description, $id_energy_class, $id_ipe_um, $ipe,$views, date("Y-m-d H:i:s"));
+    $fields = array("id_easywork","id_old_tecnoimm_site","id_contract","id_contract_status","id_country","id_region","id_city","id_town","id_district","street","street_num","show_address","longitude","latitude","id_category","id_tipology","mq","price","negotiation_reserved","id_locals","id_rooms","id_bathrooms","id_floor","id_elevator","id_heating","id_box","id_garden","id_property_conditions","id_property_status","id_ads_status","is_prestige","is_price_lowered","video_url","id_description","id_energy_class","id_ipe_um","ipe","views","date_up");
 
 
     $imgNames = saveImages($images);
@@ -330,6 +348,32 @@ function saveProperty($id_easyWork,$id_contract,$id_contract_status,$id_country,
     }else{
         return "errore nel salvataggio dell' immobile<br>";
     }
+
+}
+
+
+
+
+function updateProperty($id,$id_easyWork,$id_tecnoimm_old,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,$id_description,$id_energy_class,$id_ipe_um,$ipe ,$images,$txt_description,$id_agency,$views = 0){
+    /*$values = array($sel_contracts,$sel_negotiation_status,$sel_country,$sel_region,$sel_city,$sel_town,$sel_district,$inp_address,$inp_street_num,$sel_show_street_num,$inp_latitude,$inp_longitude,$sel_category,$sel_tipology,$inp_surface,$inp_price,$sel_negotiation,$sel_locals,$sel_rooms,$sel_bathrooms,$sel_floors,$sel_elevators,$sel_heatings,$sel_box,$sel_gardens,$sel_conditions,$sel_property_status,$sel_ads_status,$sel_prestige,$sel_price_lowered,$inp_video_url,$id_description,$sel_energy_class,$sel_ipe_um,$inp_ipe,$currTs,$id_ads);
+    // UPDATE IMMOBILE
+    $ret = $mng->updateProperty($values,"id = ?");
+    if($ret != "0"  &&  $ret != "1"){
+        echo("errore - Aggiornamento dell' immobile fallito");
+        exit;
+    }
+    // UPDATE DESCRIZIONE
+    $retD = $mng->updateDescription($id_ads,$txt_description,"");
+    if($ret != "0"  &&  $ret != "1"){
+        echo("errore - Aggiornamento della descrizione fallito");
+        exit;
+    }
+    // UPDATE NOMI IMMAGINI
+    $retD = $mng->updateImages($id_ads,$images);
+    if($ret != "0"  &&  $ret != "1"){
+        echo("errore - Aggiornamento delle immagini fallito");
+        exit;
+    }*/
 
 }
 
