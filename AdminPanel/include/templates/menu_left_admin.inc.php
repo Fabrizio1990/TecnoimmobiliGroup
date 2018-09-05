@@ -208,7 +208,7 @@ $act_magazine_customize    = isset($act_magazine_customize)?$act_magazine_custom
 
                             <li <?php if($act_show_logs) echo('class="active"')?>>
                                 <a href="log_list.php"><i class="fa fa-file-text-o"></i>
-                                    Log errori
+                                    Lista Log
                                 </a>
                             </li>
 

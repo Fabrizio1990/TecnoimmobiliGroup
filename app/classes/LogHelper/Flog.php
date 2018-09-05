@@ -35,8 +35,8 @@ class Flog{
         $fullText ="############ ".$date." ############"." \r\n ". $tmp_text ;
         self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
         self::writeFile($fullText);
-        echo("log text = ".$text);
-        echo("log file = ".$log_file_name);
+        /*echo("log text = ".$text);
+        echo("log file = ".$log_file_name);*/
         if($output)echo($text);
     }
 	

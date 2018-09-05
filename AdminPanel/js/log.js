@@ -1,16 +1,14 @@
 function readTextFile(file)
 {
-    console.log(file);
-
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
+    rawFile.open("GET", file+"?rnd="+(Math.floor(Math.random() * 100)), false);
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
         {
             if(rawFile.status === 200 || rawFile.status == 0)
             {
-                document.getElementById("log_details").value =  rawFile.responseText;
+                document.getElementById("log_details").innerHTML =  rawFile.responseText.replace(/\r\n/g, '<br>').replace(/[\r\n]/g, '<br>');
 
             }
         }
@@ -25,3 +23,4 @@ function deleteFile(fileName){
         null,"POST"
     )
 }
+

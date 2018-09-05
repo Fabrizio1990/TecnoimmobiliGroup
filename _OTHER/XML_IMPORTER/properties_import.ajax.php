@@ -1,7 +1,15 @@
 <?php
+require_once("../../config.php");
+
+$log ="";
+
 // INIZIO CALCOLO DEL TEMPO DI ESECUZIONE
 $time_start = microtime(true);
 //----------------------------
+
+
+$log.="------------> INIZIO IMPORT <------------ <br>";
+
 
 // TODO , MANCANO I DATI DELL' APPUNTAMENTO
 set_time_limit (0);
@@ -51,9 +59,9 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     libxml_display_errors();
 }else{
 
-    echo "<b style='color:green'>Xml valido</b><br>";
+    //echo "<b style='color:green'>Xml valido</b><br>";
+    Flog::logInfo("<b style='color:green'>Xml valido</b><br>","log_info_importer",true);
     //exit();
-    include("../../config.php");
     require_once(BASE_PATH."/app/classes/PropertyManager.php");
     require_once(BASE_PATH."/app/classes/SessionManager.php");
     require_once(BASE_PATH."/app/classes/UserEntity.php");
@@ -67,8 +75,11 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     $mgzMng = new MagazineManager();
     $dbH    = new GenericDbHelper();
 
-    echo("<br>Tot Immobili nell Xml =>".$xml->getElementsByTagName('property')->length."<br>");
+    //echo("<br>Tot Immobili nell Xml =>".$xml->getElementsByTagName('property')->length."<br>");
+    $log.="<br>Tot Immobili nell Xml =>".$xml->getElementsByTagName('property')->length."<br>";
+
     //exit();
+    $savedCnt = 0;
     foreach ($xml->getElementsByTagName('property') as $property)
     {
 
@@ -207,42 +218,48 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
         //CHECK IF PROPERTY IS ALREADY IMPORTED USING OLD SITE ID
         $alreadyImportedCheck = $mng->importedPropertyExist($id_tecnoimm);
         $alreadyImported = $alreadyImportedCheck["cnt"] > 0?true:false;
-        //echo("<br> id -> $id_tecnoimm esiste già ?   ---->".($alreadyImported?"SI":"NO")."<br>");
 
         //IF NOT ALREADY IMPORTED I WILL SAVE THE PROPERTY
         if(!$alreadyImported){
             $id = saveProperty($id_easyWork,$id_tecnoimm,$id_contract,$id_contract_status,$id_country,$id_region,$id_city,$id_town,$id_district,$street,$streetNum,$show_address,$latitude,$longitude,$id_category,$id_tipology,$mq,$price,$neg_reserved,$id_locals,$id_rooms,$id_bathrooms,$id_floor,$id_elevator,$id_heating,$id_box,$id_garden,$id_property_conditions,$id_property_status,$id_ads_status,$prestige,$price_lowered,$video_url,"",$id_energy_class,$id_ipe_um,$ipe, $images,$description,$id_agency,$views);
-       
+            $savedCnt++;
             //IF NOT ALREADY IMPORTED I WILL SAVE APPONTMENT
             if($id != "errore nel salvataggio dell' immobile con id EW= ".$id_easyWork."<br>") {
                 // Saving Appointment
                 if ($id_easyWork != null) {
                     $resAppointment = $mng->saveAppointment($id, $owner_name, "", $owner_tel_home, $owner_tel_office, $owner_mobile, $owner_address, $owner_town, $occupant_name, "", $occupant_tel, $appointment_date, $appointment_start_date, $appointment_end_date, $appointment_agent, $appointment_channel, $appointment_conditions, $appointment_renwable, $appointment_note);
                     if ($resAppointment == "" || $resAppointment == null) {
-                        echo("errore - Salvataggio Appuntamento dell immobile con id EW = ".$id_easyWork."<br>");
-                        return;
+                        //echo("errore - Salvataggio Appuntamento dell immobile con id EW = ".$id_easyWork."<br>");
+                        $log.="errore - Salvataggio Appuntamento dell immobile con id EW = ".$id_easyWork."<br>";
+
+                        continue;
                     }
                 }
             }
         }else{
             //IF ALREADY IMPORTED I WILL TAKE THE PROPERTY ID 
             //TODO MAKE UPDATE PROPERTY
-            echo("<br>ATTENZIONE !!! Immobile con id $id_tecnoimm già esistente<br>");
+            $log.="<br>ATTENZIONE !!! Immobile con id_tecnoimmobili_old $id_tecnoimm già esistente<br>";
             $id = $alreadyImportedCheck["id"];
         }
         
-        echo $id;
+        
+        //echo $id;
 
     }
 
+    $log.="<br>Immobili salvati = " . $savedCnt . " <br>";
+    $log.="<br>Finito <br>";
 
-
-    echo("<br>Finito <br>");
     // FINE CALCOLO TEMPO DI ESECUZIONE
     $time_end = microtime(true);
     $time = $time_end - $time_start;
-    echo("<br><br>");
-    echo 'Tempo di esecuzione : '.Round($time,2).' seconds';
+    
+    $log.="Tempo di esecuzione : '".Round($time,2)."' seconds' <br><br>";
+
+    $log.="------------> FINE IMPORT <------------";
+    Flog::logInfo($log,"log_info_importer",true);
+
     //--------------------------------------
 
 }
@@ -309,14 +326,16 @@ function saveProperty($id_easyWork,$id_tecnoimm,$id_contract,$id_contract_status
         // create reference code and update it on table
         $res_refC = $mng->createRefenceCode($id_property);
         if ($res_refC == "" || $res_refC == null) {
-            echo("errore - Salvataggio del codice di riferimento fallito per l' immobile con id ".$id_property."<br>");
+            //echo("errore - Salvataggio del codice di riferimento fallito per l' immobile con id ".$id_property."<br>");
+            Flog::logInfo("errore - Salvataggio del codice di riferimento fallito per l' immobile con id ".$id_property."<br>","log_info_importer",true);
             return;
         }
 
         // RELATE AGENT WITH PROPERTY
         $res_rel = $mng->savePropertyAgentRelations($id_agency, $id_agent, $id_property,false);
         if ($res_rel == "" || $res_rel == null) {
-            echo("errore - Salvataggio della relazione Immbile - agenzia fallito per l' immobile con id ".$id_property."<br>");
+            //echo("errore - Salvataggio della relazione Immbile - agenzia fallito per l' immobile con id ".$id_property."<br>");
+            Flog::logInfo("errore - Salvataggio della relazione Immbile - agenzia fallito per l' immobile con id ".$id_property."<br>","log_info_importer",true);
             return;
         }
 
@@ -325,14 +344,16 @@ function saveProperty($id_easyWork,$id_tecnoimm,$id_contract,$id_contract_status
         $res_desc = $mng->saveDescription($id_property, $txt_description, "");
         if ($res_desc == "" || $res_desc == null) {
 
-            echo("errore - Salvataggio della descrizione fallito per l' immobile con id ".$id_property."<br>");
+            //echo("errore - Salvataggio della descrizione fallito per l' immobile con id ".$id_property."<br>");
+            Flog::logInfo("errore - Salvataggio della descrizione fallito per l' immobile con id ".$id_property."<br>","log_info_importer",true);
             return;
         }
 
         // Saving Images
         $resImgs = $mng->saveImages($id_property, $imgNames);
         if ($resImgs == "" || $resImgs == null) {
-            echo("errore - Salvataggio di alcune immagini per l' immobile con id ".$id_property."<br>");
+            //echo("errore - Salvataggio di alcune immagini per l' immobile con id ".$id_property."<br>");
+            Flog::logInfo("errore - Salvataggio di alcune immagini per l' immobile con id ".$id_property."<br>","log_info_importer",true);
             return;
         }
 
@@ -341,7 +362,8 @@ function saveProperty($id_easyWork,$id_tecnoimm,$id_contract,$id_contract_status
         // SET PROPERTY ON MAGAZINE TABLE (WITH STATUS DISABLED)
         $resMagazine = $mgzMng->addOnMangazine($id_property, $id_agency, 0);
         if ($resMagazine == "" || $resMagazine == null) {
-            echo("errore - Salvataggio nella rivista<br>");
+            //echo("errore - Salvataggio nella rivista<br>");
+            Flog::logInfo("errore - Salvataggio nella rivista<br>","log_info_importer",true);
             return;
         }
         return $id_property;

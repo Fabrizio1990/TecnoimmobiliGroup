@@ -35,6 +35,10 @@ error_reporting(E_ALL);
                 <td><input type ="checkbox" name="clean_properties" /></td>
             </tr>
             <tr>
+                <td>Cancella richieste</td>
+                <td><input type ="checkbox" name="clean_requests" /></td>
+            </tr>
+            <tr>
                 <td>Cancella portali</td>
                 <td><input type ="checkbox" name="clean_portals" /></td>
             </tr>
@@ -122,6 +126,14 @@ if(isset($_POST["clean_data"])){
     }
     //########## END PROPERTIES CLEAN ###########
 
+
+    //############ START REQUESTS CLEAN #############
+    if(isset($_POST["clean_requests"])){
+        $dbH->executeQuery("TRUNCATE table requests");
+        $dbH->executeQuery("TRUNCATE table requests_preferences");
+        echo"<p>RICHIESTE CANCELLATE DAL DATABASE</p></hr>";
+    }
+    //############ END PORTALS CLEAN #############
 
 
     //############ START PORTALS CLEAN #############

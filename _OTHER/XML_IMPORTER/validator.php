@@ -179,6 +179,7 @@ if(SessionManager::getVal("authenticated") != null){
            beforeSend: function( xrh ) {
                 
                 console.log("sending");
+                //LogInfoToFile("------------> INIZIO IMPORT <------------","log_info_importer");
                 $("#import_response").show();
                 responseTextContainer.html("Parsing Data...");
                 $(window).on("beforeunload", function() {
@@ -188,7 +189,8 @@ if(SessionManager::getVal("authenticated") != null){
            success : function(data){
                
                responseTextContainer.html(data);
-               LogInfoToFile(data,"log_info_importer");
+               //LogInfoToFile(data,"log_info_importer",function(){LogInfoToFile("------------> FINE IMPORT <------------","log_info_importer");});
+               
                console.log(data);
                $(window).off("beforeunload");
 

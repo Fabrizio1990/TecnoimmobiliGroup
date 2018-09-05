@@ -63,3 +63,12 @@ function getDatePeriod(period){
 	
 	return new Array(date_from,date_to);
 }
+
+
+//THIS FIX TEXTAREA PROBLEM (WITHOUT THIS TEXTAREAS WITH SPECIFIC HEIGHT CAUSE's WITE SPACE PROBLEM AT END OF PAGE)
+$(window).load(function() {
+    setTimeout(function() {
+        $.AdminLTE.layout.fix();
+        $.AdminLTE.layout.fixSidebar();
+    }, 350);
+});

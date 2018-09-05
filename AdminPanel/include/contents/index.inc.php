@@ -1,7 +1,6 @@
 <?php
 	include(BASE_PATH."/AdminPanel/include/widgets/statistic_widget.inc.php");
 ?>
-
 <!--  ---------------Data table annunci -------------- -->
 <div class="row">
 	<div class="col-xs-12">

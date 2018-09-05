@@ -119,3 +119,31 @@ body {
 
 
 /* END TECNOIMMOBILI BUTTONS */
+
+
+
+/* FOOTER OVERRIDE PADDING (to avoid scrollbar)*/
+.main-footer {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+/*TEXTAREA BOTTOM WITESPACE PROBLEM FIX*/
+/*
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    position: absolute;
+}
+.content-wrapper{
+    bottom: 50px;
+    position: fixed;
+    width: 100%;
+    top: 50px;
+    padding-bottom: 50px; 
+}
+.main-footer{
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}*/

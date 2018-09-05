@@ -54,6 +54,12 @@
         $contract = $properties[$i]["contract"];
         $town = $properties[$i]["town"];
         $price = $properties[$i]["price"];
+        if($price == 0 ){
+            $price = "TR";
+            $priceTit = "Trattativa riservata";
+        }else{
+            $price ="&euro;".Utils::formatPrice($price);
+        }
         $referenceCode = $properties[$i]["reference_code"];
         $contract = $properties[$i]["contract"];
 

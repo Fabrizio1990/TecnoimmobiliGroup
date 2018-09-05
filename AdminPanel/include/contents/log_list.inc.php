@@ -1,7 +1,5 @@
 <?php
 $logs = scandir(BASE_PATH."/app/logs");
-
-
 ?>
 
 <div class="col-xs-12">
@@ -12,7 +10,7 @@ $logs = scandir(BASE_PATH."/app/logs");
         <!-- /.box-header -->
         <div class="box-body">
 
-           <textarea id="log_details" style="width:100%;" readonly></textarea>
+           <p id="log_details" rows="8" readonly></p>
         </div>
         <!-- /.box-body -->
     </div>
@@ -57,4 +55,5 @@ $logs = scandir(BASE_PATH."/app/logs");
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
-</div>
+</div><!-- /.col-xs-12 -->
+

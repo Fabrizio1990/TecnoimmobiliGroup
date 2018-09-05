@@ -168,9 +168,14 @@ function formatCurrencyInput(inputID){
 
 //LOG TO FILE FROM JAVASCRIPT (CALL PHP PAGE WITH AJAX)
 
-function LogInfoToFile(logTxt,filename ="log_info"){
+function LogInfoToFile(logTxt,filename ="log_info",callback = null){
     var params = "log_txt="+logTxt+"&filename="+filename;
-    ajaxCall(SITE_URL+"/ajax/logger.ajax.php",params,null,function(resp){console.log(resp)},null,"POST",true);
+    ajaxCall(SITE_URL+"/ajax/logger.ajax.php",params,null,
+    function(resp){
+        console.log(resp);
+        if(callback!=null)callback();
+    },
+    null,"POST",true);
 }
 
 //END LOG FUNCTION
