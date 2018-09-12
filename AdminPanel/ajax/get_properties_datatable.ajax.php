@@ -143,10 +143,10 @@
                 $retApp = $propertyM->getAppointment($res[$i]["id"]);
                 if(count($retApp)>0){
                     $imgTit.="<h3>Dati proprietario</h3>";
-                    $imgTit.="<p><i>Nome  : </i><b>".$retApp[0]["owner_name"]."</b>";
-                    $imgTit.="<p><i>Cognome  : <b>".$retApp[0]["owner_lastname"]."</b>";
-                    $imgTit.="<p><i>Provincia  : </i><b>".$retApp[0]["owner_town"]."</b>";
-                    $imgTit.="<p><i>Indirizzo  : </i><b>".$retApp[0]["owner_address"]."</b>";
+                    $imgTit.="<p><i>Nome  : </i><b>".htmlentities($retApp[0]["owner_name"], ENT_QUOTES)."</b>";
+                    $imgTit.="<p><i>Cognome  : <b>".htmlentities($retApp[0]["owner_lastname"], ENT_QUOTES)."</b>";
+                    $imgTit.="<p><i>Provincia  : </i><b>".htmlentities($retApp[0]["owner_town"], ENT_QUOTES)."</b>";
+                    $imgTit.="<p><i>Indirizzo  : </i><b>".htmlentities($retApp[0]["owner_address"], ENT_QUOTES)."</b>";
                     $imgTit.="<p><i>Cellulare : </i><b>".$retApp[0]["owner_mobile"]."</b>";
                     }
                 $infoImg = "<img style='position:absolute;'  src='".SITE_URL."/AdminPanel/images/icons/ico_info_20x20.png'/>";

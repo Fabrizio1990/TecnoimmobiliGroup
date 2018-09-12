@@ -94,7 +94,7 @@ if(SessionManager::getVal("authenticated") != null){
             </div>
 
             <label for="inp_url">Url Xml</label>
-            <input type="text" id="inp_propertiesImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php?limit=10&order=id asc"/>
+            <input type="text" id="inp_propertiesImport_url" class="form-control" placeholder="url" value="http://www.tecnoimmobiligroup.it/_export/export_immobili.php?limit=1&order=id asc&where=1=1"/>
 
             <button class="btn btn-tecnoimm-blue" onclick="checkXml($(this).prev().val())">Controlla Xml</button>
             <button class="btn btn-tecnoimm-blue" onclick="startPropertiesImport()">Inizia import</button>

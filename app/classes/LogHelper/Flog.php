@@ -13,6 +13,7 @@ class Flog{
 	private static $htmlCharsReplacements = array("\r\n");
 	public static function logError($text,$log_file_name ="log_errors",$output = false,$replacehtmlChars = true){
 
+        $log_file_name = str_replace(".php","",$log_file_name); //REPLACE ALL .php suffix (to avoid open log problem on browsers)
         //check if other logs are olther than $log_expire_time if true they will deleted
         self::deleteOlderLog(self::$log_path);
 		$date  = Date("Y-m-d h:i:s");

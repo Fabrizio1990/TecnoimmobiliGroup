@@ -8,7 +8,8 @@ $time_start = microtime(true);
 //----------------------------
 
 
-$log.="------------> INIZIO IMPORT <------------ <br>";
+Flog::logInfo("------------> INIZIO IMPORT <------------","log_info_importer",true);
+
 
 
 // TODO , MANCANO I DATI DELL' APPUNTAMENTO
@@ -60,7 +61,7 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
 }else{
 
     //echo "<b style='color:green'>Xml valido</b><br>";
-    Flog::logInfo("<b style='color:green'>Xml valido</b><br>","log_info_importer",true);
+    $log.="<b style='color:green'>Xml valido</b><br>";
     //exit();
     require_once(BASE_PATH."/app/classes/PropertyManager.php");
     require_once(BASE_PATH."/app/classes/SessionManager.php");
@@ -257,8 +258,8 @@ if (!$xml->schemaValidate('XML_XSD/xsd_validator.xsd')) {
     
     $log.="Tempo di esecuzione : '".Round($time,2)."' seconds' <br><br>";
 
-    $log.="------------> FINE IMPORT <------------";
     Flog::logInfo($log,"log_info_importer",true);
+    Flog::logInfo("------------> FINE IMPORT <------------","log_info_importer",true);
 
     //--------------------------------------
 
