@@ -4,7 +4,7 @@ $(document).ready(function () {
     // PRICE FORMAT
     $('#inp_portal_contract_price').priceFormat({
         prefix: '',
-        centsLimit: 2,
+        centsLimit: 0,
         thousandsSeparator: '.',
         centsSeparator:","
     });
@@ -200,7 +200,7 @@ function savePortal(form){
     var params = $(form).serialize();
 
     //OVERRIDE PRICE FIELD WITH UNMASKED VALUE (NO PRICE FORMAT)
-    params += "&inp_portal_contract_price="+$('#inp_portal_contract_price').unmask();
+    params += "&inp_portal_contract_price_unmask="+$('#inp_portal_contract_price').unmask();
 
     params+= "&hasContract="+$('#inp_portal_hasContract').bootstrapSwitch('state');
 
@@ -208,6 +208,7 @@ function savePortal(form){
     var feeds = getFeeds();
     params += "&feedsInfo="+JSON.stringify(feeds);
 
+    console.log(params);
     ajaxCall(page,params,null,portalSaved,null,"POST");
 }
 

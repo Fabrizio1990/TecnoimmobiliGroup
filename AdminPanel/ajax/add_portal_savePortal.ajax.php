@@ -35,7 +35,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
     $hasContract        = isset($_POST["inp_portal_hasContract"])?$_POST["inp_portal_hasContract"]:0;
     $contractStart      = $_POST["inp_portal_contract_start"];
     $contractEnd        = $_POST["inp_portal_contract_end"];
-    $contractPrice      = $_POST["inp_portal_contract_price"];
+    $contractPrice      = $_POST["inp_portal_contract_price_unmask"];
     $note               = isset($_POST["txt_notes"])?$_POST["txt_notes"]:"";
 
     $hasFtp             = isset($_POST["inp_portal_hasFtp"])?$_POST["inp_portal_hasFtp"]:false;
