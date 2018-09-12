@@ -112,7 +112,7 @@ class FeedManager
         $this->writeFeed($fullSavePath,$feedFile);
 
         //PRINT RESULT
-        echo("success");
+        //echo("success");
 
         //PRINT FEED
         if($printFeed)
