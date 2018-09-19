@@ -10,8 +10,8 @@ class FeedTrovit extends Feed
     }
 
     public function PopulateRow($row){
-        $tmpItems =  parent::PopulateRow($row);
-        return $tmpItems;
+        $this->tmp_items =  parent::PopulateRow($row);
+        return $this->tmp_items;
     }
 
     public function PopulateImages($images,$row,$template){

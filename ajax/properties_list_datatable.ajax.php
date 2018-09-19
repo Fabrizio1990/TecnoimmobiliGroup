@@ -1,11 +1,11 @@
 <?php
 header('Content-type: application/json;  Charset=UTF-8');
-include("../config.php");
-include(BASE_PATH."/app/classes/PropertyManager.php");
-include(BASE_PATH."/app/classes/Utils.php");
-include(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
-include(BASE_PATH."/app/classes/GenericDbHelper.php");
-include(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
+require_once("../config.php");
+require_once(BASE_PATH."/app/classes/PropertyManager.php");
+require_once(BASE_PATH."/app/classes/Utils.php");
+require_once(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
+require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
+require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
 require_once BASE_PATH."/app/classes/AgencyManager.php";
 
 

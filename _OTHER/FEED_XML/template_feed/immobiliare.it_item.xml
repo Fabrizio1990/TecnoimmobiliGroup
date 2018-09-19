@@ -1,38 +1,36 @@
-<immobile>
+<Immobile IDImmobile="{id_property}" IDAgenzia="{id_agency}" Lingua="IT">
 	<CodiceNazione>IT</CodiceNazione>
 	<CodiceComune>{istat}</CodiceComune>
-	<CodiceQuartiere>{district}</CodiceQuartiere>
+	<CodiceQuartiere>{district_custom}</CodiceQuartiere>
 	<Indirizzo>{street}</Indirizzo>
 	<Civico>{street_num}</Civico>
 	<Cap>{cap}</Cap>
 	<PubblicaIndirizzo>{show_address_custom}</PubblicaIndirizzo>
-	<Latitudine>{latitude}</Latitudine>
-	<Longitudine>{longitude}</Longitudine>
+	<Latitudine>{latitude_custom}</Latitudine>
+	<Longitudine>{longitude_custom}</Longitudine>
 	<Contratto>{contract}</Contratto>
 	<Categoria>{id_category}</Categoria>
 	<IDTipologia>{tipology}</IDTipologia>
 	<NrLocali>{locals}</NrLocali>
-	<NrCamereLetto>{rooms}</NrCamereLetto>
 	<Prezzo>{price}</Prezzo>
 	<TrattativaRiservata>{negotiation_reserved}</TrattativaRiservata>
 	<MQSuperficie>{surface}</MQSuperficie>
 	<Riferimento>{reference_code}</Riferimento>
 	<Asta>{auction}</Asta>
-	<DataInserimento>{date_ins}</DataInserimento>
-	<DataModifica>{date_up}</DataModifica>
-	<Descrizioni>{description}</Descrizioni>
-
+	<DataInserimento>{date_ins_custom}</DataInserimento>
+	<DataModifica>{date_up_custom}</DataModifica>
+	<Descrizioni><Descrizione Lingua="IT"><Titolo>{title}</Titolo><Testo>{description}</Testo></Descrizione></Descrizioni>
 	{infoResidenziale}
 	{infoCommerciale}
 	{infoVacanze}
 
-	<immagini>
+	<Immagini>
 		{images}
-	</immagini>
+	</Immagini>
 	<Portali>
 		<Portale IDPortale="1"></Portale>
 	</Portali>
 
 	{infoTerreno}
 
-</immobile>
+</Immobile>

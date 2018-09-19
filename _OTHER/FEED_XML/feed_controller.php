@@ -1,16 +1,16 @@
 <?php
-header("content-type: text/xml;charset=utf-8");
+header("content-type: text/html;charset=utf-8");
 
 
 require ("../../config.php");
+
 require_once (BASE_PATH."/app/classes/Portals&Feed/PortalManager.php");
 require_once (BASE_PATH."/app/classes/FtpHelper.php");
-require_once (BASE_PATH."/_OTHER/FEED_XML/Classes/FeedInfo.php");
 require_once (BASE_PATH."/_OTHER/FEED_XML/Classes/FeedManager.php");
 require_once (BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
 SetInclude(BASE_PATH."/_OTHER/FEED_XML/Classes/FeedsClasses");
-
+error_reporting(E_ERROR);
 if(!isset($_REQUEST["portal"],$_REQUEST["feed"])){
     echo("Accesso Non Autorizzato");
     exit;
@@ -31,6 +31,6 @@ function SetInclude($folderPath){
     $files = scandir(  $folderPath . "/");
     foreach ( $files as $file)
         if($file!= "." && $file!= ".." && $file!= "helper.php")
-            include($folderPath . "/" . $file);
+            require_once($folderPath . "/" . $file);
 }
 ?>

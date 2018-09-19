@@ -72,7 +72,9 @@ class DbManager
 
 
     //METODO PER INTERROGAZIONE DB STANDARD, PASSI UNA QUERY E LUI RESTITUISCE IL RESULTSET
-	public function executeQuery($query){
+	public function executeQuery($query,$printQuery = false){
+        if($printQuery)
+            echo($query);
         //$this->openConnection();
         $res =$this->conn->query($query);
         if(!$res){

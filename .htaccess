@@ -3,6 +3,9 @@ ErrorDocument 404 http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo/404.ht
 
 RewriteEngine On
 
+
+#RewriteRule public/Robots/([^/]*)\$ public/Robots/$1
+
 # <RICERCA IMMOBILI>
 RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/filtri/([^/]+)$ index.php?page=ricerca_immobili&category=$1&contract=$2&tipology=$3&town=$4&$5
 

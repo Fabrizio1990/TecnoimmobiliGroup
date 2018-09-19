@@ -38,10 +38,13 @@ class Feed
     protected $template;
     protected $template_items;
 
+    protected $tmp_items;
+
     public function __construct($portalId,$template,$items) {
         $this->portalId = $portalId;
         $this->template = $template;
         $this->template_items = $items;
+        $this->tmp_items = "";
     }
 
 
@@ -51,6 +54,7 @@ class Feed
         $finalFile = $this->template;
         $finalItems = "";
         for($i = 0 ; $i < Count($rst) ;$i++){
+            $this->tmp_items = $this->template_items; //RESET ITEMS ROW TEMPLATE
             $finalItems .= $this->PopulateRow($rst[$i]);
         }
         $finalFile = str_replace("{items}",$finalItems,$finalFile);
@@ -70,8 +74,7 @@ class Feed
     //######## I WILL REPLACE THIS FUNCTION IF I NEED MORE COMPLEX CONVERSIONS
     //#####################################################################
     public function PopulateRow($row){
-        $tmpItems = $this->template_items;
-
+        //$this->tmp_items = $this->template_items;
         // GET AND CONVERT VALUES
 
         $agencyId   = $row["id_agency"];
@@ -118,70 +121,70 @@ class Feed
 
 
         // POPULATE TEMPLATE REPEAT WITH VALUES
-        $tmpItems = str_replace("{id_agency}",$agencyId,$tmpItems);
-        $tmpItems = str_replace("{agency_name}",$agencyName,$tmpItems);
-        $tmpItems = str_replace("{agent_email}",$agencyEmail,$tmpItems);
-        $tmpItems = str_replace("{agent_phone}",$agencyPhone,$tmpItems);
-        $tmpItems = str_replace("{agent_mobile_phone}",$agencyMobilePhone,$tmpItems);
-        $tmpItems = str_replace("{agent_fax}",$agencyeFax,$tmpItems);
-        $tmpItems = str_replace("{agent_skype}",$agencySkype,$tmpItems);
+        $this->tmp_items = str_replace("{id_agency}",$agencyId,$this->tmp_items);
+        $this->tmp_items = str_replace("{agency_name}",$agencyName,$this->tmp_items);
+        $this->tmp_items = str_replace("{agent_email}",$agencyEmail,$this->tmp_items);
+        $this->tmp_items = str_replace("{agent_phone}",$agencyPhone,$this->tmp_items);
+        $this->tmp_items = str_replace("{agent_mobile_phone}",$agencyMobilePhone,$this->tmp_items);
+        $this->tmp_items = str_replace("{agent_fax}",$agencyeFax,$this->tmp_items);
+        $this->tmp_items = str_replace("{agent_skype}",$agencySkype,$this->tmp_items);
 
 
-        $tmpItems = str_replace("{link}",SITE_URL."/".$link,$tmpItems);
-        $tmpItems = str_replace("{title}",$title,$tmpItems);
-        $tmpItems = str_replace("{id_property}",$row["id"],$tmpItems);
-        $tmpItems = str_replace("{reference_code}",$row["reference_code"],$tmpItems);
+        $this->tmp_items = str_replace("{link}",SITE_URL."/".$link,$this->tmp_items);
+        $this->tmp_items = str_replace("{title}",$title,$this->tmp_items);
+        $this->tmp_items = str_replace("{id_property}",$row["id"],$this->tmp_items);
+        $this->tmp_items = str_replace("{reference_code}",$row["reference_code"],$this->tmp_items);
 
-        $tmpItems = str_replace("{category}",$category,$tmpItems);
-        $tmpItems = str_replace("{tipology}",$tipology,$tmpItems);
-        $tmpItems = str_replace("{contract}",$contract,$tmpItems);
-
-
-        $tmpItems = str_replace("{country}",$country,$tmpItems);
-        $tmpItems = str_replace("{region}",$region,$tmpItems);
-        $tmpItems = str_replace("{city}",$city,$tmpItems);
-        $tmpItems = str_replace("{city_short}",$row["city_short"],$tmpItems);
-        $tmpItems = str_replace("{town}",$town,$tmpItems);
-        $tmpItems = str_replace("{istat}",$istat,$tmpItems);
-        $tmpItems = str_replace("{district}",$district,$tmpItems);
-        $tmpItems = str_replace("{cap}",$cap,$tmpItems);
-        $tmpItems = str_replace("{street}",$row["street"],$tmpItems);
-        $tmpItems = str_replace("{street_num}",$row["street_num"],$tmpItems);
-        $tmpItems = str_replace("{complete_address}",$row["street"]." ".$row["street_num"],$tmpItems);
-        $tmpItems = str_replace("{show_address}",$row["show_address"],$tmpItems);
-        $tmpItems = str_replace("{longitude}",$row["longitude"],$tmpItems);
-        $tmpItems = str_replace("{latitude}",$row["latitude"],$tmpItems);
-
-        $tmpItems = str_replace("{price}",$row["price"],$tmpItems);
-        $tmpItems = str_replace("{negotiation_reserved}",$row["negotiation_reserved"],$tmpItems);
-        $tmpItems = str_replace("{surface}",$row["mq"],$tmpItems);
-        $tmpItems = str_replace("{rooms}",$rooms,$tmpItems);
-        $tmpItems = str_replace("{locals}",$locals,$tmpItems);
-        $tmpItems = str_replace("{bathrooms}",$bathrooms,$tmpItems);
-        $tmpItems = str_replace("{floor}",$floor,$tmpItems);
-        $tmpItems = str_replace("{elevator}",$elevator,$tmpItems);
-        $tmpItems = str_replace("{heating}",$heating,$tmpItems);
-        $tmpItems = str_replace("{box}",$box,$tmpItems);
-        $tmpItems = str_replace("{garden}",$garden,$tmpItems);
-
-        $tmpItems = str_replace("{property_conditions}",$propertyConditions,$tmpItems);
-        $tmpItems = str_replace("{property_status}",$propertyStatus,$tmpItems);
+        $this->tmp_items = str_replace("{category}",$category,$this->tmp_items);
+        $this->tmp_items = str_replace("{tipology}",$tipology,$this->tmp_items);
+        $this->tmp_items = str_replace("{contract}",$contract,$this->tmp_items);
 
 
+        $this->tmp_items = str_replace("{country}",$country,$this->tmp_items);
+        $this->tmp_items = str_replace("{region}",$region,$this->tmp_items);
+        $this->tmp_items = str_replace("{city}",$city,$this->tmp_items);
+        $this->tmp_items = str_replace("{city_short}",$row["city_short"],$this->tmp_items);
+        $this->tmp_items = str_replace("{town}",$town,$this->tmp_items);
+        $this->tmp_items = str_replace("{istat}",$istat,$this->tmp_items);
+        $this->tmp_items = str_replace("{district}",$district,$this->tmp_items);
+        $this->tmp_items = str_replace("{cap}",$cap,$this->tmp_items);
+        $this->tmp_items = str_replace("{street}",$row["street"],$this->tmp_items);
+        $this->tmp_items = str_replace("{street_num}",$row["street_num"],$this->tmp_items);
+        $this->tmp_items = str_replace("{complete_address}",$row["street"]." ".$row["street_num"],$this->tmp_items);
+        $this->tmp_items = str_replace("{show_address}",$row["show_address"],$this->tmp_items);
+        $this->tmp_items = str_replace("{longitude}",$row["longitude"],$this->tmp_items);
+        $this->tmp_items = str_replace("{latitude}",$row["latitude"],$this->tmp_items);
 
-        $tmpItems = str_replace("{energy_class}",$energyClass,$tmpItems);
-        $tmpItems = str_replace("{ipe}",$row["ipe"],$tmpItems);
-        $tmpItems = str_replace("{ipe_um}",$ipe_um,$tmpItems);
-        $tmpItems = str_replace("{date_ins}",$row["date_ins"],$tmpItems);
-        $tmpItems = str_replace("{date_up}",$row["date_up"],$tmpItems);
+        $this->tmp_items = str_replace("{price}",$row["price"],$this->tmp_items);
+        $this->tmp_items = str_replace("{negotiation_reserved}",$row["negotiation_reserved"],$this->tmp_items);
+        $this->tmp_items = str_replace("{surface}",$row["mq"],$this->tmp_items);
+        $this->tmp_items = str_replace("{rooms}",$rooms,$this->tmp_items);
+        $this->tmp_items = str_replace("{locals}",$locals,$this->tmp_items);
+        $this->tmp_items = str_replace("{bathrooms}",$bathrooms,$this->tmp_items);
+        $this->tmp_items = str_replace("{floor}",$floor,$this->tmp_items);
+        $this->tmp_items = str_replace("{elevator}",$elevator,$this->tmp_items);
+        $this->tmp_items = str_replace("{heating}",$heating,$this->tmp_items);
+        $this->tmp_items = str_replace("{box}",$box,$this->tmp_items);
+        $this->tmp_items = str_replace("{garden}",$garden,$this->tmp_items);
 
-        $tmpItems = str_replace("{description}",$description,$tmpItems);
+        $this->tmp_items = str_replace("{property_conditions}",$propertyConditions,$this->tmp_items);
+        $this->tmp_items = str_replace("{property_status}",$propertyStatus,$this->tmp_items);
+
+
+
+        $this->tmp_items = str_replace("{energy_class}",$energyClass,$this->tmp_items);
+        $this->tmp_items = str_replace("{ipe}",$row["ipe"],$this->tmp_items);
+        $this->tmp_items = str_replace("{ipe_um}",$ipe_um,$this->tmp_items);
+        $this->tmp_items = str_replace("{date_ins}",$row["date_ins"],$this->tmp_items);
+        $this->tmp_items = str_replace("{date_up}",$row["date_up"],$this->tmp_items);
+
+        $this->tmp_items = str_replace("{description}",$description,$this->tmp_items);
 
         $images = $this->GetImages($row);
 
-        $tmpItems = $this->PopulateImages($images,$row,$tmpItems);
-
-        return $tmpItems;
+        $this->tmp_items = $this->PopulateImages($images,$row,$this->tmp_items);
+        $ret = $this->tmp_items;
+        return $ret;
     }
 
 
@@ -229,18 +232,21 @@ class Feed
 
 
     public  function getConvertedValue($portalId,$conversionCategory,$originalId,$originalTxt ="",$ifNullgetTxt = true){
+        $ret = "";
         $dbH = new GenericDbHelper();
 
-        $ret = $dbH->executeQuery("Select converted from prt_feed_field_conversion where category_id=$conversionCategory and original='$originalId' and id_portal=$portalId ");
+        $res = $dbH->executeQuery("Select converted from prt_feed_field_conversion where category_id=$conversionCategory and original='$originalId' and id_portal=$portalId ");
 
-        if(count($ret)<1){
+        if(count($res)<1){
             if($ifNullgetTxt && $originalTxt !="")
-                return $originalTxt;
+                $ret = $originalTxt;
             else
-                return $originalId;
+                $ret = $originalId;
         }
         else
-            return $ret[0]["converted"];
+            $ret = $res[0]["converted"];
+            
+        return str_replace(array("\r\n","\n","\r"),array("","",""),$ret);
     }
     public function getPropertyLink($row){
 
@@ -281,6 +287,13 @@ class Feed
         $retVal = str_replace($values,$replacements,$inputValue);
         return $retVal;
 
+    }
+
+
+    public function toCoustomDate($date,$format){
+        $time_stamp=strtotime($date);
+        $data = date($format,$time_stamp);
+        return $data;
     }
 
 }

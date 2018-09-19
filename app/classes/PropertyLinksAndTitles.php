@@ -88,7 +88,7 @@ class PropertyLinksAndTitles
         else if($district == null)
             return $tipology. " in ". $contract ." ".$town.", ".$street;
         else{
-            $ret = $tipology. " " .$street;
+            $ret = $tipology. "in  ".$contract. " " .$street;
             $ret .= $district == $town ? ", ". $town: ", ".  $district .", ".$town;
             return $ret;
         }

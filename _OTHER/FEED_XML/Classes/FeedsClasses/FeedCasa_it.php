@@ -10,17 +10,17 @@ class FeedCasa_it extends Feed
     }
 
     public function PopulateRow($row){
-        $tmpItems =  parent::PopulateRow($row);
+        $this->tmp_items =  parent::PopulateRow($row);
         $show_address =$row["show_address"]=="1" ?"true" : "false";
         $latitude = str_replace(",",".",$row["latitude"]);
         $longitude = str_replace(",",".",$row["longitude"]);
 
 
-        $tmpItems = str_replace("{show_address_custom}",$show_address,$tmpItems);
-        $tmpItems = str_replace("{latitude_custom}",$latitude,$tmpItems);
-        $tmpItems = str_replace("{longitude_custom}",$longitude,$tmpItems);
+        $this->tmp_items = str_replace("{show_address_custom}",$show_address,$this->tmp_items);
+        $this->tmp_items = str_replace("{latitude_custom}",$latitude,$this->tmp_items);
+        $this->tmp_items = str_replace("{longitude_custom}",$longitude,$this->tmp_items);
 
-        return $tmpItems;
+        return $this->tmp_items;
     }
 
     public function getFormattedDescription($description){

@@ -3,7 +3,7 @@
   "propertyReference": "{reference_code}",
   "propertyOperation": {
     "operationType": "{contract}",
-    "operationPrice": {price}
+    "operationPrice": "{price}"
   },
   "propertyAddress": {
     "addressVisibility": "street",
@@ -14,20 +14,20 @@
     "addressTown": "{town}",
     "addressCountry": "Italy",
     "addressCoordinatesPrecision": "moved",
-    "addressCoordinatesLatitude": {latitude_custom},
-    "addressCoordinatesLongitude": {longitude_custom}
+    "addressCoordinatesLatitude": "{latitude_custom}",
+    "addressCoordinatesLongitude": "{longitude_custom}"
   },
   "propertyFeatures": {
     "featuresType": "{tipology}",
-    "featuresAreaConstructed": {surface},
-    "featuresAreaUsable": {surface},
-    "featuresBathroomNumber": {bathrooms},
-    "featuresBedroomNumber": {rooms},
-    "featuresHeating": {heating},
+    "featuresAreaConstructed": "{surface}",
+    "featuresAreaUsable": "{surface}",
+    "featuresBathroomNumber": "{bathrooms}",
+    "featuresBedroomNumber": "{rooms}",
+    "featuresHeating": "{heating}",
     "featuresEnergyCertificateRating": "{energy_class}",
-    "featuresEnergyCertificatePerformance": {ipe},
-    "featuresGarden": {garden},
-    "featuresRooms": {locals}
+    "featuresEnergyCertificatePerformance": "{ipe}",
+    "featuresGarden": "{garden}",
+    "featuresRooms": "{locals}"
   },
   "propertyDescriptions": [
     {

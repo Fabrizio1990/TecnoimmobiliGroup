@@ -3,24 +3,26 @@
 class FeedIdealista extends Feed
 {
 
+
     public function getPropertyFeed($rst){
         //RISCRIVO LA PROCEDURA PERCHè DEVO RIMUOVERE L' ULTIMA VIRGOLA DAL JSON
         $finalFile = $this->template;
         $finalItems = "";
         for($i = 0 ; $i < Count($rst) ;$i++){
+            $this->tmp_items = $this->template_items; //RESET ITEMS ROW TEMPLATE
             $finalItems .= $this->PopulateRow($rst[$i]);
             if($i < Count($rst) -1){
                 $finalItems.=",";
             }
         }
         $finalFile = str_replace("{items}",$finalItems,$finalFile);
-        $finalFile = str_replace("{feed_creation_date}",date("Y-m-d H:i:s"),$finalFile);
+        $finalFile = str_replace("{feed_creation_date}",date("Y/m/d H:i:s"),$finalFile);
 
         return $finalFile;
     }
 
     public function PopulateRow($row){
-        $tmpItems =  parent::PopulateRow($row);
+        $this->tmp_items =  parent::PopulateRow($row);
         //VARI REPLACE DESCRIZIONE
         $agencyEmail = $row["agent_email"];
         $agencyPhone = $row["agent_phone"];
@@ -29,20 +31,21 @@ class FeedIdealista extends Feed
 
         $description = $this->getFormattedDescription($row["desc_it"]);
         $description.=" Per info www.tecnoimmobiligroup.it email:$agencyEmail telefono:$agencyPhone.";
-        $toReplace=array("\\'","\r\n","\r","\n");
-        $replacement=array("'"," "," "," ");
+        $toReplace=array("\\","\\'","\r\n","\r","\n","\t",'"');
+        $replacement=array("","'"," "," "," "," ","'");
         $description=str_replace($toReplace,$replacement,$description);
 
-        $tmpItems = str_replace("{description_custom}",$description,$tmpItems);
+        $this->tmp_items = str_replace("{description_custom}",$description,$this->tmp_items);
 
-        $tmpItems = str_replace("{longitude_custom}",$longitude,$tmpItems);
-        $tmpItems = str_replace("{latitude_custom}",$latitude,$tmpItems);
+        $this->tmp_items = str_replace("{longitude_custom}",$longitude,$this->tmp_items);
+        $this->tmp_items = str_replace("{latitude_custom}",$latitude,$this->tmp_items);
 
 
 
         /*
-        $tmpItems = str_replace("{show_address_custom}",$show_address,$tmpItems);*/
-        return $tmpItems;
+        $this->tmp_items = str_replace("{show_address_custom}",$show_address,$this->tmp_items);*/
+        $ret = $this->tmp_items;
+        return $ret;
     }
 
     public function PopulateImages($images,$row,$template){
