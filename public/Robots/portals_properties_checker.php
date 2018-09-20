@@ -1,5 +1,5 @@
 <?php
-echo("INIZIO");
+echo("INIZIO<br>");
 require_once ("../../config.php");
 include(BASE_PATH . "/app/classes/Portals&Feed/PropertiesOnPortal.php");
 include(BASE_PATH . "/app/classes/Portals&Feed/PortalManager.php");
@@ -12,12 +12,13 @@ $popMng = new PropertiesOnPortal($pMng->conn);
 
 
 
-
+$portalFilterId = isset($_GET["portal_id"])?$_GET["portal_id"]:null;
 
 //Recupero la lista dei portali e ciclo
-$portalList = $pMng->getPortalList();
+$portalList = $pMng->getPortalList($portalFilterId);
 
 foreach ($portalList as $portal){
+    echo("<br><br>----------------------<br>##### CICLO PORTALE". $portal['portal_name']."<br>");
     // se il portale è disabilitato salto questo portale (non devo fare nessuna operazione per i portali disabilitati)
     if($portal["portal_enabled"] == "0"){
         echo("PORTALE ".$portal["portal_name"]." DISABILITATO <br>");
@@ -26,18 +27,21 @@ foreach ($portalList as $portal){
 
     $portalID = $portal["id_portal"];
     $limits = $portal["entries_max"];
-
+    echo("IL LIMITE è SETTATO A ".$limits."<br>");
 
     //Ciclo la lista delle agenzie
     $agList = $agMng->getAgenciesData();
     foreach ($agList as $agency){
-
+        
         $agencyID = $agency["id"];
+        $agencyName =  $agency["name"];
+        echo("<br><br>-----> CICLO AGENZIA $agencyName <-----<br>");
         /*if($agencyID != "1")
             continue;*/
         $agLimit = $popMng->getAgencyLimit($agencyID,$portalID);
-        echo("Agency id = ".$agencyID." Limits = ".$agLimit);
-        if($agLimit == 0 ){
+        echo("Agency id = ".$agencyID." Limits = ".$agLimit."<br>");
+        //SE LIMITE è SETTATO A -1 vuol dire che devo mettere tutti gli immobili disponibili
+        if($agLimit == -1 ){
             $agProperties = $agMng->getAgencyProperties($agencyID,1);
             $agLimit = count($agProperties);
         }
@@ -45,11 +49,6 @@ foreach ($portalList as $portal){
         // GET AGENCY PROPERTIES ON PORTAL LIST
         $agPropList = $popMng->getAgencyPropertiesList($agencyID,$portalID);
         $agPropCount = count($agPropList);
-        /*echo("<br>----------------<br>");
-        echo("portalID = ".$portalID."<br>");
-        echo("AgencyID = ".$agencyID."<br>");
-        echo("agPropCount = ".$agPropCount."<br>");
-        echo("agLimit = ".$agLimit."<br>");*/
 
 
         /*####################
@@ -62,12 +61,14 @@ foreach ($portalList as $portal){
             $propertyStatus = $agPropList[$i]["id_ads_status"];
             if(!$show_on_portal || $propertyStatus !=1){
                 $popMng->removePropertyOnPortal($portalID,$agPropList[$i]["id_property"]);
-                $agPropCount--;
             }
         }
-        //TODO Forse $agPropList e $agPropCount vanno ricalcolati dopo che ho rimosso quelli disabilitati sul portale.
 
+        //$agPropList e $agPropCount vanno ricalcolati dopo che ho rimosso quelli disabilitati sul portale.
+        $agPropList = $popMng->getAgencyPropertiesList($agencyID,$portalID);
+        $agPropCount = count($agPropList);
 
+        echo("agPropCount =".$agPropCount." agLimit =".$agLimit."<br>" );
         //SE L'agenzia ha più immobili su questo portale di quanti dovrebbe averne rimuovo quelli in eccesso.
         if($agPropCount > $agLimit){
             $removeCount = $agPropCount - $agLimit;
@@ -93,7 +94,8 @@ foreach ($portalList as $portal){
 
         //ALLA FINE CONTROLLO SE CI SONO IMMOBILI PIU' NUOVI DI QUELLI CHE SONO PRESENTI SUL PORTALE , SE SI ALLORA LI AGGIUNGO AL PORTALE E NE RIMUOVO UNO VECCHIO
         //RECUPERO NUOVAMENTE LA LISTA DEI NUOVI IMMOBILI CHE PROBABILMENTE é STATA MODIFICATA PRECEDENTEMENTE
-        $popMng->checkAndReplaceOldProperties($agencyID,$portalID);
+        if($agLimit > 0)
+            $popMng->checkAndReplaceOldProperties($agencyID,$portalID,$agLimit);
 
     };
 

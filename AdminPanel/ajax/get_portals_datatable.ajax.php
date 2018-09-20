@@ -57,7 +57,7 @@
             // MAX ENTRIES SHOW AND EDIT
             $limitEntriesField = "";
             $limitEntries = $res[$i]["entries_max"];
-            $limitEntriesField = "<div class='valueMode'><div class='col-md-9 PADDING-0 currentLimit' >".($limitEntries == "0"?"Illimitato":$limitEntries)."</div>"."<div class='col-md-3 PADDING-0'><button type=\"button\" class=\"btn  btn-info btn-xs DISPL_INLINE\" onclick='toggleLimitEdit(this)'><i class='fa fa-fw fa-edit' data-toggle=\"tooltip\" title=\"Modifica limiti\"></i></button> </div></div>";
+            $limitEntriesField = "<div class='valueMode'><div class='col-md-9 PADDING-0 currentLimit' >".($limitEntries == "-1"?"Illimitato":$limitEntries)."</div>"."<div class='col-md-3 PADDING-0'><button type=\"button\" class=\"btn  btn-info btn-xs DISPL_INLINE\" onclick='toggleLimitEdit(this)'><i class='fa fa-fw fa-edit' data-toggle=\"tooltip\" title=\"Modifica limiti\"></i></button> </div></div>";
             $limitEntriesField .= "<div class='editMode HIDDEN'><div class='col-md-4 PADDING-0 V_ALIGN_MIDDLE'><input class='form-control newLimit' type='number' value='$limitEntries'/></div><div class='col-md-3'></div><div class='col-md-5 ALIGN_RIGHT'><button type=\"button\" class=\"btn  btn-warning btn-xs DISPL_INLINE\" onclick='toggleLimitEdit(this)' data-toggle=\"tooltip\" title=\"Annulla\"><i class='fa fa-fw fa-undo' ></i></button><button type=\"button\" class=\"btn  btn-success btn-xs DISPL_INLINE\" onclick='saveNewLimit($id,this)' data-toggle=\"tooltip\" title=\"Salva limite\"><i class='fa fa-fw fa-save' ></i></button></div></div>";
 
 

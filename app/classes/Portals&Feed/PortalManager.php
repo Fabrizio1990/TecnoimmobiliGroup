@@ -171,9 +171,17 @@ class PortalManager extends DbManager implements IDbManager {
     //endregion
 
     //region GET DATA FUNCTIONS
-    public function getPortalList(){
+    public function getPortalList($id_portal = null){
         $this->currTable = "portals_view";
-        $portals = $this->read();
+        $params = array();
+        $values = array();
+
+        if($id_portal!=null){
+            array_push($params,"id_portal in (?)");
+            array_push($values,$id_portal);
+        }
+
+        $portals = $this->read($params,null,$values);
         $this->setDefTable();
         return $portals;
     }

@@ -123,27 +123,18 @@ class PropertiesOnPortal extends DbManager implements IDbManager {
 
         $newestProperties = $this->getAgencyPortalNewestProperties($id_agency,$id_portal,true);
         $newestPropertiesCnt = count($newestProperties);
+        echo("NEWEST PROPERTIES COUNT ".$newestPropertiesCnt);
         if($newestPropertiesCnt > 0){
             echo("CI SONO NUOVI IMMOBILI<br>");
             $oldestProperties = $this->getOldestPropertiesList($id_agency,$id_portal,$newestPropertiesCnt);
             for($i =  0; $i< $newestPropertiesCnt ; $i++){
-                $this->removePropertyOnPortal($id_portal,$oldestProperties[$i]["id_property"]);
+                $this->removePropertyOnPortal($id_portal,$oldestProperties[$i-1]["id_property"]);
                 $this->addPropertyOnPortal($id_portal,$newestProperties[$i]["id"]);
             }
         }
     }
 
-    /*public function  removeOldestPropertyOnPortal($id_agency,$id_portal,$numToRemove){
-
-        $oldests = getOldestPropertiesList($id_agency,$id_portal,$numToRemove);
-        if(Count($oldests) > 0){
-            foreach ($oldests as $oldest)
-
-        }
-
-
-    }*/
-
+  
 
     //USATO DALLA PAGINA DI ASSEGNAZIONE IMMOBILI SUL PORTALE (NELLA CHIAMATA AJAX)
     public function switchPropertyOnPortalStatus($id_portal,$id_property){
