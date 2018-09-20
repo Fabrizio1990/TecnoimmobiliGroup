@@ -17,7 +17,7 @@
 </div><!-- /.row -->
 
 
-<!-- #################### Link ftp  - User ftp  ######################## -->
+<!-- #################### Link ftp  - Folder ftp  ######################## -->
 <div class="row FTP_INFO">
 
     <div class="col-md-6">
@@ -26,19 +26,24 @@
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-feed"></i></div>
                 <input id="inp_portal_link_ftp" name="inp_portal_link_ftp" type="text" class="form-control" placeholder="Link dell' ftp"  value="<?php echo $inpPortalLinkFtp ?>">
-
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->
 
-
-    <div class="col-md-6"> </div><!-- /.col-md-6 -->
-
+        <div class="col-md-6">
+        <div class="form-group">
+            <label>Folder ftp</label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-feed"></i></div>
+                <input id="inp_portal_folder_ftp" name="inp_portal_folder_ftp" type="text" class="form-control" placeholder="Cartella dell' ftp"  value="<?php echo $inpPortalFolderFtp ?>">
+            </div>
+        </div><!-- /.form-group -->
+    </div><!-- /.col-md-6 -->
 
 </div><!-- /.row -->
 
 
-<!-- #################### Psw ftp  ######################## -->
+<!-- #################### User ftp - Psw ftp  ######################## -->
 <div class="row FTP_INFO">
 
     <div class="col-md-6">

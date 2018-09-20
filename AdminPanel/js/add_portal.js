@@ -84,16 +84,6 @@ $(document).ready(function () {
     });
 
 
-    //BIND FEED CREATION BUTTON
-    $('#feed_container').on('click', '.btn_feed_generator', function(event){
-        /*event.preventDefault();
-        console.log("AVRò PREVENUTO?");*/
-        //GetFeedSaveLink($(this).closest(".FEED_BOX"));
-    });
-
-
-
-
 
 
     form = $("#FORM_PORTAL").validate({
@@ -119,6 +109,11 @@ $(document).ready(function () {
                     date: true
                 },
                 inp_portal_link_ftp:{
+                    required : function(element){
+                        return $('#inp_portal_hasFtp').bootstrapSwitch('state');
+                    },
+                },
+                inp_portal_folder_ftp:{
                     required : function(element){
                         return $('#inp_portal_hasFtp').bootstrapSwitch('state');
                     },

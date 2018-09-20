@@ -40,6 +40,7 @@ $txtPortalNotes             = "";
 // SEZIONE DATI FTP
 $inpPortalHasFtp            = "";
 $inpPortalLinkFtp           = "";
+$inpPortalFolderFtp         = "";
 $inpPortalUserFtp           = "";
 $inpPortalPswFtp            = "";
 
@@ -119,6 +120,7 @@ if(isset($_REQUEST["id_portal"])){
 // SEZIONE DATI FTP
         $inpPortalHasFtp            = $details["ftp_enabled"];
         $inpPortalLinkFtp           = $details["ftp_url"];
+        $inpPortalFolderFtp         = $details["ftp_folder"];
         $inpPortalUserFtp           = $details["ftp_user"];
         $inpPortalPswFtp            = $details["ftp_password"];
 

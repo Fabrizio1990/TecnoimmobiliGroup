@@ -38,7 +38,7 @@ function setupAllFeedGeneration(){
 
 //GENERAZIONE DI TUTTI I FEEDS
 function generateAllFeeds(){
-
+    console.log("CALL GENERATE ALL FEEDS");
     //SE I FEED NON SONO STATI ANCORA CARICATI RITORNO UN ERRORE ED ESCO DALLA FUNZIONE
     if(currendFeedList == ""){
         openInfoModal(5,"Errore Feed","E' avvenuto un errore nella generazione dei feed, attendi '1 minuto' che i dati vengano recuperati e riprova.<br>Se il problema persiste contatta il webmaster");

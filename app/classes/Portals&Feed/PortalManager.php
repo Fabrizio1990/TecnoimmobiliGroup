@@ -106,10 +106,22 @@ class PortalManager extends DbManager implements IDbManager {
 
     }
 
-    public function SavePortalFtpInfo($id_portal,$ftp_link,$ftp_user,$ftp_password,$enabled = 1,$printQuery = false){
+    public function SetFtpStatus($id_portal,$isEnabled,$printQuery = false){
+        $this->currTable = "prt_portal_ftp_info";
+        $newStatus = $isEnabled?1:0;
+        $fields = array("enabled = ?");
+        $params = array("id_portal = ?");
+        $values = array($newStatus,$id_portal);
+
+        $this->update($fields,$params,$values,null,$printQuery);
+        $this->setDefTable();
+    }
+
+    public function SavePortalFtpInfo($id_portal,$ftp_link,$ftp_folder,$ftp_user,$ftp_password,$enabled = 1,$printQuery = false){
 
         $query = "CALL `prt_save_ftp_info`($id_portal,".
             parent::escapeString($ftp_link).",".
+            parent::escapeString($ftp_folder).",".
             parent::escapeString($ftp_user).",".
             parent::escapeString($ftp_password).",".
             $enabled.")";

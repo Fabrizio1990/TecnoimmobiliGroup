@@ -40,6 +40,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
     $hasFtp             = isset($_POST["inp_portal_hasFtp"])?$_POST["inp_portal_hasFtp"]:false;
     $ftp_link           = $_POST["inp_portal_link_ftp"];
+    $ftp_folder         = $_POST["inp_portal_folder_ftp"];
     $ftp_user           = $_POST["inp_portal_user_ftp"];
     $ftp_password       = $_POST["inp_portal_psw_ftp"];
 
@@ -135,13 +136,15 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
         }
         //SALVO INFO FTP DEL PORTALE
         if($hasFtp){
-            $ret = $pMng->SavePortalFtpInfo($id_portal,$ftp_link,$ftp_user,$ftp_password);
+            $ret = $pMng->SavePortalFtpInfo($id_portal,$ftp_link,$ftp_folder,$ftp_user,$ftp_password);
             if($ret == null || $ret ==""){
                 $pMng->rollback();
                 echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI FTP DEL PORTALE");
                 exit();
             }
+            
         }
+        $pMng->SetFtpStatus($id_portal,$hasFtp);
         //CONTACT INFO SAVE
         $ret = $pMng->SavePortalContactInfo($id_portal,$contactName,$contactEmail,$contactPhone,$contactMobile,$contactAddress,$contactCity);
         if($ret == null || $ret ==""){
