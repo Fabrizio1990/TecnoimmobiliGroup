@@ -26,6 +26,7 @@ function getAllFeeds(){
     var params = "ACTION=get_all_feeds";
     ajaxCall(ajaxUrl,params,null,function (resp) {
         feeds = JSON.parse(resp);
+        console.log(feeds);
         feedsLen = feeds.length;
 
     },null,"POST");

@@ -11,7 +11,7 @@ class Flog{
     
     private static $htmlCharsToReplace = array("<br>");
 	private static $htmlCharsReplacements = array("\r\n");
-	public static function logError($text,$log_file_name ="log_errors",$output = false,$replacehtmlChars = true){
+	public static function logError($text,$log_file_name ="log_errors",$output = false,$replacehtmlChars = true,$insertHeader = true){
 
         $log_file_name = str_replace(".php","",$log_file_name); //REPLACE ALL .php suffix (to avoid open log problem on browsers)
         //check if other logs are olther than $log_expire_time if true they will deleted
@@ -21,24 +21,33 @@ class Flog{
         if($replacehtmlChars)
             $tmp_text = str_replace(self::$htmlCharsToReplace,self::$htmlCharsReplacements,$text);
 
-		$fullText ="#################### ".$date." ####################"." \r\n ". $tmp_text . self::getBacktrace() ;
+        if($insertHeader)
+            $fullText ="#################### ".$date." ####################"." \r\n ". $tmp_text . self::getBacktrace() ;
+        else
+            $fullText = "\r\n".$tmp_text . self::getBacktrace();
+
+
 		self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
 		self::writeFile($fullText);
-        if($output)echo($text);
+        if($output)echo($text."<br>");
 	}
 
-	public static function logInfo($text,$log_file_name ="log_info",$output = false,$replacehtmlChars = true){
+	public static function logInfo($text,$log_file_name ="log_info",$output = false,$replacehtmlChars = true,$insertHeader = true){
         $date  = Date("Y-m-d h:i:s");
         $tmp_text = $text;
         if($replacehtmlChars)
             $tmp_text = str_replace(self::$htmlCharsToReplace,self::$htmlCharsReplacements,$text);
 
-        $fullText ="############ ".$date." ############"." \r\n ". $tmp_text ;
+        if($insertHeader)
+            $fullText ="############ ".$date." ############"." \r\n ". $tmp_text ;
+        else
+            $fullText = "\r\n".$tmp_text;
+
         self::$log_file_name = Date("Y_m_d")."_".$log_file_name .self::$extension;
         self::writeFile($fullText);
         /*echo("log text = ".$text);
         echo("log file = ".$log_file_name);*/
-        if($output)echo($text);
+        if($output)echo($text."<br>");
     }
 	
 	private static function  writeFile($text){

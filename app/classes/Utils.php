@@ -79,6 +79,13 @@ class Utils {
             return str_replace($a, $b, $str);
     }
 
+
+    static function SetInclude($folderPath){
+        $files = scandir(  $folderPath . "/");
+        foreach ( $files as $file)
+            if($file!= "." && $file!= "..")
+                require_once($folderPath . "/" . $file);
+    }
 }
 
 

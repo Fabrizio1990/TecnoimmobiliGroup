@@ -29,7 +29,7 @@
 
 require_once(BASE_PATH."/app/classes/GenericDbHelper.php");
 require_once(BASE_PATH."/app/classes/ImageHelper/ImagesInfo.php");
-
+require_once(BASE_PATH."/app/classes/PropertyLinksAndTitles.php");
 //header("content-type: text/text;charset=utf-8");
 class Feed
 {

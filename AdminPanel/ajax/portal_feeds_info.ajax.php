@@ -41,48 +41,6 @@ if(isset($_REQUEST["ACTION"])){
             }
             $fRes = $pMng->getPortalFeeds($portalIDs);
 
-            /*
-            //DOPO AVER PRESO LA LISTA DEI FEED DEVO GENERARE UN JSON CORRETTO CHE CONTENGA IL PORTALE E TUTTI I SUOI FEED
-            $retArray = array();
-            $prevPortalId = 0;
-            $currIdx = 0;
-            //CICLO TUTTI I FEED
-            for ($i = 0, $len = count($fRes); $i < $len ; $i++){
-                $currPortalId = $fRes[$i]["id_portal"];
-                // SE NUOVO PORTALE LO AGGIUNGO E AGGIUNGO L'ARRAY DEI FEED POPOLANDOLO CON IL PRIMO FEED CHE è GIà CONTENUTO NEL RESULTSET
-                if($prevPortalId != $currPortalId){
-                    //AGGIUNGO IL PORTALE E IL FEED INERENTE
-                    $retArray[$currIdx]["id"] = $fRes[$i]["id"];
-                    $retArray[$currIdx]["id_portal"] = $fRes[$i]["id_portal"];
-                    $retArray[$currIdx]["portal_name"] = $fRes[$i]["portal_name"];
-                    $retArray[$currIdx]["feeds"] = array();
-                    $feed  = array(
-                        "feed_name" => $fRes[$i]["feed_name"],
-                        "feed_extension_id" =>$fRes[$i]["feed_extension_id"],
-                        "feed_extension" =>$fRes[$i]["feed_extension"]
-                    );
-                    array_push($retArray[$currIdx]["feeds"],$feed);
-
-
-                    $retArray[$currIdx]["last_feed_update"] = $fRes[$i]["last_feed_update"];
-
-                }else{
-                    //SE NON è NUOVO PORTALE AGGIUNGO SOLO IL FEED
-                    $feed  = array(
-                        "feed_name" => $fRes[$i]["feed_name"],
-                        "feed_extension_id" =>$fRes[$i]["feed_extension_id"],
-                        "feed_extension" =>$fRes[$i]["feed_extension"]
-                    );
-                    array_push($retArray[$currIdx]["feeds"],$feed);
-                }
-
-                if($i + 1 < Count($fRes) && $currPortalId != $fRes[$i+1]["id_portal"])
-                    $currIdx++;
-
-                $prevPortalId = $currPortalId;
-            }
-            echo(json_encode($retArray));*/
-
             echo(json_encode($fRes));
 
             break;

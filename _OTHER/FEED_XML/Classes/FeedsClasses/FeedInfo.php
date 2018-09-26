@@ -62,6 +62,8 @@ class FeedInfo extends DbManager implements IDbManager {
         return $ret;
     }
 
+
+
     public function getFeedData($id_portal,$feedName){
         $this->currTable = "portal_feeds_view";
         $params = array("id_portal = ?","feed_name = ?");
