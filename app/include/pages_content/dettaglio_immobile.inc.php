@@ -157,12 +157,12 @@ $ipeUM = $details["ipe_um"];
 
         <hr>
 
-        <div class="property_video clearfix">
+        <!--<div class="property_video clearfix">
             <h3 class="big_title">Property Video<small>See the details of the house on the video</small></h3>
             <iframe src="http://player.vimeo.com/video/73221098?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
 
-        <hr>
+        <hr>-->
 
         <div class="property_map clearfix">
             <h3 class="big_title">Property Map<small>See the address of the house on the map</small></h3>
