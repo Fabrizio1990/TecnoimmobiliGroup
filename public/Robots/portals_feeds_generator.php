@@ -55,9 +55,7 @@ Flog::logInfo(
     false
 );
 
-
-
-
+// SALVO SU FTP
 
 Flog::logInfo(
     "************> INIZIO SALVATAGGIO SU FTP",
@@ -79,25 +77,10 @@ foreach ($pRes as $portal) {
         $feedMng = new FeedManager();
         $feedName = $feed["feed_name"];
         $feedExtension = $feed["feed_extension"];
-        Flog::logInfo(
-            "@@@@@@> MUOVO SU FTP IL FEED $portalName -> $feedName",
-            "feed_generation",
-            true,
-            false,
-            false
-        );
 
         $ret = $feedMng->writeFeedOnFtp($portalName,$feedName);
 
-        Flog::logInfo(
-            $ret->retText,
-            "feed_generation",
-            true,
-            false,
-            false
-        );
     }
-
 
 }
 

@@ -8,7 +8,7 @@ $sp_town     = $details["id_town"];
 $params = array("id_contract = ?","id_category = ?","id_town = ?","reference_code != ?","id_ads_status = 1","id_contract_status not in(2,4)");
 $values = array($sp_contract,$sp_category,$sp_town,$reference_code);
 
-$resSP = $propertyM->readAllAds($params,array("ORDER BY FIELD(id_contract,".$sp_contract.") desc","limit 3"),$values,null,false);
+$resSP = $propertyM->getAllProperties($params,array("ORDER BY FIELD(id_contract,".$sp_contract.") desc","limit 3"),$values,null,false);
 
 
 

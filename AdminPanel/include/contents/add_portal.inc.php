@@ -40,7 +40,7 @@ $txtPortalNotes             = "";
 // SEZIONE DATI FTP
 $inpPortalHasFtp            = "";
 $inpPortalLinkFtp           = "";
-$inpPortalFolderFtp         = "";
+$inpPortalFileNameFtp         = "";
 $inpPortalUserFtp           = "";
 $inpPortalPswFtp            = "";
 
@@ -98,6 +98,7 @@ $inpPortalContactAddress    = "indirizzo a caso";*/
 if(isset($_REQUEST["id_portal"])){
     $id_portal = $_REQUEST["id_portal"];
     $res = $prtMng->getPortalDetails($id_portal);
+
     if(Count($res)> 0){
         $details = $res[0];
 
@@ -120,7 +121,7 @@ if(isset($_REQUEST["id_portal"])){
 // SEZIONE DATI FTP
         $inpPortalHasFtp            = $details["ftp_enabled"];
         $inpPortalLinkFtp           = $details["ftp_url"];
-        $inpPortalFolderFtp         = $details["ftp_folder"];
+        $inpPortalFileNameFtp       = $details["ftp_file_name"];
         $inpPortalUserFtp           = $details["ftp_user"];
         $inpPortalPswFtp            = $details["ftp_password"];
 

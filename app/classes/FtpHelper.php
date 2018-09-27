@@ -2,7 +2,7 @@
 
 class FtpHelper
 {
-    static function writeFileOnFtp($ftp_server,$ftp_username,$ftp_password,$ftp_folder,$local_file){
+    static function writeFileOnFtp($ftp_server,$ftp_username,$ftp_password,$remoteFileName,$local_file){
         $ftp_connection = ftp_connect($ftp_server);
 
         // login on server
@@ -13,7 +13,7 @@ class FtpHelper
             echo "Connessione fallita!";
         } else {
             // if connected with ftp i will upload file
-            $upload = ftp_put($ftp_connection, $ftp_folder, $local_file, FTP_BINARY);
+            $upload = ftp_put($ftp_connection, $remoteFileName, $local_file, FTP_BINARY);
 
             // close ftp connection
             ftp_quit($ftp_connection);

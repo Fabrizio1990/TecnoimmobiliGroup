@@ -108,12 +108,18 @@ $(document).ready(function () {
                     },
                     date: true
                 },
+                inp_portal_contract_price:{
+                    required : function(element){
+                        return $('#inp_portal_hasContract').bootstrapSwitch('state');
+                    },
+                    number: true
+                },
                 inp_portal_link_ftp:{
                     required : function(element){
                         return $('#inp_portal_hasFtp').bootstrapSwitch('state');
                     },
                 },
-                inp_portal_folder_ftp:{
+                inp_portal_file_name_ftp:{
                     required : function(element){
                         return $('#inp_portal_hasFtp').bootstrapSwitch('state');
                     },

@@ -96,7 +96,7 @@ if($orderKey!=""){
     }
 }
 
-$res = $propertyM->readAllAds($params,$extra_params,$values,null,false);
+$res = $propertyM->getAllProperties($params,$extra_params,$values,null,false);
 
 
 $resultFound = Count($res);

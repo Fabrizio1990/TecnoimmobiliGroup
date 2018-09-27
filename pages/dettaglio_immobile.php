@@ -15,7 +15,7 @@ $propertyM = new PropertyManager();
 
 $reference_code = $_GET["rif"];
 $title          = $_GET["title"];
-$details = $propertyM->readAllAds("reference_code = ?","limit 1",array($reference_code),null,false);
+$details = $propertyM->getAllProperties("reference_code = ?","limit 1",array($reference_code),null,false);
 if(Count($details)<=0 || $details[0]["id_ads_status"] != 1)
     header("location: ".SITE_URL."/404.html");
 

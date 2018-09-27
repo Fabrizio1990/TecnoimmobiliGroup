@@ -81,7 +81,7 @@ class PropertyManager extends DbManager implements IDbManager {
 
     public function createRefenceCode($id_ads){
 
-        $res = $this->readAllAds(array("id = ?"),null,array($id_ads),array("city_short","date_ins"));
+        $res = $this->getAllProperties(array("id = ?"),null,array($id_ads),array("city_short","date_ins"));
         $date =Date("dmY",strtotime($res[0]["date_ins"]));
         $rif = $res[0]["city_short"].$date."RIF".$id_ads;
         $res = $this->update("reference_code = ?",array("id=?"),array($rif,$id_ads));
@@ -170,7 +170,7 @@ class PropertyManager extends DbManager implements IDbManager {
     }
 
 
-    public function readAllAds($params = null,$extra_params = null,$values =null ,$fields = null,$printQuery = null){
+    public function getAllProperties($params = null, $extra_params = null, $values =null , $fields = null, $printQuery = null){
         $this->currTable = "properties_view";
         $ret = $this->read($params,$extra_params,$values ,$fields, $printQuery);
         $this->setDefTable();

@@ -10,7 +10,7 @@ class FeedImmobiliare_it extends Feed
 
     public function PopulateRow($row){
         
-        $this->tmp_items = str_replace("{misssing_rooms}",($locals - $rooms),$this->tmp_items);
+        /*$this->tmp_items = str_replace("{misssing_rooms}",($locals - $rooms),$this->tmp_items);*/
         $this->tmp_items = str_replace("{negotiation_reserved}",($row["negotiation_reserved"]==1?true:false),$this->tmp_items);
         
 

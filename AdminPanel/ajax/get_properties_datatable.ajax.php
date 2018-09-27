@@ -122,7 +122,7 @@
     }
     //var_dump($values);
 
-    $res = $propertyM->readAllAds($params,null,$values,null);
+    $res = $propertyM->getAllProperties($params,null,$values,null);
 
 	$resultFound = Count($res);
 	if ($resultFound>0 && $resultFound!="" && $resultFound!=null){

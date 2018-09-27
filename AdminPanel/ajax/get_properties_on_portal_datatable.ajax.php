@@ -122,7 +122,7 @@
     }
     //var_dump($values);
 $isOnPortalSubQuery = array("properties_view.*","(select Count(id) from prt_portal_properties where id_portal=".$portal_id." and id_property=properties_view.id ) as isEnabledOnPortal ");
-    $res = $propertyM->readAllAds($params,null,$values,$isOnPortalSubQuery,false);
+    $res = $propertyM->getAllProperties($params,null,$values,$isOnPortalSubQuery,false);
 
 	$resultFound = Count($res);
 	if ($resultFound>0 && $resultFound!="" && $resultFound!=null){

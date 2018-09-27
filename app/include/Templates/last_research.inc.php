@@ -27,7 +27,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
                 <div class="tab-pane active" id="tab_auction">
 
                     <?php
-                    $properties = $propertyMng->readAllAds(array("id_ads_status = 1","id_contract = 7"),"order by date_up desc Limit 6 ",null,null,false);
+                    $properties = $propertyMng->getAllProperties(array("id_ads_status = 1","id_contract = 7"),"order by date_up desc Limit 6 ",null,null,false);
 
                     for($i = 0 ; $i < Count($properties) ; $i++){
 
@@ -104,7 +104,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
 
                 <div class="tab-pane" id="tab_frequently_searched">
                     <?php
-                    $properties = $propertyMng->readAllAds("id_ads_status = 1","order by views desc,date_up desc Limit 6 ",null,null,false);
+                    $properties = $propertyMng->getAllProperties("id_ads_status = 1","order by views desc,date_up desc Limit 6 ",null,null,false);
 
                     for($i = 0 ; $i < Count($properties) ; $i++){
                         $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);
@@ -177,7 +177,7 @@ $imgEof  = "img_eof/Immagine_eof.jpg";
 
                 <div class="tab-pane" id="tab_last_insert">
                     <?php
-                    $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_ins desc Limit 6 ",null,null,false);
+                    $properties = $propertyMng->getAllProperties("id_ads_status = 1","order by date_ins desc Limit 6 ",null,null,false);
 
                     for($i = 0 ; $i < Count($properties) ; $i++){
                         $link = PropertyLinksAndTitles::getDetailLink($properties[$i]["contract"],$properties[$i]["tipology"],$properties[$i]["street"],$properties[$i]["town"],$properties[$i]["reference_code"]);

@@ -7,7 +7,7 @@ if(!isset($propertyM)){
     require_once(BASE_PATH . "/app/classes/PropertyManager.php");
 
     $propertyM = new PropertyManager();
-    $details = $propertyM->readAllAds("reference_code = ?","limit 1",array($reference_code),null,false);
+    $details = $propertyM->getAllProperties("reference_code = ?","limit 1",array($reference_code),null,false);
     $details = $details[0];
 
 }

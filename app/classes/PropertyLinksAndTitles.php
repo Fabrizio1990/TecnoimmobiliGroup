@@ -17,7 +17,7 @@ class PropertyLinksAndTitles
     // #################################################################################
     public static function getTitleFromId($id,$titleType = 3){
         $mng = new PropertyManager();
-        $res = $mng->readAllAds("id = ?","limit 1",array($id),null,null);
+        $res = $mng->getAllProperties("id = ?","limit 1",array($id),null,null);
         if(Count($res)<=0)
             return false;
 
@@ -49,7 +49,7 @@ class PropertyLinksAndTitles
     public static function getTitleFromRef($ref, $titleType = 3){
 
         $mng = new PropertyManager();
-        $res = $mng->readAllAds("reference_code = ?","limit 1",array($ref),null,null);
+        $res = $mng->getAllProperties("reference_code = ?","limit 1",array($ref),null,null);
         if(Count($res)<=0)
             return false;
 
@@ -99,7 +99,7 @@ class PropertyLinksAndTitles
     // #################################################################################
     public static function getDetailLinkFromId($id){
         $mng = new PropertyManager();
-        $res = $mng->readAllAds("id = ?","limit 1",array($id),null,null);
+        $res = $mng->getAllProperties("id = ?","limit 1",array($id),null,null);
         if(Count($res)>0)
             return PropertyLinksAndTitles::getDetailLink($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"],$res[0]["reference_code"]);
         else
@@ -108,7 +108,7 @@ class PropertyLinksAndTitles
 
     public static function getDetailLinkFromRef($ref){
         $mng = new PropertyManager();
-        $res = $mng->readAllAds("reference_code = ?","limit 1",array($ref),null,null);
+        $res = $mng->getAllProperties("reference_code = ?","limit 1",array($ref),null,null);
         if(Count($res)>0)
             return SITE_URL."/".PropertyLinksAndTitles::getDetailLink($res[0]["contract"],$res[0]["tipology"],$res[0]["street"],$res[0]["town"],$ref);
         else

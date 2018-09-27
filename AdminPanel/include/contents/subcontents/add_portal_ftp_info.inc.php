@@ -22,7 +22,7 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label>Link ftp</label>
+            <label>FTP Link</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-feed"></i></div>
                 <input id="inp_portal_link_ftp" name="inp_portal_link_ftp" type="text" class="form-control" placeholder="Link dell' ftp"  value="<?php echo $inpPortalLinkFtp ?>">
@@ -32,10 +32,10 @@
 
         <div class="col-md-6">
         <div class="form-group">
-            <label>Folder ftp</label>
+            <label>FTP nome file</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-feed"></i></div>
-                <input id="inp_portal_folder_ftp" name="inp_portal_folder_ftp" type="text" class="form-control" placeholder="Cartella dell' ftp"  value="<?php echo $inpPortalFolderFtp ?>">
+                <input id="inp_portal_file_name_ftp" name="inp_portal_file_name_ftp" type="text" class="form-control" placeholder="Cartella dell' ftp"  value="<?php echo $inpPortalFileNameFtp ?>">
             </div>
         </div><!-- /.form-group -->
     </div><!-- /.col-md-6 -->
@@ -48,7 +48,7 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label>User Ftp</label>
+            <label>FTP User</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-globe"></i></div>
                 <input id="inp_portal_user_ftp" name="inp_portal_user_ftp" type="text" class="form-control" placeholder="Sito del Portale"  value="<?php echo $inpPortalUserFtp ?>">
@@ -60,7 +60,7 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label>Password Ftp</label>
+            <label>FTP Password</label>
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-feed"></i></div>
                 <input id="inp_portal_psw_ftp" name="inp_portal_psw_ftp" type="text" class="form-control" placeholder="Password Ftp"  value="<?php echo $inpPortalPswFtp ?>">

@@ -5,7 +5,7 @@
     $propertyMng = new PropertyManager();
 
     $elemXRow = 4;
-    $properties = $propertyMng->readAllAds("id_ads_status = 1","order by date_up desc Limit 8 ",null,null,false);
+    $properties = $propertyMng->getAllProperties("id_ads_status = 1","order by date_up desc Limit 8 ",null,null,false);
 
     $imgPathNormal = $IMG_INFO["properties"]["medium"]['path'];
     $imgPathBig = $IMG_INFO['properties']['big']['path'];

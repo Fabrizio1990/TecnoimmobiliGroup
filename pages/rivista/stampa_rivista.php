@@ -67,7 +67,7 @@ if($magazine_type!= null) {
 
 }
 
-$res = $mng->readAllAds($params,$extra_params,$values ,$fields,false);
+$res = $mng->getAllProperties($params,$extra_params,$values ,$fields,false);
 
 $lastAgencyId = 0;
 $defX = 75;

@@ -22,8 +22,6 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
 
 
-
-
     $id_portal          = isset($_POST["id_portal"]) ? $_POST["id_portal"] : 0;
     $logo_name          = urldecode($_POST["logo_portal"]);
     $name               = $_POST["inp_portal_name"];
@@ -33,6 +31,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
     $ar_username        = $_POST["inp_portal_username"];
     $ar_password        = $_POST["inp_portal_password"];
     $hasContract        = isset($_POST["inp_portal_hasContract"])?$_POST["inp_portal_hasContract"]:0;
+
     $contractStart      = $_POST["inp_portal_contract_start"];
     $contractEnd        = $_POST["inp_portal_contract_end"];
     $contractPrice      = $_POST["inp_portal_contract_price_unmask"];
@@ -40,7 +39,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
     $hasFtp             = isset($_POST["inp_portal_hasFtp"])?$_POST["inp_portal_hasFtp"]:false;
     $ftp_link           = $_POST["inp_portal_link_ftp"];
-    $ftp_folder         = $_POST["inp_portal_folder_ftp"];
+    $ftp_file_name      = $_POST["inp_portal_file_name_ftp"];
     $ftp_user           = $_POST["inp_portal_user_ftp"];
     $ftp_password       = $_POST["inp_portal_psw_ftp"];
 
@@ -117,14 +116,17 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
 
         //CONTRACT INFO SAVE
 
-        if($_REQUEST["hasContract"] == "true"){
-            $ret = $pMng->SavePortalContractInfo($id_portal,$contractStart,$contractEnd,$contractPrice);
+        if($_REQUEST["hasContract"] == 1){
+            $ret = $pMng->SavePortalContractInfo($id_portal,$contractStart,$contractEnd,$contractPrice,$hasContract);
+            echo($hasContract);
             if($ret == null || $ret =="" ){
                 $pMng->rollback();
                 echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI CONTRATTO DEL PORTALE");
                 exit();
             }
         }
+        $pMng->SetContractStatus($id_portal,$hasContract,false);
+
 
 
         //PORTAL LOGIN INFO SAVE
@@ -136,7 +138,7 @@ if(isset($_POST["inp_portal_name"],$_POST["inp_portal_site"],$_POST["inp_portal_
         }
         //SALVO INFO FTP DEL PORTALE
         if($hasFtp){
-            $ret = $pMng->SavePortalFtpInfo($id_portal,$ftp_link,$ftp_folder,$ftp_user,$ftp_password);
+            $ret = $pMng->SavePortalFtpInfo($id_portal,$ftp_link,$ftp_file_name,$ftp_user,$ftp_password);
             if($ret == null || $ret ==""){
                 $pMng->rollback();
                 echo("ERRORE NEL SALVATAGGIO DELLE INFORMAZIONI DI FTP DEL PORTALE");

@@ -18,7 +18,7 @@ class FeedManager
 {
 
 
-    public function generateFeed($portal_name , $feedName, $printFeed = false){
+    public function generateFeed($portalName , $feedName, $printFeed = false){
 
 
 
@@ -34,9 +34,9 @@ class FeedManager
         $feeder = null;
 
         //GET PORTAL ID AND FEED INFO
-        $portalId = $feedInfoMng->getPortalIdFromName($portal_name);
+        $portalId = $feedInfoMng->getPortalIdFromName($portalName);
         if($portalId == null){
-            Flog::logInfo("Non esiste nessun portale con questo nome ->'$portal_name'",
+            Flog::logInfo("Non esiste nessun portale con questo nome ->'$portalName'",
                 "feed_generation",
                 false,
                 true,
@@ -48,7 +48,7 @@ class FeedManager
         $feedInfo = $feedInfoMng->getFeedData($portalId,$feedName);
 
         //GET SAVE PATH INFO
-        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portal_name);
+        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portalName);
         $feedName      = $feedInfo[0]["feed_name"];
         $feedExtension = $feedInfo[0]["feed_extension"];
         $fullSavePath = $feedSavePath."/".$feedName.$feedExtension;
@@ -68,7 +68,7 @@ class FeedManager
 
         // DEBUG START FEED CREATION
         Flog::logInfo(
-            "---->INIZIO GENERAZIONE DEL FEED $portal_name -> $feedName$feedExtension",
+            "---->INIZIO GENERAZIONE DEL FEED $portalName -> $feedName$feedExtension",
             "feed_generation",
             true,
             false,
@@ -94,16 +94,16 @@ class FeedManager
         $feedFilterVal = $feedInfo[0]["filter_value"];
 
         //GET SAVE PATH INFO
-        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portal_name);
+        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portalName);
         $feedName      = $feedInfo[0]["feed_name"];
         $feedExtension = $feedInfo[0]["feed_extension"];
         $fullSavePath = $feedSavePath."/".$feedName.$feedExtension;
 
         // GET THE TEMPLATE FOR BASE XML AND SINGLE ITEMS
-        $templateContainer = FileHelper::readFile($folderTemplateXML."/".$portal_name.$feedExtension);
-        $templateRepeat = FileHelper::readFile($folderTemplateXML."/".$portal_name."_item".$feedExtension);
+        $templateContainer = FileHelper::readFile($folderTemplateXML."/".$portalName.$feedExtension);
+        $templateRepeat = FileHelper::readFile($folderTemplateXML."/".$portalName."_item".$feedExtension);
         // GET RIGHT FEED CLASS
-        $feedMng = $this->getManager($portal_name,$portalId,$templateContainer,$templateRepeat);
+        $feedMng = $this->getManager($portalName,$portalId,$templateContainer,$templateRepeat);
 
         //---------------------GET ALL PROPRETIES TO SENT TO THIS PORTAL
         $dbH = new GenericDbHelper();
@@ -128,13 +128,13 @@ class FeedManager
         /*
          * ENABLE IT TO PRINT FILE WITH FEED IN LOG FOLDER
          * Flog::logInfo($feedFile,
-            date("H_i_s").$portal_name,
+            date("H_i_s").$portalName,
             false
         );*/
 
         // DEBUG START FEED CREATION
         Flog::logInfo(
-            "----> FINE GENERAZIONE DEL FEED $portal_name -> $feedName$feedExtension",
+            "----> FINE GENERAZIONE DEL FEED $portalName -> $feedName$feedExtension",
             "feed_generation",
             true,
             false,
@@ -150,22 +150,33 @@ class FeedManager
         fclose($XMLFile);
     }
 
-    function writeFeedOnFtp($portal_name , $feedName){
+    function writeFeedOnFtp($portalName , $feedName){
+
+        Flog::logInfo(
+            "@@@@@@> MUOVO SU FTP IL FEED $portalName -> $feedName",
+            "feed_generation",
+            true,
+            false,
+            false
+        );
+
+
+
         $prtMng = new PortalManager();
         $feedInfoMng = new FeedInfo();
         $feedMng = null;
         $feeder = null;
 
         //GET PORTAL ID AND FEED INFO
-        $portalId = $feedInfoMng->getPortalIdFromName($portal_name);
+        $portalId = $feedInfoMng->getPortalIdFromName($portalName);
         if($portalId == null){
-            return "Attenzione ! Non esiste nessun portale con questo nome '$portal_name'.";
+            return "Attenzione ! Non esiste nessun portale con questo nome '$portalName'.";
         }
 
         $feedInfo = $feedInfoMng->getFeedData($portalId,$feedName);
 
         //GET SAVE PATH INFO
-        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portal_name);
+        $feedSavePath  = BASE_PATH."/".$prtMng->getFeedsFolder($portalName);
         $feedName      = $feedInfo[0]["feed_name"];
         $feedExtension = $feedInfo[0]["feed_extension"];
         $localFilePath = $feedSavePath."/".$feedName.$feedExtension;
@@ -173,13 +184,13 @@ class FeedManager
         //GET PORTAL FTP INFO
         $portalInfo = $prtMng->getPortalDetails($portalId);
         $ftp_server = $portalInfo[0]["ftp_url"];
-        $ftp_folder = $portalInfo[0]["ftp_folder"];
+        $ftp_folder = $portalInfo[0]["ftp_file_name"];
         $ftp_username = $portalInfo[0]["ftp_user"];
         $ftp_password = $portalInfo[0]["ftp_password"];
 
 
         if($portalInfo[0]["portal_enabled"] != "1"){
-            Flog::logInfo("Attenzione : il portale '$portal_name'  non è abilitato",
+            Flog::logInfo("Attenzione : il portale '$portalName'  non è abilitato",
                 "feed_generation",
                 false,
                 true,
@@ -189,7 +200,7 @@ class FeedManager
         }
         if($portalInfo[0]["ftp_enabled"] != "1"){
             Flog::logInfo(
-                "Attenzione : il portale '$portal_name'  non ha l' FTP abilitato",
+                "Attenzione : il portale '$portalName'  non ha l' FTP abilitato",
                 false,
                 true,
                 false,
@@ -202,10 +213,19 @@ class FeedManager
         $ret = FtpHelper::writeFileOnFtp($ftp_server, $ftp_username, $ftp_password, $ftp_folder, $localFilePath);
 
         if($ret == 1)
-            $retStruct = new RetStruct(1,"SUCCESSO : Portale $portal_name , feed = $feedName salvato su FTP");
+            $retStruct = new RetStruct(1,"SUCCESSO : Portale $portalName , feed = $feedName salvato su FTP");
         else
-            $retStruct = new RetStruct(-1,"ERRORE : Portale $portal_name , feed = $feedName NON salvato su FTP ".$ret);
-        
+            $retStruct = new RetStruct(-1,"ERRORE : Portale $portalName , feed = $feedName NON salvato su FTP ".$ret);
+
+        // LOG STATE OF ACTION
+        Flog::logInfo(
+            $retStruct->retText,
+            "feed_generation",
+            true,
+            false,
+            false
+        );
+
         return $retStruct;
 
     }
