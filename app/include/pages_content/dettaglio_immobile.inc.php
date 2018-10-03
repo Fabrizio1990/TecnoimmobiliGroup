@@ -1,7 +1,4 @@
 <?php
-require_once(BASE_PATH . "/app/classes/ImageHelper/ImagesInfo.php");
-
-$imgInfo = new ImagesInfo();
 
 if(!isset($propertyM)){
     require_once(BASE_PATH . "/app/classes/PropertyManager.php");
