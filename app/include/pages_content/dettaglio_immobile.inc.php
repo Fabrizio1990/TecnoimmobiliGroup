@@ -165,7 +165,7 @@ $ipeUM = $details["ipe_um"];
         <hr>-->
 
         <div class="property_map clearfix">
-            <h3 class="big_title">Property Map<small>See the address of the house on the map</small></h3>
+            <h3 class="big_title">Mappa<small>Trova l' indirizzo sulla mappa</small></h3>
             <div class="map">
                 <div id="map"></div>
                 <?php //include SITE_URL."/include/Widgets/maps.inc.php"; ?>
