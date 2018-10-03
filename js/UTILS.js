@@ -1,4 +1,4 @@
-var SITE_URL = "http://localhost/Tecnoimmobili/Tecnoimmobiligroup_nuovo";
+var SITE_URL = "http://www.tecno-immobili.it";
 var debug = true;
 // OVERRIDE CONSOLE.LOG;
 (function(){
