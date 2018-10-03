@@ -1,5 +1,8 @@
 .idea/
+config.php
 app/logs/
+js/UTILS.js
+js/UTILS_JQ.js
 app/include/Widgets/maps.php
 app/classes/Configs/
 public/images/images_portals/
@@ -7,6 +10,5 @@ public/images/images_properties/
 public/portals/
 public/documents/
 pages/test/
-pages/finanziaria/test.php
 libs/frontend/ckEditor/js/ckeditor_4.5.7.js
 libs/backend/PHPMailer/examples/
